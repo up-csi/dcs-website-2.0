@@ -1,0 +1,56 @@
+services:
+  directus:
+    image: directus/directus:11.1.0
+    ports:
+      - 8055:8055
+    volumes:
+      - ./database:/directus/database
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    environment:
+      SECRET: "replace-with-secure-random-value"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      WEBSOCKETS_ENABLED: "true"
+      PUBLIC_URL: "http://localhost:8055"
+
+      DB_CLIENT: "pg"
+      DB_HOST: "aws-0-ap-southeast-1.pooler.supabase.com"
+      DB_PORT: "6543"
+      DB_DATABASE: "postgres"
+      DB_USER_FILE: /run/secrets/db_user
+      DB_PASSWORD_FILE: /run/secrets/db_password
+
+      AUTH_PROVIDERS: "google"
+
+      AUTH_GOOGLE_DRIVER: "openid"
+      AUTH_GOOGLE_CLIENT_ID_FILE: /run/secrets/google_client_id
+      AUTH_GOOGLE_CLIENT_SECRET_FILE: /run/secrets/google_client_secret
+      AUTH_GOOGLE_ISSUER_URL: "https://accounts.google.com"
+      AUTH_GOOGLE_IDENTIFIER_KEY: "email"
+      AUTH_GOOGLE_ICON: "google"
+      AUTH_GOOGLE_LABEL: "Google"
+      AUTH_GOOGLE_ALLOW_PUBLIC_REGISTRATION: "true" # This allows users to be automatically created on logins. Use "false" if you want to create users manually
+      AUTH_GOOGLE_DEFAULT_ROLE_ID_FILE: /run/secrets/google_default_role # Replace this with the Directus Role ID you would want for new users. If this is not properly configured, new users will not have access to Directus
+      
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+    secrets:
+      - db_password
+      - db_user
+      - google_client_id
+      - google_client_secret
+      - google_default_role
+
+
+secrets:
+  db_password: 
+    file: ./secrets/db_password.txt
+  db_user:
+    file: ./secrets/db_user.txt
+  google_client_id:
+    file: ./secrets/google_client_id.txt
+  google_client_secret:
+    file: ./secrets/google_client_sec.txt
+  google_default_role:
+    file: ./secrets/google_default_role.txt

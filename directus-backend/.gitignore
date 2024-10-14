@@ -1,0 +1,4 @@
+secrets/
+database/**
+extensions/**
+uploads/**
