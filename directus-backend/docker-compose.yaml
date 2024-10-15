@@ -36,18 +36,18 @@ services:
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
     secrets:
-      - db_password
       - db_user
+      - db_password
       - google_client_id
       - google_client_secret
       - google_default_role
 
 
 secrets:
-  db_password: 
-    file: ./secrets/db_password.txt
   db_user:
     file: ./secrets/db_user.txt
+  db_password: 
+    file: ./secrets/db_password.txt
   google_client_id:
     file: ./secrets/google_client_id.txt
   google_client_secret:
