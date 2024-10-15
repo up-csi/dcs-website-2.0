@@ -1,5 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import sanitizeHtml from 'sanitize-html';
+
 	export let data;
 
 	$: ({ global, events } = data);
@@ -17,7 +19,7 @@
 					<h3>{event.event_headline}</h3>
 					<h3>{new Date(event.date_created).toLocaleDateString()}</h3>
 				</div>
-				{@html event.event_content}
+				{@html sanitizeHtml(event.event_content)}
 			</div>
 		{/each}
 	</div>
