@@ -1,0 +1,14 @@
+{
+  "name": "dcs-website-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "backend": "cd directus-backend && docker compose up",
+    "frontend": "cd website-frontend && pnpm dev",
+    "lint": "cd website-frontend && pnpm lint",
+    "fmt": "cd website-frontend && pnpm fmt"
+  },
+  "keywords": [],
+  "author": "UP CSI"
+}
