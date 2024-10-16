@@ -10,7 +10,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install missing packages and dependencies
+        shell: sh
         run: |
+          curl -fsSL https://get.pnpm.io/install.sh | sh -
           pnpm add
       - name: Validate current commit (last commit) with commitlint
         if: github.event_name == 'push'
