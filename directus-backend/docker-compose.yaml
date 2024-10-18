@@ -4,9 +4,9 @@ services:
     ports:
       - 8055:8055
     volumes:
-      - ./database:/directus/database
-      - ./uploads:/directus/uploads
-      - ./extensions:/directus/extensions
+      - database:/directus/database
+      - uploads:/directus/uploads
+      - extensions:/directus/extensions
     environment:
       SECRET: "replace-with-secure-random-value"
       ADMIN_EMAIL: "admin@example.com"
@@ -32,7 +32,7 @@ services:
       AUTH_GOOGLE_LABEL: "Google"
       AUTH_GOOGLE_ALLOW_PUBLIC_REGISTRATION: "true" # This allows users to be automatically created on logins. Use "false" if you want to create users manually
       AUTH_GOOGLE_DEFAULT_ROLE_ID_FILE: /run/secrets/google_default_role # Replace this with the Directus Role ID you would want for new users. If this is not properly configured, new users will not have access to Directus
-      
+
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
     secrets:
@@ -42,11 +42,10 @@ services:
       - google_client_secret
       - google_default_role
 
-
 secrets:
   db_user:
     file: ./secrets/db_user.txt
-  db_password: 
+  db_password:
     file: ./secrets/db_password.txt
   google_client_id:
     file: ./secrets/google_client_id.txt
@@ -54,3 +53,8 @@ secrets:
     file: ./secrets/google_client_sec.txt
   google_default_role:
     file: ./secrets/google_default_role.txt
+
+volumes:
+  database:
+  uploads:
+  extensions:
