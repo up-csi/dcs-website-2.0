@@ -8,9 +8,6 @@ services:
       - uploads:/directus/uploads
       - extensions:/directus/extensions
     environment:
-      SECRET: "replace-with-secure-random-value"
-      ADMIN_EMAIL: "admin@example.com"
-      ADMIN_PASSWORD: "d1r3ctu5"
       WEBSOCKETS_ENABLED: "true"
       PUBLIC_URL: "http://localhost:8055"
 
