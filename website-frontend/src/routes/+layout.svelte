@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
+	import NavBar from './NavBar.svelte';
 
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
@@ -17,8 +18,9 @@
 	storeHighlightJs.set(hljs);
 </script>
 
-<head>
-	<title>UPD DCS</title>
-</head>
-
-<slot />
+<header>
+	<NavBar />
+</header>
+<main>
+	<slot />
+</main>
