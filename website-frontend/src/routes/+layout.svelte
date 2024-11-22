@@ -21,6 +21,6 @@
 <header>
 	<NavBar />
 </header>
-<main>
+<main class="m-4 space-y-16">
 	<slot />
 </main>
