@@ -19,7 +19,7 @@
     {#if $currentProgram}
         <div class="relative">
             <div 
-                class="bg-cover bg-center h-[40vh]" 
+                class="bg-cover bg-center h-[40vh] md:h-[50vh]" 
                 style="background-image: linear-gradient(to top, #004420, transparent), url('{$currentProgram.image}')">
             </div>
 
