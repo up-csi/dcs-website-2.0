@@ -2,45 +2,55 @@ import { test, expect } from '@playwright/test';
 import { parse } from 'valibot';
 import { Global } from '$lib/models/global';
 import { Events } from '$lib/models/event';
+import { StudentCouncil } from '$lib/models/student_council';
 
-test('Global', async ({ request }) => {
-	const global = await request.get(`${process.env.PUBLIC_APIURL}/items/global`);
-	expect(global.ok()).toBeTruthy();
-	expect(parse(Global, (await global.json()).data)).toBeTruthy();
-});
+test.describe('Directus Collections', () => {
+	test('Global', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/global`);
+		expect(test_request.ok()).toBeTruthy();
+		expect(parse(Global, (await test_request.json()).data)).toBeTruthy();
+	});
 
-test('Home', async ({ request }) => {
-	const home = await request.get(`${process.env.PUBLIC_APIURL}/items/home`);
-	expect(home.ok()).toBeTruthy();
-});
+	test('Home', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/home`);
+		expect(test_request.ok()).toBeTruthy();
+	});
 
-test('Events', async ({ request }) => {
-	const events = await request.get(`${process.env.PUBLIC_APIURL}/items/events`);
-	expect(events.ok()).toBeTruthy();
-	expect(parse(Events, (await events.json()).data)).toBeTruthy();
-});
+	test('Events', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/events`);
+		expect(test_request.ok()).toBeTruthy();
+		expect(parse(Events, (await test_request.json()).data)).toBeTruthy();
+	});
 
-test('People', async ({ request }) => {
-	const people = await request.get(`${process.env.PUBLIC_APIURL}/items/people`);
-	expect(people.ok()).toBeTruthy();
-});
+	test('People', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/people`);
+		expect(test_request.ok()).toBeTruthy();
+	});
 
-test('Students', async ({ request }) => {
-	const students = await request.get(`${process.env.PUBLIC_APIURL}/items/students`);
-	expect(students.ok()).toBeTruthy();
-});
+	test.describe('Students', () => {
+		test('Overview', async ({ request }) => {
+			const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/students`);
+			expect(test_request.ok()).toBeTruthy();
+		});
+		test('Student Council', async ({ request }) => {
+			const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/student_council`);
+			expect(test_request.ok()).toBeTruthy();
+			expect(parse(StudentCouncil, (await test_request.json()).data)).toBeTruthy();
+		});
+	});
 
-test('Publications', async ({ request }) => {
-	const publications = await request.get(`${process.env.PUBLIC_APIURL}/items/publications`);
-	expect(publications.ok()).toBeTruthy();
-});
+	test('Publications', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/publications`);
+		expect(test_request.ok()).toBeTruthy();
+	});
 
-test('Organizations', async ({ request }) => {
-	const organizations = await request.get(`${process.env.PUBLIC_APIURL}/items/organizations`);
-	expect(organizations.ok()).toBeTruthy();
-});
+	test('Organizations', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/organizations`);
+		expect(test_request.ok()).toBeTruthy();
+	});
 
-test('Laboratories', async ({ request }) => {
-	const laboratories = await request.get(`${process.env.PUBLIC_APIURL}/items/laboratories`);
-	expect(laboratories.ok()).toBeTruthy();
+	test('Laboratories', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/laboratories`);
+		expect(test_request.ok()).toBeTruthy();
+	});
 });
