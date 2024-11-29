@@ -11,15 +11,25 @@ jobs:
         working-directory: ./website-frontend
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm install -g pnpm && pnpm install
+          fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+      - name: Install missing packages and dependencies
+        run: |
+          pnpm install
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: pnpm exec playwright test
+        run: pnpm run test
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
