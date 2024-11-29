@@ -14,8 +14,11 @@ jobs:
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
       - name: Run Prettier Check
+        if: ${{ !cancelled() }}
         run: pnpm run lint:prettier-only
       - name: Run ESLint
+        if: ${{ !cancelled() }}
         run: pnpm run lint:eslint-only
       - name: Run Svelte checker
+        if: ${{ !cancelled() }}
         run: pnpm run check
