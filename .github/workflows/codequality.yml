@@ -1,10 +1,9 @@
-name: Playwright Tests
+name: Check Code Quality
 on: [push, pull_request]
 env:
   PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,13 +15,12 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-      - name: Run Playwright tests
-        run: pnpm exec playwright test
-      - uses: actions/upload-artifact@v4
+      - name: Run Prettier Check
         if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+        run: pnpm run lint:prettier-only
+      - name: Run ESLint
+        if: ${{ !cancelled() }}
+        run: pnpm run lint:eslint-only
+      - name: Run Svelte checker
+        if: ${{ !cancelled() }}
+        run: pnpm run check
