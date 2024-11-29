@@ -1,5 +1,7 @@
 name: Playwright Tests
 on: [push, pull_request]
+env:
+  PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
 jobs:
   test:
     timeout-minutes: 60
@@ -18,8 +20,6 @@ jobs:
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
         run: pnpm exec playwright test
-        env:
-          PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
