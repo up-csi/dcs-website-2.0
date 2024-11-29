@@ -1,7 +1,5 @@
 name: Commit Linter
-
 on: [push, pull_request]
-
 jobs:
   commitlint:
     runs-on: ubuntu-latest
