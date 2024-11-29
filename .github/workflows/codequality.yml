@@ -1,5 +1,7 @@
 name: Check Code Quality
 on: [push, pull_request]
+env:
+  PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
 jobs:
   test:
     runs-on: ubuntu-latest
