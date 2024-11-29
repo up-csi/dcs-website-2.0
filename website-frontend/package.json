@@ -9,6 +9,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
+		"lint:prettier-only": "prettier --check",
+		"lint:eslint-only": "eslint .",
 		"format": "prettier --write .",
 		"test": "pnpm exec playwright test"
 	},
