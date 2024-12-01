@@ -25,12 +25,12 @@ jobs:
       - name: Install missing packages and dependencies
         run: |
           pnpm install
-      - name: Run Prettier Check
+      - name: Run Prettier check
         if: ${{ !cancelled() }}
         run: pnpm run lint:prettier-only
       - name: Run ESLint
         if: ${{ !cancelled() }}
         run: pnpm run lint:eslint-only
-      - name: Run Svelte checker
+      - name: Run Svelte check
         if: ${{ !cancelled() }}
         run: pnpm run check
