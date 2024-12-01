@@ -26,7 +26,6 @@ jobs:
         run: |
           pnpm install
       - name: Run Prettier check
-        if: ${{ !cancelled() }}
         run: pnpm run lint:prettier-only
       - name: Run ESLint
         if: ${{ !cancelled() }}
