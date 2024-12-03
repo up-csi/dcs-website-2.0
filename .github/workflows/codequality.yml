@@ -10,17 +10,26 @@ jobs:
         working-directory: ./website-frontend
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm install -g pnpm && pnpm install
-      - name: Run Prettier Check
-        if: ${{ !cancelled() }}
+          fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+      - name: Install missing packages and dependencies
+        run: |
+          pnpm install
+      - name: Run Prettier check
         run: pnpm run lint:prettier-only
       - name: Run ESLint
         if: ${{ !cancelled() }}
         run: pnpm run lint:eslint-only
-      - name: Run Svelte checker
+      - name: Run Svelte check
         if: ${{ !cancelled() }}
         run: pnpm run check
