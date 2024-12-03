@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.postcss';
 
-	import NavBar from './NavBar.svelte';
-
+	import NavBar from '$lib/components/nav/NavBar.svelte';
+	
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
 	import 'highlight.js/styles/github-dark.css';
