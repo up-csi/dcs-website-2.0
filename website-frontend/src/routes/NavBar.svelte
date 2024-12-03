@@ -2,10 +2,11 @@
     import NavItem from "$lib/components/nav/NavItem.svelte";
 </script>
 
-<div class="w-full flex justify-center">
-    <nav class="w-4/5 sticky flex justify-between">
+<div class="w-full flex justify-center my-2">
+    <nav class="p-1 w-4/5 sticky flex justify-between border rounded-lg">
         <a href="/"><p>logo</p></a>
-        <ul class="w-4/5 flex justify-center gap-8">
+        <ul class="flex justify-center gap-2">
+            <NavItem href="/" to="Home" />
             <NavItem href="/about" to="About">
                 <NavItem href="/about/overview" to="Overview" />
                 <NavItem href="/about/history" to="History" />
@@ -18,12 +19,12 @@
             </NavItem>
             <NavItem href="/research" to="Research">
                 <NavItem href="/research/overview" to="Overview" />
-                <NavItem href="/research/labs" to="Laboratories">
+                <NavItem href="/research/labs" to="Laboratories" position="left-36 top-0">
                     <NavItem href="/research/labs/ndsl" to="Networks and Distributed Systems Laboratory" />
                     <NavItem href="/research/labs/cvmil" to="Computer Vision and Machine Intelligence Laboratory" />
                     <NavItem href="/research/labs/s3" to="Service Science and Software Engineering Laboratory" />
                     <NavItem href="/research/labs/acl" to="Algorithms and Complexity Laboratory" />
-                    <NavItem href="/research/labs/lcl" to="Logic and smth here Laboratory" />
+                    <NavItem href="/research/labs/lcl" to="Logic and Computability Laboratory" />
                     <NavItem href="/research/labs/wsl" to="Web Science Laboratory" />
                     <NavItem href="/research/labs/csl" to="Computer Security Laboratory" />
                     <NavItem href="/research/labs/smsl" to="System Modeling and Simulation Laboratory" />
