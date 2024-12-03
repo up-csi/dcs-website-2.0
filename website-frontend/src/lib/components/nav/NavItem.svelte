@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { slide } from "svelte/transition";
     export let href: string, to: string, dropdown: boolean = false,
                position: string = '', style: string = '';
     let show = false;
@@ -34,6 +35,7 @@
                 w-full pr-4
                 {position}
             " 
+            transition:slide
         >
             <slot />
         </ul>
