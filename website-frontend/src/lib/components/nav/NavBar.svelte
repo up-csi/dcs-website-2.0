@@ -5,6 +5,7 @@
 <div
 	class="
     w-full md:h-full md:flex md:justify-center md:my-2 md:block
+	hidden
 "
 >
 	<nav
