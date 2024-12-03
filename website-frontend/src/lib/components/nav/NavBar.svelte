@@ -2,9 +2,17 @@
     import NavItem from "$lib/components/nav/NavItem.svelte";
 </script>
 
-<div class="w-full flex justify-center my-2">
-    <nav class="p-1 sticky flex justify-between border rounded-lg">
-        <ul class="flex justify-center gap-2">
+<div class="
+    w-full md:h-full md:flex md:justify-center md:my-2 md:block
+">
+    <nav class="
+        bg-background md:p-1 md:sticky flex md:justify-between md:border md:rounded-lg md:h-fit md:w-fit
+        fixed justify-end h-screen w-full
+    ">
+        <ul class="
+            md:flex md:justify-center gap-2 md:static w-full
+            absolute right-0 bottom-10
+        ">
             <NavItem href="/" to="Home" />
             <NavItem href="/about" to="About" dropdown={true}>
                 <NavItem href="/about/overview" to="Overview" />

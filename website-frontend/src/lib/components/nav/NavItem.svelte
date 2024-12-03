@@ -5,14 +5,35 @@
 </script>
 
 <li 
-    class="w-full relative rounded-sm text-sm transition-colors duration-300 ease-in-out hover:bg-accent {style}"
-    on:pointerenter={() => {show = true}} 
-    on:pointerleave={() => {show = false}}
+    class="w-full relative md:rounded-sm transition-colors duration-300 ease-in-out hover:bg-accent {style}"
+    on:mouseenter={() => {show = true}} 
+    on:mouseleave={() => {show = false}}
 >
-    <a {href} class="px-3 py-1 flex items-center">{to}</a>
+    <div class="
+        md:text-sm md:block
+        text-2xl flex justify-end
+    ">
+        {#if dropdown}
+            <button class="md:hidden" on:click={() => {show = !show}}>
+                {#if show}
+                    &#8593;
+                {:else}
+                    &#8595;
+                {/if}
+            </button>
+        {/if}
+        <a {href} class="
+            px-3 py-1 flex md:items-center md:justify-start md:text-left md:border-0
+            justify-end w-fit text-right border-r-2
+        ">{to}</a>
+    </div>
     {#if show && dropdown}
         <ul
-            class="absolute w-40 p-0.5 bg-background border rounded-lg {position}" 
+            class="
+                md:absolute md:w-40 md:p-0.5 bg-background md:border md:rounded-lg
+                w-full pr-4
+                {position}
+            " 
         >
             <slot />
         </ul>
