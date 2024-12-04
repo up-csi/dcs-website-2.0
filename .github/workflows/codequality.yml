@@ -33,3 +33,5 @@ jobs:
       - name: Run Svelte check
         if: ${{ !cancelled() }}
         run: pnpm run check
+        env:
+          PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
