@@ -53,4 +53,10 @@ test.describe('Directus Collections', () => {
 		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/laboratories`);
 		expect(test_request.ok()).toBeTruthy();
 	});
+
+	test('Alumni', async ({ request }) => {
+		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/alumni`);
+		expect(test_request.ok()).toBeTruthy();
+		expect(parse(StudentCouncil, (await test_request.json()).data)).toBeTruthy();
+	});
 });
