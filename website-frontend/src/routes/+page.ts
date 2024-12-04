@@ -2,7 +2,8 @@
 import getDirectusInstance from '$lib/directus';
 import { Global } from '$lib/models/global';
 import { Events } from '$lib/models/event';
-import { StudentCouncil } from '$lib/models/student_council.js';
+import { Alumni } from '$lib/models/alumni';
+import { StudentCouncil } from '$lib/models/student_council';
 import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
 export async function load({ fetch }) {
@@ -10,6 +11,10 @@ export async function load({ fetch }) {
 	return {
 		global: parse(Global, await directus.request(readSingleton('global'))),
 		events: parse(Events, await directus.request(readItems('events'))),
-		student_council: parse(StudentCouncil, await directus.request(readSingleton('student_council')))
+		student_council: parse(
+			StudentCouncil,
+			await directus.request(readSingleton('student_council'))
+		),
+		alumni: parse(Alumni, await directus.request(readSingleton('alumni')))
 	};
 }
