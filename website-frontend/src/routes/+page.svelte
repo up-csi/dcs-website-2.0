@@ -1,10 +1,16 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 
+	import { PUBLIC_APIURL } from '$env/static/public';
+
 	export let data;
 
 	$: ({ global, events } = data);
 </script>
+
+<svelte:head>
+	<link rel="icon" href="{PUBLIC_APIURL}/assets/{global.favicon}" />
+</svelte:head>
 
 <div class="container h-full mx-auto flex-col justify-center items-center my-8">
 	<div class="space-y-5">
