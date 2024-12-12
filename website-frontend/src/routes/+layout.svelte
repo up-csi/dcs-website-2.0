@@ -1,4 +1,12 @@
 <script lang="ts">
+	/** @type {import('./$types').PageData} */
+
+	import { PUBLIC_APIURL } from '$env/static/public';
+
+	export let data;
+
+	$: ({ global } = data);
+
 	import '../app.postcss';
 
 	import NavBar from '$lib/components/nav/NavBar.svelte';
@@ -18,6 +26,10 @@
 	hljs.registerLanguage('typescript', typescript);
 	storeHighlightJs.set(hljs);
 </script>
+
+<svelte:head>
+	<link rel="icon" href="{PUBLIC_APIURL}/assets/{global.favicon}" />
+</svelte:head>
 
 <header>
 	<NavBar />
