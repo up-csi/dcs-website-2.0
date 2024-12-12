@@ -3,36 +3,41 @@
 </script>
 
 <body class="bg-gray-100">
-    {#if data.program}
+    {#if data.people_category}
         <div class="relative">
             <div 
-                class="bg-cover bg-center h-[40vh] md:h-[50vh]" 
-                style="background-image: linear-gradient(to top, #004420, transparent), url('{data.program.image}')">
+                class="bg-cover bg-center h-[55vh] md:h-[65vh]" 
+                style="background-image: linear-gradient(to top, #004420, transparent), url('{data.people_category.image}')">
             </div>
 
-            <div class="absolute bottom-9">
-                <h1 class="font-bold text-3xl px-4 md:px-32 md:text-5xl md:max-w-[60vw]">{data.program.title}</h1>
-            </div>
-        </div>
-
-        <div class="text-[#01152B] text-base px-4 py-10 md:px-32">
-            {@html data.program.description}
-
-            <div class="max-w-6xl rounded-md overflow-hidden shadow-lg bg-white my-10">
-                <div class="px-4 md:px-6 py-8">
-                    <div class="font-bold text-xl mb-8">Curriculum</div>
-
-                    <p class="text-gray-500 text-sm">
-                        Core Courses
-                    </p>
-                    <p class="text-base">
-                        {@html data.program.curriculum}
-                    </p>
-                    
-                </div>
+            <div class="absolute bottom-9 md:max-w-[60vw] px-4 md:px-32">
+                <h1 class="font-bold text-3xl md:text-5xl">{data.people_category.title}</h1>
+                <h4>{data.people_category.description}</h4>
             </div>
         </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-[90vw] md:max-w-[80vw] mx-auto my-8">    
+            {#each data.people_category.people as { name, profile_img, position, lab }}
+		        <a href="/people/{name}" class="max-w-xs">
+                    <div class="bg-white shadow-xl rounded-lg py-3 px-3 flex flex-col h-full">
+                        <div class="photo-wrapper p-2">
+                            <img class="w-32 h-32 rounded-full mx-auto" src="{profile_img}" alt="Profile">
+                        </div>
+                        <div class="p-2">
+                            <div class="text-center text-gray-400 text-xs font-semibold">
+                                <p>{position}</p>
+                            </div>
+                            <h3 class="text-center text-xl text-gray-900 font-medium py-3">{name}</h3>
+                            <div class="text-center text-gray-400 text-xs font-semibold">
+                                <p>{lab}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+	        {/each}
+        </div>
+
     {:else}
-        <p>Program not found</p>
+        <p>People category not found</p>
     {/if}
 </body>
