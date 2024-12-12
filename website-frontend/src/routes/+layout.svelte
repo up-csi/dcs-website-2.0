@@ -1,5 +1,5 @@
 <script lang="ts">
-	/** @type {import('./$types').PageData} */
+	/** @type {import('./$types').LayoutData} */
 
 	import { PUBLIC_APIURL } from '$env/static/public';
 
