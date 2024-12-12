@@ -1,4 +1,4 @@
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').LayoutLoad} */
 import getDirectusInstance from '$lib/directus';
 import { Global } from '$lib/models/global';
 import { Events } from '$lib/models/event';
