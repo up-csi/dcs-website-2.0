@@ -28,6 +28,7 @@
 </script>
 
 <svelte:head>
+	<title>{global.title}</title>
 	<link rel="icon" href="{PUBLIC_APIURL}/assets/{global.favicon}" />
 </svelte:head>
 
