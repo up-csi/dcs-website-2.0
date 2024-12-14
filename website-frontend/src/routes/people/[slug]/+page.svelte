@@ -1,5 +1,10 @@
 <script>
     export let data;
+    let shown = 12;
+
+    function load_more() {
+		shown += 12;
+	}
 </script>
 
 <body class="bg-gray-100">
@@ -17,7 +22,7 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-[90vw] md:max-w-[80vw] mx-auto my-8">    
-            {#each data.people_category.people as { name, profile_img, position, lab }}
+            {#each data.people_category.people.slice(0, shown) as { name, profile_img, position, lab }}
 		        <a href="/people/{name}" class="max-w-xs">
                     <div class="bg-white shadow-xl rounded-lg py-3 px-3 flex flex-col h-full">
                         <div class="photo-wrapper p-2">
@@ -36,6 +41,12 @@
                 </a>
 	        {/each}
         </div>
+
+        {#if data.people_category.people.length > 12 && shown < data.people_category.people.length}
+            <button class="text-gray-900" on:click={load_more}>
+                Load More
+            </button>
+        {/if}
 
     {:else}
         <p>People category not found</p>

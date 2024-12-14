@@ -8,6 +8,16 @@ const people_categories = [
         {name: "Clarisse Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
         {name: "Cedric Villar", position: "queen never cry", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory ni Dexter in the laboratory"},
         {name: "Victor Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "John Justine Villar", position: "king", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Justine Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Clarisse Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Cedric Villar", position: "queen never cry", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory ni Dexter in the laboratory"},
+        {name: "Victor Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "John Justine Villar", position: "king", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Justine Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Clarisse Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
+        {name: "Cedric Villar", position: "queen never cry", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory ni Dexter in the laboratory"},
+        {name: "Victor Villar", position: "queen", profile_img: "...", bg_img: "...", lab: "Scientific Computing Laboratory"},
         ]
     },
     {slug: "associates", title:"Lecturers & Teaching Associates", image:"...", description: "owo", people:
