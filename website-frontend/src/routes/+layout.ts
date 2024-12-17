@@ -6,6 +6,7 @@ import { Alumni } from '$lib/models/alumni';
 import { StudentCouncil } from '$lib/models/student_council';
 import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
+import { Linkages } from '$lib/models/linkages.js';
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
 	return {
@@ -15,6 +16,7 @@ export async function load({ fetch }) {
 			StudentCouncil,
 			await directus.request(readSingleton('student_council'))
 		),
-		alumni: parse(Alumni, await directus.request(readSingleton('alumni')))
+		alumni: parse(Alumni, await directus.request(readSingleton('alumni'))),
+		linkages: parse(Linkages, await directus.request(readSingleton('linkages')))
 	};
 }
