@@ -12,16 +12,17 @@
 </script>
 
 <div class="container h-full mx-auto flex-col justify-center items-center my-8">
-	<div class="flex my-12 space-x-8">
+	<div class="flex my-12 space-x-8 overflow-x-auto">
         {#each featured as event}
             <FeaturedEventCard {event} />
         {/each}
     </div>
     <div>
         {#each events as event}
-            <div class="grid grid-cols-6 border rounded p-4">
-                <div class="col-span-5">
+            <div class="md:grid md:grid-cols-6 border rounded p-4">
+                <div class="md:col-span-5">
                     <h3>{event.event_headline}</h3>
+                    <h3 class="block md:hidden">{new Date(event.date_created).toLocaleDateString()}</h3>
                     <div class="max-h-6 *:truncate overflow-hidden">
                         {@html event.event_content}
                     </div>
@@ -33,7 +34,7 @@
                         {/each}
                     </div>
                 </div>
-                <div class="place-content-center">
+                <div class="hidden md:block place-content-center">
                     <h3>{new Date(event.date_created).toLocaleDateString()}</h3>
                 </div>
             </div>
