@@ -3,12 +3,14 @@ import { Events } from './event';
 import { Global } from './global';
 import { StudentCouncil } from './student_council';
 import { Alumni } from './alumni';
+import { Laboratories } from './laboratory';
 
 export const Schema = object({
 	global: Global,
 	events: Events,
 	student_council: StudentCouncil,
-	alumni: Alumni
+	alumni: Alumni,
+	laboratories: Laboratories
 });
 
 export type Schema = InferOutput<typeof Schema>;
