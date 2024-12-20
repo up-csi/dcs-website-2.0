@@ -16,12 +16,12 @@
 		<h1 class="h1">{global.title}</h1>
 		<p>{global.description}</p>
 	</div>
-	<div>
+	<div class="my-5">
 		<div class="flex justify-between">
 			<h2>Events</h2>
 			<a href="/events">View all &#8594;</a>
 		</div>
-		<div class="flex my-12 space-x-8">
+		<div class="flex my-12 space-x-8 overflow-x-auto">
 			{#each featured as event}
 				<FeaturedEventCard {event} />
 			{/each}
