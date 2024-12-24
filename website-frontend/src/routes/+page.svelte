@@ -6,15 +6,15 @@
 	$: ({ global, events } = data);
 </script>
 
-<div class="container h-full mx-auto flex-col justify-center items-center my-8">
+<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 	<div class="space-y-5">
 		<h1 class="h1">{global.title}</h1>
 		<p>{global.description}</p>
 	</div>
-	<div class="flex my-12 space-x-8">
+	<div class="my-12 flex space-x-8">
 		{#each events as event}
-			<div class="card p-4 w-96 h-48">
-				<div class="flex justify-between mb-4">
+			<div class="card h-48 w-96 p-4">
+				<div class="mb-4 flex justify-between">
 					<h3>{event.event_headline}</h3>
 					<h3>{new Date(event.date_created).toLocaleDateString()}</h3>
 				</div>

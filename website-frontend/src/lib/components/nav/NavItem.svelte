@@ -9,7 +9,7 @@
 </script>
 
 <li
-	class="w-full relative md:rounded-sm transition-colors duration-300 ease-in-out hover:bg-accent {custom}"
+	class="relative w-full transition-colors duration-300 ease-in-out hover:bg-accent md:rounded-sm {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -19,8 +19,8 @@
 >
 	<div
 		class="
-        md:text-sm md:block
-        text-2xl flex justify-end
+        flex justify-end
+        text-2xl md:block md:text-sm
     "
 	>
 		{#if dropdown}
@@ -40,16 +40,16 @@
 		<a
 			{href}
 			class="
-            px-3 py-1 flex md:items-center md:justify-start md:text-left md:border-0
-            justify-end w-fit text-right border-r-2
+            flex w-fit justify-end border-r-2 px-3 py-1 text-right
+            md:items-center md:justify-start md:border-0 md:text-left
         ">{to}</a
 		>
 	</div>
 	{#if show && dropdown}
 		<ul
 			class="
-                md:absolute md:w-40 md:p-0.5 bg-background md:border md:rounded-lg
-                w-full pr-4
+                w-full bg-background pr-4 md:absolute md:w-40 md:rounded-lg
+                md:border md:p-0.5
                 {position}
             "
 			transition:slide
