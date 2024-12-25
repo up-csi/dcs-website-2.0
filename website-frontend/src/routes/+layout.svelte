@@ -28,6 +28,7 @@
 <svelte:head>
 	<title>{global.title}</title>
 	<link rel="icon" href={assets.favicon} />
+	<meta name="description" content={global.description} />
 </svelte:head>
 
 <header>
