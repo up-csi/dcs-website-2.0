@@ -36,7 +36,7 @@ async function downloadData(url: string, file_name: string) {
 				Readable.fromWeb(res.body as ReadableStream<Uint8Array>).pipe(file_stream)
 			).then(() => path); // Return the file path when complete
 		})
-		.catch((err) => {
+		.catch(() => {
 			return null; // Return `null` if any error occurs
 		});
 }
