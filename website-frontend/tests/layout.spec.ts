@@ -13,7 +13,16 @@ test.describe('2-4: Navigation Bar Links to Home', () => {
 	});
 });
 
-test.describe('2-5: Navigation Bar Links to Events', () => {});
+test.describe('2-5: Navigation Bar Links to Events', () => {
+	test('Check for button linking to page with route events', async ({ page }) => {
+		await page.goto('/');
+		const nav = await page.getByRole('navigation');
+		const events = await nav.getByRole('link', { name: 'Events' });
+		await events.click();
+		await page.waitForTimeout(5000);
+		expect(await page.url()).toContain('events');
+	})
+});
 
 test.describe('2-6: Navigation Bar Links to Alumni', () => {});
 
