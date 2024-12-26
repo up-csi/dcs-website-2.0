@@ -46,4 +46,13 @@ test.describe('2-7: Navigation Bar Links to People', () => {
 	})
 });
 
-test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages', () => {});
+test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages', () => {
+	test('Check for button linking to page with route about', async ({ page }) => {
+		await page.goto('/');
+		const nav = await page.getByRole('navigation');
+		const about = await nav.getByRole('link', { name: 'About' });
+		await about.click();
+		await page.waitForTimeout(5000);
+		expect(await page.url()).toContain('about');
+	})
+});
