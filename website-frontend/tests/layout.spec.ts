@@ -1,15 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-const EXPECTED_SITE_TITLE = 'UP Diliman - Department of Computer Science';
-
 test.describe('2-4: Navigation Bar Links to Home', () => {
-	test('Check for home button in navbar', async ({ page }) => {
+	test('Check for home button in navbar', async ({ page, request }) => {
 		await page.goto('/');
 		const nav = await page.getByRole('navigation');
 		const home = await nav.getByRole('link', { name: 'Home' });
 		await home.click();
 		await page.waitForTimeout(5000);
-		expect(await page.title()).toBe(EXPECTED_SITE_TITLE);
+		const res = await request.get(`${process.env.PUBLIC_APIURL}/items/global`);
+		const global_title = await res.json().then((obj) => {
+			return obj.data.title;
+		});
+		expect(await page.title()).toBe(global_title);
 	});
 });
 
