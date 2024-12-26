@@ -21,7 +21,7 @@ test.describe('2-5: Navigation Bar Links to Events', () => {
 		await events.click();
 		await page.waitForTimeout(5000);
 		expect(await page.url()).toContain('events');
-	})
+	});
 });
 
 test.describe('2-6: Navigation Bar Links to Alumni', () => {
@@ -32,7 +32,7 @@ test.describe('2-6: Navigation Bar Links to Alumni', () => {
 		await alumni.click();
 		await page.waitForTimeout(5000);
 		expect(await page.url()).toContain('alumni');
-	})
+	});
 });
 
 test.describe('2-7: Navigation Bar Links to People', () => {
@@ -43,11 +43,10 @@ test.describe('2-7: Navigation Bar Links to People', () => {
 		await people.click();
 		await page.waitForTimeout(5000);
 		expect(await page.url()).toContain('people');
-	})
+	});
 });
 
 test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages', () => {
-	
 	test('Check for button linking to page with route about', async ({ page }) => {
 		await page.goto('/');
 		const nav = await page.getByRole('navigation');
@@ -55,7 +54,7 @@ test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages',
 		await about.click();
 		await page.waitForTimeout(5000);
 		expect(await page.url()).toContain('about');
-	})
+	});
 
 	test('Check on hover of about button opening dropdown', async ({ page, browserName }) => {
 		test.skip(browserName == 'chromium', 'this test will not work on chromium for some reason');
@@ -67,5 +66,5 @@ test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages',
 		await about.hover();
 		await expect(overview).toBeVisible();
 		await expect(history).toBeVisible();
-	})
+	});
 });
