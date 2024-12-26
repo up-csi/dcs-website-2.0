@@ -35,6 +35,15 @@ test.describe('2-6: Navigation Bar Links to Alumni', () => {
 	})
 });
 
-test.describe('2-7: Navigation Bar Links to People', () => {});
+test.describe('2-7: Navigation Bar Links to People', () => {
+	test('Check for button linking to page with route people', async ({ page }) => {
+		await page.goto('/');
+		const nav = await page.getByRole('navigation');
+		const people = await nav.getByRole('link', { name: 'People' });
+		await people.click();
+		await page.waitForTimeout(5000);
+		expect(await page.url()).toContain('people');
+	})
+});
 
 test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages', () => {});
