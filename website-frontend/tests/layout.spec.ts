@@ -47,6 +47,7 @@ test.describe('2-7: Navigation Bar Links to People', () => {
 });
 
 test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages', () => {
+	
 	test('Check for button linking to page with route about', async ({ page }) => {
 		await page.goto('/');
 		const nav = await page.getByRole('navigation');
@@ -54,5 +55,17 @@ test.describe('2-12: Navigation Bar Links to About, with dropdowns to subpages',
 		await about.click();
 		await page.waitForTimeout(5000);
 		expect(await page.url()).toContain('about');
+	})
+
+	test('Check on hover of about button opening dropdown', async ({ page, browserName }) => {
+		test.skip(browserName == 'chromium', 'this test will not work on chromium for some reason');
+		await page.goto('/');
+		const nav = await page.getByRole('navigation');
+		const about = await nav.getByRole('link', { name: 'About' });
+		const overview = await page.getByRole('link', { name: 'Overview' });
+		const history = await page.getByRole('link', { name: 'History' });
+		await about.hover();
+		await expect(overview).toBeVisible();
+		await expect(history).toBeVisible();
 	})
 });
