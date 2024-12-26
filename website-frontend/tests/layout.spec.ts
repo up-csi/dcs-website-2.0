@@ -24,7 +24,16 @@ test.describe('2-5: Navigation Bar Links to Events', () => {
 	})
 });
 
-test.describe('2-6: Navigation Bar Links to Alumni', () => {});
+test.describe('2-6: Navigation Bar Links to Alumni', () => {
+	test('Check for button linking to page with route alumni', async ({ page }) => {
+		await page.goto('/');
+		const nav = await page.getByRole('navigation');
+		const alumni = await nav.getByRole('link', { name: 'Alumni' });
+		await alumni.click();
+		await page.waitForTimeout(5000);
+		expect(await page.url()).toContain('alumni');
+	})
+});
 
 test.describe('2-7: Navigation Bar Links to People', () => {});
 
