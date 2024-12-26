@@ -73,6 +73,6 @@ export default defineConfig({
 	/* Run your local dev server before starting the tests */
 	webServer: {
 		command: 'pnpm dev',
-		url: 'http://127.0.0.1:5173'
+		url: 'http://localhost:5173'
 	}
 });
