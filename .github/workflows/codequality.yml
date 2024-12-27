@@ -1,7 +1,5 @@
 name: Check Code Quality
 on: [push, pull_request_target]
-env:
-  PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -32,4 +30,6 @@ jobs:
         if: ${{ !cancelled() }}
         run: pnpm run check
         env:
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
           PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
