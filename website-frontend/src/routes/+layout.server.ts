@@ -7,7 +7,8 @@ import { Alumni } from '$lib/models/alumni';
 import { StudentCouncil } from '$lib/models/student_council';
 import { Linkages } from '$lib/models/linkages';
 import { Laboratories } from '$lib/models/laboratories';
-import { readItems, readSingleton } from '@directus/sdk';
+import { type Schema } from '$lib/models/schema';
+import { type RestClient, readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
 import { createWriteStream } from 'fs';
 import { Readable } from 'stream';
@@ -43,9 +44,7 @@ async function downloadData(url: string, file_name: string) {
 		});
 }
 
-export async function load({ fetch }) {
-	const directus = getDirectusInstance(fetch);
-
+async function obtainSchema(directus: RestClient<Schema>) {
 	const schema = {
 		global: parse(Global, await directus.request(readSingleton('global'))),
 		events: parse(Events, await directus.request(readItems('events'))),
@@ -57,7 +56,10 @@ export async function load({ fetch }) {
 		linkages: parse(Linkages, await directus.request(readSingleton('linkages'))),
 		laboratories: parse(Laboratories, await directus.request(readItems('laboratories')))
 	};
+	return schema;
+}
 
+async function obtainAssets(schema: Schema) {
 	const asset_urls = {
 		favicon: `${PUBLIC_APIURL}/assets/${schema.global.favicon}`
 	};
@@ -86,5 +88,12 @@ export async function load({ fetch }) {
 		}
 	});
 
+	return assets;
+}
+
+export async function load({ fetch }) {
+	const directus = await getDirectusInstance(fetch);
+	const schema = await obtainSchema(directus);
+	const assets = await obtainAssets(schema);
 	return { schema, assets };
 }
