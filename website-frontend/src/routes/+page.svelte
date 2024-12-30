@@ -6,14 +6,16 @@
 	export let data;
 
 	$: ({ global, events } = data);
-	events?.sort((e0: Event, e1: Event) => {
+	
+	let sorted_events: Events = events;
+	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
 		let d0 = new Date(e0.date_created),
 			d1 = new Date(e1.date_created);
 		return d1.getTime() - d0.getTime();
 	});
 
 	let featured: Events = [];
-	$: featured = events?.slice(0, 3);
+	$: featured = sorted_events?.slice(0, 3);
 </script>
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">

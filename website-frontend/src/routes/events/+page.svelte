@@ -6,14 +6,16 @@
 	export let data;
 
 	$: ({ events } = data);
-	events?.sort((e0: Event, e1: Event) => {
+	
+	let sorted_events: Events = events;
+	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
 		let d0 = new Date(e0.date_created),
 			d1 = new Date(e1.date_created);
 		return d1.getTime() - d0.getTime();
 	});
 
 	let featured: Events = [];
-	$: featured = events?.slice(0, 3);
+	$: featured = sorted_events?.slice(0, 3);
 </script>
 
 <div class="container h-full mx-auto flex-col justify-center items-center my-8">
@@ -23,7 +25,7 @@
 		{/each}
 	</div>
 	<div>
-		{#each events as event}
+		{#each sorted_events as event}
 			<div class="md:grid md:grid-cols-6 border rounded p-4">
 				<div class="md:col-span-5">
 					<h3>{event.event_headline}</h3>
