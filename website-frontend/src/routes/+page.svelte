@@ -6,7 +6,7 @@
 	export let data;
 
 	$: ({ global, events } = data);
-	
+
 	let sorted_events: Events = events;
 	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
 		let d0 = new Date(e0.date_created),
@@ -28,7 +28,7 @@
 			<h2>Events</h2>
 			<a href="/events">View all &#8594;</a>
 		</div>
-		<div class="flex my-12 space-x-8 overflow-x-auto">
+		<div class="my-12 flex space-x-8 overflow-x-auto">
 			{#each featured as event}
 				<FeaturedEventCard {event} />
 			{/each}
