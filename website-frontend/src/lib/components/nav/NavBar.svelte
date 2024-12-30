@@ -4,20 +4,20 @@
 
 <div
 	class="
-    w-full md:h-full md:flex md:justify-center md:my-2
-	hidden
+    hidden w-full md:my-2 md:flex md:h-full
+	md:justify-center
 "
 >
 	<nav
 		class="
-        bg-background md:p-1 md:sticky flex md:justify-between md:border md:rounded-3xl md:h-fit md:w-fit
-        fixed justify-end h-screen w-full md:px-5
+        fixed flex h-screen w-full justify-end bg-background md:sticky md:h-fit md:w-fit
+        md:justify-between md:rounded-3xl md:border md:p-1 md:px-5
     "
 	>
 		<ul
 			class="
-            md:flex md:justify-center gap-2 md:static w-full
-            absolute right-0 bottom-10
+            absolute bottom-10 right-0 w-full gap-2
+            md:static md:flex md:justify-center
         "
 		>
 			<NavItem href="/" to="Home" />

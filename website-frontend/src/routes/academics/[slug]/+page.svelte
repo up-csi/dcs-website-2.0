@@ -6,26 +6,26 @@
 	{#if data.program}
 		<div class="relative">
 			<div
-				class="bg-cover bg-center h-[40vh] md:h-[50vh]"
+				class="h-[40vh] bg-cover bg-center md:h-[50vh]"
 				style="background-image: linear-gradient(to top, #004420, transparent), url('{data.program
 					.image}')"
 			></div>
 
 			<div class="absolute bottom-9">
-				<h1 class="font-bold text-3xl px-4 md:px-32 md:text-5xl md:max-w-[60vw]">
+				<h1 class="px-4 text-3xl font-bold md:max-w-[60vw] md:px-32 md:text-5xl">
 					{data.program.title}
 				</h1>
 			</div>
 		</div>
 
-		<div class="text-[#01152B] text-base px-4 py-10 md:px-32">
+		<div class="px-4 py-10 text-base text-[#01152B] md:px-32">
 			{@html data.program.description}
 
-			<div class="max-w-6xl rounded-md overflow-hidden shadow-lg bg-white my-10">
-				<div class="px-4 md:px-6 py-8">
-					<div class="font-bold text-xl mb-8">Curriculum</div>
+			<div class="my-10 max-w-6xl overflow-hidden rounded-md bg-white shadow-lg">
+				<div class="px-4 py-8 md:px-6">
+					<div class="mb-8 text-xl font-bold">Curriculum</div>
 
-					<p class="text-gray-500 text-sm">Core Courses</p>
+					<p class="text-sm text-gray-500">Core Courses</p>
 					<p class="text-base">
 						{@html data.program.curriculum}
 					</p>
