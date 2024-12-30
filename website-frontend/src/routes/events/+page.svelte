@@ -36,9 +36,11 @@
 					<p>View details &#8594;</p>
 					<div class="flex items-center">
 						<p>Tags:</p>
-						{#each event.tags as tag}
-							<p class="border rounded px-2 py-1 mx-2">{tag}</p>
-						{/each}
+						{#if event.tags}
+							{#each event.tags as tag}
+								<p class="border rounded px-2 py-1 mx-2">{tag}</p>
+							{/each}
+						{/if}
 					</div>
 				</div>
 				<div class="hidden md:block place-content-center">
