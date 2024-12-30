@@ -1,20 +1,10 @@
 /** @type {import('./$types').LayoutLoad} */
-import getDirectusInstance from '$lib/directus';
-import { Global } from '$lib/models/global';
-import { Events } from '$lib/models/event';
-import { Alumni } from '$lib/models/alumni';
-import { StudentCouncil } from '$lib/models/student_council';
-import { readItems, readSingleton } from '@directus/sdk';
-import { parse } from 'valibot';
-export async function load({ fetch }) {
-	const directus = getDirectusInstance(fetch);
+export async function load({ data }) {
 	return {
-		global: parse(Global, await directus.request(readSingleton('global'))),
-		events: parse(Events, await directus.request(readItems('events'))),
-		student_council: parse(
-			StudentCouncil,
-			await directus.request(readSingleton('student_council'))
-		),
-		alumni: parse(Alumni, await directus.request(readSingleton('alumni')))
+		global: data.schema.global,
+		events: data.schema.events,
+		student_council: data.schema.student_council,
+		alumni: data.schema.alumni,
+		assets: data.assets
 	};
 }
