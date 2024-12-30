@@ -14,7 +14,7 @@
     {#each laboratories as laboratory}
         <div class="my-5 md:grid md:grid-cols-6 md:items-center py-5 border-b">
             <div>
-                <img src="{PUBLIC_APIURL}assets/{laboratory.logo}" alt={laboratory.name} />
+                <img src="{PUBLIC_APIURL}/assets/{laboratory.logo}" alt={laboratory.name} />
             </div>
             <div class="md:col-span-5 md:pl-5 md:pt-0 pt-5">
                 <div class="md:flex md:items-center">
