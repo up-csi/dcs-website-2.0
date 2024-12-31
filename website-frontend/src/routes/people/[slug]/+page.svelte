@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { deslugify } from '$lib/utils';
+	import { PUBLIC_APIURL } from '$env/static/public';
 
 	export let data;
 	const { category, people } = data;
@@ -34,14 +35,19 @@
 				<a href="/people/{category.title}/{person.id}" class="max-w-xs">
 					<div class="bg-white shadow-xl rounded-lg py-3 px-3 flex flex-col h-full">
 						<div class="photo-wrapper p-2">
-							<img class="w-32 h-32 rounded-full mx-auto" src={person.profile_img} alt="Profile" />
+							<img
+								class="w-32 h-32 rounded-full mx-auto"
+								src="{PUBLIC_APIURL}/assets/{person.profile_image}"
+								alt="Profile"
+							/>
 						</div>
 						<div class="p-2">
 							<div class="text-center text-gray-400 text-xs font-semibold">
 								<p>{person.position}</p>
 							</div>
 							<h3 class="text-center text-xl text-gray-900 font-medium py-3">
-								{person.first_name} {person.last_name}
+								{person.first_name}
+								{person.last_name}
 							</h3>
 						</div>
 					</div>
