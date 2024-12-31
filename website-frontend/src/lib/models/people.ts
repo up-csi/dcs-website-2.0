@@ -5,7 +5,7 @@ export const EducationalAttainment = object({
 	status: string(),
 	institution: string(),
 	start_date: optional(nullable(string())),
-	end_date: optional(nullable(string())),
+	end_date: optional(nullable(string()))
 });
 
 export const Person = object({
@@ -18,7 +18,7 @@ export const Person = object({
 	category: string(),
 	profile_image: optional(nullable(string())),
 	interests: optional(nullable(string())),
-	educational_attainment: optional(nullable(array(EducationalAttainment))),
+	educational_attainment: optional(nullable(array(EducationalAttainment)))
 });
 
 export const People = array(Person);

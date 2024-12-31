@@ -7,7 +7,7 @@
 </script>
 
 <div>
-	<h3 class="text-3xl font-bold py-4">People</h3>
+	<h3 class="py-4 text-3xl font-bold">People</h3>
 	<ul>
 		{#each people as person}
 			<li>

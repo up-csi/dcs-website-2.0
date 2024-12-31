@@ -18,34 +18,34 @@
 	{#if category}
 		<div class="relative">
 			<div
-				class="bg-cover bg-center h-[55vh] md:h-[65vh]"
+				class="h-[55vh] bg-cover bg-center md:h-[65vh]"
 				style="background-image: linear-gradient(to top, #004420, transparent), url('{category.image}')"
 			></div>
 
-			<div class="absolute bottom-9 md:max-w-[60vw] px-4 md:px-32">
-				<h1 class="font-bold text-3xl md:text-5xl">{deslugify_title}</h1>
+			<div class="absolute bottom-9 px-4 md:max-w-[60vw] md:px-32">
+				<h1 class="text-3xl font-bold md:text-5xl">{deslugify_title}</h1>
 				<h4>{@html category.flexible_content}</h4>
 			</div>
 		</div>
 
 		<div
-			class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-[90vw] md:max-w-[80vw] mx-auto my-8"
+			class="mx-auto my-8 grid max-w-[90vw] grid-cols-2 gap-2 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
 			{#each people.slice(0, shown) as person}
 				<a href="/people/{category.title}/{person.id}" class="max-w-xs">
-					<div class="bg-white shadow-xl rounded-lg py-3 px-3 flex flex-col h-full">
+					<div class="flex h-full flex-col rounded-lg bg-white px-3 py-3 shadow-xl">
 						<div class="photo-wrapper p-2">
 							<img
-								class="w-32 h-32 rounded-full mx-auto"
+								class="mx-auto h-32 w-32 rounded-full"
 								src="{PUBLIC_APIURL}/assets/{person.profile_image}"
 								alt="Profile"
 							/>
 						</div>
 						<div class="p-2">
-							<div class="text-center text-gray-400 text-xs font-semibold">
+							<div class="text-center text-xs font-semibold text-gray-400">
 								<p>{person.position}</p>
 							</div>
-							<h3 class="text-center text-xl text-gray-900 font-medium py-3">
+							<h3 class="py-3 text-center text-xl font-medium text-gray-900">
 								{person.first_name}
 								{person.last_name}
 							</h3>

@@ -1,8 +1,8 @@
 import { array, object, string, type InferOutput } from 'valibot';
 
 export const Laboratory = object({
-    id: string(),
-    name: string(),
+	id: string(),
+	name: string()
 });
 
 export const Laboratories = array(Laboratory);

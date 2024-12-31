@@ -16,7 +16,7 @@ export const Schema = object({
 	people: People,
 	people_categories: PeopleCategories,
 	laboratories: Laboratories,
-	people_laboratories: PeopleLaboratories,
+	people_laboratories: PeopleLaboratories
 });
 
 export type Schema = InferOutput<typeof Schema>;

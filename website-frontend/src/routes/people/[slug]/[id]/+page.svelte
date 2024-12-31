@@ -6,7 +6,7 @@
 </script>
 
 <div>
-	<h1 class="text-3xl font-bold py-4">{person.first_name} {person.last_name}</h1>
+	<h1 class="py-4 text-3xl font-bold">{person.first_name} {person.last_name}</h1>
 	<p class="text-md">{person.position}</p>
 	<img
 		src="{PUBLIC_APIURL}/assets/{person.profile_image}"
@@ -23,7 +23,7 @@
 		{/each}
 	{/if}
 	{#if laboratories.length > 0}
-		<h2 class="text-2xl font-bold py-2">Affiliations</h2>
+		<h2 class="py-2 text-2xl font-bold">Affiliations</h2>
 		<ul>
 			{#each laboratories as laboratory}
 				<li>{laboratory.name}</li>
