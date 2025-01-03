@@ -39,7 +39,7 @@
 			class="mx-auto pb-20 md:my-8 my-3 grid max-w-[94vw] grid-cols-1 gap-2 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
 			{#each people.slice(0, shown) as person}
-				<a href="/people/{category.title}/{person.id}" class="max-w-sm">
+				<a href="/people/{category.title}/{person.id}">
 					<div class="flex h-full flex-col rounded-lg bg-white py-2 shadow-xl relative overflow-hidden">
 						
 						<!-- replace by background image -->
