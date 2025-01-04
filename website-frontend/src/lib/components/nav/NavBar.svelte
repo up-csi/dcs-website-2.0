@@ -28,7 +28,10 @@
 			<NavItem href="/events" to="Events" />
 			<NavItem href="/people" to="People" dropdown={true}>
 				<NavItem href="/people/regular-faculty" to="Regular Faculty" />
-				<NavItem href="/people/lecturers-and-teaching-associates" to="Lecturers and Teaching Associates" />
+				<NavItem
+					href="/people/lecturers-and-teaching-associates"
+					to="Lecturers and Teaching Associates"
+				/>
 				<NavItem href="/people/support-staff" to="Support Staff" />
 			</NavItem>
 			<NavItem href="/academics" to="Academics" dropdown={true}>
