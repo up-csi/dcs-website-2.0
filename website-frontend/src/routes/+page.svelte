@@ -1,9 +1,21 @@
 <script lang="ts">
-	/** @type {import('./$types').PageData} */
+	import { Event, Events } from '$lib/models/event';
+	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
+	/** @type {import('./$types').PageData} */
 	export let data;
 
 	$: ({ global, events } = data);
+
+	let sorted_events: Events = events;
+	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
+		let d0 = new Date(e0.date_created),
+			d1 = new Date(e1.date_created);
+		return d1.getTime() - d0.getTime();
+	});
+
+	let featured: Events = [];
+	$: featured = sorted_events?.slice(0, 3);
 </script>
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
@@ -11,15 +23,15 @@
 		<h1 class="h1">{global.title}</h1>
 		<p>{global.description}</p>
 	</div>
-	<div class="my-12 flex space-x-8">
-		{#each events as event}
-			<div class="card h-48 w-96 p-4">
-				<div class="mb-4 flex justify-between">
-					<h3>{event.event_headline}</h3>
-					<h3>{new Date(event.date_created).toLocaleDateString()}</h3>
-				</div>
-				{@html event.event_content}
-			</div>
-		{/each}
+	<div class="my-5">
+		<div class="flex justify-between">
+			<h2>Events</h2>
+			<a href="/events">View all &#8594;</a>
+		</div>
+		<div class="my-12 flex space-x-8 overflow-x-auto">
+			{#each featured as event}
+				<FeaturedEventCard {event} />
+			{/each}
+		</div>
 	</div>
 </div>
