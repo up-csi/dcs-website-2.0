@@ -1,12 +1,12 @@
 import { array, object, string, type InferOutput } from 'valibot';
 
 export const Laboratory = object({
-    name: string(),
-    slug: string(),
-    description: string(),
-    logo: string(),
-    location: string(),
-    contact_email: string()
+	name: string(),
+	slug: string(),
+	description: string(),
+	logo: string(),
+	location: string(),
+	contact_email: string()
 });
 
 export const Laboratories = array(Laboratory);
