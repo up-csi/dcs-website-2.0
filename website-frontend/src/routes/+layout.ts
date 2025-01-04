@@ -5,6 +5,7 @@ export async function load({ data }) {
 		events: data.schema.events,
 		student_council: data.schema.student_council,
 		alumni: data.schema.alumni,
+		laboratories: data.schema.laboratories,
 		assets: data.assets
 	};
 }

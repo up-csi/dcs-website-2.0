@@ -4,6 +4,7 @@ import { PUBLIC_APIURL } from '$env/static/public';
 import { Global } from '$lib/models/global';
 import { Events } from '$lib/models/event';
 import { Alumni } from '$lib/models/alumni';
+import { Laboratories } from '$lib/models/laboratory.js';
 import { StudentCouncil } from '$lib/models/student_council';
 import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
@@ -51,7 +52,8 @@ export async function load({ fetch }) {
 			StudentCouncil,
 			await directus.request(readSingleton('student_council'))
 		),
-		alumni: parse(Alumni, await directus.request(readSingleton('alumni')))
+		alumni: parse(Alumni, await directus.request(readSingleton('alumni'))),
+		laboratories: parse(Laboratories, await directus.request(readItems('laboratories')))
 	};
 
 	const asset_urls = {
