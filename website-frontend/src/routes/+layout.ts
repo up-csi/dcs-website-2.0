@@ -6,6 +6,7 @@ export async function load({ data }) {
 		student_council: data.schema.student_council,
 		alumni: data.schema.alumni,
 		linkages: data.schema.linkages,
+		laboratories: data.schema.laboratories,
 		assets: data.assets
 	};
 }
