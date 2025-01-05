@@ -9,7 +9,7 @@
 	const deslugify_title = deslugify(title);
 </script>
 
-<div class="relative">
+<div class="relative z-0">
 	<div
 		class="h-[45vh] bg-cover bg-center md:h-[60vh]"
 		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
