@@ -1,19 +1,19 @@
 <script lang="ts">
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
-	export let assets;
+	export let favicon;
 </script>
 
 <div class="h-14 items-center bg-slate-50 py-2 md:h-16">
 	<div class="flex justify-between px-2 md:px-9">
 		<div class="my-auto flex items-center">
 			<img
-				src={assets.favicon}
+				src={favicon}
 				alt="UP"
 				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-gray-400 md:block"
 			/>
 			<img
-				src={assets.favicon}
+				src={favicon}
 				alt="DCS"
 				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-gray-400 md:mr-3 md:h-12 md:w-12"
 			/>

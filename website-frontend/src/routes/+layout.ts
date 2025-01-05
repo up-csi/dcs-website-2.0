@@ -1,12 +1,8 @@
 /** @type {import('./$types').LayoutLoad} */
 export async function load({ data }) {
 	return {
-		global: data.schema.global,
-		events: data.schema.events,
-		student_council: data.schema.student_council,
-		alumni: data.schema.alumni,
-		linkages: data.schema.linkages,
-		laboratories: data.schema.laboratories,
-		assets: data.assets
+		title: data.schema.global.title,
+		description: data.schema.global.description,
+		favicon: data.assets.favicon
 	};
 }
