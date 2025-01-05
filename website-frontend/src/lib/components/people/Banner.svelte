@@ -2,24 +2,24 @@
 	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
 
-    import { PeopleCategory } from '$lib/models/people_categories';
+	import { PeopleCategory } from '$lib/models/people_categories';
 	export let category: PeopleCategory;
 
 	const deslugify_title = deslugify(category.title);
 </script>
 
 <div class="relative">
-    <div
-        class="h-[45vh] bg-cover md:h-[60vh] bg-center"
-        style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{category.background_image}')"
-    ></div>
+	<div
+		class="h-[45vh] bg-cover bg-center md:h-[60vh]"
+		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{category.background_image}')"
+	></div>
 
-    <div
-        class="absolute bottom-24 text-white
-        text-center left-1/2 -translate-x-1/2 transform  
-        md:text-start md:left-0 md:translate-x-0 md:max-w-[60vw] md:px-32"
-    >
-        <h1 class="font-bold text-3xl md:text-4xl md:mb-4">{deslugify_title}</h1>
-        <h4 class="text-gray-300 hidden md:block">{@html category.flexible_content}</h4>
-    </div>
+	<div
+		class="absolute bottom-24 left-1/2
+        -translate-x-1/2 transform text-center text-white
+        md:left-0 md:max-w-[60vw] md:translate-x-0 md:px-32 md:text-start"
+	>
+		<h1 class="text-3xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
+		<h4 class="hidden text-gray-300 md:block">{@html category.flexible_content}</h4>
+	</div>
 </div>

@@ -60,7 +60,7 @@ const config: Config = {
 			}
 		}
 	},
-	plugins: [lineClamp],
+	plugins: [lineClamp]
 };
 
 export default config;
