@@ -6,7 +6,7 @@
 	export let background_image: string;
 	export let flexible_content: string;
 
-	const deslugify_title = deslugify(title);
+	$: deslugify_title = deslugify(title);
 </script>
 
 <div class="relative z-0">

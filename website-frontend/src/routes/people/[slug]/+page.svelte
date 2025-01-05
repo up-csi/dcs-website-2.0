@@ -4,9 +4,13 @@
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
 	export let data;
-	const { category, people } = data;
-
 	let shown = 12;
+
+	$: ({ category, people } = data);
+	$: if (category) {
+		shown = 12;
+	}
+
 	function load_more() {
 		shown += 12;
 	}
