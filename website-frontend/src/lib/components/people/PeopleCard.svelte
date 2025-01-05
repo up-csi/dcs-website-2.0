@@ -8,15 +8,11 @@
 <div
 	class="relative flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-xl"
 >
-	{#if person.background_image}
-		<img
-			class="inset-0 md:h-40 h-24 rounded-t-lg object-cover bg-gray-300"
-			src="{PUBLIC_APIURL}/assets/{person.background_image}"
-			alt="Background"
-		/>
-	{:else}
-		<div class="inset-0 md:h-40 h-24 rounded-t-lg bg-gray-300"></div>
-	{/if}
+    <div class="inset-0 md:h-40 h-24 rounded-t-lg bg-gray-300">
+        {#if person.background_image}
+            <img class="w-full h-full object-cover rounded-t-lg" src="{PUBLIC_APIURL}/assets/{person.background_image}" alt="Background" />
+        {/if}
+    </div>
 
 	<div class="z-10 items-center px-3 -mt-16 md:-mt-20">
 
