@@ -1,31 +1,37 @@
-<script>
+<script lang="ts">
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { deslugify } from '$lib/utils';
+
+    import Banner from '$lib/components/people/Banner.svelte';
+    import FilterControls from '$lib/components/people/FilterControls.svelte';
+	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
+
 	export let data;
 	const { people, people_overview } = data;
+
+	let shown = 12;
+	function load_more() {
+		shown += 12;
+	}
 </script>
 
-<div>
-	<h3 class="py-4 text-3xl font-bold">People</h3>
-	<p class="py-4 text-lg">{@html people_overview.flexible_content}</p>
-	<img src="{PUBLIC_APIURL}/assets/{people_overview.background_image}" alt="" class="max-w-2xl" />
+<body>
 
-	<ul>
-		{#each people as person}
-			<li>
-				<img
-					src="{PUBLIC_APIURL}/assets/{person.profile_image}"
-					alt="{person.first_name} {person.last_name} profile picture "
-					class="max-w-xs rounded-full"
-				/>
-				<a href="/people/{person.category}/{person.username}">
-					<p class="text-lg font-bold">{person.first_name} {person.last_name}</p>
-				</a>
-				<a href="/people/{person.category}">
-					<p class="text-md">{deslugify(person.category)}</p>
-				</a>
-				<p class="text-md">{person.position}</p>
-			</li>
+    <div class="z-10 relative">
+        <FilterControls />
+    </div>
+	<div
+		class="grid mx-auto pb-20
+        my-3 max-w-[94vw] grid-cols-2 gap-2 
+        md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
+	>
+		{#each people.slice(0, shown) as person}
+			<a href="/people/{person.category}/{person.username}">
+				<PeopleCard {person} />
+			</a>
 		{/each}
-	</ul>
-</div>
+	</div>
+	{#if people.length > 12 && shown < people.length}
+		<button class="text-gray-900" on:click={load_more}> Load More </button>
+	{/if}
+</body>
