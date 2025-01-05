@@ -6,8 +6,8 @@ import { Alumni } from './alumni';
 import { Linkages } from './linkages';
 import { People } from './people';
 import { PeopleOverview } from './people_overview';
-import { PeopleCategories } from './people_laboratories';
-import { PeopleLaboratories } from './people_categories';
+import { PeopleCategories } from './people_categories';
+import { PeopleLaboratories } from './people_laboratories';
 import { Laboratories } from './laboratories';
 
 export const Schema = object({

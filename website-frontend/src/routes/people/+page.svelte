@@ -16,7 +16,15 @@
 </script>
 
 <body>
-	<div class="relative z-10">
+	<div class="relative z-0">
+		<Banner
+			title="People"
+			background_image={people_overview.background_image ?? ''}
+			flexible_content={people_overview.flexible_content}
+		/>
+	</div>
+
+	<div class="relative z-10 -mt-7">
 		<FilterControls />
 	</div>
 	<div

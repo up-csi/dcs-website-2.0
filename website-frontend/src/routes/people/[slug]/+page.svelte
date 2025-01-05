@@ -15,7 +15,11 @@
 <body>
 	{#if category}
 		<div class="relative z-0">
-			<Banner {category} />
+			<Banner
+				title={category.title}
+				background_image={category.background_image ?? ''}
+				flexible_content={category.flexible_content}
+			/>
 		</div>
 
 		<div class="relative z-10 -mt-7">

@@ -2,16 +2,17 @@
 	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
 
-	import { PeopleCategory } from '$lib/models/people_categories';
-	export let category: PeopleCategory;
+	export let title: string;
+	export let background_image: string;
+	export let flexible_content: string;
 
-	const deslugify_title = deslugify(category.title);
+	const deslugify_title = deslugify(title);
 </script>
 
 <div class="relative">
 	<div
 		class="h-[45vh] bg-cover bg-center md:h-[60vh]"
-		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{category.background_image}')"
+		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 	></div>
 
 	<div
@@ -20,6 +21,6 @@
         md:left-0 md:max-w-[60vw] md:translate-x-0 md:px-32 md:text-start"
 	>
 		<h1 class="text-3xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
-		<h4 class="hidden text-gray-300 md:block">{@html category.flexible_content}</h4>
+		<h4 class="hidden text-gray-300 md:block">{@html flexible_content}</h4>
 	</div>
 </div>
