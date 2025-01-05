@@ -1,5 +1,6 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
 import type { Config } from 'tailwindcss';
+import lineClamp from '@tailwindcss/line-clamp';
 
 const config: Config = {
 	darkMode: ['class'],
@@ -58,7 +59,8 @@ const config: Config = {
 				sans: ['"Inter"', ...fontFamily.sans]
 			}
 		}
-	}
+	},
+	plugins: [lineClamp],
 };
 
 export default config;

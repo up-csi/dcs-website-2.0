@@ -41,7 +41,7 @@
 				{person.last_name}
 			</h3>
 			<div class="flex items-center justify-center text-xs text-gray-500 md:px-6">
-				<p class="w-full">Computer Vision and Machine Intelligence Group</p>
+				<p class="w-full line-clamp-2">Computer Vision and Machine Intelligence Group</p>
 			</div>
 		</div>
 	</div>
