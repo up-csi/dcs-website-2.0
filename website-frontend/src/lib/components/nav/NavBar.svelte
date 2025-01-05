@@ -26,7 +26,14 @@
 				<NavItem href="/about/history" to="History" />
 			</NavItem>
 			<NavItem href="/events" to="Events" />
-			<NavItem href="/people" to="People" />
+			<NavItem href="/people" to="People" dropdown={true}>
+				<NavItem href="/people/regular-faculty" to="Regular Faculty" />
+				<NavItem
+					href="/people/lecturers-and-teaching-associates"
+					to="Lecturers and Teaching Associates"
+				/>
+				<NavItem href="/people/support-staff" to="Support Staff" />
+			</NavItem>
 			<NavItem href="/academics" to="Academics" dropdown={true}>
 				<NavItem href="/academics/undergraduate" to="Undergraduate Program" />
 				<NavItem href="/academics/graduate" to="Graduate Program" />
