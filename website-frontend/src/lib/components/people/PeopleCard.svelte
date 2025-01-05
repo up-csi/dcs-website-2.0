@@ -5,39 +5,43 @@
 	export let person: Person;
 </script>
 
-
 <div
-	class="relative flex h-full flex-col overflow-hidden rounded-lg bg-white py-2 shadow-xl"
+	class="relative flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-xl"
 >
 	{#if person.background_image}
 		<img
-			class="inset-0 h-44 rounded-t-lg object-cover"
+			class="inset-0 md:h-40 h-24 rounded-t-lg object-cover bg-gray-300"
 			src="{PUBLIC_APIURL}/assets/{person.background_image}"
-			alt=""
+			alt="Background"
 		/>
 	{:else}
-		<div class="inset-0 hidden h-44 rounded-t-lg bg-gray-300 md:block"></div>
+		<div class="inset-0 md:h-40 h-24 rounded-t-lg bg-gray-300"></div>
 	{/if}
-	<div class="z-10 flex items-center md:-mt-24 md:block md:px-3">
-		<div class="photo-wrapper p-2 md:bottom-9">
-			<img
-				class="mx-auto h-28 w-28 rounded-full border-4 border-gray-200 object-cover md:h-32 md:w-32"
-				src="{PUBLIC_APIURL}/assets/{person.profile_image}"
-				alt="Profile"
-			/>
-		</div>
-		<div class="p-3 md:mb-3 md:mt-2 md:text-center">
+
+	<div class="z-10 items-center px-3 -mt-16 md:-mt-20">
+
+        <div class="mx-auto rounded-full border-4 border-gray-200 bg-gray-100 h-28 w-28 md:h-32 md:w-32 flex items-center justify-center">
+            {#if person.profile_image}
+                <img
+                    class="object-cover h-full w-full rounded-full"
+                    src="{PUBLIC_APIURL}/assets/{person.profile_image}"
+                    alt="Profile"
+                />
+            {:else}
+                <h1 class="font-medium text-2xl text-[#004420a2] text-center">`⎚⩊⎚´</h1>
+            {/if}
+        </div>        
+
+		<div class="p-3 md:mb-3 md:mt-2 text-center">
 			<div class="text-xs font-semibold uppercase leading-tight text-gray-500">
 				<p>{person.position}</p>
 			</div>
-			<h3 class="text-xl font-bold text-gray-900 md:py-3 md:leading-tight">
+			<h3 class="font-bold text-gray-900 leading-tight pb-2 md:text-xl md:py-1">
 				{person.first_name}
 				{person.last_name}
 			</h3>
-			<div class="flex max-w-[55vw] items-center justify-center text-xs text-gray-500">
-				<!-- add logo to lab affiliation -->
-				<img src="/path/to/lab_logo.png" alt="Logo" class="mr-2 h-3 w-3" />
-				<p class="w-full truncate">Computer Vision and Machine Intelligence Group</p>
+			<div class="flex items-center justify-center text-xs text-gray-500 md:px-6">
+				<p class="w-full">Computer Vision and Machine Intelligence Group</p>
 			</div>
 		</div>
 	</div>

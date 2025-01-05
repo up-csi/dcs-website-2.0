@@ -14,9 +14,11 @@
 
 <body>
 	{#if category}
-        <Banner {category}/>
+        <div class="z-0 relative">
+            <Banner {category}/>
+        </div>
 
-        <div class="-mt-7">
+        <div class="-mt-7 z-10 relative">
             <FilterControls />
         </div>
 
@@ -26,7 +28,7 @@
             md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
 			{#each people.slice(0, shown) as person}
-                <a href="/people/{category}/{person.username}">
+                <a href="/people/{category.title}/{person.username}">
                     <PeopleCard {person} />
                 </a>
 			{/each}
