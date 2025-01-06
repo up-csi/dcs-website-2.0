@@ -1,4 +1,4 @@
-/** @type {import('./$types').LayoutServerLoad} */
+/** @type {import('./$types').PageServerLoad} */
 import getDirectusInstance from '$lib/directus';
 import obtainSchema from '$lib/server/schema';
 
