@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Event, Events } from '$lib/models/event';
+	import Hero from '$lib/components/landing/Hero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	/** @type {import('./$types').PageData} */
@@ -17,6 +18,8 @@
 	let featured: Events = [];
 	$: featured = sorted_events?.slice(0, 3);
 </script>
+
+<Hero />
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 	<div class="space-y-5">
