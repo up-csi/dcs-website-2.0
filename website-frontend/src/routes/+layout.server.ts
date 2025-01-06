@@ -6,6 +6,7 @@ import { Events } from '$lib/models/event';
 import { Alumni } from '$lib/models/alumni';
 import { StudentCouncil } from '$lib/models/student_council';
 import { Linkages } from '$lib/models/linkages';
+import { Laboratories } from '$lib/models/laboratories';
 import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
 import { createWriteStream } from 'fs';
@@ -53,7 +54,8 @@ export async function load({ fetch }) {
 			await directus.request(readSingleton('student_council'))
 		),
 		alumni: parse(Alumni, await directus.request(readSingleton('alumni'))),
-		linkages: parse(Linkages, await directus.request(readSingleton('linkages')))
+		linkages: parse(Linkages, await directus.request(readSingleton('linkages'))),
+		laboratories: parse(Laboratories, await directus.request(readItems('laboratories')))
 	};
 
 	const asset_urls = {
