@@ -3,10 +3,10 @@ import { array, nullable, object, string, type InferOutput } from 'valibot';
 export const Laboratory = object({
 	id: string(),
 	name: string(),
-    slug: string(),
-    description: nullable(string()),
+	slug: string(),
+	description: nullable(string()),
 	logo: nullable(string()),
-    location: nullable(string()),
+	location: nullable(string()),
 	contact_email: nullable(string())
 });
 
