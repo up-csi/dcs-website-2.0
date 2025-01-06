@@ -6,7 +6,7 @@ import { Events } from '$lib/models/event';
 import { Alumni } from '$lib/models/alumni';
 import { StudentCouncil } from '$lib/models/student_council';
 import { Linkages } from '$lib/models/linkages';
-import { Laboratories } from '$lib/models/laboratory.js';
+import { Laboratories } from '$lib/models/laboratories';
 import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
 import { createWriteStream } from 'fs';
