@@ -10,8 +10,8 @@
 >
 	<nav
 		class="
-        fixed flex h-screen w-full justify-end bg-background md:sticky md:h-fit md:w-fit
-        md:justify-between md:rounded-3xl md:border md:p-1 md:px-5
+        fixed flex h-screen w-full justify-end bg-background md:sticky md:z-50 md:h-fit
+        md:w-fit md:justify-between md:rounded-3xl md:border md:p-1 md:px-5
     "
 	>
 		<ul
@@ -26,7 +26,14 @@
 				<NavItem href="/about/history" to="History" />
 			</NavItem>
 			<NavItem href="/events" to="Events" />
-			<NavItem href="/people" to="People" />
+			<NavItem href="/people" to="People" dropdown={true}>
+				<NavItem href="/people/regular-faculty" to="Regular Faculty" />
+				<NavItem
+					href="/people/lecturers-and-teaching-associates"
+					to="Lecturers and Teaching Associates"
+				/>
+				<NavItem href="/people/support-staff" to="Support Staff" />
+			</NavItem>
 			<NavItem href="/academics" to="Academics" dropdown={true}>
 				<NavItem href="/academics/undergraduate" to="Undergraduate Program" />
 				<NavItem href="/academics/graduate" to="Graduate Program" />
