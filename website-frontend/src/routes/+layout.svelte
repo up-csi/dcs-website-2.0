@@ -7,6 +7,7 @@
 
 	import '../app.postcss';
 
+	import Header from '$lib/components/nav/Header.svelte';
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
 	// Highlight JS
@@ -32,6 +33,7 @@
 </svelte:head>
 
 <header>
+	<Header {assets} />
 	<NavBar />
 </header>
 
