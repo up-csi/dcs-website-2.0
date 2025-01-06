@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_APIURL } from '$env/static/public';
-	import { deslugify } from '$lib/utils';
-
 	import Banner from '$lib/components/people/Banner.svelte';
 	import FilterControls from '$lib/components/people/FilterControls.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
