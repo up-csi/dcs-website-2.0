@@ -29,13 +29,14 @@
 		on:mouseleave={plugin.reset}
 	>
 		<Carousel.Content>
-			{#each Array(6) as _, i (i)}
+			{#each Array(6) as _}
 				<Carousel.Item class="relative h-full">
 					<img
 						src="source/to/image"
 						alt="Carousel Item"
 						class="relative h-[90vh] w-full bg-slate-400"
 					/>
+					<div class="hidden">{_}</div>
 					<div class="absolute bottom-28 text-white md:px-20">
 						<h1 class="mb-5 text-4xl font-bold">Some Big Bold Description Text</h1>
 						<p class="text-md mb-5 font-semibold">Some extra description</p>
