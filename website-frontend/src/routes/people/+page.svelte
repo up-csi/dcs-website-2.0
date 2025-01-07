@@ -1,4 +1,5 @@
 <script lang="ts">
+	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/people/Banner.svelte';
 	import FilterControls from '$lib/components/people/FilterControls.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';

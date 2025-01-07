@@ -1,3 +1,4 @@
+/** @type {import('./$types').PageServerLoad} */
 const programs = [
 	{
 		slug: 'bs-cs',

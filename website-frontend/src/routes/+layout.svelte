@@ -3,7 +3,7 @@
 
 	export let data;
 
-	$: ({ global, assets } = data);
+	$: ({ title, favicon, description } = data);
 
 	import '../app.postcss';
 
@@ -27,13 +27,13 @@
 </script>
 
 <svelte:head>
-	<title>{global.title}</title>
-	<link rel="icon" href={assets.favicon} />
-	<meta name="description" content={global.description} />
+	<title>{title}</title>
+	<link rel="icon" href={favicon} />
+	<meta name="description" content={description} />
 </svelte:head>
 
 <header>
-	<Header {assets} />
+	<Header {favicon} />
 	<NavBar />
 </header>
 

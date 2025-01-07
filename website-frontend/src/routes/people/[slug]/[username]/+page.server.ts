@@ -1,3 +1,4 @@
+/** @type {import('./$types').PageServerLoad} */
 import { readItems } from '@directus/sdk';
 import { parse } from 'valibot';
 import { Person } from '$lib/models/people';

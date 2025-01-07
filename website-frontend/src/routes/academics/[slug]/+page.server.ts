@@ -1,3 +1,4 @@
+/** @type {import('./$types').PageServerLoad} */
 import { error } from '@sveltejs/kit';
 
 const programs = [

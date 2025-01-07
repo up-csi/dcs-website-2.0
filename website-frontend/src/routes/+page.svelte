@@ -1,12 +1,12 @@
 <script lang="ts">
+	/** @type {import('./$types').PageData} */
 	import { Event, Events } from '$lib/models/event';
 	import Hero from '$lib/components/landing/Hero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
-	/** @type {import('./$types').PageData} */
 	export let data;
 
-	$: ({ global, events } = data);
+	$: ({ title, description, events } = data);
 
 	let sorted_events: Events = events;
 	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
@@ -23,8 +23,8 @@
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 	<div class="space-y-5">
-		<h1 class="h1">{global.title}</h1>
-		<p>{global.description}</p>
+		<h1 class="h1">{title}</h1>
+		<p>{description}</p>
 	</div>
 	<div class="my-5">
 		<div class="flex justify-between">
