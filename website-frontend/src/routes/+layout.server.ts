@@ -6,6 +6,10 @@ import { Events } from '$lib/models/event';
 import { Alumni } from '$lib/models/alumni';
 import { StudentCouncil } from '$lib/models/student_council';
 import { Linkages } from '$lib/models/linkages';
+import { People } from '$lib/models/people';
+import { PeopleOverview } from '$lib/models/people_overview';
+import { PeopleCategories } from '$lib/models/people_categories';
+import { PeopleLaboratories } from '$lib/models/people_laboratories';
 import { Laboratories } from '$lib/models/laboratories';
 import { type Schema } from '$lib/models/schema';
 import { type RestClient, readItems, readSingleton } from '@directus/sdk';
@@ -54,6 +58,19 @@ async function obtainSchema(directus: RestClient<Schema>) {
 		),
 		alumni: parse(Alumni, await directus.request(readSingleton('alumni'))),
 		linkages: parse(Linkages, await directus.request(readSingleton('linkages'))),
+		people: parse(People, await directus.request(readItems('people'))),
+		people_overview: parse(
+			PeopleOverview,
+			await directus.request(readSingleton('people_overview'))
+		),
+		people_categories: parse(
+			PeopleCategories,
+			await directus.request(readItems('people_categories'))
+		),
+		people_laboratories: parse(
+			PeopleLaboratories,
+			await directus.request(readItems('people_laboratories'))
+		),
 		laboratories: parse(Laboratories, await directus.request(readItems('laboratories')))
 	};
 	return schema;
