@@ -1,7 +1,7 @@
-import { array, object, string, type InferOutput } from 'valibot';
+import { array, number, object, string, type InferOutput } from 'valibot';
 
 export const PeopleLaboratory = object({
-	id: string(),
+	id: number(),
 	people_id: string(),
 	laboratories_id: string()
 });

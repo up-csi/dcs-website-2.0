@@ -5,7 +5,7 @@ import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
-	const directus = getDirectusInstance(fetch);
+	const directus = await getDirectusInstance(fetch);
 	const username = params.username;
 
 	const people = await directus.request(
