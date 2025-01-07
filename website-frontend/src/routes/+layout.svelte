@@ -1,9 +1,10 @@
 <script lang="ts">
 	/** @type {import('./$types').LayoutData} */
+	import { PUBLIC_APIURL } from '$env/static/public';
 
 	export let data;
 
-	$: ({ title, favicon, description } = data);
+	$: ({ title, description, favicon } = data);
 
 	import '../app.postcss';
 
@@ -28,12 +29,12 @@
 
 <svelte:head>
 	<title>{title}</title>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="{PUBLIC_APIURL}/assets/{favicon}" />
 	<meta name="description" content={description} />
 </svelte:head>
 
 <header>
-	<Header {favicon} />
+	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" />
 	<NavBar />
 </header>
 
