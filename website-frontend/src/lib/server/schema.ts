@@ -10,7 +10,14 @@ import { parse } from 'valibot';
 async function obtainSchema(directus: RestClient<Schema>, keys: Array<string>) {
 	const schema = {
 		global: parse(Global, await directus.request(readSingleton('global'))),
-		events: parse(Events, await directus.request(readItems('events'))),
+		events: parse(
+			Events,
+			await directus.request(
+				readItems('events', {
+					sort: ['-date_created']
+				})
+			)
+		),
 		student_council: parse(
 			StudentCouncil,
 			await directus.request(readSingleton('student_council'))

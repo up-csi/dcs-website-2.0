@@ -1,21 +1,12 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import { Event, Events } from '$lib/models/event';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	export let data;
 
 	$: ({ events } = data);
 
-	let sorted_events: Events = events;
-	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
-		let d0 = new Date(e0.date_created),
-			d1 = new Date(e1.date_created);
-		return d1.getTime() - d0.getTime();
-	});
-
-	let featured: Events = [];
-	$: featured = sorted_events?.slice(0, 3);
+	$: featured = events?.slice(0, 3);
 </script>
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
@@ -25,7 +16,7 @@
 		{/each}
 	</div>
 	<div>
-		{#each sorted_events as event}
+		{#each events as event}
 			<div class="rounded border p-4 md:grid md:grid-cols-6">
 				<div class="md:col-span-5">
 					<h3>{event.event_headline}</h3>

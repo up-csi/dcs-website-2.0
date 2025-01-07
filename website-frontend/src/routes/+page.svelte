@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import { Event, Events } from '$lib/models/event';
 	import Hero from '$lib/components/landing/Hero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
@@ -8,15 +7,7 @@
 
 	$: ({ title, description, events } = data);
 
-	let sorted_events: Events = events;
-	$: sorted_events = events?.toSorted((e0: Event, e1: Event) => {
-		let d0 = new Date(e0.date_created),
-			d1 = new Date(e1.date_created);
-		return d1.getTime() - d0.getTime();
-	});
-
-	let featured: Events = [];
-	$: featured = sorted_events?.slice(0, 3);
+	$: featured = events?.slice(0, 3);
 </script>
 
 <Hero />
