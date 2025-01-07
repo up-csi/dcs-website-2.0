@@ -26,7 +26,9 @@ async function obtainSchema(directus: RestClient<Schema>, keys: Array<string>) {
 		linkages: parse(Linkages, await directus.request(readSingleton('linkages')))
 	};
 
-	return Object.fromEntries(Object.entries(schema).filter(([key]) => keys.includes(key)));
+	return Object.fromEntries(
+		Array(0).concat(Object.entries(schema).filter(([key]) => keys.includes(key)))
+	);
 }
 
 export default obtainSchema;
