@@ -1,9 +1,9 @@
 <script lang="ts">
+	/** @type {import('./$types').PageData} */
 	import { Event, Events } from '$lib/models/event';
 	import Hero from '$lib/components/landing/Hero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
-	/** @type {import('./$types').PageData} */
 	export let data;
 
 	$: ({ title, description, events } = data);

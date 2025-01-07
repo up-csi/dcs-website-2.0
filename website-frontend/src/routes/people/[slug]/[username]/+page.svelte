@@ -1,4 +1,5 @@
 <script>
+	/** @type {import('./$types').PageData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
 	export let data;
 	const { person, laboratories } = data;
