@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+		"env:dev": "dotenv -e .env.development --",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -52,6 +53,7 @@
 	"type": "module",
 	"dependencies": {
 		"@directus/sdk": "^17.0.2",
+		"dotenv": "^16.4.7",
 		"dotenv-cli": "^8.0.0",
 		"embla-carousel-autoplay": "^8.5.1",
 		"highlight.js": "11.10.0",
