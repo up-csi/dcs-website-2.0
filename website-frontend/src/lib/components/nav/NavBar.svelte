@@ -23,7 +23,12 @@
 			<NavItem href="/" to="Home" />
 			<NavItem href="/about" to="About" dropdown={true}>
 				<NavItem href="/about" to="Overview" />
+				<NavItem href="/about/department" to="Department" />
+				<NavItem href="/about/administration" to="Administration" />
 				<NavItem href="/about/history" to="History" />
+				<NavItem href="/about/facts-and-figures" to="Facts and Figures" />
+				<NavItem href="/about/contact-us" to="Contact Us" />
+				<NavItem href="/about/citizens-charter" to="Citizen's Charter" />
 			</NavItem>
 			<NavItem href="/events" to="Events" />
 			<NavItem href="/people" to="People" dropdown={true}>

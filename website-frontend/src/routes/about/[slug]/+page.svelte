@@ -20,7 +20,11 @@
 		</div>
 
 		<div class="px-4 py-10 text-base text-[#01152B] md:px-32">
-			{@html page.flexible_content}
+			{#if page.flexible_content}
+				{@html page.flexible_content}
+			{:else}
+				<p>Page is empty.</p>
+			{/if}
 		</div>
 	{:else}
 		<p>Page not found</p>
