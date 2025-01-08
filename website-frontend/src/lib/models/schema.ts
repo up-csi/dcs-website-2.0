@@ -9,6 +9,7 @@ import { PeopleOverview } from './people_overview';
 import { PeopleCategories } from './people_categories';
 import { PeopleLaboratories } from './people_laboratories';
 import { Laboratories } from './laboratories';
+import { AboutPages } from './about_pages';
 
 export const Schema = object({
 	global: Global,
@@ -20,7 +21,8 @@ export const Schema = object({
 	people_overview: PeopleOverview,
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
-	laboratories: Laboratories
+	laboratories: Laboratories,
+	about_pages: AboutPages
 });
 
 export type Schema = InferOutput<typeof Schema>;
