@@ -22,7 +22,7 @@
 		>
 			<NavItem href="/" to="Home" />
 			<NavItem href="/about" to="About" dropdown={true}>
-				<NavItem href="/about/overview" to="Overview" />
+				<NavItem href="/about" to="Overview" />
 				<NavItem href="/about/history" to="History" />
 			</NavItem>
 			<NavItem href="/events" to="Events" />
@@ -39,7 +39,7 @@
 				<NavItem href="/academics/graduate" to="Graduate Program" />
 			</NavItem>
 			<NavItem href="/research" to="Research" dropdown={true}>
-				<NavItem href="/research/overview" to="Overview" />
+				<NavItem href="/research" to="Overview" />
 				<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="left-36 top-0">
 					<NavItem href="/research/labs/ndsl" to="Networks and Distributed Systems Laboratory" />
 					<NavItem
