@@ -10,7 +10,7 @@ export async function load({ params, fetch }) {
 	const events = await directus.request(
 		readItems('events', {
 			filter: {
-				event_headline: {
+				slug: {
 					_eq: eventSlug
 				}
 			}
@@ -21,9 +21,9 @@ export async function load({ params, fetch }) {
 		throw error(404, 'Event not found');
 	}
 
-	const our_event = events[0];
+	const event = events[0];
 
 	return {
-		our_event,
+		event
 	};
 }

@@ -4,28 +4,28 @@
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	export let data;
-	$: ({ our_event } = data);
+	$: ({ event } = data);
 </script>
 
 <body class="bg-white">
-	{#if our_event}
+	{#if event}
 		<div class="relative">
 			<DetailsBanner
-				title={our_event.event_headline}
-				background_image={our_event.background_image ?? ''}
-				location={our_event.event_location}
-    			start_date={our_event.start_date}
-    			end_date={our_event.end_date ?? ''}
+				title={event.event_headline}
+				background_image={event.hero_image ?? ''}
+				location={event.location ?? ''}
+				start_date={event.start_date}
+				end_date={event.end_date ?? ''}
 			/>
 		</div>
 
-		<div class="px-4 py-12 md:px-64 md:py-14 text-gray-800">
-			{our_event.event_content}
+		<div class="px-4 py-12 text-gray-800 md:px-64 md:py-14">
+			{event.event_content}
 		</div>
 
-		<h1 class="text-2xl text-gray-900 font-bold px-4 mb-8 md:px-32">Related Events</h1>
+		<h1 class="mb-8 px-4 text-2xl font-bold text-gray-900 md:px-32">Related Events</h1>
 
-		<div
+		<!-- <div
 			class="mx-auto my-3 grid
             max-w-[94vw] grid-cols-2 gap-2 pb-20
             md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
@@ -35,8 +35,7 @@
 					<FeaturedEventCard {related_event} />
 				</a>
 			{/each}
-		</div>
-		
+		</div> -->
 	{:else}
 		<p>Event not found</p>
 	{/if}
