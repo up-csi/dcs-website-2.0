@@ -9,6 +9,7 @@ import { PeopleOverview } from './people_overview';
 import { PeopleCategories } from './people_categories';
 import { PeopleLaboratories } from './people_laboratories';
 import { Laboratories } from './laboratories';
+import { About } from './about';
 import { AboutPages } from './about_pages';
 
 export const Schema = object({
@@ -22,6 +23,7 @@ export const Schema = object({
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
 	laboratories: Laboratories,
+	about: About,
 	about_pages: AboutPages
 });
 
