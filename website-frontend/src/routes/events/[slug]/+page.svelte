@@ -7,7 +7,7 @@
 	$: ({ our_event } = data);
 </script>
 
-<body>
+<body class="bg-white">
 	{#if our_event}
 		<div class="relative">
 			<DetailsBanner
@@ -16,9 +16,14 @@
 				location={our_event.event_location}
     			start_date={our_event.start_date}
     			end_date={our_event.end_date ?? ''}
-    			register_link={our_event.register_link ?? ''}
 			/>
 		</div>
+
+		<div class="px-4 py-12 md:px-64 md:py-14 text-gray-800">
+			{our_event.event_content}
+		</div>
+
+		<h1 class="text-2xl text-gray-900 font-bold px-4 mb-8 md:px-32">Related Events</h1>
 
 		<div
 			class="mx-auto my-3 grid
@@ -31,6 +36,7 @@
 				</a>
 			{/each}
 		</div>
+		
 	{:else}
 		<p>Event not found</p>
 	{/if}
