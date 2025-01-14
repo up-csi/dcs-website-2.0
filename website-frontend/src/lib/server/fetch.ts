@@ -136,7 +136,7 @@ function isRegularQuery(
 ): query is Query<Schema, RegularSchemaList> {
 	if (query === undefined) return true;
 	// TODO: add explicit type guard for regular queries
-	return query && typeof query === 'object' && 'fields' in query;
+	return query && typeof query === 'object';
 }
 
 function isSingletonQuery(
@@ -154,7 +154,7 @@ function isSingletonQuery(
 ): query is QueryItem<Schema, SingletonSchemaList> {
 	if (query === undefined) return true;
 	// TODO: add explicit type guard for singleton queries
-	return query && typeof query === 'object' && 'fields' in query;
+	return query && typeof query === 'object';
 }
 
 function isAggregationQuery(
