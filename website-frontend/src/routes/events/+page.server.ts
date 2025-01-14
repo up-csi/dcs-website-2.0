@@ -1,12 +1,10 @@
 /** @type {import('./$types').PageServerLoad} */
 import getDirectusInstance from '$lib/directus';
-import obtainSchema from '$lib/server/schema';
+import directusFetch from '$lib/server/fetch.js';
 
 export async function load({ fetch }) {
 	const directus = await getDirectusInstance(fetch);
+	const events = await directusFetch(directus, 'events');
 
-	const keys = ['events'];
-	const schema = await obtainSchema(directus, keys);
-
-	return { schema };
+	return { events };
 }
