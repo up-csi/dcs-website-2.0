@@ -1,10 +1,15 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { enhanceWysiwygContent } from '.';
 	export let content: string = '';
 
-	$: enhancedContent = content ? enhanceWysiwygContent(content) : '';
+	let enhancedContent = content;
+
+	onMount(() => {
+		enhancedContent = content ? enhanceWysiwygContent(content) : '';
+	});
 </script>
 
-{#if enhancedContent}
+{#if content}
 	{@html enhancedContent}
 {/if}
