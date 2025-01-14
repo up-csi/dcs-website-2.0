@@ -1,12 +1,13 @@
 import {
 	type AggregationOptions,
-	type AggregationOutput,
+	type GetCollection,
 	type Query,
 	type QueryItem,
 	type RegularCollections,
 	type RestClient,
-	type RestCommand,
 	type SingletonCollections,
+	type UnpackList,
+	aggregate,
 	readItems,
 	readSingleton
 } from '@directus/sdk';
@@ -32,18 +33,21 @@ async function directusFetch<C extends RegularCollections<Schema> | SingletonCol
 	query?: QueryItem<Schema, SingletonSchemaList>
 ): Promise<InferOutput<(typeof Models)[C]>>;
 
+// TODO: add explicit type annotation for aggregate return
 async function directusFetch<C extends RegularCollections<Schema> | SingletonCollections<Schema>>(
 	directus: RestClient<Schema>,
 	collection: C,
-	query?: RestCommand<
-		AggregationOutput<
-			Schema,
-			RegularCollections<Schema>,
-			AggregationOptions<Schema, RegularCollections<Schema>>
-		>,
-		Schema
+	query?: AggregationOptions<
+		Schema,
+		RegularCollections<Schema>,
+		RegularCollections<Schema> extends keyof Schema
+			? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+			: string,
+		RegularCollections<Schema> extends keyof Schema
+			? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+			: object
 	>
-): Promise<InferOutput<(typeof Models)[C]>>;
+): Promise<object>;
 
 // Directus fetch implementation
 async function directusFetch<C extends RegularCollections<Schema> | SingletonCollections<Schema>>(
@@ -52,16 +56,35 @@ async function directusFetch<C extends RegularCollections<Schema> | SingletonCol
 	query?:
 		| Query<Schema, RegularSchemaList>
 		| QueryItem<Schema, SingletonSchemaList>
-		| RestCommand<
-				AggregationOutput<
+		| AggregationOptions<
+				Schema,
+				RegularCollections<Schema>,
+				RegularCollections<Schema> extends keyof Schema
+					? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: string,
+				RegularCollections<Schema> extends keyof Schema
+					? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: object
+		  >
+): Promise<InferOutput<(typeof Models)[C]> | object> {
+	const schema = collectionToSchema(collection);
+	if (isRegularCollection(collection) && isAggregationQuery(query)) {
+		return await directus.request(
+			aggregate(
+				collection,
+				query as AggregationOptions<
 					Schema,
 					RegularCollections<Schema>,
-					AggregationOptions<Schema, RegularCollections<Schema>>
-				>,
-				Schema
-		  >
-): Promise<InferOutput<(typeof Models)[C]>> {
-	const schema = collectionToSchema(collection);
+					RegularCollections<Schema> extends keyof Schema
+						? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+						: string,
+					RegularCollections<Schema> extends keyof Schema
+						? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+						: object
+				>
+			)
+		);
+	}
 	if (isRegularCollection(collection) && isRegularQuery(query)) {
 		return parse(
 			schema,
@@ -73,21 +96,6 @@ async function directusFetch<C extends RegularCollections<Schema> | SingletonCol
 			schema,
 			await directus.request(
 				readSingleton(collection, query as QueryItem<Schema, SingletonSchemaList>)
-			)
-		);
-	}
-	if (isRegularCollection(collection) && isAggregationQuery(query)) {
-		return parse(
-			schema,
-			await directus.request(
-				query as RestCommand<
-					AggregationOutput<
-						Schema,
-						RegularCollections<Schema>,
-						AggregationOptions<Schema, RegularCollections<Schema>>
-					>,
-					Schema
-				>
 			)
 		);
 	}
@@ -126,13 +134,15 @@ function isRegularQuery(
 	query?:
 		| Query<Schema, RegularSchemaList>
 		| QueryItem<Schema, SingletonSchemaList>
-		| RestCommand<
-				AggregationOutput<
-					Schema,
-					RegularCollections<Schema>,
-					AggregationOptions<Schema, RegularCollections<Schema>>
-				>,
-				Schema
+		| AggregationOptions<
+				Schema,
+				RegularCollections<Schema>,
+				RegularCollections<Schema> extends keyof Schema
+					? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: string,
+				RegularCollections<Schema> extends keyof Schema
+					? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: object
 		  >
 ): query is Query<Schema, RegularSchemaList> {
 	if (query === undefined) return true;
@@ -144,13 +154,15 @@ function isSingletonQuery(
 	query?:
 		| Query<Schema, RegularSchemaList>
 		| QueryItem<Schema, SingletonSchemaList>
-		| RestCommand<
-				AggregationOutput<
-					Schema,
-					RegularCollections<Schema>,
-					AggregationOptions<Schema, RegularCollections<Schema>>
-				>,
-				Schema
+		| AggregationOptions<
+				Schema,
+				RegularCollections<Schema>,
+				RegularCollections<Schema> extends keyof Schema
+					? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: string,
+				RegularCollections<Schema> extends keyof Schema
+					? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: object
 		  >
 ): query is QueryItem<Schema, SingletonSchemaList> {
 	if (query === undefined) return true;
@@ -162,23 +174,27 @@ function isAggregationQuery(
 	query?:
 		| Query<Schema, RegularSchemaList>
 		| QueryItem<Schema, SingletonSchemaList>
-		| RestCommand<
-				AggregationOutput<
-					Schema,
-					RegularCollections<Schema>,
-					AggregationOptions<Schema, RegularCollections<Schema>>
-				>,
-				Schema
+		| AggregationOptions<
+				Schema,
+				RegularCollections<Schema>,
+				RegularCollections<Schema> extends keyof Schema
+					? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: string,
+				RegularCollections<Schema> extends keyof Schema
+					? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+					: object
 		  >
-): query is RestCommand<
-	AggregationOutput<
-		Schema,
-		RegularCollections<Schema>,
-		AggregationOptions<Schema, RegularCollections<Schema>>
-	>,
-	Schema
+): query is AggregationOptions<
+	Schema,
+	RegularCollections<Schema>,
+	RegularCollections<Schema> extends keyof Schema
+		? keyof UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+		: string,
+	RegularCollections<Schema> extends keyof Schema
+		? UnpackList<GetCollection<Schema, RegularCollections<Schema>>>
+		: object
 > {
-	if (query === undefined) return true;
+	if (query === undefined) return false;
 	// TODO: add explicit type guard for aggregate queries
 	return query && typeof query === 'object' && 'aggregate' in query;
 }
