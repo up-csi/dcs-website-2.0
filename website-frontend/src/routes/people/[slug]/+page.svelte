@@ -2,19 +2,16 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/people/Banner.svelte';
 	import FilterControls from '$lib/components/people/FilterControls.svelte';
+	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
 	export let data;
-	let shown = 12;
 
 	$: ({ category, people } = data);
-	$: if (category) {
-		shown = 12;
-	}
 
-	function load_more() {
-		shown += 12;
-	}
+	const inc = 12;
+	let shown = inc;
+	$: peopleList = people?.slice(0, shown);
 </script>
 
 <body>
@@ -36,15 +33,17 @@
             max-w-[94vw] grid-cols-2 gap-2 pb-20
             md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
-			{#each people.slice(0, shown) as person}
+			{#each peopleList as person}
 				<a href="/people/{category.title}/{person.username}">
 					<PeopleCard {person} />
 				</a>
 			{/each}
 		</div>
 
-		{#if people.length > 12 && shown < people.length}
-			<button class="text-gray-900" on:click={load_more}> Load More </button>
+		{#if shown < people.length}
+			<div class="flex items-center justify-center">
+				<LoadMore {inc} bind:shown />
+			</div>
 		{/if}
 	{:else}
 		<p>People category not found</p>
