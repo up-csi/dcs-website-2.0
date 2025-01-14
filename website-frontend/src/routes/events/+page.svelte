@@ -16,6 +16,8 @@
 	$: eventList = events?.slice(0, shown);
 
 	let controls: FilterControls = [];
+
+	const timed = true;
 </script>
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
@@ -24,8 +26,11 @@
 			<FeaturedEventCard {event} />
 		{/each}
 	</div>
-	<FilterBar {controls} />
-	<div>
+	<div class="flex md:block items-center justify-between">
+		<h1>Find Events</h1>
+		<FilterBar {controls} {timed} />
+	</div>
+	<div class="my-6">
 		{#each eventList as event}
 			<div class="rounded border p-4 md:grid md:grid-cols-6">
 				<div class="md:col-span-5">
