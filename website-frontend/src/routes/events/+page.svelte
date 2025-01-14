@@ -1,6 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 
 	export let data;
@@ -20,6 +21,7 @@
 			<FeaturedEventCard {event} />
 		{/each}
 	</div>
+	<FilterBar />
 	<div>
 		{#each eventList as event}
 			<div class="rounded border p-4 md:grid md:grid-cols-6">

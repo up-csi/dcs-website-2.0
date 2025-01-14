@@ -1,7 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/people/Banner.svelte';
-	import FilterControls from '$lib/components/people/FilterControls.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="relative z-10 -mt-7">
-			<FilterControls />
+			<FilterBar />
 		</div>
 
 		<div
