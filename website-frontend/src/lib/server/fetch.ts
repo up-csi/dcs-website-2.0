@@ -115,6 +115,7 @@ function isSingletonCollection(
 	const singleton_collections: SingletonCollections<Schema>[] = [
 		'global',
 		'about',
+		'people_overview',
 		'student_council',
 		'alumni'
 	];

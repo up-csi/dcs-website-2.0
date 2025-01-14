@@ -1,51 +1,33 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems } from '@directus/sdk';
-import { parse } from 'valibot';
-import { Person } from '$lib/models/people';
 import getDirectusInstance from '$lib/directus';
+import directusFetch from '$lib/server/fetch';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
 	const directus = await getDirectusInstance(fetch);
-	const username = params.username;
-
-	const people = await directus.request(
-		readItems('people', {
-			filter: {
-				username: { _eq: username }
-			},
-			limit: 1
-		})
-	);
-
-	if (!people || people.length === 0) {
-		throw error(404, 'Person not found');
-	}
-
-	const personId = people[0].id;
-
-	const labAssociations = await directus.request(
-		readItems('people_laboratories', {
-			filter: {
-				people_id: { _eq: personId }
-			}
-		})
-	);
-
-	const laboratoryIds = labAssociations.map((assoc) => assoc.laboratories_id);
+	const person = await directusFetch(directus, 'people', {
+		filter: {
+			username: { _eq: params.username }
+		},
+		limit: 1
+	})
+		.then((res) => res[0])
+		.catch(() => {
+			throw error(404, 'Person not found');
+		});
+	const laboratory_ids = await directusFetch(directus, 'people_laboratories', {
+		filter: {
+			people_id: { _eq: person.id }
+		}
+	}).then((res) => res.map((res) => res.laboratories_id));
 	const laboratories =
-		laboratoryIds.length > 0
-			? await directus.request(
-					readItems('laboratories', {
-						filter: {
-							id: { _in: laboratoryIds }
-						}
-					})
-				)
+		laboratory_ids.length > 0
+			? await directusFetch(directus, 'laboratories', {
+					filter: {
+						id: { _in: laboratory_ids }
+					}
+				})
 			: [];
 
-	return {
-		person: parse(Person, people[0]),
-		laboratories
-	};
+	return { person, laboratories };
 }
