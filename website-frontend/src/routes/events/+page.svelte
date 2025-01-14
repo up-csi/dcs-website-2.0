@@ -26,7 +26,7 @@
 			<FeaturedEventCard {event} />
 		{/each}
 	</div>
-	<div class="flex md:block items-center justify-between">
+	<div class="flex items-center justify-between md:block">
 		<h1>Find Events</h1>
 		<FilterBar {controls} {timed} />
 	</div>
