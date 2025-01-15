@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FilterControls } from './filter_controls';
+	import type { FilterControls } from '$lib/types/filter_controls';
 	import { ListFilter } from 'lucide-svelte';
 	import FilterButton from './FilterButton.svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
@@ -15,7 +15,7 @@
 		p-6 shadow-lg md:flex md:max-w-[82vw]"
 >
 	<div class="flex items-center">
-		<div class="mr-4 text-xs font-semibold uppercase text-gray-500">
+		<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
 			<p>FILTER BY</p>
 		</div>
 		{#if controls}
@@ -28,9 +28,11 @@
 	</div>
 	{#if timed}
 		<Tabs.Root value="upcoming">
-			<Tabs.List class="rounded-3xl [&>*]:w-36 [&>*]:rounded-3xl">
-				<Tabs.Trigger value="upcoming">Upcoming</Tabs.Trigger>
-				<Tabs.Trigger value="past">Past</Tabs.Trigger>
+			<Tabs.List class="rounded-3xl bg-muted *:w-36 *:rounded-3xl">
+				<Tabs.Trigger value="upcoming"
+					><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger
+				>
+				<Tabs.Trigger value="past"><span class="text-muted-foreground">Past</span></Tabs.Trigger>
 			</Tabs.List>
 		</Tabs.Root>
 	{/if}

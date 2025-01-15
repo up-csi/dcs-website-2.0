@@ -34,10 +34,10 @@
 					<img
 						src="source/to/image"
 						alt="Carousel Item"
-						class="relative h-[90vh] w-full bg-slate-400"
+						class="relative h-[90vh] w-full bg-secondary"
 					/>
 					<div class="hidden">{_}</div>
-					<div class="absolute bottom-28 text-white md:px-20">
+					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
 						<h1 class="mb-5 text-4xl font-bold">Some Big Bold Description Text</h1>
 						<p class="text-md mb-5 font-semibold">Some extra description</p>
 						<Button href="/">Button</Button>
@@ -46,7 +46,7 @@
 			{/each}
 		</Carousel.Content>
 	</Carousel.Root>
-	<div class="absolute -mt-20 text-sm font-semibold text-white md:px-20">
+	<div class="absolute -mt-20 text-sm font-semibold text-secondary-foreground md:px-20">
 		Item {current} of {count}
 	</div>
 </div>
