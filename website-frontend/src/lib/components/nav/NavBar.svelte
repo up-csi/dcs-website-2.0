@@ -65,8 +65,11 @@
 				<NavItem href="/research/outputs" to="Featured Outputs" />
 			</NavItem>
 			<NavItem href="/students" to="Students" dropdown={true}>
-				<NavItem href="/students/life" to="Organizations" />
-				<NavItem href="/students/resources" to="Resources" />
+				<NavItem href="/students" to="Overview" />
+				<NavItem href="/students/batch-representatives" to="Batch Representatives" />
+				<NavItem href="/students/student-ethics-health-and-wellbeing" to="Student Ethics, Health, and Wellbeing" />
+				<NavItem href="/students/student-opportunities" to="Student Opportunities" />
+				<NavItem href="/students/organizations" to="Organizations" />
 			</NavItem>
 			<NavItem href="/alumni" to="Alumni" />
 			<NavItem href="/linkages" to="Linkages" dropdown={true} position="md:right-0 lg:left-0">

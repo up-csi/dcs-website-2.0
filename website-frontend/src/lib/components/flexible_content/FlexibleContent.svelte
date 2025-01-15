@@ -1,10 +1,19 @@
 <script lang="ts">
-	import { enhanceWysiwygContent } from '.';
-	export let content: string = '';
+    import { onMount } from 'svelte';
+    import { enhanceWysiwygContent } from '.';
+    export let content: string = '';
 
-	$: enhancedContent = content ? enhanceWysiwygContent(content) : '';
+    let enhancedContent = content;
+    
+    onMount(() => {
+        enhancedContent = content ? enhanceWysiwygContent(content) : '';
+    });
+
+    $: if (typeof window !== 'undefined') {
+        enhancedContent = content ? enhanceWysiwygContent(content) : '';
+    }
 </script>
 
-{#if enhancedContent}
-	{@html enhancedContent}
+{#if content}
+    {@html enhancedContent}
 {/if}

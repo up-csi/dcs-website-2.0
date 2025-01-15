@@ -6,7 +6,7 @@
 	const { about } = data;
 </script>
 
-<body class="bg-gray-100">
+<body>
 	{#if about}
 		<div class="relative">
 			<div
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<div class="prose px-4 py-10 text-base text-[#01152B] md:px-32">
+		<div class="prose px-4 py-10 text-base md:px-32">
 			{#if about.flexible_content}
 				<FlexibleContent content={about.flexible_content} />
 			{:else}
