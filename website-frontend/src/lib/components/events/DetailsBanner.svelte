@@ -60,7 +60,7 @@
 		class="-mt-[0.4px] w-full bg-[#004420] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
 	>
 		<div
-			class="flex w-full -mt-16
+			class="-mt-16 flex w-full
             flex-col items-center px-5 text-center
             md:flex-row md:justify-between md:px-32 md:text-start"
 		>
