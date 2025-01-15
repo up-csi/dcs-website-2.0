@@ -69,13 +69,13 @@
 				<div class="my-6 space-y-1 text-gray-300 md:my-0 md:flex">
 					{#if location}
 						<div class="flex items-center justify-center space-x-2 md:mr-10 md:justify-start">
-							<MapPin class="h-5 w-5" />
+							<MapPin class="h-4 w-4" />
 							<h4>{@html location}</h4>
 						</div>
 					{/if}
 
 					<div class="flex items-center justify-center space-x-2 md:justify-start">
-						<Clock class="h-5 w-5" />
+						<Clock class="h-4 w-4" />
 						{#if end_date}
 							<h4>{startHours}:{startMinutes} - {endHours}:{endMinutes}</h4>
 						{:else}
