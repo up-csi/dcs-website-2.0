@@ -107,12 +107,15 @@ function isRegularCollection(
 	collection: RegularCollections<Schema> | SingletonCollections<Schema>
 ): collection is RegularCollections<Schema> {
 	const regular_collections: RegularCollections<Schema>[] = [
+		'about_pages',
 		'events',
 		'people',
 		'people_categories',
 		'people_laboratories',
-		'laboratories',
-		'about_pages'
+		'students',
+		'students_pages',
+		'people_laboratories',
+		'laboratories'
 	];
 	return regular_collections.includes(collection as RegularCollections<Schema>);
 }
@@ -124,7 +127,7 @@ function isSingletonCollection(
 		'global',
 		'about',
 		'people_overview',
-		'student_council',
+		'students_overview',
 		'alumni'
 	];
 	return singleton_collections.includes(collection as SingletonCollections<Schema>);

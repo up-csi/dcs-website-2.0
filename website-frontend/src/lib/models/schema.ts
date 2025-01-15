@@ -9,7 +9,6 @@ import {
 } from 'valibot';
 import { Events } from './event';
 import { Global } from './global';
-import { StudentCouncil } from './student_council';
 import { Alumni } from './alumni';
 import { Linkages } from './linkages';
 import { People } from './people';
@@ -19,22 +18,23 @@ import { PeopleLaboratories } from './people_laboratories';
 import { Laboratories } from './laboratories';
 import { About } from './about';
 import { AboutPages } from './about_pages';
+import { Students } from './students';
 import { StudentsOverview } from './students_overview';
 import { StudentsPages } from './students_pages';
 
 export const Models = {
 	global: Global,
+	about: About,
+	about_pages: AboutPages,
 	events: Events,
-	student_council: StudentCouncil,
-	alumni: Alumni,
-	linkages: Linkages,
 	people: People,
 	people_overview: PeopleOverview,
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
+	students: Students,
+	alumni: Alumni,
+	linkages: Linkages,
 	laboratories: Laboratories,
-	about: About,
-	about_pages: AboutPages,
 	students_overview: StudentsOverview,
 	students_pages: StudentsPages
 };
