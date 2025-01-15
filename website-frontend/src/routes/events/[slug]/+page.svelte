@@ -19,7 +19,7 @@
 			/>
 		</div>
 
-		<div class="px-4 py-12 text-gray-800 md:px-64 md:py-14">
+		<div class="px-4 py-14 text-gray-800 md:px-64 md:py-16">
 			{event.event_content}
 		</div>
 

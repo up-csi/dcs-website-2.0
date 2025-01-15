@@ -52,21 +52,21 @@
 
 <div class="relative z-0">
 	<div
-		class="h-[45vh] bg-cover bg-center md:h-[70vh]"
+		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
 		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 	></div>
 
 	<div
-		class="-mt-[0.1px] w-full bg-[#004420] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
+		class="-mt-[0.4px] w-full bg-[#004420] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
 	>
 		<div
-			class="flex w-full
+			class="flex w-full -mt-16
             flex-col items-center px-5 text-center
             md:flex-row md:justify-between md:px-32 md:text-start"
 		>
 			<div class="text-white md:max-w-[60vw]">
-				<h1 class="text-3xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
-				<div class="my-6 space-y-1 text-gray-300 md:my-0 md:flex">
+				<h1 class="text-4xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
+				<div class="my-6 space-y-1 text-gray-100 md:my-0 md:flex">
 					{#if location}
 						<div class="flex items-center justify-center space-x-2 md:mr-10 md:justify-start">
 							<MapPin class="h-4 w-4" />
