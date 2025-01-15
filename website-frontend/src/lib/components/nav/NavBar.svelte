@@ -4,14 +4,14 @@
 
 <div
 	class="
-    hidden w-full md:my-2 md:flex md:h-full
+    hidden w-full md:mt-2 md:flex md:h-fit md:absolute
 	md:justify-center
 "
 >
 	<nav
 		class="
         fixed flex h-screen w-full justify-end bg-background/10 md:sticky md:z-50 md:h-fit
-        md:w-fit md:justify-between md:rounded-3xl md:border-header md:border md:p-1 md:px-5
+        md:w-fit md:justify-between md:rounded-3xl md:border-header md:border md:py-1 md:px-5
     "
 	>
 		<ul
