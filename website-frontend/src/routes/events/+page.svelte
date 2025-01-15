@@ -1,6 +1,8 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import type { FilterControls } from '$lib/components/filter/filter_controls';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 
 	export let data;
@@ -12,6 +14,10 @@
 	const inc = 10;
 	let shown = inc;
 	$: eventList = events?.slice(0, shown);
+
+	let controls: FilterControls = [];
+
+	const timed = true;
 </script>
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
@@ -20,7 +26,11 @@
 			<FeaturedEventCard {event} />
 		{/each}
 	</div>
-	<div>
+	<div class="flex items-center justify-between md:block">
+		<h1>Find Events</h1>
+		<FilterBar {controls} {timed} />
+	</div>
+	<div class="my-6">
 		{#each eventList as event}
 			<div class="rounded border p-4 md:grid md:grid-cols-6">
 				<div class="md:col-span-5">

@@ -1,7 +1,8 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import type { FilterControls } from '$lib/components/filter/filter_controls';
 	import Banner from '$lib/components/people/Banner.svelte';
-	import FilterControls from '$lib/components/people/FilterControls.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
@@ -11,6 +12,8 @@
 	const inc = 12;
 	let shown = inc;
 	$: peopleList = people?.slice(0, shown);
+
+	let controls: FilterControls = [];
 </script>
 
 <body>
@@ -23,7 +26,7 @@
 	</div>
 
 	<div class="relative z-10 -mt-7">
-		<FilterControls />
+		<FilterBar {controls} />
 	</div>
 	<div
 		class="mx-auto my-3 grid
