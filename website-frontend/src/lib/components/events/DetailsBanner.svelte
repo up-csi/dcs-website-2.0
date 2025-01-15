@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import { Clock, MapPin } from 'lucide-svelte';
 
 	export let title: string;
 	export let background_image: string;
@@ -65,15 +66,23 @@
 		>
 			<div class="text-white md:max-w-[60vw]">
 				<h1 class="text-3xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
-				<div class="my-6 text-gray-300 md:my-0 md:flex">
+				<div class="my-6 text-gray-300 space-y-1 md:my-0 md:flex">
 					
-					<h4 class="md:mr-10">{@html location}</h4>
-
-					{#if end_date}
-						<h4>{startHours}:{startMinutes} - {endHours}:{endMinutes}</h4>
-					{:else}
-						<h4> Whole day event </h4>
+					{#if location}
+						<div class="items-center flex space-x-2 justify-center md:justify-start md:mr-10">
+							<MapPin class="w-5 h-5" />
+							<h4>{@html location}</h4>
+						</div>
 					{/if}
+
+					<div class="items-center flex space-x-2 justify-center md:justify-start">
+						<Clock class="w-5 h-5" />
+						{#if end_date}
+							<h4>{startHours}:{startMinutes} - {endHours}:{endMinutes}</h4>
+						{:else}
+							<h4> Whole day event </h4>
+						{/if}
+					</div>
 				</div>
 			</div>
 
