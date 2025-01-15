@@ -14,7 +14,11 @@
 				style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent)"
 			></div>
 			<div class="absolute bottom-9">
-				<h1 class="px-4 text-3xl font-bold md:max-w-[60vw] md:px-32 md:text-5xl text-primary-foreground">About</h1>
+				<h1
+					class="px-4 text-3xl font-bold text-primary-foreground md:max-w-[60vw] md:px-32 md:text-5xl"
+				>
+					About
+				</h1>
 			</div>
 		</div>
 

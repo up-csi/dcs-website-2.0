@@ -4,14 +4,14 @@
 
 <div
 	class="
-    hidden w-full md:mt-2 md:flex md:h-fit md:absolute
+    hidden w-full md:absolute md:mt-2 md:flex md:h-fit
 	md:justify-center
 "
 >
 	<nav
 		class="
         fixed flex h-screen w-full justify-end bg-background/10 md:sticky md:z-50 md:h-fit
-        md:w-fit md:justify-between md:rounded-3xl md:border-header md:border md:py-1 md:px-5
+        md:w-fit md:justify-between md:rounded-3xl md:border md:border-header md:px-5 md:py-1
     "
 	>
 		<ul
@@ -67,7 +67,10 @@
 			<NavItem href="/students" to="Students" dropdown={true}>
 				<NavItem href="/students" to="Overview" />
 				<NavItem href="/students/batch-representatives" to="Batch Representatives" />
-				<NavItem href="/students/student-ethics-health-and-wellbeing" to="Student Ethics, Health, and Wellbeing" />
+				<NavItem
+					href="/students/student-ethics-health-and-wellbeing"
+					to="Student Ethics, Health, and Wellbeing"
+				/>
 				<NavItem href="/students/student-opportunities" to="Student Opportunities" />
 				<NavItem href="/students/organizations" to="Organizations" />
 			</NavItem>

@@ -28,8 +28,10 @@
 	</div>
 	{#if timed}
 		<Tabs.Root value="upcoming">
-			<Tabs.List class="rounded-3xl *:w-36 *:rounded-3xl bg-muted">
-				<Tabs.Trigger value="upcoming"><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger>
+			<Tabs.List class="rounded-3xl bg-muted *:w-36 *:rounded-3xl">
+				<Tabs.Trigger value="upcoming"
+					><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger
+				>
 				<Tabs.Trigger value="past"><span class="text-muted-foreground">Past</span></Tabs.Trigger>
 			</Tabs.List>
 		</Tabs.Root>

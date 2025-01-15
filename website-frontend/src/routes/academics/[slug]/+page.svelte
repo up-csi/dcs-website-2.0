@@ -8,12 +8,14 @@
 		<div class="relative">
 			<div
 				class="h-[40vh] bg-cover bg-center md:h-[50vh]"
-				style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{data.program
-					.image}')"
+				style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{data
+					.program.image}')"
 			></div>
 
 			<div class="absolute bottom-9">
-				<h1 class="px-4 text-3xl font-bold md:max-w-[60vw] md:px-32 md:text-5xl text-primary-foreground">
+				<h1
+					class="px-4 text-3xl font-bold text-primary-foreground md:max-w-[60vw] md:px-32 md:text-5xl"
+				>
 					{data.program.title}
 				</h1>
 			</div>
