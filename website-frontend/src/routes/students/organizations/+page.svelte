@@ -6,7 +6,7 @@
 	$: ({ page } = data);
 </script>
 
-<body class="bg-gray-100">
+<body>
 	{#if page}
 		<div class="relative">
 			<div
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 
-		<div class="px-4 py-10 text-base text-[#01152B] md:px-32">
+		<div class="px-4 py-10 text-base md:px-32">
 			{#if page.flexible_content}
 				<FlexibleContent content={page.flexible_content} />
 			{:else}
