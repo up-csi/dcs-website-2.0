@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FilterControls } from './filter_controls';
+	import type { FilterControls } from '$lib/types/filter_controls';
 	import { ListFilter } from 'lucide-svelte';
 	import FilterButton from './FilterButton.svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FilterControl } from './filter_controls';
+	import type { FilterControl } from '$lib/types/filter_controls';
 	import { ChevronUp, ChevronDown } from 'lucide-svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 
