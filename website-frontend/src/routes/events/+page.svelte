@@ -2,7 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/events/Banner.svelte';
-	import * as Carousel from "$lib/components/ui/carousel/index.js";
+	import * as Carousel from '$lib/components/ui/carousel/index.js';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
@@ -33,7 +33,7 @@
 
 	<div class="-mt-28 pb-16">
 		<Carousel.Root>
-			<Carousel.Content class="-ml-6 py-10 px-16">
+			<Carousel.Content class="-ml-6 px-16 py-10">
 				{#each featured as event}
 					<Carousel.Item class="basis-1 pl-6 md:basis-1/4">
 						<FeaturedEventCard {event} />
@@ -45,9 +45,7 @@
 
 	<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">Related Events</h1>
 
-
 	<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-
 		<div class="flex items-center justify-between md:block">
 			<FilterBar {controls} {timed} />
 		</div>
