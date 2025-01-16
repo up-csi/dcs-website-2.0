@@ -16,7 +16,7 @@
 			></div>
 			<div class="absolute bottom-9">
 				<h1
-					class="text-primary-foreground px-4 text-3xl font-bold md:max-w-[60vw] md:px-32 md:text-5xl"
+					class="px-4 text-3xl font-bold text-primary-foreground md:max-w-[60vw] md:px-32 md:text-5xl"
 				>
 					{about_page.title}
 				</h1>
