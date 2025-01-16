@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
+	import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	export let href: string,
