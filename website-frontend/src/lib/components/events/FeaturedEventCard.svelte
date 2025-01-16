@@ -1,17 +1,50 @@
 <script lang="ts">
+	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Event } from '$lib/models/event';
+	import { Calendar, MapPin } from 'lucide-svelte';
 	export let event: Event;
 </script>
 
 <a href="/events/{event.slug}">
-	<div class="card h-fit w-72 max-w-72 snap-center p-4 md:w-96 md:max-w-96">
-		<div class="mb-4 md:flex md:justify-between">
-			<h3>{event.event_headline}</h3>
-			<h3>{new Date(event.date_created).toLocaleDateString()}</h3>
+	<div
+		class="relative flex h-[25rem] flex-col overflow-hidden rounded-lg bg-white text-gray-800 shadow-xl"
+	>
+		<div class="inset-0 h-24 flex-grow rounded-t-lg bg-gray-300 md:h-44">
+			{#if event.hero_image}
+				<img
+					class="h-full w-full rounded-t-lg object-cover"
+					src="{PUBLIC_APIURL}/assets/{event.hero_image}"
+					alt="Background"
+				/>
+			{/if}
 		</div>
-		<div class="max-h-6 overflow-hidden *:truncate">
-			{@html event.event_content}
+
+		<div>
+			<div class="absolute -left-3 -mt-2 h-6 w-6 rounded-full bg-slate-100 shadow-inner"></div>
+			<div class="absolute -right-3 -mt-2 h-6 w-6 rounded-full bg-slate-100 shadow-inner"></div>
 		</div>
-		<p>View details &#8594;</p>
+
+		<div class="space-y-2 p-4">
+			<div class="text-lg font-bold">
+				<h1>{event.event_headline}</h1>
+			</div>
+			<div class="flex items-center space-x-2 text-sm font-medium">
+				<Calendar class="h-4 w-4" />
+				<p>7 - 8 February 2025</p>
+			</div>
+			{#if event.location}
+				<div class="flex items-center space-x-2 text-sm text-gray-500">
+					<MapPin class="h-4 w-4" />
+					<p>{event.location}</p>
+				</div>
+			{/if}
+			{#if event.tags}
+				<div class="py-1 text-xs font-bold text-gray-600">
+					{#each event.tags as tag, index}
+						<p>{tag}{index < event.tags.length - 1 ? ',' : ''}</p>
+					{/each}
+				</div>
+			{/if}
+		</div>
 	</div>
 </a>
