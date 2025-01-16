@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArrowLeft from "lucide-svelte/icons/arrow-left";
+	import ArrowRight from "lucide-svelte/icons/arrow-right";
 	import type { VariantProps } from "tailwind-variants";
 	import { getEmblaContext } from "./context.js";
 	import { cn } from "$lib/@shadcn-svelte/utils.js";
@@ -7,7 +7,7 @@
 		Button,
 		type Props,
 		type buttonVariants,
-	} from "$lib/@shadcn-svelte/components/ui/button/index.js";
+	} from "$lib/@shadcn-svelte//ui/button/index.js";
 
 	type $$Props = Props;
 
@@ -15,9 +15,8 @@
 	export { className as class };
 	export let variant: VariantProps<typeof buttonVariants>["variant"] = "outline";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "icon";
-
-	const { orientation, canScrollPrev, scrollPrev, handleKeyDown } =
-		getEmblaContext("<Carousel.Previous/>");
+	const { orientation, canScrollNext, scrollNext, handleKeyDown } =
+		getEmblaContext("<Carousel.Next/>");
 </script>
 
 <Button
@@ -26,15 +25,15 @@
 	class={cn(
 		"absolute h-8 w-8 touch-manipulation rounded-full",
 		$orientation === "horizontal"
-			? "-left-12 top-1/2 -translate-y-1/2"
-			: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+			? "-right-12 top-1/2 -translate-y-1/2"
+			: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 		className
 	)}
-	disabled={!$canScrollPrev}
-	on:click={scrollPrev}
+	disabled={!$canScrollNext}
+	on:click={scrollNext}
 	on:keydown={handleKeyDown}
 	{...$$restProps}
 >
-	<ArrowLeft class="h-4 w-4" />
-	<span class="sr-only">Previous slide</span>
+	<ArrowRight class="h-4 w-4" />
+	<span class="sr-only">Next slide</span>
 </Button>
