@@ -2,7 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/events/Banner.svelte';
-	import * as Carousel from '$lib/components/ui/carousel/index.js';
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
