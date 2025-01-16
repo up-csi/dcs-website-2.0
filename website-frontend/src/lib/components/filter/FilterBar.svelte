@@ -2,8 +2,8 @@
 	import type { FilterControls } from '$lib/types/filter_controls';
 	import { ListFilter } from 'lucide-svelte';
 	import FilterButton from './FilterButton.svelte';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Tabs from '$lib/components/ui/tabs';
+	import * as DropdownMenu from '$lib/@shadcn-svelte/ui/dropdown-menu';
+	import * as Tabs from '$lib/@shadcn-svelte/ui/tabs';
 
 	export let controls: FilterControls,
 		timed: boolean = false;

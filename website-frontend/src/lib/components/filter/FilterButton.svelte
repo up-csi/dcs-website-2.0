@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { FilterControl } from '$lib/types/filter_controls';
 	import { ChevronUp, ChevronDown } from 'lucide-svelte';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import * as DropdownMenu from '$lib/@shadcn-svelte/ui/dropdown-menu';
 
 	export let control: FilterControl;
 	$: ({ name, categories } = control);
