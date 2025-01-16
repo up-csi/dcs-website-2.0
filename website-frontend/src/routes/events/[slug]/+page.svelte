@@ -1,7 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import DetailsBanner from '$lib/components/events/DetailsBanner.svelte';
-	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	export let data;
 	$: ({ event } = data);
