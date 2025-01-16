@@ -1,58 +1,80 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { ChevronDown, ChevronUp } from 'lucide-svelte';
+
 	export let href: string,
 		to: string,
 		dropdown: boolean = false,
 		position: string = '',
 		custom: string = '';
+
 	let show = false;
 </script>
 
 <li
-	class="relative w-full transition-colors duration-300 ease-in-out hover:bg-accent md:rounded-sm {custom}"
-	on:mouseenter={() => {
-		show = true;
-	}}
-	on:mouseleave={() => {
-		show = false;
-	}}
+	class="hidden md:block list-none relative w-full transition-colors duration-300 hover:border-b-2 ease-in-out {custom}"
+	on:mouseenter={() => { show = true; }}
+	on:mouseleave={() => { show = false; }}
 >
 	<div
 		class="
-        flex justify-end
-        text-2xl md:block md:text-sm
+        flex items-center justify-start px-2
+        text-sm border-0 *:text-secondary-foreground
     "
 	>
-		{#if dropdown}
-			<button
-				class="md:hidden"
-				on:click={() => {
-					show = !show;
-				}}
-			>
-				{#if show}
-					&#8593;
-				{:else}
-					&#8595;
-				{/if}
-			</button>
-		{/if}
-		<a
-			{href}
+		<Button variant="link" {href} 
 			class="
-            flex w-fit justify-end border-r-2 px-3 py-1 text-right
-            md:items-center md:justify-start md:border-0 md:text-left
-        ">{to}</a
+            px-1 py-2 text-left hover:no-underline
+			"
 		>
+			<span class="font-bold">{to}</span>
+			{#if dropdown}
+				{#if show}
+					<ChevronUp class="h-4 w-4" />
+				{:else}
+					<ChevronDown class="h-4 w-4" />
+				{/if}
+			{/if}
+		</Button>
 	</div>
 	{#if show && dropdown}
 		<ul
 			class="
-                w-full bg-background pr-4 md:absolute md:w-40 md:rounded-lg
-                md:border md:p-0.5
+				w-fit full pr-4 absolute rounded-lg
+				border p-0.5 bg-background/10
+				{position}
+			"
+		>
+			<slot />
+		</ul>
+	{/if}
+</li>
+
+<li
+	class="md:hidden relative w-full transition-colors duration-300 ease-in-out {custom}"
+>
+	<div
+		class="
+        flex items-center justify-end text-sm border-r-2 pr-2 text-right py-1
+    "
+	>
+		<a {href} class="font-bold mr-1">{to}</a>
+		<Button variant="ghost" class="p-0 hover:bg-background/0" on:click={() => { show = !show; }}>
+			{#if dropdown}
+				{#if show}
+					<ChevronUp />
+				{:else}
+					<ChevronDown />
+				{/if}
+			{/if}
+		</Button>
+	</div>
+	{#if show && dropdown}
+		<ul
+			class="
+                w-full bg-background pr-4 
                 {position}
             "
-			transition:slide
 		>
 			<slot />
 		</ul>

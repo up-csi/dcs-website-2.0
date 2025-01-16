@@ -14,7 +14,7 @@
 	<nav
 		class="
         fixed flex h-screen w-full justify-end bg-background/10 md:sticky md:z-50 md:h-fit
-        md:w-fit md:justify-between md:rounded-3xl md:border md:border-header md:px-5 md:py-1
+        md:w-fit md:justify-between md:rounded-3xl md:border md:border-header md:px-5
     "
 	>
 		<ul
