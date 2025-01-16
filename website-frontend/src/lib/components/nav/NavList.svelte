@@ -23,8 +23,10 @@
     <NavItem href="/people/support-staff" to="Support Staff" />
 </NavItem>
 <NavItem href="/academics" to="Academics" dropdown={true}>
-    <NavItem href="/academics/undergraduate" to="Undergraduate Program" />
-    <NavItem href="/academics/graduate" to="Graduate Program" />
+    <NavItem href="/academics/bs-cs" to="Bachelor of Science in Computer Science" />
+    <NavItem href="/academics/ms-cs" to="Master of Science in Computer Science" />
+    <NavItem href="/academics/ms-bioinformatics" to="Master of Science in Bioinformatics" />
+    <NavItem href="/academics/phd-cs" to="Doctor of Philosophy in Computer Science" />
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
     <NavItem href="/research" to="Overview" />
