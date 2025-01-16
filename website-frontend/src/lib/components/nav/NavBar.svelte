@@ -28,19 +28,19 @@
 	</nav>
 </div>
 
-<div class="md:hidden absolute right-0 top-0 m-3">
+<div class="absolute right-0 top-0 m-3 md:hidden">
 	<Sheet.Root>
 		<Sheet.Trigger>
 			<Menu class="h-8 w-8" />
 		</Sheet.Trigger>
 		<Sheet.Content>
-			<div class="w-full flex justify-end">
+			<div class="flex w-full justify-end">
 				<Sheet.Close>
 					<X class="h-8 w-8" />
 				</Sheet.Close>
 			</div>
 			<ScrollArea class="h-full">
-				<ul class="mr-4 mb-4">
+				<ul class="mb-4 mr-4">
 					<NavList />
 				</ul>
 			</ScrollArea>

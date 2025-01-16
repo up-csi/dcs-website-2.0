@@ -12,22 +12,28 @@
 </script>
 
 <li
-	class="hidden md:block list-none relative w-full transition-colors duration-300 hover:border-b-2 ease-in-out {custom}"
-	on:mouseenter={() => { show = true; }}
-	on:mouseleave={() => { show = false; }}
+	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:border-b-2 md:block {custom}"
+	on:mouseenter={() => {
+		show = true;
+	}}
+	on:mouseleave={() => {
+		show = false;
+	}}
 >
 	<div
 		class="
-        flex items-center justify-start px-2
-        text-sm border-0 *:text-secondary-foreground
+        flex items-center justify-start border-0
+        px-2 text-sm *:text-secondary-foreground
     "
 	>
-		<Button variant="link" {href} 
+		<Button
+			variant="link"
+			{href}
 			class="
             px-1 py-2 text-left hover:no-underline
 			"
 		>
-			<span class="font-bold">{to}</span>
+			<span class="pr-1 font-bold">{to}</span>
 			{#if dropdown}
 				{#if show}
 					<ChevronUp class="h-4 w-4" />
@@ -40,8 +46,8 @@
 	{#if show && dropdown}
 		<ul
 			class="
-				w-fit full pr-4 absolute rounded-lg
-				border p-0.5 bg-background/10
+				full absolute w-fit rounded-lg border
+				bg-background/10 p-0.5 pr-4
 				{position}
 			"
 		>
@@ -50,16 +56,20 @@
 	{/if}
 </li>
 
-<li
-	class="md:hidden relative w-full transition-colors duration-300 ease-in-out {custom}"
->
+<li class="relative w-full transition-colors duration-300 ease-in-out md:hidden {custom}">
 	<div
 		class="
-        flex items-center justify-end text-sm border-r-2 pr-2 text-right py-1
+        flex items-center justify-end border-r-2 py-1 pr-2 text-right text-sm
     "
 	>
-		<a {href} class="font-bold mr-1">{to}</a>
-		<Button variant="ghost" class="p-0 hover:bg-background/0" on:click={() => { show = !show; }}>
+		<a {href} class="mr-1 font-bold">{to}</a>
+		<Button
+			variant="ghost"
+			class="p-0 hover:bg-background/0"
+			on:click={() => {
+				show = !show;
+			}}
+		>
 			{#if dropdown}
 				{#if show}
 					<ChevronUp />
@@ -72,7 +82,7 @@
 	{#if show && dropdown}
 		<ul
 			class="
-                w-full bg-background pr-4 
+                w-full bg-background pr-4
                 {position}
             "
 		>
