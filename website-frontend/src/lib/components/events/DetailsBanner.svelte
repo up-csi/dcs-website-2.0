@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { deslugify } from '$lib/utils';
+	import deslugify from '$lib/deslugify';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Clock, MapPin } from 'lucide-svelte';
 
