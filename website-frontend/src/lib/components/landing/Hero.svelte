@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Carousel from '$lib/components/ui/carousel/index.js';
-	import type { CarouselAPI } from '$lib/components/ui/carousel/context.js';
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
+	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import Autoplay from 'embla-carousel-autoplay';
-	import { Button } from '$lib/components/ui/button';
+	import { Button } from '$lib/@shadcn-svelte/ui/button';
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 
