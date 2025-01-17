@@ -7,20 +7,20 @@
 
 <div
 	class="
-    hidden w-full absolute mt-2 md:flex h-fit
-	justify-center
+    absolute mt-2 hidden h-fit w-full justify-center
+	md:flex
 "
 >
 	<nav
 		class="
-        flex bg-secondary sticky md:z-50 h-fit
-        w-fit justify-between rounded-3xl border border-header px-5
+        sticky flex h-fit w-fit justify-between
+        rounded-3xl border border-header bg-secondary px-5 md:z-50
     "
 	>
 		<ul
 			class="
-            bottom-10 right-0 w-full gap-2
-            flex justify-center
+            bottom-10 right-0 flex w-full
+            justify-center gap-2
         "
 		>
 			<NavList />
