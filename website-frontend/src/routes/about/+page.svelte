@@ -1,9 +1,10 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
+
 	export let data;
 
-	const { about } = data;
+	$: ({ about } = data);
 </script>
 
 <body>

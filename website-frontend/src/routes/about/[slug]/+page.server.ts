@@ -1,29 +1,21 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
+import directusFetch from '$lib/server/fetch';
 import { error } from '@sveltejs/kit';
 
-export async function load({ params, fetch }) {
+export async function load({ fetch, params }) {
 	const directus = await getDirectusInstance(fetch);
-	const slug = params.slug;
-
-	const pages = await directus.request(
-		readItems('about_pages', {
-			filter: {
-				slug: {
-					_eq: slug
-				}
+	const about_page = await directusFetch(directus, 'about_pages', {
+		filter: {
+			slug: {
+				_eq: params.slug
 			}
-		})
-	);
+		}
+	})
+		.then((res) => res[0])
+		.catch(() => {
+			throw error(404, 'Page not found');
+		});
 
-	if (!pages.length) {
-		throw error(404, 'Page not found');
-	}
-
-	const page = pages[0];
-
-	return {
-		page
-	};
+	return { about_page };
 }
