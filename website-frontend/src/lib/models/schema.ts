@@ -31,8 +31,8 @@ export const Schema = object({
 	about_pages: AboutPages,
 	students_overview: StudentsOverview,
 	students_pages: StudentsPages,
-	organizations: Organizations,
-	organizations_overview: OrganizationsOverview
+	student_organizations: Organizations,
+	student_organizations_overview: OrganizationsOverview
 });
 
 export type Schema = InferOutput<typeof Schema>;
