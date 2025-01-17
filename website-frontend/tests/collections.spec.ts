@@ -39,7 +39,9 @@ test.describe('Directus Collections', () => {
 	});
 
 	test('Organizations', async ({ request }) => {
-		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/organizations`);
+		const test_request = await request.get(
+			`${process.env.PUBLIC_APIURL}/items/student_organizations`
+		);
 		expect(test_request.ok()).toBeTruthy();
 	});
 
