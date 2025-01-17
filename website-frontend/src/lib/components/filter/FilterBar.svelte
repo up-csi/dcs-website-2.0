@@ -38,9 +38,11 @@
 	{/if}
 </div>
 
-<div class="mx-auto md:hidden w-[94vw] items-center justify-between rounded-lg
+<div
+	class="mx-auto flex w-[94vw] items-center justify-between rounded-lg
 		bg-white
-		p-6 shadow-lg flex">
+		p-6 shadow-lg md:hidden"
+>
 	<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
 		<p>FILTER BY</p>
 	</div>
