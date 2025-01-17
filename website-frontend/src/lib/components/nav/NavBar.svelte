@@ -13,7 +13,7 @@
 >
 	<nav
 		class="
-        flex bg-background/10 sticky md:z-50 h-fit
+        flex bg-secondary sticky md:z-50 h-fit
         w-fit justify-between rounded-3xl border border-header px-5
     "
 	>
