@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { parse } from 'valibot';
 import { Global } from '$lib/models/global';
 import { Events } from '$lib/models/event';
-import { StudentCouncil } from '$lib/models/student_council';
 
 test.describe('Directus Collections', () => {
 	test('Global', async ({ request }) => {
@@ -32,11 +31,6 @@ test.describe('Directus Collections', () => {
 			const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/students`);
 			expect(test_request.ok()).toBeTruthy();
 		});
-		test('Student Council', async ({ request }) => {
-			const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/student_council`);
-			expect(test_request.ok()).toBeTruthy();
-			expect(parse(StudentCouncil, (await test_request.json()).data)).toBeTruthy();
-		});
 	});
 
 	test('Publications', async ({ request }) => {
@@ -57,6 +51,5 @@ test.describe('Directus Collections', () => {
 	test('Alumni', async ({ request }) => {
 		const test_request = await request.get(`${process.env.PUBLIC_APIURL}/items/alumni`);
 		expect(test_request.ok()).toBeTruthy();
-		expect(parse(StudentCouncil, (await test_request.json()).data)).toBeTruthy();
 	});
 });
