@@ -12,12 +12,12 @@
 
 	const query = new URLSearchParams($page.url.searchParams.toString());
 	let filter =
-		(['upcoming', 'past'].includes(query.get('time') ?? 'all') ? query.get('time') : 'all') ??
-		'all';
+		(['all', 'past'].includes(query.get('time') ?? 'upcoming') ? query.get('time') : '') ??
+		'upcoming';
 
 	function time_nav(time: string): void {
 		console.log(time);
-		if (['upcoming', 'past'].includes(time)) {
+		if (['all', 'past'].includes(time)) {
 			query.set('time', time);
 		} else {
 			query.delete('time');

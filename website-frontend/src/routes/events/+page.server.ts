@@ -10,22 +10,6 @@ export async function load({ fetch, url }) {
 		time: url.searchParams.get('time')
 	};
 	const events = await (async () => {
-		if (filters.time === 'upcoming') {
-			return await directus.request(
-				readItems('events', {
-					filter: {
-						_and: [
-							{ location: { _eq: filters.location } },
-							{
-								start_date: {
-									_gte: '$NOW'
-								}
-							}
-						]
-					}
-				})
-			);
-		}
 		if (filters.time === 'past') {
 			return await directus.request(
 				readItems('events', {
@@ -61,7 +45,23 @@ export async function load({ fetch, url }) {
 				})
 			);
 		}
-		return await directus.request(readItems('events'));
+		if (filters.time === 'all') {
+			return await directus.request(readItems('events'));
+		}
+		return await directus.request(
+			readItems('events', {
+				filter: {
+					_and: [
+						{ location: { _eq: filters.location } },
+						{
+							start_date: {
+								_gte: '$NOW'
+							}
+						}
+					]
+				}
+			})
+		);
 	})();
 
 	return { events };
