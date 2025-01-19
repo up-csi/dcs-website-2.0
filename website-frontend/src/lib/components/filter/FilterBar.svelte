@@ -10,12 +10,14 @@
 	export let controls: FilterControls,
 		timed: boolean = false;
 
-	const query = new URLSearchParams($page.url.searchParams.toString());
+	const init_query = new URLSearchParams($page.url.searchParams.toString());
 	let filter =
-		(['all', 'past'].includes(query.get('time') ?? 'upcoming') ? query.get('time') : 'upcoming') ??
-		'upcoming';
+		(['all', 'past'].includes(init_query.get('time') ?? 'upcoming')
+			? init_query.get('time')
+			: 'upcoming') ?? 'upcoming';
 
 	function time_nav(time: string): void {
+		const query = new URLSearchParams($page.url.searchParams.toString());
 		console.log(time);
 		if (['all', 'past'].includes(time)) {
 			query.set('time', time);
@@ -32,7 +34,7 @@
 		p-6 shadow-lg md:flex md:max-w-[82vw]"
 >
 	<div class="flex items-center">
-		<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
+		<div class="text-muted-foreground mr-4 text-xs font-semibold uppercase">
 			<p>FILTER BY</p>
 		</div>
 		{#if controls}
@@ -45,7 +47,7 @@
 	</div>
 	{#if timed}
 		<Tabs.Root bind:value={filter}>
-			<Tabs.List class="rounded-3xl bg-muted *:w-36 *:rounded-3xl">
+			<Tabs.List class="bg-muted rounded-3xl *:w-36 *:rounded-3xl">
 				<Tabs.Trigger on:click={() => time_nav('upcoming')} value="upcoming"
 					><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger
 				>
