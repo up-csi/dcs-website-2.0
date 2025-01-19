@@ -12,13 +12,11 @@
 
 	function nav(name: string, value: string, checked: boolean): void {
 		const query = new URLSearchParams($page.url.searchParams.toString());
-		console.log(query.get(name));
 		if (!checked) {
 			query.append(name, value);
 		} else {
 			query.delete(name, value);
 		}
-		console.log(query.get(name));
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
 </script>

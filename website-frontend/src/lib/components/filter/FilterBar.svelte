@@ -18,7 +18,6 @@
 
 	function time_nav(time: string): void {
 		const query = new URLSearchParams($page.url.searchParams.toString());
-		console.log(time);
 		if (['all', 'past'].includes(time)) {
 			query.set('time', time);
 		} else {
