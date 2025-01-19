@@ -5,7 +5,7 @@ import { StudentsOverview } from '$lib/models/students_overview.js';
 import getDirectusInstance from '$lib/directus';
 
 export async function load({ fetch }) {
-	const directus = await getDirectusInstance(fetch);
+	const directus = getDirectusInstance(fetch);
 	return {
 		students_overview: parse(
 			StudentsOverview,

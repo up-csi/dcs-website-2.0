@@ -6,7 +6,7 @@ import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
-	const directus = await getDirectusInstance(fetch);
+	const directus = getDirectusInstance(fetch);
 	const categorySlug = params.slug;
 
 	const categories = await directus.request(
