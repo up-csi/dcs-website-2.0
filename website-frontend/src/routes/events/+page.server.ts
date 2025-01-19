@@ -11,6 +11,15 @@ export async function load({ fetch, url }) {
 		discipline: url.searchParams.get('discipline'),
 		time: url.searchParams.get('time')
 	};
+	const locations = await directus
+		.request(
+			readItems('events_areas', {
+				filter: {
+					name: { _eq: filters.location ?? undefined }
+				}
+			})
+		)
+		.then((res) => res.map((res) => res.id));
 	const events = await (async () => {
 		if (filters.time === 'past') {
 			return parse(
@@ -19,7 +28,7 @@ export async function load({ fetch, url }) {
 					readItems('events', {
 						filter: {
 							_and: [
-								{ location: { _eq: filters.location } },
+								{ event_area: { _in: locations } },
 								{
 									_or: [
 										{
@@ -51,7 +60,14 @@ export async function load({ fetch, url }) {
 			);
 		}
 		if (filters.time === 'all') {
-			return parse(Events, await directus.request(readItems('events')));
+			return parse(
+				Events,
+				await directus.request(
+					readItems('events', {
+						filter: { event_area: { _in: locations } }
+					})
+				)
+			);
 		}
 		return parse(
 			Events,
@@ -59,7 +75,7 @@ export async function load({ fetch, url }) {
 				readItems('events', {
 					filter: {
 						_and: [
-							{ location: { _eq: filters.location } },
+							{ event_area: { _in: locations } },
 							{
 								start_date: {
 									_gte: '$NOW'
