@@ -7,7 +7,7 @@ import { parse } from 'valibot';
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const filters = {
-		location: url.searchParams.get('location'),
+		locations: url.searchParams.getAll('location'),
 		discipline: url.searchParams.get('discipline'),
 		time: url.searchParams.get('time')
 	};
@@ -15,7 +15,7 @@ export async function load({ fetch, url }) {
 		.request(
 			readItems('events_areas', {
 				filter: {
-					name: { _eq: filters.location ?? undefined }
+					name: { _in: filters.locations.length !== 0 ? filters.locations : undefined }
 				}
 			})
 		)
