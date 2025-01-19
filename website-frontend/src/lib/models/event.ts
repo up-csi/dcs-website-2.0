@@ -19,6 +19,7 @@ export const Event = object({
 	tags: nullable(array(string())),
 	start_date: pipe(string(), isoTimestamp()),
 	end_date: nullable(pipe(string(), isoTimestamp())),
+	event_area: string(),
 	display_location: nullable(string())
 });
 

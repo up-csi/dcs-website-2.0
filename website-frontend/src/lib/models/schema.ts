@@ -12,10 +12,12 @@ import { About } from './about';
 import { AboutPages } from './about_pages';
 import { StudentsOverview } from './students_overview';
 import { StudentsPages } from './students_pages';
+import { EventsAreas } from './events_areas';
 
 export const Schema = object({
 	global: Global,
 	events: Events,
+	events_areas: EventsAreas,
 	alumni: Alumni,
 	linkages: Linkages,
 	people: People,
