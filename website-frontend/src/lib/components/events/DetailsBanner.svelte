@@ -5,7 +5,7 @@
 
 	export let title: string;
 	export let background_image: string;
-	export let location: string;
+	export let display_location: string;
 	export let start_date: string;
 	export let end_date: string;
 
@@ -67,10 +67,10 @@
 			<div class="text-white md:max-w-[60vw]">
 				<h1 class="text-4xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
 				<div class="my-6 space-y-1 text-gray-100 md:my-0 md:flex">
-					{#if location}
+					{#if display_location}
 						<div class="flex items-center justify-center space-x-2 md:mr-10 md:justify-start">
 							<MapPin class="h-4 w-4" />
-							<h4>{@html location}</h4>
+							<h4>{@html display_location}</h4>
 						</div>
 					{/if}
 

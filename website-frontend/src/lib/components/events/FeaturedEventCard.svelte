@@ -32,10 +32,10 @@
 				<Calendar class="h-4 w-4" />
 				<p>7 - 8 February 2025</p>
 			</div>
-			{#if event.location}
+			{#if event.display_location}
 				<div class="flex items-center space-x-2 text-sm text-gray-500">
 					<MapPin class="h-4 w-4" />
-					<p>{event.location}</p>
+					<p>{event.display_location}</p>
 				</div>
 			{/if}
 			{#if event.tags}
