@@ -7,7 +7,7 @@ import type { Fetch } from './fetch';
 async function getDirectusInstance(fetch: Fetch | null) {
 	const options = fetch ? { globals: { fetch } } : {};
 	const directus = createDirectus<Schema>(PUBLIC_APIURL, options)
-		.with(authentication('session'))
+		.with(authentication('cookie'))
 		.with(rest());
 	await directus.login(EMAIL, PASSWORD);
 	return directus;
