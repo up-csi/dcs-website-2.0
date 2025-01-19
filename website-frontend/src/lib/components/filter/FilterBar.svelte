@@ -34,7 +34,7 @@
 		p-6 shadow-lg md:flex md:max-w-[82vw]"
 >
 	<div class="flex items-center">
-		<div class="text-muted-foreground mr-4 text-xs font-semibold uppercase">
+		<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
 			<p>FILTER BY</p>
 		</div>
 		{#if controls}
@@ -47,7 +47,7 @@
 	</div>
 	{#if timed}
 		<Tabs.Root bind:value={filter}>
-			<Tabs.List class="bg-muted rounded-3xl *:w-36 *:rounded-3xl">
+			<Tabs.List class="rounded-3xl bg-muted *:w-36 *:rounded-3xl">
 				<Tabs.Trigger on:click={() => time_nav('upcoming')} value="upcoming"
 					><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger
 				>
