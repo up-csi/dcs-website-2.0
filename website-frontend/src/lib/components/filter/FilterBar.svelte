@@ -36,9 +36,9 @@
 </script>
 
 <div
-	class="mx-auto hidden max-w-[94vw] items-center justify-between rounded-lg
+	class="mx-auto hidden max-w-[82vw] items-center justify-between rounded-lg
 		bg-white
-		p-6 shadow-lg md:flex md:max-w-[82vw]"
+		p-6 shadow-lg md:flex"
 >
 	<div class="flex items-center">
 		<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
@@ -69,12 +69,17 @@
 	{/if}
 </div>
 
-<div class="flex justify-end md:hidden">
+<div
+	class="mx-auto flex w-[94vw] items-center justify-between rounded-lg
+		bg-white
+		p-6 shadow-lg md:hidden"
+>
+	<div class="mr-4 text-xs font-semibold uppercase text-muted-foreground">
+		<p>FILTER BY</p>
+	</div>
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
-			<div class="mr-2 rounded-full bg-white p-4 shadow-xl">
-				<ListFilter class="h-8 w-8" />
-			</div>
+			<ListFilter class="h-8 w-8" />
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content>
 			{#if timed}
