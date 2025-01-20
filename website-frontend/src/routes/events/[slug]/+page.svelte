@@ -12,7 +12,7 @@
 			<DetailsBanner
 				title={event.event_headline}
 				background_image={event.hero_image ?? ''}
-				location={event.location ?? ''}
+				display_location={event.display_location ?? ''}
 				start_date={event.start_date}
 				end_date={event.end_date ?? ''}
 			/>
