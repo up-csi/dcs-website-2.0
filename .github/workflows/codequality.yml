@@ -30,6 +30,5 @@ jobs:
         if: ${{ !cancelled() }}
         run: pnpm run check
         env:
-          EMAIL: ${{ secrets.EMAIL }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          STATIC_ACCESS_TOKEN: ${{ secrets.STATIC_ACCESS_TOKEN }}
           PUBLIC_APIURL: ${{ vars.PUBLIC_APIURL }}
