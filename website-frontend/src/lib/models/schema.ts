@@ -1,7 +1,6 @@
 import { object, type InferOutput } from 'valibot';
 import { Events } from './event';
 import { Global } from './global';
-import { StudentCouncil } from './student_council';
 import { Alumni } from './alumni';
 import { Linkages } from './linkages';
 import { People } from './people';
@@ -17,7 +16,6 @@ import { StudentsPages } from './students_pages';
 export const Schema = object({
 	global: Global,
 	events: Events,
-	student_council: StudentCouncil,
 	alumni: Alumni,
 	linkages: Linkages,
 	people: People,
