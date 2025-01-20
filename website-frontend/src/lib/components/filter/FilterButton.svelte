@@ -2,11 +2,23 @@
 	import type { FilterControl } from '$lib/types/filter_controls';
 	import { ChevronUp, ChevronDown } from 'lucide-svelte';
 	import * as DropdownMenu from '$lib/@shadcn-svelte/ui/dropdown-menu';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	export let control: FilterControl;
 	$: ({ name, categories } = control);
 
 	let hide = true;
+
+	function nav(name: string, value: string, checked: boolean): void {
+		const query = new URLSearchParams($page.url.searchParams.toString());
+		if (!checked) {
+			query.append(name, value);
+		} else {
+			query.delete(name, value);
+		}
+		goto(`?${query.toString()}`, { noScroll: true });
+	}
 </script>
 
 <DropdownMenu.Root
@@ -36,6 +48,7 @@
 					<DropdownMenu.CheckboxItem
 						bind:checked
 						onCheckedChange={() => {
+							nav(name, categoryName, checked);
 							hide = true;
 						}}>{categoryName}</DropdownMenu.CheckboxItem
 					>

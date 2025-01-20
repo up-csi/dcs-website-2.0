@@ -1,4 +1,4 @@
-import { cleanHtml } from '$lib/models-helpers';
+import { cleanHtml, toDateTime } from '$lib/models-helpers';
 import {
 	array,
 	isoTimestamp,
@@ -17,8 +17,9 @@ export const Event = object({
 	hero_image: optional(nullable(string())),
 	event_content: pipe(string(), cleanHtml),
 	tags: nullable(array(string())),
-	start_date: pipe(string(), isoTimestamp()),
-	end_date: nullable(pipe(string(), isoTimestamp())),
+	start_date: pipe(string(), isoTimestamp(), toDateTime),
+	end_date: nullable(pipe(string(), isoTimestamp(), toDateTime)),
+	event_area: string(),
 	display_location: nullable(string())
 });
 

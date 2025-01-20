@@ -17,7 +17,25 @@
 	let shown = inc;
 	$: eventList = events?.slice(0, shown);
 
-	let controls: FilterControls = [];
+	let controls: FilterControls = [
+		{
+			name: 'location',
+			categories: [
+				{
+					categoryName: 'Department of Computer Science',
+					checked: false
+				},
+				{
+					categoryName: 'University of the Philippines Diliman',
+					checked: false
+				},
+				{
+					categoryName: 'Others',
+					checked: false
+				}
+			]
+		}
+	];
 
 	const timed = true;
 </script>
