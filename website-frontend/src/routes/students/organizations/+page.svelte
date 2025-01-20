@@ -39,11 +39,13 @@
 		<div class="px-4 py-10 text-base md:px-32">
 			<div class="flex items-start gap-6">
 				{#if organization.logo}
-					<img
-						src={`${PUBLIC_APIURL}/assets/${organization.logo}`}
-						alt={organization.name}
-						class="h-24 w-24 object-contain"
-					/>
+					<a href="/students/organizations/{organization.slug}">
+						<img
+							src={`${PUBLIC_APIURL}/assets/${organization.logo}`}
+							alt={organization.name}
+							class="h-24 w-24 object-contain"
+						/>
+					</a>
 				{/if}
 				<div>
 					<h2 class="text-2xl font-bold">{organization.name}</h2>

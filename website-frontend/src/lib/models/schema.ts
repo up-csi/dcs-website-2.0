@@ -19,7 +19,6 @@ import { OrganizationsOverview } from './organizations_overview';
 export const Schema = object({
 	global: Global,
 	events: Events,
-	student_council: StudentCouncil,
 	alumni: Alumni,
 	linkages: Linkages,
 	people: People,
@@ -31,6 +30,7 @@ export const Schema = object({
 	about_pages: AboutPages,
 	students_overview: StudentsOverview,
 	students_pages: StudentsPages,
+	events_areas: EventsAreas,
 	student_organizations: Organizations,
 	student_organizations_overview: OrganizationsOverview
 });
