@@ -6,15 +6,19 @@
 	import * as Tabs from '$lib/@shadcn-svelte/ui/tabs';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	export let controls: FilterControls,
 		timed: boolean = false;
 
-	const init_query = new URLSearchParams($page.url.searchParams.toString());
-	let filter =
-		(['all', 'past'].includes(init_query.get('time') ?? 'upcoming')
-			? init_query.get('time')
-			: 'upcoming') ?? 'upcoming';
+	let filter: 'upcoming' | 'past' | 'all' = (() => {
+		const query: URLSearchParams = new URLSearchParams($page.url.searchParams.toString());
+		const time = query.get('time');
+		if (time === 'upcoming' || time === 'past' || time === 'all') {
+			return time;
+		}
+		return 'upcoming';
+	})();
 
 	function time_nav(time: string): void {
 		const query = new URLSearchParams($page.url.searchParams.toString());
@@ -25,6 +29,10 @@
 		}
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
+
+	onMount(() => {
+		time_nav('upcoming');
+	});
 </script>
 
 <div
