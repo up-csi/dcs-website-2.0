@@ -1,7 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import type { FilterControls } from '$lib/types/filter_controls';
-	import Banner from '$lib/components/events/Banner.svelte';
+	import Banner from '$lib/components/banner/Banner.svelte';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
@@ -46,6 +46,7 @@
 			title="Events"
 			background_image={events.background_image ?? ''}
 			flexible_content={events.flexible_content}
+			from_bottom={'bottom-40'}
 		/>
 	</div>
 

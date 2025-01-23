@@ -5,6 +5,12 @@
 	export let title: string;
 	export let background_image: string;
 	export let flexible_content: string;
+	export let from_bottom: string = '';
+
+	let text_bottom = 'bottom-24';
+	$: if (from_bottom) {
+		text_bottom = from_bottom;
+	}
 
 	$: deslugify_title = deslugify(title);
 </script>
