@@ -44,11 +44,7 @@
 
 <body class="bg-slate-50">
 	<div class="relative z-0">
-		<Banner
-			{title}
-			flexible_content={`This is the ${title} page.`}
-			from_bottom={'bottom-40'}
-		/>
+		<Banner {title} flexible_content={`This is the ${title} page.`} from_bottom={'bottom-40'} />
 	</div>
 
 	<div class="-mt-28 pb-16">

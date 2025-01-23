@@ -6,10 +6,7 @@
 	const title = 'Academics';
 </script>
 
-<Banner
-	{title}
-	flexible_content={`This is the ${title} page.`}
-/>
+<Banner {title} flexible_content={`This is the ${title} page.`} />
 
 <ul>
 	{#each data.programs as { slug, title }}

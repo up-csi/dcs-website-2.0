@@ -6,10 +6,7 @@
 
 <body class="bg-gray-100">
 	{#if data.program}
-		<Banner
-			title={data.program.title}
-			background_image={data.program.image}
-		/>
+		<Banner title={data.program.title} background_image={data.program.image} />
 
 		<div class="px-4 py-10 text-base text-[#01152B] md:px-32">
 			{@html data.program.description}
