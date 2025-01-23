@@ -38,14 +38,15 @@
 	];
 
 	const timed = true;
+
+	const title = 'Events';
 </script>
 
 <body class="bg-slate-50">
 	<div class="relative z-0">
 		<Banner
-			title="Events"
-			background_image={events.background_image ?? ''}
-			flexible_content={events.flexible_content}
+			{title}
+			flexible_content={`This is the ${title} page.`}
 			from_bottom={'bottom-40'}
 		/>
 	</div>
