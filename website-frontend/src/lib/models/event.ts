@@ -3,6 +3,7 @@ import {
 	array,
 	isoTimestamp,
 	nullable,
+	number,
 	object,
 	optional,
 	pipe,
@@ -11,6 +12,7 @@ import {
 } from 'valibot';
 
 export const Event = object({
+	id: number(),
 	slug: string(),
 	date_created: pipe(string(), isoTimestamp()),
 	event_headline: string(),

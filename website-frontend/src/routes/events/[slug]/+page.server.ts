@@ -23,7 +23,28 @@ export async function load({ params, fetch }) {
 
 	const event = events[0];
 
-	return {
-		event
-	};
+	const related_events = await (async () => {
+		if (event.tags) {
+			return await directus
+				.request(
+					readItems('events', {
+						filter: {
+							id: {
+								_neq: event.id
+							}
+						}
+					})
+				)
+				.then((res) =>
+					res.filter((item) => {
+						const item_tags = new Set(item.tags);
+						const event_tags = new Set(event.tags);
+						return item_tags.intersection(event_tags).size !== 0;
+					})
+				);
+		}
+		return [];
+	})();
+
+	return { event, related_events };
 }
