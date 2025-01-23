@@ -27,6 +27,6 @@
         md:left-0 md:max-w-[60vw] md:translate-x-0 md:px-32 md:text-start"
 	>
 		<h1 class="text-3xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
-		<h4 class="hidden text-gray-300 md:block">{@html flexible_content}</h4>
+		<h4 class="hidden text-muted md:block">{@html flexible_content}</h4>
 	</div>
 </div>

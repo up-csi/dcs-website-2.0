@@ -53,20 +53,20 @@
 <div class="relative z-0">
 	<div
 		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
-		style="background-image: linear-gradient(to top, #004420, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+		style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 	></div>
 
 	<div
-		class="-mt-[0.4px] w-full bg-[#004420] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
+		class="-mt-[0.4px] w-full bg-primary pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
 	>
 		<div
 			class="-mt-16 flex w-full
             flex-col items-center px-5 text-center
             md:flex-row md:justify-between md:px-32 md:text-start"
 		>
-			<div class="text-white md:max-w-[60vw]">
+			<div class="text-primary-foreground md:max-w-[60vw]">
 				<h1 class="text-4xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
-				<div class="my-6 space-y-1 text-gray-100 md:my-0 md:flex">
+				<div class="my-6 space-y-1 md:my-0 md:flex">
 					{#if display_location}
 						<div class="flex items-center justify-center space-x-2 md:mr-10 md:justify-start">
 							<MapPin class="h-4 w-4" />
@@ -89,19 +89,19 @@
 
 			<div class="flex flex-row items-center md:pl-12">
 				<div
-					class="flex h-28 w-28 flex-col items-center justify-center rounded-lg bg-white text-gray-900 shadow-xl md:h-36 md:w-36"
+					class="flex h-28 w-28 flex-col items-center justify-center rounded-lg bg-background text-foreground shadow-xl md:h-36 md:w-36"
 				>
 					<h1 class="text-4xl font-bold md:mb-2 md:text-5xl">{startDay}</h1>
-					<h3 class="font-medium text-[#004420]">{startMonth}</h3>
+					<h3 class="font-medium text-primary">{startMonth}</h3>
 				</div>
 
 				{#if end_date}
-					<div class="mx-3 h-1 w-3 bg-gray-300"></div>
+					<div class="mx-3 h-1 w-3 bg-secondary"></div>
 					<div
-						class="flex h-28 w-28 flex-col items-center justify-center rounded-lg bg-white text-gray-900 shadow-xl md:h-36 md:w-36"
+						class="flex h-28 w-28 flex-col items-center justify-center rounded-lg bg-background text-foreground shadow-xl md:h-36 md:w-36"
 					>
 						<h1 class="text-4xl font-bold md:mb-2 md:text-5xl">{endDay}</h1>
-						<h3 class="font-medium text-[#004420]">{endMonth}</h3>
+						<h3 class="font-medium text-primary">{endMonth}</h3>
 					</div>
 				{/if}
 			</div>
