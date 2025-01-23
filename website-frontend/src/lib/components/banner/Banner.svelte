@@ -29,14 +29,17 @@
 		font_size = 'md-text-4xl';
 	}
 
+	let background =
+		'background-image: linear-gradient(to top, hsl(var(--primary)), hsl(var(--background)))';
+	$: if (background_image) {
+		background = `background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('${PUBLIC_APIURL}/assets/${background_image}')`;
+	}
+
 	$: deslugify_title = deslugify(title);
 </script>
 
 <div class="relative z-0">
-	<div 
-		class="{height} bg-cover bg-center {max_height}" 
-		style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
-	></div>
+	<div class="{height} bg-cover bg-center {max_height}" style={background}></div>
 
 	<div
 		class="absolute {text_bottom} left-1/2
