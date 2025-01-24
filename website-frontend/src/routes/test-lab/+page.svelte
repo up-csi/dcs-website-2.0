@@ -1,7 +1,10 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
+    import Hero from '$lib/components/carousels/LabHero.svelte';
 </script>
+
+<Hero />
 
 <div>
 	<h1 class="py-4 text-3xl font-bold">name slug ID</h1>
