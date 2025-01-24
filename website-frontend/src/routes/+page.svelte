@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import Hero from '$lib/components/landing/Hero.svelte';
+	import Hero from '$lib/components/carousels/LandingHero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	export let data;
