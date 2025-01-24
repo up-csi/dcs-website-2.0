@@ -14,7 +14,7 @@
 			background_image={event.hero_image ?? ''}
 			display_location={event.display_location ?? ''}
 			start_date={event.start_date}
-			end_date={event.end_date ?? ''}
+			end_date={event.end_date ?? null}
 		/>
 	</div>
 

@@ -6,8 +6,8 @@
 	export let title: string;
 	export let background_image: string;
 	export let display_location: string;
-	export let start_date: string;
-	export let end_date: string;
+	export let start_date: 'datetime';
+	export let end_date: 'datetime' | null;
 
 	$: deslugify_title = deslugify(title);
 
