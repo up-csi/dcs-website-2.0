@@ -8,7 +8,7 @@ export async function load({ params, fetch }) {
 	const organizationSlug = params.slug;
 
 	const organizations = await directus.request(
-		readItems('student_organizations', {
+		readItems('students_organizations', {
 			filter: {
 				slug: {
 					_eq: organizationSlug
