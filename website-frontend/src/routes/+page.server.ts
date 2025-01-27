@@ -1,12 +1,11 @@
 /** @type {import('./$types').PageServerLoad} */
+import { readItems, readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
-import obtainSchema from '$lib/server/schema';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
+	const global = await directus.request(readSingleton('global'));
+	const events = await directus.request(readItems('events'));
 
-	const keys = ['global', 'events'];
-	const schema = await obtainSchema(directus, keys);
-
-	return { schema };
+	return { global, events };
 }
