@@ -28,7 +28,7 @@
     	<Carousel.Root
     		bind:api
     		plugins={[plugin]}
-    		class="h-[75vh] w-full"
+    		class="h-[82vh] md:h-[75vh] w-full"
     		on:mousenter={plugin.stop}
     		on:mouseleave={plugin.reset}
     	>
@@ -38,7 +38,7 @@
     					<img
     						src="source/to/image"
     						alt="Carousel Item"
-    						class="relative h-[75vh] w-full bg-secondary"
+    						class="relative h-[82vh] md:h-[75vh] w-full bg-secondary"
     					/>
     				</Carousel.Item>
     			{/each}
@@ -55,20 +55,20 @@
                 <img
                     class="h-full w-full rounded-full object-cover"
                     src="{PUBLIC_APIURL}/assets/{lab_logo}"
-                    alt="Profile"
+                    alt="Logo"
                 />
             {:else}
                 <h1 class="text-center text-2xl font-medium text-[#004420a2]">`⎚⩊⎚´</h1>
             {/if}
         </div>
 
-        <div class="w-full">
-            <h1 class="mb-5 font-bold max-w-lg text-4xl text-center md:text-5xl md:text-start">UP Center for Student Innovations</h1>
-            <div class="flex flex-col text-center md:flex-row md:justify-between">
-                <div class="text-sm font-semibold">
+        <div class="w-full mt-4 md:mt-0">
+            <h1 class="font-bold max-w-lg text-4xl text-center md:text-5xl md:text-start">UP Center for Student Innovations</h1>
+            <div class="flex text-center flex-col justify-center items-center md:flex-row md:justify-between">
+                <div class="mt-3 mb-8 md:mt-5 md:mb-0 text-sm font-semibold">
                     Item {current} of {count}
                 </div>
-                <Button href="/" class="rounded-full">Visit Our Site</Button>
+                <Button href="/" class="rounded-full max-w-xs">Visit Our Site</Button>
             </div>
         </div>
     </div>
