@@ -23,6 +23,6 @@ export async function load({ params, fetch }) {
 	}
 
 	return {
-		laboratory: parse(Laboratory, laboratories[0]),
+		laboratory: parse(Laboratory, laboratories[0])
 	};
 }

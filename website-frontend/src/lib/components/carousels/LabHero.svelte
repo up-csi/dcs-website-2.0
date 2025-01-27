@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { PUBLIC_APIURL } from '$env/static/public';
+	import { PUBLIC_APIURL } from '$env/static/public';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
-    import { Button } from '$lib/@shadcn-svelte/ui/button';
+	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import Autoplay from 'embla-carousel-autoplay';
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
@@ -20,57 +20,61 @@
 		});
 	}
 
-    const lab_logo = "x"
+	const lab_logo = 'x';
 </script>
 
 <div>
-    <div class="relative">
-    	<Carousel.Root
-    		bind:api
-    		plugins={[plugin]}
-    		class="h-[82vh] md:h-[75vh] w-full"
-    		on:mousenter={plugin.stop}
-    		on:mouseleave={plugin.reset}
-    	>
-    		<Carousel.Content>
-    			{#each Array(6) as _}
-    				<Carousel.Item class="relative h-full">
-    					<img
-    						src="source/to/image"
-    						alt="Carousel Item"
-    						class="relative h-[82vh] md:h-[75vh] w-full bg-secondary"
-    					/>
-    				</Carousel.Item>
-    			{/each}
-    		</Carousel.Content>
-    	</Carousel.Root>
-    </div>
+	<div class="relative">
+		<Carousel.Root
+			bind:api
+			plugins={[plugin]}
+			class="h-[82vh] w-full md:h-[75vh]"
+			on:mousenter={plugin.stop}
+			on:mouseleave={plugin.reset}
+		>
+			<Carousel.Content>
+				{#each Array(6) as _}
+					<Carousel.Item class="relative h-full">
+						<img
+							src="source/to/image"
+							alt="Carousel Item"
+							class="relative h-[82vh] w-full bg-secondary md:h-[75vh]"
+						/>
+					</Carousel.Item>
+				{/each}
+			</Carousel.Content>
+		</Carousel.Root>
+	</div>
 
-    <div class="w-full absolute bottom-40 text-secondary-foreground flex items-center flex-col md:flex-row md:px-16">
+	<div
+		class="absolute bottom-40 flex w-full flex-col items-center text-secondary-foreground md:flex-row md:px-16"
+	>
+		<div
+			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:mr-20 md:h-40 md:w-40"
+		>
+			{#if lab_logo}
+				<img
+					class="h-full w-full rounded-full object-cover"
+					src="{PUBLIC_APIURL}/assets/{lab_logo}"
+					alt="Logo"
+				/>
+			{:else}
+				<h1 class="text-center text-2xl font-medium text-[#004420a2]">`⎚⩊⎚´</h1>
+			{/if}
+		</div>
 
-        <div
-            class="mx-auto flex flex-shrink-0 h-28 w-28 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:mr-20 md:h-40 md:w-40"
-        >
-            {#if lab_logo}
-                <img
-                    class="h-full w-full rounded-full object-cover"
-                    src="{PUBLIC_APIURL}/assets/{lab_logo}"
-                    alt="Logo"
-                />
-            {:else}
-                <h1 class="text-center text-2xl font-medium text-[#004420a2]">`⎚⩊⎚´</h1>
-            {/if}
-        </div>
-
-        <div class="w-full mt-4 md:mt-0">
-            <h1 class="font-bold max-w-lg text-4xl text-center md:text-5xl md:text-start">UP Center for Student Innovations</h1>
-            <div class="flex text-center flex-col justify-center items-center md:flex-row md:justify-between">
-                <div class="mt-3 mb-8 md:mt-5 md:mb-0 text-sm font-semibold">
-                    Item {current} of {count}
-                </div>
-                <Button href="/" class="rounded-full max-w-xs">Visit Our Site</Button>
-            </div>
-        </div>
-    </div>
-    
+		<div class="mt-4 w-full md:mt-0">
+			<h1 class="max-w-lg text-center text-4xl font-bold md:text-start md:text-5xl">
+				UP Center for Student Innovations
+			</h1>
+			<div
+				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
+			>
+				<div class="mb-8 mt-3 text-sm font-semibold md:mb-0 md:mt-5">
+					Item {current} of {count}
+				</div>
+				<Button href="/" class="max-w-xs rounded-full">Visit Our Site</Button>
+			</div>
+		</div>
+	</div>
 </div>
