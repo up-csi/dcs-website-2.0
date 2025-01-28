@@ -1,7 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import type { FilterControls } from '$lib/types/filter_controls';
-	import Banner from '$lib/components/events/Banner.svelte';
+	import Banner from '$lib/components/banner/Banner.svelte';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
@@ -38,15 +38,13 @@
 	];
 
 	const timed = true;
+
+	const title = 'Events';
 </script>
 
 <body class="bg-slate-50">
 	<div class="relative z-0">
-		<Banner
-			title="Events"
-			background_image={events.background_image ?? ''}
-			flexible_content={events.flexible_content}
-		/>
+		<Banner {title} flexible_content={`This is the ${title} page.`} from_bottom={'bottom-40'} />
 	</div>
 
 	<div class="-mt-28 pb-16">

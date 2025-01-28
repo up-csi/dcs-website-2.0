@@ -1,5 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import Banner from '$lib/components/banner/Banner.svelte';
 
 	import { PUBLIC_APIURL } from '$env/static/public';
 
@@ -8,12 +9,12 @@
 	$: ({ laboratories } = data);
 </script>
 
-<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-	<p>
-		The Department of Computer Science houses nine research laboratories catering to theoretical and
-		applied fields in computer science.
-	</p>
+<Banner
+	title="Research"
+	flexible_content={'The Department of Computer Science houses nine research laboratories catering to theoretical and applied fields in computer science.'}
+/>
 
+<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 	{#each laboratories as laboratory}
 		<div class="my-5 border-b py-5 md:grid md:grid-cols-6 md:items-center">
 			<div>
