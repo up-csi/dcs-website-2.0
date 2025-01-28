@@ -5,7 +5,7 @@
 	export let event: Event;
 </script>
 
-<a href="/events/{event.slug}">
+<a href="/events/{event.slug}" data-sveltekit-reload>
 	<div
 		class="relative flex h-[25rem] flex-col overflow-hidden rounded-lg bg-white text-gray-800 shadow-xl"
 	>
