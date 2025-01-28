@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import getDirectusInstance from '$lib/directus';
-import { Events } from '$lib/models/event.js';
+import { Events } from '$lib/models/event';
 import { readItems } from '@directus/sdk';
 import { parse } from 'valibot';
 
