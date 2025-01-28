@@ -1,12 +1,12 @@
 /** @type {import('./$types').PageServerLoad} */
 import { readSingleton } from '@directus/sdk';
-import { parse } from 'valibot';
-import { About } from '$lib/models/about';
 import getDirectusInstance from '$lib/directus';
+import { About } from '$lib/models/about';
+import { parse } from 'valibot';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
-	return {
-		about: parse(About, await directus.request(readSingleton('about')))
-	};
+	const about = parse(About, await directus.request(readSingleton('about')));
+
+	return { about };
 }
