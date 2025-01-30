@@ -38,10 +38,10 @@
 					<p>{event.display_location}</p>
 				</div>
 			{/if}
-			{#if event.tags}
+			{#if event.event_tags}
 				<div class="py-1 text-xs font-bold text-gray-600">
-					{#each event.tags as tag, index}
-						<p>{tag}{index < event.tags.length - 1 ? ',' : ''}</p>
+					{#each event.event_tags as tag, index}
+						<p>{tag.events_tags_id.name}{index < event.event_tags.length - 1 ? ',' : ''}</p>
 					{/each}
 				</div>
 			{/if}
