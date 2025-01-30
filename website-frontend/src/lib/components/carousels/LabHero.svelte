@@ -1,9 +1,16 @@
 <script lang="ts">
+	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
+
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import Autoplay from 'embla-carousel-autoplay';
+
+	export let title: string;
+	export let background_image: string;
+
+	$: deslugify_title = deslugify(title);
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 
@@ -35,11 +42,10 @@
 			<Carousel.Content>
 				{#each Array(6) as _}
 					<Carousel.Item class="relative h-full">
-						<img
-							src="source/to/image"
-							alt="Carousel Item"
-							class="relative h-[82vh] w-full bg-secondary md:h-[75vh]"
-						/>
+						<div
+							class="h-[82vh] bg-cover bg-center md:h-[75vh]"
+							style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+						></div>
 					</Carousel.Item>
 				{/each}
 			</Carousel.Content>
@@ -65,7 +71,7 @@
 
 		<div class="mt-4 w-full md:mt-0">
 			<h1 class="max-w-lg text-center text-4xl font-bold md:text-start md:text-5xl">
-				UP Center for Student Innovations
+				{deslugify_title} UP Center for Student Innovations
 			</h1>
 			<div
 				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
