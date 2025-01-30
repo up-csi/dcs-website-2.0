@@ -13,7 +13,12 @@ export async function load({ params, fetch }) {
 		NestedEvents,
 		await directus.request(
 			readItems('events', {
-				fields: ['*', 'event_tags.events_tags_id.related_events.events_id.*'],
+				fields: [
+					'*',
+					'event_tags.events_tags_id.name',
+					'event_tags.events_tags_id.related_events.events_id.*',
+					'event_tags.events_tags_id.related_events.events_id.event_tags.events_tags_id.name'
+				],
 				filter: {
 					slug: {
 						_eq: eventSlug

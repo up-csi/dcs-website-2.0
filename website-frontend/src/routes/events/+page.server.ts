@@ -26,6 +26,7 @@ export async function load({ fetch, url }) {
 				Events,
 				await directus.request(
 					readItems('events', {
+						fields: ['*', 'event_tags.events_tags_id.name'],
 						filter: {
 							_and: [
 								{ event_area: { _in: locations } },
@@ -64,6 +65,7 @@ export async function load({ fetch, url }) {
 				Events,
 				await directus.request(
 					readItems('events', {
+						fields: ['*', 'event_tags.events_tags_id.name'],
 						filter: { event_area: { _in: locations } }
 					})
 				)
@@ -73,6 +75,7 @@ export async function load({ fetch, url }) {
 			Events,
 			await directus.request(
 				readItems('events', {
+					fields: ['*', 'event_tags.events_tags_id.name'],
 					filter: {
 						_and: [
 							{ event_area: { _in: locations } },

@@ -27,13 +27,20 @@ const BaseEvent = object({
 });
 
 const BaseEventTags = object({
-	event_tags: array(string())
+	event_tags: array(
+		object({
+			events_tags_id: object({
+				name: string()
+			})
+		})
+	)
 });
 
 const NestedEventTags = object({
 	event_tags: array(
 		object({
 			events_tags_id: object({
+				name: string(),
 				related_events: array(
 					object({
 						events_id: intersect([BaseEvent, BaseEventTags])
