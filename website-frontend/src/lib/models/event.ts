@@ -1,6 +1,7 @@
 import { cleanHtml, toDateTime } from '$lib/models-helpers';
 import {
 	array,
+	intersect,
 	isoTimestamp,
 	nullable,
 	number,
@@ -11,7 +12,7 @@ import {
 	type InferOutput
 } from 'valibot';
 
-export const Event = object({
+const BaseEvent = object({
 	id: number(),
 	slug: string(),
 	date_created: pipe(string(), isoTimestamp()),
@@ -25,7 +26,30 @@ export const Event = object({
 	display_location: nullable(string())
 });
 
+const BaseEventTags = object({
+	event_tags: array(string())
+});
+
+const NestedEventTags = object({
+	event_tags: array(
+		object({
+			events_tags_id: object({
+				related_events: array(
+					object({
+						events_id: intersect([BaseEvent, BaseEventTags])
+					})
+				)
+			})
+		})
+	)
+});
+
+export const Event = intersect([BaseEvent, BaseEventTags]);
 export const Events = array(Event);
+export const NestedEvent = intersect([BaseEvent, NestedEventTags]);
+export const NestedEvents = array(NestedEvent);
 
 export type Event = InferOutput<typeof Event>;
 export type Events = InferOutput<typeof Events>;
+export type NestedEvent = InferOutput<typeof NestedEvent>;
+export type NestedEvents = InferOutput<typeof NestedEvents>;
