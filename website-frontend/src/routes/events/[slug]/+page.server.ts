@@ -40,6 +40,7 @@ export async function load({ params, fetch }) {
 			return event_tags
 				.filter(
 					({ events_id }, index) =>
+						events_id.id != event.id &&
 						!event_tags.map(({ events_id }) => events_id.id).includes(events_id.id, index + 1)
 				)
 				.map((res) => res.events_id);
