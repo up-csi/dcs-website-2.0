@@ -55,7 +55,9 @@
 		"@directus/sdk": "^17.0.2",
 		"dotenv": "^16.4.7",
 		"dotenv-cli": "^8.0.0",
+		"embla-carousel": "^8.5.2",
 		"embla-carousel-autoplay": "^8.5.2",
+		"embla-carousel-fade": "^8.5.2",
 		"highlight.js": "11.10.0",
 		"sanitize-html": "^2.14.0",
 		"valibot": "^0.42.1"
