@@ -36,8 +36,6 @@
 			bind:api
 			plugins={[plugin]}
 			class="h-[82vh] w-full md:h-[75vh]"
-			on:mousenter={plugin.stop}
-			on:mouseleave={plugin.reset}
 		>
 			<Carousel.Content>
 				{#each Array(6) as _}
@@ -53,7 +51,7 @@
 	</div>
 
 	<div
-		class="absolute bottom-40 flex w-full flex-col items-center text-secondary-foreground md:flex-row md:px-16"
+		class="absolute bottom-36 flex w-full flex-col items-center text-secondary-foreground md:flex-row md:pl-5 md:pr-2 lg:px-16"
 	>
 		<div
 			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:mr-20 md:h-40 md:w-40"
@@ -70,16 +68,19 @@
 		</div>
 
 		<div class="mt-4 w-full md:mt-0">
-			<h1 class="max-w-lg text-center text-4xl font-bold md:text-start md:text-5xl">
-				{deslugify_title} UP Center for Student Innovations
-			</h1>
+			<div class="w-full flex justify-center md:justify-start">
+				<h1 class="max-w-lg text-center text-4xl font-bold md:text-start md:text-5xl">
+					{deslugify_title}
+				</h1>
+			</div>
+
 			<div
 				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
 			>
 				<div class="mb-8 mt-3 text-sm font-semibold md:mb-0 md:mt-5">
 					Item {current} of {count}
 				</div>
-				<Button href="/" class="max-w-xs rounded-full">Visit Our Site</Button>
+				<Button href="/" class="max-w-xs rounded-full bg-background/20">Visit Our Site</Button>
 			</div>
 		</div>
 	</div>
