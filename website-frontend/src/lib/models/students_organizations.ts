@@ -1,6 +1,6 @@
 import { array, object, string, nullable, type InferOutput, pipe, isoDate } from 'valibot';
 
-export const Organization = object({
+export const StudentsOrganization = object({
 	name: string(),
 	slug: string(),
 	description: nullable(string()),
@@ -11,7 +11,7 @@ export const Organization = object({
 	website: nullable(string())
 });
 
-export const Organizations = array(Organization);
+export const StudentsOrganizations = array(StudentsOrganization);
 
-export type Organization = InferOutput<typeof Organization>;
-export type Organizations = InferOutput<typeof Organizations>;
+export type StudentsOrganization = InferOutput<typeof StudentsOrganization>;
+export type StudentsOrganizations = InferOutput<typeof StudentsOrganizations>;
