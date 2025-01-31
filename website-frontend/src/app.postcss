@@ -15,6 +15,7 @@
 
 		--card: 0 0% 100%;
 		--card-foreground: 222.2 84% 4.9%;
+		--card-height: 380px;
 
 		--border: 214.3 31.8% 91.4%;
 		--input: 214.3 31.8% 91.4%;
@@ -58,5 +59,13 @@
 		font-weight: 700;
 		font-style: normal;
 		src: url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	}
+}
+
+@layer components {
+	.card {
+		@apply rounded-lg shadow-xl;
+		height: var(--card-height);
+		width: calc(var(--card-height) * (11 / 15))
 	}
 }

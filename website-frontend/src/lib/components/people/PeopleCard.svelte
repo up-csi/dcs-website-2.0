@@ -5,7 +5,7 @@
 	export let person: Person;
 </script>
 
-<div class="relative flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-xl">
+<div class="relative flex h-full flex-col overflow-hidden card md:h-[380px]">
 	<div class="inset-0 h-24 rounded-t-lg bg-gray-300 md:h-40">
 		{#if person.background_image}
 			<img
