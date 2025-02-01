@@ -34,6 +34,19 @@
 					checked: false
 				}
 			]
+		},
+		{
+			name: 'discipline',
+			categories: [
+				{
+					categoryName: 'artificial intelligence',
+					checked: false
+				},
+				{
+					categoryName: 'physics',
+					checked: false
+				}
+			]
 		}
 	];
 

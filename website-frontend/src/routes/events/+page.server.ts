@@ -8,7 +8,7 @@ export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const filters = {
 		locations: url.searchParams.getAll('location'),
-		discipline: url.searchParams.get('discipline'),
+		disciplines: url.searchParams.getAll('discipline'),
 		time: url.searchParams.get('time')
 	};
 	const locations = await directus
@@ -30,6 +30,15 @@ export async function load({ fetch, url }) {
 						filter: {
 							_and: [
 								{ event_area: { _in: locations } },
+								{
+									event_tags: {
+										events_tags_id: {
+											name: {
+												_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
+											}
+										}
+									}
+								},
 								{
 									_or: [
 										{
@@ -66,7 +75,20 @@ export async function load({ fetch, url }) {
 				await directus.request(
 					readItems('events', {
 						fields: ['*', 'event_tags.events_tags_id.name'],
-						filter: { event_area: { _in: locations } }
+						filter: {
+							_and: [
+								{ event_area: { _in: locations } },
+								{
+									event_tags: {
+										events_tags_id: {
+											name: {
+												_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
+											}
+										}
+									}
+								}
+							]
+						}
 					})
 				)
 			);
@@ -79,6 +101,15 @@ export async function load({ fetch, url }) {
 					filter: {
 						_and: [
 							{ event_area: { _in: locations } },
+							{
+								event_tags: {
+									events_tags_id: {
+										name: {
+											_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
+										}
+									}
+								}
+							},
 							{
 								start_date: {
 									_gte: '$NOW'
