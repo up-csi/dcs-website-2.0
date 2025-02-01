@@ -6,6 +6,7 @@
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import Autoplay from 'embla-carousel-autoplay';
+	import Fade from 'embla-carousel-fade';
 
 	export let title: string;
 	export let background_image: string;
@@ -34,7 +35,7 @@
 	<div class="relative">
 		<Carousel.Root
 			bind:api
-			plugins={[plugin]}
+			plugins={[plugin, Fade()]}
 			class="h-[82vh] w-full md:h-[75vh]"
 		>
 			<Carousel.Content>
