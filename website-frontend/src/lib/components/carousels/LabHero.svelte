@@ -13,7 +13,8 @@
 
 	$: deslugify_title = deslugify(title);
 
-	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
+	const autoplayPlugin = Autoplay({ delay: 8000, stopOnInteraction: true });
+	const fadePlugin = Fade({ duration: 3000 });
 
 	let api: CarouselAPI;
 	let current = 0;
@@ -35,7 +36,7 @@
 	<div class="relative">
 		<Carousel.Root
 			bind:api
-			plugins={[plugin, Fade()]}
+			plugins={[autoplayPlugin, fadePlugin]}
 			class="h-[82vh] w-full md:h-[75vh]"
 		>
 			<Carousel.Content>
@@ -78,9 +79,17 @@
 			<div
 				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
 			>
-				<div class="mb-8 mt-3 text-sm font-semibold md:mb-0 md:mt-5">
-					Item {current} of {count}
-				</div>
+				<div class="flex gap-2 my-5 md:mb-0 md:mt-5">
+					{#each Array(count) as _, index}
+						<button
+							class="h-2 w-2 rounded-full transition-colors duration-300"
+							class:bg-primary-foreground={index === current - 1}
+							class:bg-gray-400={index !== current - 1}
+							on:click={() => api.scrollTo(index)}
+						></button>
+					{/each}
+				</div>			
+
 				<Button href="/" class="max-w-xs rounded-full bg-background/20">Visit Our Site</Button>
 			</div>
 		</div>
