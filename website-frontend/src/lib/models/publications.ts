@@ -15,17 +15,8 @@ export const Publication = object({
 	publish_date: nullable(pipe(string(), isoDate())),
 	authors: array(Author),
 	abstract: string(),
-	laboratory: object({
-		id: string(),
-		name: string()
-	}),
+	laboratory: string(),
 	hero_image: string(),
-	publication_tag: nullable(
-		object({
-			id: string(),
-			name: string()
-		})
-	),
 	access_links: nullable(array(AccessLink))
 });
 
