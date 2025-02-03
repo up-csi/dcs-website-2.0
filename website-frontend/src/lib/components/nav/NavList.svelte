@@ -13,6 +13,7 @@
 	<NavItem href="/about/citizens-charter" to="Citizen's Charter" />
 </NavItem>
 <NavItem href="/events" to="Events" />
+<NavItem href="/publications" to="Publications" />
 <NavItem href="/people" to="People" dropdown={true}>
 	<NavItem href="/people/regular-faculty" to="Regular Faculty" />
 	<NavItem
