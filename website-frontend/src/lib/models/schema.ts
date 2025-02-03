@@ -13,11 +13,12 @@ import { AboutPages } from './about_pages';
 import { StudentsOverview } from './students_overview';
 import { StudentsPages } from './students_pages';
 import { EventsAreas } from './events_areas';
+import { StudentsOrganizations } from './students_organizations';
+import { StudentsOrganizationsOverview } from './students_organizations_overview';
 
 export const Schema = object({
 	global: Global,
 	events: Events,
-	events_areas: EventsAreas,
 	alumni: Alumni,
 	linkages: Linkages,
 	people: People,
@@ -28,7 +29,10 @@ export const Schema = object({
 	about: About,
 	about_pages: AboutPages,
 	students_overview: StudentsOverview,
-	students_pages: StudentsPages
+	students_pages: StudentsPages,
+	events_areas: EventsAreas,
+	students_organizations: StudentsOrganizations,
+	students_organizations_overview: StudentsOrganizationsOverview
 });
 
 export type Schema = InferOutput<typeof Schema>;

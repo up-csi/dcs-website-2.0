@@ -1,12 +1,20 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItem } from '@directus/sdk';
+import { readItems, readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
+import { parse } from 'valibot';
+import { StudentsOrganizations } from '$lib/models/students_organizations';
+import { StudentsOrganizationsOverview } from '$lib/models/students_organizations_overview';
 
 export async function load({ fetch }) {
-	const directus = getDirectusInstance(fetch);
-	const page = await directus.request(readItem('students_pages', 4));
-
+	const directus = await getDirectusInstance(fetch);
 	return {
-		page
+		students_organizations: parse(
+			StudentsOrganizations,
+			await directus.request(readItems('students_organizations'))
+		),
+		students_organizations_overview: parse(
+			StudentsOrganizationsOverview,
+			await directus.request(readSingleton('students_organizations_overview'))
+		)
 	};
 }

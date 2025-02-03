@@ -50,6 +50,7 @@
 		to="Student Ethics, Health, and Wellbeing"
 	/>
 	<NavItem href="/students/student-opportunities" to="Student Opportunities" />
+	<NavItem href="/students/student-council" to="Student Council" />
 	<NavItem href="/students/organizations" to="Organizations" />
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
