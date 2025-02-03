@@ -70,7 +70,7 @@
 		</div>
 
 		<div class="mt-4 w-full md:mt-0">
-			<div class="w-full flex justify-center md:justify-start">
+			<div class="flex w-full justify-center md:justify-start">
 				<h1 class="max-w-lg text-center text-4xl font-bold md:text-start md:text-5xl">
 					{deslugify_title}
 				</h1>
@@ -79,7 +79,7 @@
 			<div
 				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
 			>
-				<div class="flex gap-2 my-5 md:mb-0 md:mt-5">
+				<div class="my-5 flex gap-2 md:mb-0 md:mt-5">
 					{#each Array(count) as _, index}
 						<button
 							class="h-2 w-2 rounded-full transition-colors duration-300"
@@ -88,7 +88,7 @@
 							on:click={() => api.scrollTo(index)}
 						></button>
 					{/each}
-				</div>			
+				</div>
 
 				<Button href="/" class="max-w-xs rounded-full bg-background/20">Visit Our Site</Button>
 			</div>
