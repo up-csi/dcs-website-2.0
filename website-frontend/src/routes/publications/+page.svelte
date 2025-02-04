@@ -27,9 +27,10 @@
 				<img
 					src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
 					alt={publication.title}
-					class="h-48 w-full object-cover rounded-lg"
+					class="h-48 w-full rounded-lg object-cover"
 				/>
 				<p>{publication.title}</p>
+				<p>{publication.publication_tag}</p>
 				{#each publication.authors as author}
 					<p>{author.last_name}, {author.first_name}</p>
 				{/each}

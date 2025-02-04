@@ -17,6 +17,7 @@ export const Publication = object({
 	abstract: string(),
 	laboratory: string(),
 	hero_image: string(),
+	publication_tag: nullable(array(string())),
 	access_links: nullable(array(AccessLink))
 });
 
