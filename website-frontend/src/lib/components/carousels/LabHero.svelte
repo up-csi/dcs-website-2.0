@@ -63,10 +63,10 @@
 	</div>
 
 	<div
-		class="absolute bottom-40 flex w-full flex-col items-center text-secondary-foreground md:bottom-28 md:flex-row md:pl-5 md:pr-2 lg:px-16 lg:bottom-32"
+		class="absolute bottom-36 flex w-full flex-col items-center text-secondary-foreground lg:flex-row lg:px-16 lg:bottom-32"
 	>
 		<div
-			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-40 md:w-40 md:mr-10 lg:mr-20"
+			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-32 md:w-32 lg:h-40 lg:w-40 lg:mr-20"
 		>
 			{#if logo_image}
 				<img
@@ -79,17 +79,17 @@
 			{/if}
 		</div>
 
-		<div class="mt-4 w-full md:mt-0">
-			<div class="flex w-full justify-center md:justify-start">
-				<h1 class="max-w-2xl text-center text-4xl font-bold md:leading-[3.2rem] md:text-start md:text-5xl">
+		<div class="mt-4 w-full md:mt-6 lg:mt-0">
+			<div class="flex w-full justify-center lg:justify-start">
+				<h1 class="max-w-2xl text-center text-4xl font-bold lg:leading-[3.2rem] lg:text-start lg:text-5xl">
 					{deslugify_title}
 				</h1>
 			</div>
 
 			<div
-				class="flex flex-col items-center justify-center text-center md:flex-row md:justify-between"
+				class="flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between"
 			>
-				<div class="my-5 flex gap-2 md:mb-0 md:mt-5">
+				<div class="my-5 flex gap-2 lg:mb-0 lg:mt-5">
 					{#each Array(count) as _, index}
 						<button
 							class="h-2 w-2 rounded-full transition-all duration-400
@@ -105,7 +105,7 @@
 						href="{link}" 
 						target="_blank" 
 						rel="noopener noreferrer" 
-						class="max-w-xs rounded-full bg-background/20 hover:bg-background/30"
+						class="mt-5 max-w-xs rounded-full bg-background/20 hover:bg-background/30"
 					>
 						Visit Our Site
 					</Button>
