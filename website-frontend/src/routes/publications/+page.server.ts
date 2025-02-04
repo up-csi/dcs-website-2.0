@@ -7,7 +7,7 @@ export async function load({ fetch }) {
 	return {
 		publications: await directus.request(
 			readItems('publications', {
-				sort: '-publish_date',
+				sort: '-publish_date'
 			})
 		)
 	};
