@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ScrollText } from 'lucide-svelte';
-	import { PUBLIC_URL } from '$env/static/public';
+	import { PUBLIC_APIURL } from '$env/static/public';
 
 	export let publication;
 </script>
@@ -14,7 +14,7 @@
 	<div class="flex w-full grow justify-center *:rounded-lg">
 		{#if publication.image}
 			<img
-				src="{PUBLIC_URL}/assets/{publication.image}"
+				src="{PUBLIC_APIURL}/assets/{publication.image}"
 				alt={publication.title}
 				style="width: calc(var(--card-height) * (19 / 45));"
 			/>
