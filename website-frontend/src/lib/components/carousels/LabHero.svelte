@@ -63,7 +63,7 @@
 	</div>
 
 	<div
-		class="absolute bottom-36 flex w-full flex-col items-center text-secondary-foreground lg:flex-row lg:px-16 lg:bottom-32"
+		class="absolute bottom-16 flex w-full flex-col items-center text-secondary-foreground lg:flex-row lg:px-16 lg:bottom-10"
 	>
 		<div
 			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-32 md:w-32 lg:h-40 lg:w-40 lg:mr-20"
