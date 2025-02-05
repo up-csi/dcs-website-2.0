@@ -2,7 +2,7 @@
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
-import { NestedEvents } from '$lib/models/event';
+import { Events } from '$lib/models/event';
 import { parse } from 'valibot';
 
 export async function load({ params, fetch }) {
@@ -10,7 +10,7 @@ export async function load({ params, fetch }) {
 	const eventSlug = params.slug;
 
 	const events = parse(
-		NestedEvents,
+		Events,
 		await directus.request(
 			readItems('events', {
 				fields: [
@@ -35,15 +35,23 @@ export async function load({ params, fetch }) {
 	}
 
 	const event = events[0];
-	const event_tags = event.event_tags.map((item) => item.events_tags_id.related_events).flat();
+	const event_tags = event.event_tags
+		.map((item) => {
+			return item.events_tags_id.related_events ?? [];
+		})
+		.flat();
 
-	const related_events = await (async () => {
+	const related_events = (() => {
 		if (event.event_tags.length != 0) {
 			return event_tags
+				.filter((item) => typeof item !== 'string')
 				.filter(
 					({ events_id }, index) =>
 						events_id.id != event.id &&
-						!event_tags.map(({ events_id }) => events_id.id).includes(events_id.id, index + 1)
+						!event_tags
+							.filter((item) => typeof item !== 'string')
+							.map(({ events_id }) => events_id.id)
+							.includes(events_id.id, index + 1)
 				)
 				.map((res) => res.events_id);
 		}
