@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/banner/Banner.svelte';
+	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
@@ -31,17 +32,13 @@
 			<FilterBar {controls} />
 		</div>
 
-		<div
-			class="mx-auto my-3 grid
-            max-w-[94vw] grid-cols-2 gap-2 pb-20
-            md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
-		>
+		<CardPanel>
 			{#each peopleList as person}
 				<a href="/people/{category.title}/{person.username}">
 					<PeopleCard {person} />
 				</a>
 			{/each}
-		</div>
+		</CardPanel>
 
 		{#if shown < people.length}
 			<div class="flex items-center justify-center">
