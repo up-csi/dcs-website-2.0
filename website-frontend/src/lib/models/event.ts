@@ -1,6 +1,7 @@
-import { cleanHtml, toDateTime } from '$lib/models-helpers';
+import { cleanHtml } from '$lib/models-helpers';
 import {
 	array,
+	custom,
 	isoTimestamp,
 	lazy,
 	nullable,
@@ -22,8 +23,8 @@ export type Event = {
 	hero_image?: string | null;
 	event_content: string;
 	tags: string[] | null;
-	start_date: string;
-	end_date: string | null;
+	start_date: 'datetime';
+	end_date: 'datetime' | null;
 	event_area: {
 		name: string;
 	} | null;
@@ -48,8 +49,8 @@ export const Event: GenericSchema<Event> = object({
 	hero_image: optional(nullable(string())),
 	event_content: pipe(string(), cleanHtml),
 	tags: nullable(array(string())),
-	start_date: pipe(string(), isoTimestamp(), toDateTime),
-	end_date: nullable(pipe(string(), isoTimestamp(), toDateTime)),
+	start_date: custom<'datetime'>((input) => (typeof input === 'string' ? true : false)),
+	end_date: nullable(custom<'datetime'>((input) => (typeof input === 'string' ? true : false))),
 	event_area: nullable(
 		object({
 			name: string()
