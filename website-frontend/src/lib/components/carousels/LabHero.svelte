@@ -31,12 +31,7 @@
 	}
 
 	$: if (background_images.length === 0) {
-		background_images = [
-			`default1.jpg`,
-			`default2.jpg`,
-			`default3.jpg`,
-			`default4.jpg`,
-		];
+		background_images = [`default1.jpg`, `default2.jpg`, `default3.jpg`, `default4.jpg`];
 	}
 
 	$: deslugify_title = deslugify(title);
@@ -63,10 +58,10 @@
 	</div>
 
 	<div
-		class="absolute bottom-16 flex w-full flex-col items-center text-secondary-foreground lg:flex-row lg:px-16 lg:bottom-10"
+		class="absolute bottom-16 flex w-full flex-col items-center text-secondary-foreground lg:bottom-10 lg:flex-row lg:px-16"
 	>
 		<div
-			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-32 md:w-32 lg:h-40 lg:w-40 lg:mr-20"
+			class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-32 md:w-32 lg:mr-20 lg:h-40 lg:w-40"
 		>
 			{#if logo_image}
 				<img
@@ -75,13 +70,15 @@
 					alt="Logo"
 				/>
 			{:else}
-				<Image class="text-secondary h-10 w-10" />
+				<Image class="h-10 w-10 text-secondary" />
 			{/if}
 		</div>
 
 		<div class="mt-4 w-full md:mt-6 lg:mt-0">
 			<div class="flex w-full justify-center lg:justify-start">
-				<h1 class="max-w-2xl text-center text-4xl font-bold lg:leading-[3.2rem] lg:text-start lg:text-5xl">
+				<h1
+					class="max-w-2xl text-center text-4xl font-bold lg:text-start lg:text-5xl lg:leading-[3.2rem]"
+				>
 					{deslugify_title}
 				</h1>
 			</div>
@@ -92,19 +89,18 @@
 				<div class="my-5 flex gap-2 lg:mb-0 lg:mt-5">
 					{#each Array(count) as _, index}
 						<button
-							class="h-2 w-2 rounded-full transition-all duration-400
-							{index === current - 1 ? 'bg-primary-foreground' 
-							: 'bg-gray-400'}"
+							class="duration-400 h-2 w-2 rounded-full transition-all
+							{index === current - 1 ? 'bg-primary-foreground' : 'bg-gray-400'}"
 							on:click={() => api.scrollTo(index)}
 						></button>
 					{/each}
 				</div>
 
 				{#if link}
-					<Button 
-						href="{link}" 
-						target="_blank" 
-						rel="noopener noreferrer" 
+					<Button
+						href={link}
+						target="_blank"
+						rel="noopener noreferrer"
 						class="mt-5 max-w-xs rounded-full bg-background/20 hover:bg-background/30"
 					>
 						Visit Our Site
