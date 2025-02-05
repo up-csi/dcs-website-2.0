@@ -49,8 +49,8 @@ export const Event: GenericSchema<Event> = object({
 	hero_image: optional(nullable(string())),
 	event_content: pipe(string(), cleanHtml),
 	tags: nullable(array(string())),
-	start_date: custom<'datetime'>((input) => (typeof input === 'string' ? true : false)),
-	end_date: nullable(custom<'datetime'>((input) => (typeof input === 'string' ? true : false))),
+	start_date: custom<'datetime'>((input) => typeof input === 'string'),
+	end_date: nullable(custom<'datetime'>((input) => typeof input === 'string')),
 	event_area: nullable(
 		object({
 			name: string()
