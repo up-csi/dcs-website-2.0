@@ -6,13 +6,13 @@
 	import * as Tabs from '$lib/@shadcn-svelte/ui/tabs';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 
 	export let controls: FilterControls,
 		timed: boolean = false;
 
-	let filter: 'upcoming' | 'past' | 'all' = (() => {
-		const query: URLSearchParams = new URLSearchParams($page.url.searchParams.toString());
+	$: query = new URLSearchParams($page.url.searchParams.toString());
+
+	$: filter = (() => {
 		const time = query.get('time');
 		if (time === 'upcoming' || time === 'past' || time === 'all') {
 			return time;
@@ -21,7 +21,6 @@
 	})();
 
 	function time_nav(time: string): void {
-		const query = new URLSearchParams($page.url.searchParams.toString());
 		if (['all', 'past'].includes(time)) {
 			query.set('time', time);
 		} else {
@@ -29,10 +28,6 @@
 		}
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
-
-	onMount(() => {
-		time_nav('upcoming');
-	});
 </script>
 
 <div
@@ -53,7 +48,7 @@
 		{/if}
 	</div>
 	{#if timed}
-		<Tabs.Root bind:value={filter}>
+		<Tabs.Root value={filter}>
 			<Tabs.List class="rounded-3xl bg-muted *:w-36 *:rounded-3xl">
 				<Tabs.Trigger on:click={() => time_nav('upcoming')} value="upcoming"
 					><span class="text-muted-foreground">Upcoming</span></Tabs.Trigger

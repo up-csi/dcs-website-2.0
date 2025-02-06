@@ -11,6 +11,27 @@ export async function load({ fetch, url }) {
 		disciplines: url.searchParams.getAll('discipline'),
 		time: url.searchParams.get('time')
 	};
+	const location_filters = await directus
+		.request(
+			readItems('events_areas', {
+				fields: ['name']
+			})
+		)
+		.then((res) => res.map(({ name }) => name));
+	const discipline_filters = await directus
+		.request(
+			readItems('events_tags', {
+				fields: ['name'],
+				filter: {
+					tag_category: {
+						name: {
+							_eq: 'discipline'
+						}
+					}
+				}
+			})
+		)
+		.then((res) => res.map(({ name }) => name));
 	const events = await (async () => {
 		if (filters.time === 'past') {
 			return parse(
@@ -125,5 +146,5 @@ export async function load({ fetch, url }) {
 		);
 	})();
 
-	return { events };
+	return { events, location_filters, discipline_filters };
 }
