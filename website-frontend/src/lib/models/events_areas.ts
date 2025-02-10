@@ -1,11 +1,13 @@
-import { array, integer, number, object, pipe, string, type InferOutput } from 'valibot';
+import { array, integer, number, object, partial, pipe, string, type InferOutput } from 'valibot';
 
-export const EventsArea = object({
-	id: string(),
-	name: string(),
-	area: string(),
-	order: pipe(number(), integer())
-});
+export const EventsArea = partial(
+	object({
+		id: string(),
+		name: string(),
+		area: string(),
+		order: pipe(number(), integer())
+	})
+);
 
 export const EventsAreas = array(EventsArea);
 

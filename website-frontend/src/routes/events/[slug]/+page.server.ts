@@ -37,6 +37,8 @@ export async function load({ params, fetch }) {
 	const event = events[0];
 	const event_tags = event.event_tags
 		.map((item) => {
+			if (typeof item === 'string') return [];
+			if (typeof item.events_tags_id === 'string') return [];
 			return item.events_tags_id.related_events ?? [];
 		})
 		.flat();
