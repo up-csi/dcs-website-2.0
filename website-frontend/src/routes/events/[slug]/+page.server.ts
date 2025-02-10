@@ -39,7 +39,7 @@ export async function load({ params, fetch }) {
 		.map((item) => {
 			if (typeof item === 'string') return [];
 			if (typeof item.events_tags_id === 'string') return [];
-			return item.events_tags_id.related_events ?? [];
+			return item.events_tags_id?.related_events ?? [];
 		})
 		.flat();
 
@@ -47,14 +47,21 @@ export async function load({ params, fetch }) {
 		if (event.event_tags.length != 0) {
 			return event_tags
 				.filter((item) => typeof item !== 'string')
-				.filter(
-					({ events_id }, index) =>
-						events_id.id != event.id &&
-						!event_tags
-							.filter((item) => typeof item !== 'string')
-							.map(({ events_id }) => events_id.id)
-							.includes(events_id.id, index + 1)
-				)
+				.filter(({ events_id }, index) => {
+					if (typeof events_id !== 'string') {
+						return (
+							events_id?.id != event.id &&
+							!event_tags
+								.filter((item) => typeof item !== 'string')
+								.map(({ events_id }) => {
+									if (typeof events_id !== 'string') {
+										return events_id?.id;
+									}
+								})
+								.includes(events_id?.id, index + 1)
+						);
+					}
+				})
 				.map((res) => res.events_id);
 		}
 		return [];
