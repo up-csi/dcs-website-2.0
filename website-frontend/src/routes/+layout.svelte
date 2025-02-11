@@ -8,6 +8,7 @@
 
 	import '../app.postcss';
 
+	import Footer from '$lib/components/footer/Footer.svelte';
 	import Header from '$lib/components/nav/Header.svelte';
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
@@ -41,3 +42,7 @@
 <main>
 	<slot />
 </main>
+
+<footer>
+	<Footer />
+</footer>
