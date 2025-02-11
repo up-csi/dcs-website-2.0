@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
@@ -9,7 +8,7 @@
 
 	export let data;
 
-	$: ({ events } = data);
+	$: ({ events, location_filters, discipline_filters } = data);
 
 	$: featured = events?.slice(0, 3);
 
@@ -17,23 +16,14 @@
 	let shown = inc;
 	$: eventList = events?.slice(0, shown);
 
-	let controls: FilterControls = [
+	$: controls = [
 		{
 			name: 'location',
-			categories: [
-				{
-					categoryName: 'Department of Computer Science',
-					checked: false
-				},
-				{
-					categoryName: 'University of the Philippines Diliman',
-					checked: false
-				},
-				{
-					categoryName: 'Others',
-					checked: false
-				}
-			]
+			categories: location_filters
+		},
+		{
+			name: 'discipline',
+			categories: discipline_filters
 		}
 	];
 

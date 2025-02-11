@@ -1,18 +1,22 @@
-import { cleanHtml, toDateTime } from '$lib/models-helpers';
+import { cleanHtml } from '$lib/models-helpers';
 import {
 	array,
-	intersect,
+	custom,
 	isoTimestamp,
+	lazy,
 	nullable,
 	number,
 	object,
 	optional,
 	pipe,
 	string,
+	union,
 	type InferOutput
 } from 'valibot';
+import { EventsRelated } from './junctions/events_related';
+import { EventsArea } from './events_areas';
 
-const BaseEvent = object({
+export const Event = object({
 	id: number(),
 	slug: string(),
 	date_created: pipe(string(), isoTimestamp()),
@@ -20,43 +24,14 @@ const BaseEvent = object({
 	hero_image: optional(nullable(string())),
 	event_content: pipe(string(), cleanHtml),
 	tags: nullable(array(string())),
-	start_date: pipe(string(), isoTimestamp(), toDateTime),
-	end_date: nullable(pipe(string(), isoTimestamp(), toDateTime)),
-	event_area: nullable(string()),
-	display_location: nullable(string())
+	start_date: custom<'datetime'>((input) => typeof input === 'string'),
+	end_date: nullable(custom<'datetime'>((input) => typeof input === 'string')),
+	event_area: union([string(), lazy(() => EventsArea)]),
+	display_location: nullable(string()),
+	event_tags: union([array(string()), lazy(() => EventsRelated)])
 });
 
-const BaseEventTags = object({
-	event_tags: array(
-		object({
-			events_tags_id: object({
-				name: string()
-			})
-		})
-	)
-});
-
-const NestedEventTags = object({
-	event_tags: array(
-		object({
-			events_tags_id: object({
-				name: string(),
-				related_events: array(
-					object({
-						events_id: intersect([BaseEvent, BaseEventTags])
-					})
-				)
-			})
-		})
-	)
-});
-
-export const Event = intersect([BaseEvent, BaseEventTags]);
 export const Events = array(Event);
-export const NestedEvent = intersect([BaseEvent, NestedEventTags]);
-export const NestedEvents = array(NestedEvent);
 
 export type Event = InferOutput<typeof Event>;
 export type Events = InferOutput<typeof Events>;
-export type NestedEvent = InferOutput<typeof NestedEvent>;
-export type NestedEvents = InferOutput<typeof NestedEvents>;

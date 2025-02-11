@@ -16,6 +16,9 @@ import { EventsAreas } from './events_areas';
 import { StudentsOrganizations } from './students_organizations';
 import { StudentsOrganizationsOverview } from './students_organizations_overview';
 import { Publications } from './publications';
+import { EventsTags } from './events_tags';
+import { EventsRelated } from './junctions/events_related';
+import { EventsTagsCategories } from './events_tags_categories';
 
 export const Schema = object({
 	global: Global,
@@ -32,6 +35,9 @@ export const Schema = object({
 	students_overview: StudentsOverview,
 	students_pages: StudentsPages,
 	events_areas: EventsAreas,
+	events_tags: EventsTags,
+	events_tags_categories: EventsTagsCategories,
+	events_related: EventsRelated,
 	students_organizations: StudentsOrganizations,
 	students_organizations_overview: StudentsOrganizationsOverview,
 	publications: Publications
