@@ -16,7 +16,12 @@
 		{#each address as { address_line }}
 			<p>{address_line}</p>
 		{/each}
-		<p>{contact_number} | {contact_email}</p>
+		<p>
+			{contact_number} |
+			<a href="mailto:{contact_email}" class="transition-colors duration-300 hover:text-primary"
+				>{contact_email}</a
+			>
+		</p>
 	</div>
 	<div class="my-4 lg:mx-2 lg:my-0">
 		<p class="py-2 text-xl font-bold text-foreground">Quick Links</p>
