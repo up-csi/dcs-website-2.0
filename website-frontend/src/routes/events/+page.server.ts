@@ -14,7 +14,8 @@ export async function load({ fetch, url }) {
 	const location_filters = await directus
 		.request(
 			readItems('events_areas', {
-				fields: ['name']
+				fields: ['name'],
+				sort: ['order']
 			})
 		)
 		.then((res) => res.map(({ name }) => name));
@@ -28,7 +29,8 @@ export async function load({ fetch, url }) {
 							_eq: 'discipline'
 						}
 					}
-				}
+				},
+				sort: ['name']
 			})
 		)
 		.then((res) => res.map(({ name }) => name));
