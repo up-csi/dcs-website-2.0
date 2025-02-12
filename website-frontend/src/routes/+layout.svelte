@@ -45,7 +45,7 @@
 </svelte:head>
 
 <header>
-	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" />
+	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" {facebook_link} {x_link} />
 	<NavBar />
 </header>
 
