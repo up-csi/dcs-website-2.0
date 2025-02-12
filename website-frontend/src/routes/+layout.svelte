@@ -4,10 +4,21 @@
 
 	export let data;
 
-	$: ({ title, description, favicon } = data);
+	$: ({
+		title,
+		description,
+		favicon,
+		contact_number,
+		contact_email,
+		address,
+		quick_links,
+		facebook_link,
+		x_link
+	} = data);
 
 	import '../app.postcss';
 
+	import Footer from '$lib/components/footer/Footer.svelte';
 	import Header from '$lib/components/nav/Header.svelte';
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
@@ -34,10 +45,14 @@
 </svelte:head>
 
 <header>
-	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" />
+	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" {facebook_link} {x_link} />
 	<NavBar />
 </header>
 
 <main>
 	<slot />
 </main>
+
+<footer>
+	<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+</footer>
