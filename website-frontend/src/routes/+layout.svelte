@@ -4,7 +4,17 @@
 
 	export let data;
 
-	$: ({ title, description, favicon } = data);
+	$: ({
+		title,
+		description,
+		favicon,
+		contact_number,
+		contact_email,
+		address,
+		quick_links,
+		facebook_link,
+		x_link
+	} = data);
 
 	import '../app.postcss';
 
@@ -44,5 +54,5 @@
 </main>
 
 <footer>
-	<Footer />
+	<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
 </footer>

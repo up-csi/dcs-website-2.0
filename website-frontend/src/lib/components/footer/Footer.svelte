@@ -2,51 +2,26 @@
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
 
-	const { bldg, location } = {
-		bldg: 'Alumni Engineers Centennial Hall',
-		location: 'P. Velasquez St., University of the Philippines Diliman, Quezon City'
-	};
-
-	const { contact_number, contact_email } = {
-		contact_number: '(02) 8981 8500 loc. 3231',
-		contact_email: 'info@dcs.upd.edu.ph'
-	};
-
-	const links = [
-		{
-			name: 'University of the Philippines System',
-			href: 'https://up.edu.ph'
-		},
-		{
-			name: 'University of the Philippines Diliman',
-			href: 'https://upd.edu.ph'
-		},
-		{
-			name: 'UPD College of Engineering',
-			href: 'https://coe.upd.edu.ph'
-		},
-		{
-			name: 'UPD Webmail',
-			href: 'https://mail.upd.edu.ph'
-		},
-		{
-			name: 'UPD Computerized Registration System',
-			href: 'https://crs.upd.edu.ph'
-		}
-	];
+	export let address;
+	export let contact_number;
+	export let contact_email;
+	export let quick_links;
+	export let facebook_link;
+	export let x_link;
 </script>
 
 <div class="bg-secondary p-10 text-secondary-foreground lg:grid lg:grid-cols-3 lg:gap-4">
 	<div class="my-4 lg:mx-2 lg:my-0">
 		<p class="py-2 text-2xl font-bold text-foreground lg:text-xl">Department of Computer Science</p>
-		<p>{bldg}</p>
-		<p>{location}</p>
+		{#each address as { address_line }}
+			<p>{address_line}</p>
+		{/each}
 		<p>{contact_number} | {contact_email}</p>
 	</div>
 	<div class="my-4 lg:mx-2 lg:my-0">
 		<p class="py-2 text-xl font-bold text-foreground">Quick Links</p>
-		{#each links as { name, href }}
-			<a {href} class="transition-colors duration-300 hover:text-primary">{name}</a>
+		{#each quick_links as { name, link }}
+			<a href={link} class="transition-colors duration-300 hover:text-primary">{name}</a>
 			<br />
 		{/each}
 	</div>
@@ -54,7 +29,7 @@
 		<p class="py-2 text-xl font-bold text-foreground">Follow Us On</p>
 		<div class="flex items-center">
 			<a
-				href="https://web.facebook.com/upddcs?_rdc=1&_rdr"
+				href={facebook_link}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="mr-3 h-10 pb-[2px] transition-colors duration-300 hover:text-primary"
@@ -62,7 +37,7 @@
 				<FacebookIcon />
 			</a>
 			<a
-				href="https://x.com/upcs"
+				href={x_link}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="h-8 transition-colors duration-300 hover:text-primary"
