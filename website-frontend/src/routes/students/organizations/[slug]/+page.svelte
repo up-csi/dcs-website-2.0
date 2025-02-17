@@ -4,6 +4,7 @@
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
+	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 
 	export let data;
 	$: ({ organization } = data);
@@ -34,6 +35,8 @@
 				contact_email={organization.email ?? ''}
 				founding_date={organization.founding_date ?? ''}
 			/>
+
+			<FlexibleContent content={organization.flexible_content} isDark={true} />
 
 			<div class="text-lg leading-normal text-primary-foreground">
 				<div class="text-lg leading-normal text-primary-foreground">
