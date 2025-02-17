@@ -10,13 +10,17 @@
 	$: ({ organization } = data);
 
 	let showFull = false;
+
+	const background_images = organization.background_images
+		? organization.background_images.map((img) => img.directus_files_id.id)
+		: [];
 </script>
 
 {#if organization}
 	<div class="relative z-0">
 		<Hero
 			title={organization.name}
-			background_images={[]}
+			{background_images}
 			logo_image={organization.logo ?? ''}
 			link={organization.website ?? ''}
 		/>
