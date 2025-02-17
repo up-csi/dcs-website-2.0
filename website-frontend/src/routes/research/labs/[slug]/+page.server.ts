@@ -14,7 +14,8 @@ export async function load({ params, fetch }) {
 			filter: {
 				slug: { _eq: slug }
 			},
-			limit: 1
+			limit: 1,
+			fields: ['*', 'background_images.directus_files_id.*']
 		})
 	);
 
@@ -23,6 +24,6 @@ export async function load({ params, fetch }) {
 	}
 
 	return {
-		laboratory: parse(Laboratory, laboratories[0])
+		laboratory: laboratories[0]
 	};
 }
