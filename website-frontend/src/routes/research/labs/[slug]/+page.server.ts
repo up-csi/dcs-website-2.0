@@ -1,7 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
 import { readItems } from '@directus/sdk';
-import { parse } from 'valibot';
-import { Laboratory } from '$lib/models/laboratories';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 

@@ -7,8 +7,6 @@
 	export let data;
 	const { laboratory } = data;
 
-	console.log(laboratory);
-
 	const background_images = laboratory.background_images
 		? laboratory.background_images.map((img) => img.directus_files_id.id)
 		: [];

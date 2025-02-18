@@ -18,13 +18,11 @@ export async function load({ params, fetch }) {
 		})
 	);
 
-	if (!organizations.length) {
+	if (!organizations || organizations.length === 0) {
 		throw error(404, 'Organization not found');
 	}
 
-	const organization = organizations[0];
-
 	return {
-		organization
+		organization: organizations[0]
 	};
 }

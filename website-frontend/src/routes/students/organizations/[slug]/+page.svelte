@@ -7,7 +7,7 @@
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 
 	export let data;
-	$: ({ organization } = data);
+	const { organization } = data;
 
 	let showFull = false;
 
