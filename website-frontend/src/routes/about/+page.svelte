@@ -11,7 +11,7 @@
 	{#if about}
 		<Banner title="About" />
 
-		<div class="prose px-4 py-10 text-base md:px-32">
+		<div class="px-4 py-10 text-base md:px-32">
 			{#if about.flexible_content}
 				<FlexibleContent content={about.flexible_content} />
 			{:else}
