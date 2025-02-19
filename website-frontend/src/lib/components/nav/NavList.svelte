@@ -23,10 +23,34 @@
 	<NavItem href="/people/support-staff" to="Support Staff" />
 </NavItem>
 <NavItem href="/academics" to="Academics" dropdown={true}>
-	<NavItem href="/academics/bs-cs" to="Bachelor of Science in Computer Science" />
-	<NavItem href="/academics/ms-cs" to="Master of Science in Computer Science" />
-	<NavItem href="/academics/ms-bioinformatics" to="Master of Science in Bioinformatics" />
-	<NavItem href="/academics/phd-cs" to="Doctor of Philosophy in Computer Science" />
+	<NavItem href="/academics" to="Overview" />
+	<NavItem
+		href="/academics/undergraduate"
+		to="Undergraduate"
+		dropdown={true}
+		position="left-36 top-0"
+	>
+		<NavItem
+			href="/academics/undergraduate/programs/bs-cs"
+			to="Bachelor of Science in Computer Science"
+		/>
+		<NavItem href="/academics/undergraduate/courses" to="Undergraduate courses" />
+	</NavItem>
+	<NavItem href="/academics/graduate" to="Graduate" dropdown={true} position="left-36 top-0">
+		<NavItem
+			href="/academics/graduate/programs/msc-cs"
+			to="Master of Science in Computer Science"
+		/>
+		<NavItem
+			href="/academics/graduate/programs/ms-bioinformatics"
+			to="Master of Science in Bioinformatics"
+		/>
+		<NavItem
+			href="/academics/graduate/programs/phd-cs"
+			to="Doctor of Philosophy in Computer Science"
+		/>
+		<NavItem href="/academics/graduate/courses" to="Graduate courses" />
+	</NavItem>
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
 	<NavItem href="/research" to="Overview" />

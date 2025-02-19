@@ -19,6 +19,12 @@ import { Publications } from './publications';
 import { EventsTags } from './events_tags';
 import { EventsRelated } from './junctions/events_related';
 import { EventsTagsCategories } from './events_tags_categories';
+import { Academics } from './academics';
+import { AcademicsCategories } from './academics_categories';
+import { AcademicsPrograms } from './academics_programs';
+import { AcademicsCourses } from './academics_courses';
+import { AcademicsPages } from './academics_pages';
+import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
 
 export const Schema = object({
 	global: Global,
@@ -40,7 +46,13 @@ export const Schema = object({
 	events_related: EventsRelated,
 	students_organizations: StudentsOrganizations,
 	students_organizations_overview: StudentsOrganizationsOverview,
-	publications: Publications
+	publications: Publications,
+	academics: Academics,
+	academics_categories: AcademicsCategories,
+	academics_programs: AcademicsPrograms,
+	academics_courses: AcademicsCourses,
+	academics_pages: AcademicsPages,
+	academics_programs_courses: AcademicsProgramsCourses
 });
 
 export type Schema = InferOutput<typeof Schema>;

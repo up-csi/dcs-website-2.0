@@ -5,23 +5,23 @@
 	import DataTable from '$lib/components/table/DataTable.svelte';
 
 	export let data;
-	$: ({ academics, academics_programs, academics_courses } = data);
+	$: ({ academics_category, academics_programs, academics_courses } = data);
 </script>
 
 <body>
-	{#if academics}
+	{#if academics_category}
 		<Banner title="Academics" />
 
 		<div class="prose px-4 py-10 text-base md:px-32">
-			{#if academics.flexible_content}
-				<FlexibleContent content={academics.flexible_content} />
+			{#if academics_category.flexible_content}
+				<FlexibleContent content={academics_category.flexible_content} />
 			{:else}
 				<p>Page is empty.</p>
 			{/if}
 		</div>
 
 		<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">
-			List of programs offered by the department
+			{academics_category.name} programs offered by the department
 		</h1>
 		{#each academics_programs as program}
 			<ul><a href="{program.category.slug}/{program.slug}">{program.title}</a></ul>
@@ -29,7 +29,7 @@
 		<br />
 
 		<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">
-			List of courses offered by the department
+			{academics_category.name} courses offered by the department
 		</h1>
 		<DataTable data={academics_courses} />
 	{:else}

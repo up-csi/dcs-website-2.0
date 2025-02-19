@@ -1,37 +1,31 @@
 /** @type {import('./$types').PageServerLoad} */
-const programs = [
-	{
-		slug: 'bs-cs',
-		title: 'Bachelor of Science in Computer Science',
-		image: '...',
-		description: 'owo',
-		curriculum: 'insert curriculum table here'
-	},
-	{
-		slug: 'ms-cs',
-		title: 'Master of Science in Computer Science',
-		image: '...',
-		description: 'owo',
-		curriculum: 'insert curriculum table here'
-	},
-	{
-		slug: 'ms-bioinformatics',
-		title: 'Master of Science in Bioinformatics',
-		image: '...',
-		description: 'owo',
-		curriculum: 'insert curriculum table here'
-	},
-	{
-		slug: 'phd-cs',
-		title: 'Doctor of Philosophy in Computer Science',
-		image: '...',
-		description: 'owo',
-		curriculum: 'insert curriculum table here'
-	}
-];
+import getDirectusInstance from '$lib/directus';
+import { Academics } from '$lib/models/academics';
+import { AcademicsCourses } from '$lib/models/academics_courses';
+import { AcademicsPrograms } from '$lib/models/academics_programs';
+import { readItems, readSingleton } from '@directus/sdk';
+import { parse } from 'valibot';
 
-export function load() {
-	return {
-		programs: programs
-	};
+export async function load({ fetch }) {
+	const directus = getDirectusInstance(fetch);
+	const academics = parse(Academics, await directus.request(readSingleton('academics')));
+	const academics_programs = parse(
+		AcademicsPrograms,
+		await directus.request(
+			readItems('academics_programs', {
+				fields: ['*', 'category.name', 'category.slug'],
+				sort: ['title']
+			})
+		)
+	);
+	const academics_courses = parse(
+		AcademicsCourses,
+		await directus.request(
+			readItems('academics_courses', {
+				sort: ['course_code']
+			})
+		)
+	);
+
+	return { academics, academics_programs, academics_courses };
 }
