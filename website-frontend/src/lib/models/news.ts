@@ -1,5 +1,5 @@
 import { cleanHtml } from '$lib/models-helpers';
-import { array, isoTimestamp, lazy, object, pick, pipe, string, type InferOutput } from 'valibot';
+import { array, isoTimestamp, object, pick, pipe, string, type InferOutput } from 'valibot';
 import { DirectusUser } from './directus_users';
 
 export const NewsItem = object({
