@@ -5,7 +5,6 @@
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
-
 	export let data;
 
 	$: ({ people, people_overview, position_filters, laboratory_filters } = data);
@@ -42,7 +41,7 @@
 	<CardPanel>
 		{#each peopleList as person}
 			<a href="/people/{person.category}/{person.username}">
-				<PeopleCard {person} />
+				<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
 			</a>
 		{/each}
 	</CardPanel>
