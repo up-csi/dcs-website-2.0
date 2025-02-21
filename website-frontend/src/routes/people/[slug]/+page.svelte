@@ -43,16 +43,15 @@
 		<CardPanel>
 			{#each peopleList as person}
 				<a href="/people/{category.title}/{person.username}">
-					<PeopleCard {person} />
+					<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
 				</a>
 			{/each}
+			{#if shown < people.length}
+				<div class="col-span-full mt-8 flex items-center justify-center">
+					<LoadMore {inc} bind:shown />
+				</div>
+			{/if}
 		</CardPanel>
-
-		{#if shown < people.length}
-			<div class="flex items-center justify-center">
-				<LoadMore {inc} bind:shown />
-			</div>
-		{/if}
 	{:else}
 		<p>People category not found</p>
 	{/if}
