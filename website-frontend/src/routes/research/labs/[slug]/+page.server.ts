@@ -5,24 +5,23 @@ import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
-	const organizationSlug = params.slug;
+	const slug = params.slug;
 
-	const organizations = await directus.request(
-		readItems('students_organizations', {
+	const laboratories = await directus.request(
+		readItems('laboratories', {
 			filter: {
-				slug: {
-					_eq: organizationSlug
-				}
+				slug: { _eq: slug }
 			},
+			limit: 1,
 			fields: ['*', 'background_images.directus_files_id.*']
 		})
 	);
 
-	if (!organizations || organizations.length === 0) {
-		throw error(404, 'Organization not found');
+	if (!laboratories || laboratories.length === 0) {
+		throw error(404, 'Lab not found');
 	}
 
 	return {
-		organization: organizations[0]
+		laboratory: laboratories[0]
 	};
 }

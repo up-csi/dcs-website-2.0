@@ -4,7 +4,7 @@
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
-	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
+	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 
 	export let data;
 

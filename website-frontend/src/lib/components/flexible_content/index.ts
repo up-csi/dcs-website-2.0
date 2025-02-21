@@ -11,9 +11,7 @@ const elementClassMap = {
 	hr: 'my-4'
 };
 
-export function enhanceWysiwygContent(htmlContent: string): string {
-	// Prevent DOMParser usage during SSR by checking for browser environment
-	// Return unchanged content if we're not in browser environment
+export function enhanceWysiwygContent(htmlContent: string, isDark: boolean = false): string {
 	if (typeof window === 'undefined') {
 		return htmlContent;
 	}

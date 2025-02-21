@@ -4,7 +4,7 @@
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
-	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
+	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
 	export let data;

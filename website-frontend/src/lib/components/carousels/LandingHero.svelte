@@ -2,6 +2,7 @@
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import Autoplay from 'embla-carousel-autoplay';
+	import Fade from 'embla-carousel-fade';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
@@ -23,7 +24,7 @@
 <div>
 	<Carousel.Root
 		bind:api
-		plugins={[plugin]}
+		plugins={[plugin, Fade()]}
 		class="relative h-[90vh] w-full"
 		on:mousenter={plugin.stop}
 		on:mouseleave={plugin.reset}
