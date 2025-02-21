@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import DetailsBanner from '$lib/components/events/DetailsBanner.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 
 	export let data;
 	$: ({ event, related_events } = data);
@@ -19,7 +20,7 @@
 	</div>
 
 	<div class="px-4 py-14 md:px-64 md:py-16">
-		{@html event.event_content}
+		<FlexibleContent content={event.event_content}/>
 	</div>
 
 	{#if related_events}
