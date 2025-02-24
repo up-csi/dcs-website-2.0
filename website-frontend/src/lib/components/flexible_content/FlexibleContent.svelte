@@ -16,7 +16,7 @@
 </script>
 
 {#if content}
-<div class="prose !max-w-none">
-	{@html enhancedContent}
-</div>
+	<div class="prose !max-w-none">
+		{@html enhancedContent}
+	</div>
 {/if}

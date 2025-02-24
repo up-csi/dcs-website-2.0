@@ -1,4 +1,5 @@
 import { object, type InferOutput } from 'valibot';
+import { News } from './news';
 import { Events } from './event';
 import { Global } from './global';
 import { Alumni } from './alumni';
@@ -25,9 +26,11 @@ import { AcademicsPrograms } from './academics_programs';
 import { AcademicsCourses } from './academics_courses';
 import { AcademicsPages } from './academics_pages';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
+import { DirectusUsers } from './directus_users';
 
 export const Schema = object({
 	global: Global,
+	news: News,
 	events: Events,
 	alumni: Alumni,
 	linkages: Linkages,
@@ -52,7 +55,8 @@ export const Schema = object({
 	academics_programs: AcademicsPrograms,
 	academics_courses: AcademicsCourses,
 	academics_pages: AcademicsPages,
-	academics_programs_courses: AcademicsProgramsCourses
+	academics_programs_courses: AcademicsProgramsCourses,
+	directus_users: DirectusUsers
 });
 
 export type Schema = InferOutput<typeof Schema>;

@@ -1,10 +1,10 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems, readSingleton } from '@directus/sdk';
+import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
+import { error } from '@sveltejs/kit';
 
-export async function load({ fetch }) {
+export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
-	const global = await directus.request(readSingleton('global'));
 	const news = await directus.request(
 		readItems('news', {
 			fields: [
@@ -14,12 +14,20 @@ export async function load({ fetch }) {
 				'user_updated.first_name',
 				'user_updated.last_name'
 			],
-			sort: ['-date_created']
+			filter: {
+				slug: {
+					_eq: params.slug
+				}
+			},
+			limit: 1
 		})
 	);
-	const events = await directus.request(
-		readItems('events', { fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'] })
-	);
 
-	return { global, news, events };
+	if (!news.length) {
+		throw error(404, 'News item not found');
+	}
+
+	const news_item = news[0];
+
+	return { news_item };
 }
