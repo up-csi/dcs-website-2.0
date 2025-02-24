@@ -11,7 +11,12 @@ export async function load({ fetch, params }) {
 		AcademicsPrograms,
 		await directus.request(
 			readItems('academics_programs', {
-				fields: ['*', 'curriculum_table.*'],
+				fields: [
+					'*',
+					{
+						curriculum_table: ['*']
+					}
+				],
 				filter: {
 					category: {
 						slug: {

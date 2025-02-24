@@ -34,7 +34,12 @@ export async function load({ fetch, params }) {
 		AcademicsPrograms,
 		await directus.request(
 			readItems('academics_programs', {
-				fields: ['*', 'category.name', 'category.slug'],
+				fields: [
+					'*',
+					{
+						category: ['name', 'slug']
+					}
+				],
 				sort: ['title'],
 				filter: {
 					category: {
