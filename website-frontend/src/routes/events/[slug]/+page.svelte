@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="px-4 py-14 md:px-64 md:py-16">
-		<FlexibleContent content={event.event_content}/>
+		<FlexibleContent content={event.event_content} />
 	</div>
 
 	{#if related_events}

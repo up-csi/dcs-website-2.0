@@ -15,11 +15,37 @@ export async function load({ params, fetch }) {
 			readItems('events', {
 				fields: [
 					'*',
-					'event_area.name',
-					'event_tags.events_tags_id.name',
-					'event_tags.events_tags_id.related_events.events_id.*',
-					'event_tags.events_tags_id.related_events.events_id.event_area.name',
-					'event_tags.events_tags_id.related_events.events_id.event_tags.events_tags_id.name'
+					{
+						event_area: ['name']
+					},
+					{
+						event_tags: [
+							{
+								events_tags_id: [
+									'name',
+									{
+										related_events: [
+											{
+												events_id: [
+													'*',
+													{
+														event_area: ['name']
+													},
+													{
+														event_tags: [
+															{
+																events_tags_id: ['name']
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
 				],
 				filter: {
 					slug: {

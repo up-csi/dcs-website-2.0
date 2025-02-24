@@ -18,7 +18,21 @@ export async function load({ fetch }) {
 		})
 	);
 	const events = await directus.request(
-		readItems('events', { fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'] })
+		readItems('events', {
+			fields: [
+				'*',
+				{
+					event_area: ['name']
+				},
+				{
+					event_tags: [
+						{
+							events_tags_id: ['name']
+						}
+					]
+				}
+			]
+		})
 	);
 
 	return { global, news, events };

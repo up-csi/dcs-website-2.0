@@ -40,7 +40,19 @@ export async function load({ fetch, url }) {
 				Events,
 				await directus.request(
 					readItems('events', {
-						fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'],
+						fields: [
+							'*',
+							{
+								event_area: ['name']
+							},
+							{
+								event_tags: [
+									{
+										events_tags_id: ['name']
+									}
+								]
+							}
+						],
 						filter: {
 							_and: [
 								{
@@ -92,7 +104,19 @@ export async function load({ fetch, url }) {
 				Events,
 				await directus.request(
 					readItems('events', {
-						fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'],
+						fields: [
+							'*',
+							{
+								event_area: ['name']
+							},
+							{
+								event_tags: [
+									{
+										events_tags_id: ['name']
+									}
+								]
+							}
+						],
 						filter: {
 							_and: [
 								{
@@ -119,7 +143,19 @@ export async function load({ fetch, url }) {
 			Events,
 			await directus.request(
 				readItems('events', {
-					fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'],
+					fields: [
+						'*',
+						{
+							event_area: ['name']
+						},
+						{
+							event_tags: [
+								{
+									events_tags_id: ['name']
+								}
+							]
+						}
+					],
 					filter: {
 						_and: [
 							{
