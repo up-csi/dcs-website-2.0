@@ -24,7 +24,9 @@
 			{academics_category.name} programs offered by the department
 		</h1>
 		{#each academics_programs as program}
-			<ul><a href="{program.category.slug}/{program.slug}">{program.title}</a></ul>
+			<ul>
+				<a href="academics/{program.category.slug}/programs/{program.slug}">{program.title}</a>
+			</ul>
 		{/each}
 		<br />
 
