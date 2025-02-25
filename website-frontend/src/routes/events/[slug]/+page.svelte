@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="px-4 py-14 md:px-64 md:py-16">
-		<FlexibleContent content={event.event_content}/>
+		<FlexibleContent content={event.event_content} />
 	</div>
 
 	{#if related_events}
@@ -32,7 +32,9 @@
 			md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
 			{#each related_events as related_event}
-				<FeaturedEventCard event={related_event} />
+				{#if typeof related_event !== 'string'}
+					<FeaturedEventCard event={related_event} />
+				{/if}
 			{/each}
 		</div>
 	{/if}

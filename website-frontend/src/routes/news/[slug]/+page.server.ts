@@ -9,10 +9,12 @@ export async function load({ params, fetch }) {
 		readItems('news', {
 			fields: [
 				'*',
-				'user_created.first_name',
-				'user_created.last_name',
-				'user_updated.first_name',
-				'user_updated.last_name'
+				{
+					user_created: ['first_name', 'last_name']
+				},
+				{
+					user_updated: ['first_name', 'last_name']
+				}
 			],
 			filter: {
 				slug: {

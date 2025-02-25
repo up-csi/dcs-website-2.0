@@ -9,16 +9,32 @@ export async function load({ fetch }) {
 		readItems('news', {
 			fields: [
 				'*',
-				'user_created.first_name',
-				'user_created.last_name',
-				'user_updated.first_name',
-				'user_updated.last_name'
+				{
+					user_created: ['first_name', 'last_name']
+				},
+				{
+					user_updated: ['first_name', 'last_name']
+				}
 			],
 			sort: ['-date_created']
 		})
 	);
 	const events = await directus.request(
-		readItems('events', { fields: ['*', 'event_area.name', 'event_tags.events_tags_id.name'] })
+		readItems('events', {
+			fields: [
+				'*',
+				{
+					event_area: ['name']
+				},
+				{
+					event_tags: [
+						{
+							events_tags_id: ['name']
+						}
+					]
+				}
+			]
+		})
 	);
 
 	return { global, news, events };

@@ -2,7 +2,7 @@
 	import * as Table from '$lib/@shadcn-svelte/ui/table';
 	import { deslugify } from '$lib/utils';
 
-	export let data: Array<Object>;
+	export let data: Array<object>;
 </script>
 
 {#if data.length !== 0}
