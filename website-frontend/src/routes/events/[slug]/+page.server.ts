@@ -68,7 +68,6 @@ export async function load({ params, fetch }) {
 
 	const related_events = (() => {
 		if (!event.event_tags) return [];
-		if (event.event_tags.length == 0) return [];
 		return event_tags
 			.filter((item) => typeof item !== 'string')
 			.filter(({ events_id }, index) => {
