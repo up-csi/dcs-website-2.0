@@ -11,7 +11,7 @@ const elementClassMap = {
 	hr: 'my-4'
 };
 
-export function enhanceWysiwygContent(htmlContent: string, isDark: boolean = false): string {
+export function enhanceWysiwygContent(htmlContent: string): string {
 	if (typeof window === 'undefined') {
 		return htmlContent;
 	}

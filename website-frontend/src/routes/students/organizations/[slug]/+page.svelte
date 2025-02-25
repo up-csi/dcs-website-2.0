@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import { onMount, tick } from 'svelte';
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';

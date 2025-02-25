@@ -87,7 +87,7 @@
 				class="flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between"
 			>
 				<div class="my-5 flex gap-2 lg:mb-0 lg:mt-5">
-					{#each Array(count) as _, index}
+					{#each Array(count).keys() as index}
 						<button
 							class="duration-400 h-2 w-2 rounded-full transition-all
 							{index === current - 1 ? 'bg-primary-foreground' : 'bg-gray-400'}"
