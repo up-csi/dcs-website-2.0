@@ -1,7 +1,9 @@
 /** @type {import('./$types').PageServerLoad} */
+import { Event } from '$lib/models/event';
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
+import { parse } from 'valibot';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
@@ -55,7 +57,7 @@ export async function load({ params, fetch }) {
 		throw error(404, 'Event not found');
 	}
 
-	const event = events[0];
+	const event = parse(Event, events[0]);
 	const event_tags = event.event_tags
 		? event.event_tags
 				.map((item) => {
