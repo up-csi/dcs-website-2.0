@@ -15,7 +15,7 @@
 
 	$: controls = [
 		{
-			name: 'Position',
+			name: 'position',
 			categories: position_filters
 		}
 	];
