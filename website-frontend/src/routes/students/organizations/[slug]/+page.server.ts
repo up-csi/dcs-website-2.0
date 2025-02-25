@@ -1,9 +1,8 @@
 /** @type {import('./$types').PageServerLoad} */
+import type { StudentsOrganization } from '$lib/models/students_organizations.js';
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
-import { StudentsOrganization } from '$lib/models/students_organizations.js';
-import { parse } from 'valibot';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
@@ -29,7 +28,7 @@ export async function load({ params, fetch }) {
 		})
 	);
 
-	const organization = parse(StudentsOrganization, organizations[0]);
+	const organization = organizations[0] as StudentsOrganization;
 
 	if (!organizations || organizations.length === 0) {
 		throw error(404, 'Organization not found');
