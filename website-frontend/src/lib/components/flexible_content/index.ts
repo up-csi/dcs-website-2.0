@@ -11,6 +11,7 @@ const elementClassMap = {
 	hr: 'my-4'
 };
 
+// TODO: Add dark mode implementation
 export function enhanceWysiwygContent(htmlContent: string): string {
 	if (typeof window === 'undefined') {
 		return htmlContent;
