@@ -1,4 +1,5 @@
-import { array, object, string, nullable, type InferOutput, optional } from 'valibot';
+import { array, object, string, nullable, type InferOutput, optional, lazy, union } from 'valibot';
+import { PeopleLaboratories } from './junctions/people_laboratories';
 
 export const EducationalAttainment = object({
 	degree: string(),
@@ -20,7 +21,8 @@ export const Person = object({
 	background_image: optional(nullable(string())),
 	interests: optional(nullable(string())),
 	educational_attainment: optional(nullable(array(EducationalAttainment))),
-	username: string()
+	username: string(),
+	affiliations: union([array(string()), lazy(() => PeopleLaboratories)])
 });
 
 export const People = array(Person);

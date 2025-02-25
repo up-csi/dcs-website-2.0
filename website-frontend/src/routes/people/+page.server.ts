@@ -17,7 +17,15 @@ export async function load({ fetch, url }) {
 
 	const allLaboratories = await directus.request(
 		readItems('people', {
-			fields: ['affiliations.laboratories_id.name']
+			fields: [
+				{
+					affiliations: [
+						{
+							laboratories_id: ['name']
+						}
+					]
+				}
+			]
 		})
 	);
 
@@ -30,31 +38,33 @@ export async function load({ fetch, url }) {
 		.filter(Boolean)
 		.sort();
 
-	let filter = {};
-	if (filters.positions.length > 0 || filters.laboratories.length > 0) {
-		filter = {
-			_and: []
-		};
-
-		if (filters.positions.length > 0) {
-			filter._and.push({ position: { _in: filters.positions } });
-		}
-
-		if (filters.laboratories.length > 0) {
-			filter._and.push({
-				affiliations: {
-					laboratories_id: {
-						name: { _in: filters.laboratories }
-					}
-				}
-			});
-		}
-	}
-
 	const people = await directus.request(
 		readItems('people', {
-			fields: ['*', 'position', 'affiliations.laboratories_id.name'],
-			filter
+			fields: [
+				'*',
+				'position',
+				{
+					affiliations: [
+						{
+							laboratories_id: ['name']
+						}
+					]
+				}
+			],
+			filter: {
+				_and: [
+					{
+						position: { _in: filters.positions.length !== 0 ? filters.positions : undefined }
+					},
+					{
+						affiliations: {
+							laboratories_id: {
+								name: { _in: filters.laboratories.length !== 0 ? filters.laboratories : undefined }
+							}
+						}
+					}
+				]
+			}
 		})
 	);
 

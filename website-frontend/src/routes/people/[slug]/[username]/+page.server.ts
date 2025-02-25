@@ -12,6 +12,17 @@ export async function load({ params, fetch }) {
 			filter: {
 				username: { _eq: username }
 			},
+			fields: [
+				'*',
+				{
+					affiliations: [
+						'role',
+						{
+							laboratories_id: ['name']
+						}
+					]
+				}
+			],
 			limit: 1
 		})
 	);
@@ -22,25 +33,5 @@ export async function load({ params, fetch }) {
 
 	const person = people[0];
 
-	const labAssociations = await directus.request(
-		readItems('people_laboratories', {
-			filter: {
-				people_id: { _eq: person.id }
-			}
-		})
-	);
-
-	const laboratoryIds = labAssociations.map((assoc) => assoc.laboratories_id);
-	const laboratories =
-		laboratoryIds.length > 0
-			? await directus.request(
-					readItems('laboratories', {
-						filter: {
-							id: { _in: laboratoryIds }
-						}
-					})
-				)
-			: [];
-
-	return { person, laboratories };
+	return { person };
 }
