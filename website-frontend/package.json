@@ -16,6 +16,7 @@
 		"test": "pnpm exec playwright test"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.21.0",
 		"@playwright/test": "^1.50.1",
 		"@skeletonlabs/skeleton": "2.10.2",
 		"@skeletonlabs/tw-plugin": "0.4.0",
