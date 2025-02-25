@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
@@ -9,13 +8,22 @@
 
 	export let data;
 
-	$: ({ category, people } = data);
+	$: ({ category, people, position_filters, laboratory_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
 	$: peopleList = people?.slice(0, shown);
 
-	let controls: FilterControls = [];
+	$: controls = [
+		{
+			name: 'position',
+			categories: position_filters
+		},
+		{
+			name: 'laboratory',
+			categories: laboratory_filters
+		}
+	];
 </script>
 
 <body>
