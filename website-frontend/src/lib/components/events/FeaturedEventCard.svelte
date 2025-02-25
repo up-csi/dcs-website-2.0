@@ -41,7 +41,9 @@
 			{#if event.event_tags}
 				<div class="py-1 text-xs font-bold text-gray-600">
 					{#each event.event_tags as tag, index}
-						<p>{tag.events_tags_id.name}{index < event.event_tags.length - 1 ? ',' : ''}</p>
+						{#if typeof tag !== 'string' && typeof tag.events_tags_id !== 'string'}
+							<p>{tag.events_tags_id.name}{index < event.event_tags.length - 1 ? ',' : ''}</p>
+						{/if}
 					{/each}
 				</div>
 			{/if}

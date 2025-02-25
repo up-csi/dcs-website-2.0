@@ -24,9 +24,11 @@
 			{academics_category.name} programs offered by the department
 		</h1>
 		{#each academics_programs as program}
-			<ul>
-				<a href="academics/{program.category.slug}/programs/{program.slug}">{program.title}</a>
-			</ul>
+			{#if typeof program.category !== 'string'}
+				<ul>
+					<a href="academics/{program.category.slug}/programs/{program.slug}">{program.title}</a>
+				</ul>
+			{/if}
 		{/each}
 		<br />
 

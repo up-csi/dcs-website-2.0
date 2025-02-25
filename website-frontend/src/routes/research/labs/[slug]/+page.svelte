@@ -8,7 +8,14 @@
 	const { laboratory } = data;
 
 	const background_images = laboratory.background_images
-		? laboratory.background_images.map((img) => img.directus_files_id.id)
+		? laboratory.background_images
+				.filter((img) => typeof img !== 'string')
+				.map((img) => {
+					if (typeof img.directus_files_id !== 'string') {
+						return img.directus_files_id.id;
+					}
+					return '';
+				})
 		: [];
 
 	let showFull = false;

@@ -25,6 +25,7 @@
 		</h1>
 		{#if academics_program.curriculum_table}
 			{#each [...new Set(academics_program.curriculum_table
+						.filter((item) => typeof item !== 'number')
 						.map((item) => item.year)
 						.sort((a, b) => a - b))] as year}
 				Year {year}
@@ -32,25 +33,25 @@
 				First semester
 				<br />
 				<DataTable
-					data={academics_program.curriculum_table.filter(
-						(item) => item.year === year && item.semester === 'first'
-					)}
+					data={academics_program.curriculum_table
+						.filter((item) => typeof item !== 'number')
+						.filter((item) => item.year === year && item.semester === 'first')}
 				/>
 				<br />
 				Second semester
 				<br />
 				<DataTable
-					data={academics_program.curriculum_table.filter(
-						(item) => item.year === year && item.semester === 'second'
-					)}
+					data={academics_program.curriculum_table
+						.filter((item) => typeof item !== 'number')
+						.filter((item) => item.year === year && item.semester === 'second')}
 				/>
 				<br />
 				Midyear
 				<br />
 				<DataTable
-					data={academics_program.curriculum_table.filter(
-						(item) => item.year === year && item.semester === 'midyear'
-					)}
+					data={academics_program.curriculum_table
+						.filter((item) => typeof item !== 'number')
+						.filter((item) => item.year === year && item.semester === 'midyear')}
 				/>
 			{/each}
 		{/if}

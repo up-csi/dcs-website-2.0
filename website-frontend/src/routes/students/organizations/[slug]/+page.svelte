@@ -11,7 +11,14 @@
 	let showFull = false;
 
 	const background_images = organization.background_images
-		? organization.background_images.map((img) => img.directus_files_id.id)
+		? organization.background_images
+				.filter((img) => typeof img !== 'string')
+				.map((img) => {
+					if (typeof img.directus_files_id !== 'string') {
+						return img.directus_files_id.id;
+					}
+					return '';
+				})
 		: [];
 </script>
 
@@ -39,7 +46,7 @@
 				founding_date={organization.founding_date ?? ''}
 			/>
 
-			<FlexibleContent content={organization.flexible_content} isDark={true} />
+			<FlexibleContent content={organization.flexible_content} />
 
 			<div class="text-lg leading-normal text-primary-foreground">
 				<div class="text-lg leading-normal text-primary-foreground">
