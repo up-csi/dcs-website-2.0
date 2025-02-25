@@ -57,35 +57,36 @@ export async function load({ params, fetch }) {
 
 	const event = events[0];
 	const event_tags = event.event_tags
-		.map((item) => {
-			if (typeof item === 'string') return [];
-			if (typeof item.events_tags_id === 'string') return [];
-			return item.events_tags_id?.related_events ?? [];
-		})
-		.flat();
+		? event.event_tags
+				.map((item) => {
+					if (typeof item === 'string') return [];
+					if (typeof item.events_tags_id === 'string') return [];
+					return item.events_tags_id?.related_events ?? [];
+				})
+				.flat()
+		: [];
 
 	const related_events = (() => {
-		if (event.event_tags.length != 0) {
-			return event_tags
-				.filter((item) => typeof item !== 'string')
-				.filter(({ events_id }, index) => {
-					if (typeof events_id !== 'string') {
-						return (
-							events_id?.id != event.id &&
-							!event_tags
-								.filter((item) => typeof item !== 'string')
-								.map(({ events_id }) => {
-									if (typeof events_id !== 'string') {
-										return events_id?.id;
-									}
-								})
-								.includes(events_id?.id, index + 1)
-						);
-					}
-				})
-				.map((res) => res.events_id);
-		}
-		return [];
+		if (!event.event_tags) return [];
+		if (event.event_tags.length == 0) return [];
+		return event_tags
+			.filter((item) => typeof item !== 'string')
+			.filter(({ events_id }, index) => {
+				if (typeof events_id !== 'string') {
+					return (
+						events_id?.id != event.id &&
+						!event_tags
+							.filter((item) => typeof item !== 'string')
+							.map(({ events_id }) => {
+								if (typeof events_id !== 'string') {
+									return events_id?.id;
+								}
+							})
+							.includes(events_id?.id, index + 1)
+					);
+				}
+			})
+			.map((res) => res.events_id);
 	})();
 
 	return { event, related_events };
