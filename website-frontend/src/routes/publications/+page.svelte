@@ -1,7 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banner/Banner.svelte';
-	import LoadMore from '$lib/components/load_more/LoadMore.svelte';
+	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
 
 	export let data;
