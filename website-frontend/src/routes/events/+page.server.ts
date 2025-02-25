@@ -1,8 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import getDirectusInstance from '$lib/directus';
-import { Events } from '$lib/models/event';
 import { readItems } from '@directus/sdk';
-import { parse } from 'valibot';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
@@ -36,112 +34,7 @@ export async function load({ fetch, url }) {
 		.then((res) => res.map(({ name }) => name));
 	const events = await (async () => {
 		if (filters.time === 'past') {
-			return parse(
-				Events,
-				await directus.request(
-					readItems('events', {
-						fields: [
-							'*',
-							{
-								event_area: ['name']
-							},
-							{
-								event_tags: [
-									{
-										events_tags_id: ['name']
-									}
-								]
-							}
-						],
-						filter: {
-							_and: [
-								{
-									event_area: {
-										name: { _in: filters.locations.length !== 0 ? filters.locations : undefined }
-									}
-								},
-								{
-									event_tags: {
-										events_tags_id: {
-											name: {
-												_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
-											}
-										}
-									}
-								},
-								{
-									_or: [
-										{
-											_and: [
-												{
-													end_date: {
-														_null: true
-													}
-												},
-												{
-													start_date: {
-														_lte: '$NOW'
-													}
-												}
-											]
-										},
-										{
-											end_date: {
-												_nnull: true,
-												_lte: '$NOW'
-											}
-										}
-									]
-								}
-							]
-						}
-					})
-				)
-			);
-		}
-		if (filters.time === 'all') {
-			return parse(
-				Events,
-				await directus.request(
-					readItems('events', {
-						fields: [
-							'*',
-							{
-								event_area: ['name']
-							},
-							{
-								event_tags: [
-									{
-										events_tags_id: ['name']
-									}
-								]
-							}
-						],
-						filter: {
-							_and: [
-								{
-									event_area: {
-										name: { _in: filters.locations.length !== 0 ? filters.locations : undefined }
-									}
-								},
-								{
-									event_tags: {
-										events_tags_id: {
-											name: {
-												_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
-											}
-										}
-									}
-								}
-							]
-						}
-					})
-				)
-			);
-		}
-		return parse(
-			Events,
-			await directus.request(
+			return await directus.request(
 				readItems('events', {
 					fields: [
 						'*',
@@ -173,14 +66,110 @@ export async function load({ fetch, url }) {
 								}
 							},
 							{
-								start_date: {
-									_gte: '$NOW'
+								_or: [
+									{
+										_and: [
+											{
+												end_date: {
+													_null: true
+												}
+											},
+											{
+												start_date: {
+													_lte: '$NOW'
+												}
+											}
+										]
+									},
+									{
+										end_date: {
+											_nnull: true,
+											_lte: '$NOW'
+										}
+									}
+								]
+							}
+						]
+					}
+				})
+			);
+		}
+		if (filters.time === 'all') {
+			return await directus.request(
+				readItems('events', {
+					fields: [
+						'*',
+						{
+							event_area: ['name']
+						},
+						{
+							event_tags: [
+								{
+									events_tags_id: ['name']
+								}
+							]
+						}
+					],
+					filter: {
+						_and: [
+							{
+								event_area: {
+									name: { _in: filters.locations.length !== 0 ? filters.locations : undefined }
+								}
+							},
+							{
+								event_tags: {
+									events_tags_id: {
+										name: {
+											_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
+										}
+									}
 								}
 							}
 						]
 					}
 				})
-			)
+			);
+		}
+		return await directus.request(
+			readItems('events', {
+				fields: [
+					'*',
+					{
+						event_area: ['name']
+					},
+					{
+						event_tags: [
+							{
+								events_tags_id: ['name']
+							}
+						]
+					}
+				],
+				filter: {
+					_and: [
+						{
+							event_area: {
+								name: { _in: filters.locations.length !== 0 ? filters.locations : undefined }
+							}
+						},
+						{
+							event_tags: {
+								events_tags_id: {
+									name: {
+										_in: filters.disciplines.length !== 0 ? filters.disciplines : undefined
+									}
+								}
+							}
+						},
+						{
+							start_date: {
+								_gte: '$NOW'
+							}
+						}
+					]
+				}
+			})
 		);
 	})();
 

@@ -1,7 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
 import { readItems } from '@directus/sdk';
-import { parse } from 'valibot';
-import { People } from '$lib/models/people';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 
@@ -25,21 +23,14 @@ export async function load({ params, fetch }) {
 
 	const category = categories[0];
 
-	const people = parse(
-		People,
-		await directus.request(
-			readItems('people', {
-				filter: {
-					category: {
-						_eq: category.title
-					}
+	const people = await directus.request(
+		readItems('people', {
+			filter: {
+				category: {
+					_eq: category.title
 				}
-			})
-		)
+			}
+		})
 	);
-
-	return {
-		category,
-		people
-	};
+	return { category, people };
 }

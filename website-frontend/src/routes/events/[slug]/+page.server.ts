@@ -2,58 +2,53 @@
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
-import { Events } from '$lib/models/event';
-import { parse } from 'valibot';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
 	const eventSlug = params.slug;
 
-	const events = parse(
-		Events,
-		await directus.request(
-			readItems('events', {
-				fields: [
-					'*',
-					{
-						event_area: ['name']
-					},
-					{
-						event_tags: [
-							{
-								events_tags_id: [
-									'name',
-									{
-										related_events: [
-											{
-												events_id: [
-													'*',
-													{
-														event_area: ['name']
-													},
-													{
-														event_tags: [
-															{
-																events_tags_id: ['name']
-															}
-														]
-													}
-												]
-											}
-										]
-									}
-								]
-							}
-						]
-					}
-				],
-				filter: {
-					slug: {
-						_eq: eventSlug
-					}
+	const events = await directus.request(
+		readItems('events', {
+			fields: [
+				'*',
+				{
+					event_area: ['name']
+				},
+				{
+					event_tags: [
+						{
+							events_tags_id: [
+								'name',
+								{
+									related_events: [
+										{
+											events_id: [
+												'*',
+												{
+													event_area: ['name']
+												},
+												{
+													event_tags: [
+														{
+															events_tags_id: ['name']
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
 				}
-			})
-		)
+			],
+			filter: {
+				slug: {
+					_eq: eventSlug
+				}
+			}
+		})
 	);
 
 	if (!events.length) {

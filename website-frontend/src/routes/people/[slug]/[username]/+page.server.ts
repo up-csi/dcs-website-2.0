@@ -1,7 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
 import { readItems } from '@directus/sdk';
-import { parse } from 'valibot';
-import { Person } from '$lib/models/people';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 
@@ -22,12 +20,12 @@ export async function load({ params, fetch }) {
 		throw error(404, 'Person not found');
 	}
 
-	const personId = people[0].id;
+	const person = people[0];
 
 	const labAssociations = await directus.request(
 		readItems('people_laboratories', {
 			filter: {
-				people_id: { _eq: personId }
+				people_id: { _eq: person.id }
 			}
 		})
 	);
@@ -44,8 +42,5 @@ export async function load({ params, fetch }) {
 				)
 			: [];
 
-	return {
-		person: parse(Person, people[0]),
-		laboratories
-	};
+	return { person, laboratories };
 }
