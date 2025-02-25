@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import type { FilterControls } from '$lib/types/filter_controls';
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
@@ -8,13 +7,20 @@
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
 	export let data;
-	const { people, people_overview } = data;
+
+	$: ({ people, people_overview, position_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
-	$: peopleList = people?.slice(0, shown);
 
-	let controls: FilterControls = [];
+	$: controls = [
+		{
+			name: 'Position',
+			categories: position_filters
+		}
+	];
+
+	$: peopleList = people?.slice(0, shown);
 </script>
 
 <body>
