@@ -9,6 +9,7 @@ import { PeopleOverview } from './people_overview';
 import { PeopleCategories } from './people_categories';
 import { PeopleLaboratories } from './people_laboratories';
 import { Laboratories } from './laboratories';
+import { LaboratoriesDirectusFiles } from './junctions/laboratories_directus_files';
 import { About } from './about';
 import { AboutPages } from './about_pages';
 import { StudentsOverview } from './students_overview';
@@ -16,6 +17,7 @@ import { StudentsPages } from './students_pages';
 import { EventsAreas } from './events_areas';
 import { StudentsOrganizations } from './students_organizations';
 import { StudentsOrganizationsOverview } from './students_organizations_overview';
+import { StudentsOrganizationsDirectusFiles } from './junctions/students_organizations_directus_files';
 import { Publications } from './publications';
 import { EventsTags } from './events_tags';
 import { EventsRelated } from './junctions/events_related';
@@ -27,6 +29,7 @@ import { AcademicsCourses } from './academics_courses';
 import { AcademicsPages } from './academics_pages';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
 import { DirectusUsers } from './directus_users';
+import { DirectusFiles } from './directus_files';
 
 export const Schema = object({
 	global: Global,
@@ -39,6 +42,7 @@ export const Schema = object({
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
 	laboratories: Laboratories,
+	laboratories_directus_files: LaboratoriesDirectusFiles,
 	about: About,
 	about_pages: AboutPages,
 	students_overview: StudentsOverview,
@@ -49,6 +53,7 @@ export const Schema = object({
 	events_related: EventsRelated,
 	students_organizations: StudentsOrganizations,
 	students_organizations_overview: StudentsOrganizationsOverview,
+	students_organizations_directus_files: StudentsOrganizationsDirectusFiles,
 	publications: Publications,
 	academics: Academics,
 	academics_categories: AcademicsCategories,
@@ -56,7 +61,8 @@ export const Schema = object({
 	academics_courses: AcademicsCourses,
 	academics_pages: AcademicsPages,
 	academics_programs_courses: AcademicsProgramsCourses,
-	directus_users: DirectusUsers
+	directus_users: DirectusUsers,
+	directus_files: DirectusFiles
 });
 
 export type Schema = InferOutput<typeof Schema>;

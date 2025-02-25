@@ -14,7 +14,16 @@ export async function load({ params, fetch }) {
 					_eq: organizationSlug
 				}
 			},
-			fields: ['*', 'background_images.directus_files_id.*']
+			fields: [
+				'*',
+				{
+					background_images: [
+						{
+							directus_files_id: ['id']
+						}
+					]
+				}
+			]
 		})
 	);
 
