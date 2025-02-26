@@ -1,37 +1,92 @@
 <script lang="ts">
 	import { ScrollText } from 'lucide-svelte';
+	import * as Card from '$lib/@shadcn-svelte/ui/card';
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import { Publication } from '$lib/models/publications';
 
-	export let publication;
+	export let publication: Publication;
 </script>
 
-<div class="card relative flex flex-col rounded-none bg-transparent shadow-none">
-	<div
-		class="absolute bottom-0 w-full rounded-lg shadow-xl"
-		style="height: calc(var(--card-height) * (8 / 9));"
-	/>
-
-	<div class="flex w-full grow justify-center *:rounded-lg">
-		{#if publication.image}
-			<img
-				src="{PUBLIC_APIURL}/assets/{publication.image}"
-				alt={publication.title}
-				style="width: calc(var(--card-height) * (19 / 45));"
-			/>
-		{:else}
-			<div
-				class="flex h-full items-center justify-center bg-muted"
-				style="width: calc(var(--card-height) * (19 / 45));"
-			>
-				<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+{#if publication.access_links && publication.access_links.length !== 0}
+	<a href={publication.access_links[0].url} class="flex h-80 flex-col justify-end">
+		<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
+			<div class="flex h-max justify-center">
+				{#if publication.hero_image}
+					<img
+						src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
+						alt={publication.title}
+						style="width: calc(var(--card-height) * (19 / 45));"
+					/>
+				{:else}
+					<div
+						class="flex h-full items-center justify-center bg-muted"
+						style="width: calc(var(--card-height) * (19 / 45));"
+					>
+						<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+					</div>
+				{/if}
 			</div>
-		{/if}
+			<Card.Header>
+				<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
+			</Card.Header>
+			<Card.Footer class="flex justify-between">
+				<div>
+					{#each publication.authors.slice(0, -1) as author}
+						{author.last_name},
+					{/each}
+					{publication.authors.at(-1)?.last_name}
+				</div>
+				<div>
+					{#if publication.publish_date}
+						{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					{/if}
+				</div>
+			</Card.Footer>
+		</Card.Root>
+	</a>
+{:else}
+	<div class="flex h-80 flex-col justify-end">
+		<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
+			<div class="flex h-full justify-center">
+				{#if publication.hero_image}
+					<img
+						src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
+						alt={publication.title}
+						style="width: calc(var(--card-height) * (19 / 45));"
+					/>
+				{:else}
+					<div
+						class="flex h-full items-center justify-center bg-muted"
+						style="width: calc(var(--card-height) * (19 / 45));"
+					>
+						<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+					</div>
+				{/if}
+			</div>
+			<Card.Header>
+				<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
+			</Card.Header>
+			<Card.Footer class="flex justify-between">
+				<div>
+					{#each publication.authors.slice(0, -1) as author}
+						{author.last_name},
+					{/each}
+					{publication.authors.at(-1)?.last_name}
+				</div>
+				<div>
+					{#if publication.publish_date}
+						{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					{/if}
+				</div>
+			</Card.Footer>
+		</Card.Root>
 	</div>
-	<div class="p-2">
-		<p class="mx-2 my-4 line-clamp-4 text-center text-lg font-bold">{publication.title}</p>
-		<div class="flex w-full justify-between *:text-sm">
-			<p class="text-muted-foreground">{publication.authors[0]}</p>
-			<p class="text-secondary">{new Date(publication.date_published).toLocaleDateString()}</p>
-		</div>
-	</div>
-</div>
+{/if}
