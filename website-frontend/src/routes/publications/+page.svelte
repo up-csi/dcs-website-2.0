@@ -3,14 +3,23 @@
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 
 	export let data;
-	const { publications } = data;
+
+	$: ({ publications, laboratories_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
 
 	let sortMethod: 'date' | 'author' = 'date';
+
+	$: controls = [
+		{
+			name: 'laboratory',
+			categories: laboratories_filters
+		}
+	];
 
 	$: sortedPublications = [...publications].sort((a, b) => {
 		if (sortMethod === 'author') {
@@ -28,6 +37,10 @@
 <body>
 	<div class="relative z-0">
 		<Banner title="Publications" />
+	</div>
+
+	<div class="relative z-10 -mt-7">
+		<FilterBar {controls} />
 	</div>
 
 	<div class="mx-auto my-4 flex justify-center gap-4">
