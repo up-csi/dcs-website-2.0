@@ -5,7 +5,6 @@
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import type { FilterControls } from '$lib/types/filter_controls.js';
-	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
 
 	export let data;
 
@@ -22,6 +21,6 @@
 
 <CardPanel>
 	{#each publications as publication}
-		<PublicationCard {publication} />
+		{publication}
 	{/each}
 </CardPanel>
