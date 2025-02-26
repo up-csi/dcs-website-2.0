@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import Banner from '$lib/components/banner/Banner.svelte';
+	import Banner from '$lib/components/banners/Banner.svelte';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
