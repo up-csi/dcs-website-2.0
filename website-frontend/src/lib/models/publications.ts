@@ -1,4 +1,15 @@
-import { array, isoDate, nullable, object, pipe, string, type InferOutput } from 'valibot';
+import {
+	array,
+	isoDate,
+	lazy,
+	nullable,
+	object,
+	pipe,
+	string,
+	union,
+	type InferOutput
+} from 'valibot';
+import { Laboratory } from './laboratories';
 
 const Author = object({
 	first_name: string(),
@@ -15,7 +26,7 @@ export const Publication = object({
 	publish_date: nullable(pipe(string(), isoDate())),
 	authors: array(Author),
 	abstract: string(),
-	laboratory: string(),
+	laboratory: union([string(), lazy(() => Laboratory)]),
 	hero_image: string(),
 	publication_tag: nullable(array(string())),
 	access_links: nullable(array(AccessLink))
