@@ -2,7 +2,22 @@
 	/** @type {import('./$types').PageData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
 	export let data;
-	const { person, laboratories } = data;
+	const { person } = data;
+
+	const affiliations = person.affiliations
+		? person.affiliations
+				.filter((affiliation) => typeof affiliation !== 'string')
+				.map((affiliation) => {
+					if (typeof affiliation.laboratories_id !== 'string') {
+						return {
+							role: affiliation.role,
+							laboratory: affiliation.laboratories_id.name
+						};
+					}
+					return null;
+				})
+				.filter(Boolean)
+		: [];
 </script>
 
 <div>
@@ -22,11 +37,11 @@
 			</p>
 		{/each}
 	{/if}
-	{#if laboratories.length > 0}
+	{#if affiliations.length > 0}
 		<h2 class="py-2 text-2xl font-bold">Affiliations</h2>
 		<ul>
-			{#each laboratories as laboratory}
-				<li>{laboratory.name}</li>
+			{#each affiliations as affiliation}
+				<li>{affiliation?.role} {affiliation?.laboratory}</li>
 			{/each}
 		</ul>
 	{/if}

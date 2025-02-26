@@ -7,7 +7,7 @@ import { Linkages } from './linkages';
 import { People } from './people';
 import { PeopleOverview } from './people_overview';
 import { PeopleCategories } from './people_categories';
-import { PeopleLaboratories } from './people_laboratories';
+import { PeopleLaboratories } from './junctions/people_laboratories';
 import { Laboratories } from './laboratories';
 import { LaboratoriesDirectusFiles } from './junctions/laboratories_directus_files';
 import { About } from './about';
