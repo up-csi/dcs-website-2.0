@@ -16,12 +16,8 @@
 							laboratory: affiliation.laboratories_id.name
 						};
 					}
-					return {
-						role: '',
-						laboratory: ''
-					};
+					return {};
 				})
-				.filter(Boolean)
 		: [];
 </script>
 
@@ -34,7 +30,7 @@
 			last_name={person.last_name}
 			position={person.position}
 			email={person.email ?? ''}
-			laboratory={affiliations?.[0].laboratory ?? ''}
+			laboratory={affiliations[0]?.laboratory ?? ''}
 		/>
 	</div>
 
