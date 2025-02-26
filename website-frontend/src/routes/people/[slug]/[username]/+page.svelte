@@ -48,10 +48,7 @@
 				{/if}
 			</div>
 
-			<InfoCard
-				office={person.location ?? ''}
-				interests={person.interests ?? ''}
-			/>
+			<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
 		</div>
 	</div>
 </div>

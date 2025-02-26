@@ -31,9 +31,7 @@
 	{#if contact_email}
 		<div>
 			<p class="text-primary-foreground/60">Contact Email</p>
-			<a class="text-lg text-primary-foreground" href="mailto:{contact_email}"
-				>{contact_email}</a
-			>
+			<a class="text-lg text-primary-foreground" href="mailto:{contact_email}">{contact_email}</a>
 		</div>
 	{/if}
 
