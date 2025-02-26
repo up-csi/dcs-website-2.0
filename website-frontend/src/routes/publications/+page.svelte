@@ -2,7 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
-	import { PUBLIC_APIURL } from '$env/static/public';
+	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
 
 	export let data;
 	const { publications } = data;
@@ -51,18 +51,7 @@
         md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 	>
 		{#each publicationsList as publication}
-			<a href="/publications/{publication.id}">
-				<img
-					src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
-					alt={publication.title}
-					class="h-48 w-full rounded-lg object-cover"
-				/>
-				<p>{publication.title}</p>
-				<p>{publication.publication_tag}</p>
-				{#each publication.authors as author}
-					<p>{author.last_name}, {author.first_name}</p>
-				{/each}
-			</a>
+			<PublicationCard {publication} />
 		{/each}
 	</div>
 	{#if shown < publications.length}
