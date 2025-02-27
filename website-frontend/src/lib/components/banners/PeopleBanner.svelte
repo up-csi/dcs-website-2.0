@@ -2,6 +2,7 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Image, Mail, Globe } from 'lucide-svelte';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
+	import { deslugify } from '$lib/utils';
 
 	export let background_image: string = '';
 	export let profile_image: string = '';
@@ -10,6 +11,7 @@
 	export let position: string = '';
 	export let email: string = '';
 	export let laboratory: string = '';
+	export let category: string = '';
 
 	const copyToClipboard = async () => {
 		if (!email) return;
@@ -32,8 +34,8 @@
 	<div class="absolute bottom-0 w-full px-4 lg:-bottom-16 lg:px-32">
 		<div class="flex space-x-2 py-4 text-sm text-secondary-foreground">
 			<p class="">Home /</p>
-			<p class="">People /</p>
-			<p class="">Regular Faculty /</p>
+			<a class="" href="/people">People /</a>
+			<a class="" href="/people/{category}">{category ? deslugify(category) : category} /</a>
 			<p class="text-[#D9D9D9]">{first_name} {last_name}</p>
 		</div>
 		<div class="h-[2px] w-full bg-white opacity-40"></div>
