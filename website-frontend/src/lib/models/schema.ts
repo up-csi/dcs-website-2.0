@@ -8,6 +8,7 @@ import { People } from './people';
 import { PeopleOverview } from './people_overview';
 import { PeopleCategories } from './people_categories';
 import { PeopleLaboratories } from './junctions/people_laboratories';
+import { PeoplePublications } from './junctions/people_publications';
 import { Laboratories } from './laboratories';
 import { LaboratoriesDirectusFiles } from './junctions/laboratories_directus_files';
 import { About } from './about';
@@ -41,6 +42,7 @@ export const Schema = object({
 	people_overview: PeopleOverview,
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
+	people_publications: PeoplePublications,
 	laboratories: Laboratories,
 	laboratories_directus_files: LaboratoriesDirectusFiles,
 	about: About,
