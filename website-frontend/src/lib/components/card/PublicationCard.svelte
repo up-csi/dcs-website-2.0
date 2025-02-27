@@ -1,92 +1,123 @@
 <script lang="ts">
 	import { ScrollText } from 'lucide-svelte';
 	import * as Card from '$lib/@shadcn-svelte/ui/card';
+	import * as Dialog from '$lib/@shadcn-svelte/ui/dialog';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Publication } from '$lib/models/publications';
+	import { SquareArrowOutUpRight } from 'lucide-svelte';
 
 	export let publication: Publication;
 </script>
 
-{#if publication.access_links && publication.access_links.length !== 0}
-	<a href={publication.access_links[0].url} class="flex h-80 flex-col justify-end">
-		<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
-			<div class="flex h-max justify-center">
-				{#if publication.hero_image}
-					<img
-						src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
-						alt={publication.title}
-						style="width: calc(var(--card-height) * (19 / 45));"
-					/>
-				{:else}
-					<div
-						class="flex h-full items-center justify-center bg-muted"
-						style="width: calc(var(--card-height) * (19 / 45));"
-					>
-						<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
-					</div>
-				{/if}
-			</div>
-			<Card.Header>
-				<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
-			</Card.Header>
-			<Card.Footer class="flex justify-between">
-				<div>
-					{#each publication.authors.slice(0, -1) as author}
-						{author.last_name},
-					{/each}
-					{publication.authors.at(-1)?.last_name}
-				</div>
-				<div>
-					{#if publication.publish_date}
-						{new Date(publication.publish_date).toLocaleDateString('en-EN', {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric'
-						})}
+<Dialog.Root>
+	<Dialog.Trigger>
+		<div class="flex h-80 flex-col justify-end">
+			<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
+				<div class="flex h-full justify-center">
+					{#if publication.hero_image}
+						<img
+							src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
+							alt={publication.title}
+							style="width: calc(var(--card-height) * (19 / 45));"
+						/>
+					{:else}
+						<div
+							class="flex h-full items-center justify-center bg-muted"
+							style="width: calc(var(--card-height) * (19 / 45));"
+						>
+							<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+						</div>
 					{/if}
 				</div>
-			</Card.Footer>
-		</Card.Root>
-	</a>
-{:else}
-	<div class="flex h-80 flex-col justify-end">
-		<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
-			<div class="flex h-full justify-center">
-				{#if publication.hero_image}
-					<img
-						src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
-						alt={publication.title}
-						style="width: calc(var(--card-height) * (19 / 45));"
-					/>
-				{:else}
-					<div
-						class="flex h-full items-center justify-center bg-muted"
-						style="width: calc(var(--card-height) * (19 / 45));"
-					>
-						<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+				<Card.Header>
+					<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
+				</Card.Header>
+				<Card.Footer class="flex justify-between">
+					<div>
+						{#each publication.authors.slice(0, -1) as author}
+							{author.last_name},
+						{/each}
+						{publication.authors.at(-1)?.last_name}
 					</div>
-				{/if}
-			</div>
-			<Card.Header>
-				<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
-			</Card.Header>
-			<Card.Footer class="flex justify-between">
-				<div>
-					{#each publication.authors.slice(0, -1) as author}
-						{author.last_name},
-					{/each}
-					{publication.authors.at(-1)?.last_name}
-				</div>
+					<div>
+						{#if publication.publish_date}
+							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						{/if}
+					</div>
+				</Card.Footer>
+			</Card.Root>
+		</div>
+	</Dialog.Trigger>
+	<Dialog.Content>
+		<Dialog.Header class="flex flex-col gap-y-1">
+			<Dialog.Title>{publication.title}</Dialog.Title>
+			<Dialog.Description class="flex flex-col gap-y-2">
 				<div>
 					{#if publication.publish_date}
-						{new Date(publication.publish_date).toLocaleDateString('en-EN', {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric'
-						})}
+						<div>
+							<strong>Date published:</strong>
+							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</div>
+					{/if}
+					{#if publication.authors}
+						{#if publication.authors.length !== 1}
+							<div>
+								<strong>Authors:</strong>
+								{#each publication.authors.slice(0, -1) as author}
+									{author.last_name}, {author.first_name} &
+								{/each}
+								{publication.authors.at(-1)?.last_name},
+								{publication.authors.at(-1)?.first_name}
+							</div>
+						{:else}
+							<div>
+								<strong>Author:</strong>
+								{publication.authors.at(0)?.last_name},
+								{publication.authors.at(0)?.first_name}
+							</div>
+						{/if}
 					{/if}
 				</div>
-			</Card.Footer>
-		</Card.Root>
-	</div>
-{/if}
+				{#if publication.abstract}
+					<div>
+						<small><strong>Abstract:</strong> {publication.abstract}</small>
+					</div>
+				{/if}
+				{#if publication.access_links}
+					<div>
+						<small class="flex gap-x-1">
+							<strong>Access Links:</strong>
+							{#each publication.access_links as access_link, i}
+								<div class="flex gap-x-1">
+									<a href={access_link.url} target="_blank">
+										<div class="flex gap-x-1">
+											{#if access_link.display}
+												<div>{access_link.display}</div>
+											{:else}
+												<div>Access Link {i + 1}</div>
+											{/if}
+											<div class="flex w-min flex-col justify-center">
+												<SquareArrowOutUpRight class="size-3" />
+											</div>
+										</div>
+									</a>
+									{#if i + 1 !== publication.access_links.length}
+										<div class="select-none">|</div>
+									{/if}
+								</div>
+							{/each}
+						</small>
+					</div>
+				{/if}
+			</Dialog.Description>
+		</Dialog.Header>
+	</Dialog.Content>
+</Dialog.Root>
