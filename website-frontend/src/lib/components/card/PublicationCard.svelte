@@ -90,7 +90,11 @@
 				{#if publication.access_links}
 					<div>
 						<small class="flex gap-x-1">
-							<strong>Access Links:</strong>
+							{#if publication.access_links.length !== 1}
+								<strong>Access Links:</strong>
+							{:else}
+								<strong>Access Link:</strong>
+							{/if}
 							{#each publication.access_links as access_link, i}
 								<div class="flex gap-x-1">
 									<a href={access_link.url} target="_blank">
