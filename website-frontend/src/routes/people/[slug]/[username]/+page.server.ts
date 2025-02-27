@@ -21,6 +21,26 @@ export async function load({ params, fetch }) {
 							laboratories_id: ['name']
 						}
 					]
+				},
+				{
+					publications: [
+						{
+							publications_id: [
+								'title',
+								'publish_date',
+								'authors',
+								'hero_image',
+								'id',
+								{
+									linked_authors: [
+										{
+											people_id: ['first_name', 'last_name', 'username', 'category']
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			],
 			limit: 1
