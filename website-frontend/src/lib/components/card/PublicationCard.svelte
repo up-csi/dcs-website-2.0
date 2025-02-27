@@ -68,22 +68,18 @@
 						</div>
 					{/if}
 					{#if publication.authors}
-						{#if publication.authors.length !== 1}
-							<div>
+						<div>
+							{#if publication.authors.length !== 1}
 								<strong>Authors:</strong>
-								{#each publication.authors.slice(0, -1) as author}
-									{author.last_name}, {author.first_name} &
-								{/each}
-								{publication.authors.at(-1)?.last_name},
-								{publication.authors.at(-1)?.first_name}
-							</div>
-						{:else}
-							<div>
+							{:else}
 								<strong>Author:</strong>
-								{publication.authors.at(0)?.last_name},
-								{publication.authors.at(0)?.first_name}
-							</div>
-						{/if}
+							{/if}
+							{#each publication.authors.slice(0, -1) as author}
+								{author.last_name}, {author.first_name} &
+							{/each}
+							{publication.authors.at(-1)?.last_name},
+							{publication.authors.at(-1)?.first_name}
+						</div>
 					{/if}
 				</div>
 				{#if publication.abstract}
