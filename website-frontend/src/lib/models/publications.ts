@@ -17,7 +17,8 @@ const Author = object({
 });
 
 const AccessLink = object({
-	url: string()
+	url: string(),
+	display: string()
 });
 
 export const Publication = object({
