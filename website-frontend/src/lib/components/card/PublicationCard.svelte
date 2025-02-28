@@ -11,25 +11,27 @@
 
 <Dialog.Root>
 	<Dialog.Trigger>
-		<div class="flex h-80 flex-col justify-end">
-			<Card.Root class="flex h-64 flex-col justify-end gap-y-5">
-				<div class="flex h-full justify-center">
+		<div class="relative flex h-96 justify-center">
+			<div
+				class="absolute bottom-0 h-80 w-full rounded-lg border shadow-[1px_2px_10px_0px_rgba(0,0,0,0.09)]"
+			></div>
+			<Card.Root
+				class="absolute bottom-0 z-10 flex h-96 w-full flex-col justify-end border-none !bg-transparent shadow-none"
+			>
+				<div class="flex min-h-0 flex-1 justify-center">
 					{#if publication.hero_image}
 						<img
 							src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
 							alt={publication.title}
-							style="width: calc(var(--card-height) * (19 / 45));"
+							class="w-[calc(var(--card-height)*0.5)] rounded-lg object-cover"
 						/>
 					{:else}
-						<div
-							class="flex h-full items-center justify-center bg-muted"
-							style="width: calc(var(--card-height) * (19 / 45));"
-						>
-							<ScrollText class="h-20 w-20 bg-muted text-muted-foreground" />
+						<div class="flex w-[calc(var(--card-height)*0.5)] items-center justify-center bg-muted">
+							<ScrollText class="w-20 bg-muted text-muted-foreground" />
 						</div>
 					{/if}
 				</div>
-				<Card.Header>
+				<Card.Header class="mb-5">
 					<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
 				</Card.Header>
 				<Card.Footer class="flex justify-between">
