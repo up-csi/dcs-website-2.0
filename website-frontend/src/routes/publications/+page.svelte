@@ -2,15 +2,24 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banner/Banner.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
-	import { PUBLIC_APIURL } from '$env/static/public';
+	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 
 	export let data;
-	const { publications } = data;
+
+	$: ({ publications, laboratories_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
 
 	let sortMethod: 'date' | 'author' = 'date';
+
+	$: controls = [
+		{
+			name: 'laboratory',
+			categories: laboratories_filters
+		}
+	];
 
 	$: sortedPublications = [...publications].sort((a, b) => {
 		if (sortMethod === 'author') {
@@ -30,6 +39,10 @@
 		<Banner title="Publications" />
 	</div>
 
+	<div class="relative z-10 -mt-7">
+		<FilterBar {controls} />
+	</div>
+
 	<div class="mx-auto my-4 flex justify-center gap-4">
 		<button
 			class="rounded px-4 py-2 {sortMethod === 'date' ? 'bg-blue-600 text-white' : 'bg-gray-200'}"
@@ -46,23 +59,12 @@
 	</div>
 
 	<div
-		class="mx-auto my-3 grid
-        max-w-[94vw] grid-cols-2 gap-2 pb-20
-        md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
+		class="mx-auto my-3 grid max-w-[94vw] grid-cols-2
+        items-end gap-2 pb-20 md:my-8
+        md:max-w-[80vw] md:grid-cols-4 md:items-end md:gap-4"
 	>
 		{#each publicationsList as publication}
-			<a href="/publications/{publication.id}">
-				<img
-					src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
-					alt={publication.title}
-					class="h-48 w-full rounded-lg object-cover"
-				/>
-				<p>{publication.title}</p>
-				<p>{publication.publication_tag}</p>
-				{#each publication.authors as author}
-					<p>{author.last_name}, {author.first_name}</p>
-				{/each}
-			</a>
+			<PublicationCard {publication} />
 		{/each}
 	</div>
 	{#if shown < publications.length}
