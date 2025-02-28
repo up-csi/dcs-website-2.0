@@ -33,13 +33,13 @@
 					<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
 				</Card.Header>
 				<Card.Footer class="flex justify-between">
-					<div>
+					<small class="text-sm text-gray-500">
 						{#each publication.authors.slice(0, -1) as author}
 							{author.last_name},
 						{/each}
 						{publication.authors.at(-1)?.last_name}
-					</div>
-					<div>
+					</small>
+					<small class="text-sm text-gray-500">
 						{#if publication.publish_date}
 							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
 								year: 'numeric',
@@ -47,7 +47,7 @@
 								day: 'numeric'
 							})}
 						{/if}
-					</div>
+					</small>
 				</Card.Footer>
 			</Card.Root>
 		</div>
