@@ -13,7 +13,13 @@ import { Laboratory } from './laboratories';
 
 const Author = object({
 	first_name: string(),
-	last_name: string()
+	last_name: string(),
+	link: union([
+		object({
+			key: string()
+		}),
+		string()
+	])
 });
 
 const AccessLink = object({

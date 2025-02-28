@@ -70,17 +70,24 @@
 						</div>
 					{/if}
 					{#if publication.authors}
-						<div>
+						<div class="flex gap-x-1">
 							{#if publication.authors.length !== 1}
 								<strong>Authors:</strong>
 							{:else}
 								<strong>Author:</strong>
 							{/if}
-							{#each publication.authors.slice(0, -1) as author}
-								{author.last_name}, {author.first_name} &
+							{#each publication.authors as author, i}
+								{#if author.link && typeof author.link === 'string'}
+									<a href={author.link} class="text-blue-500"
+										>{author.last_name}, {author.first_name}
+									</a>
+								{:else}
+									<span>{author.last_name}, {author.first_name} </span>
+								{/if}
+								{#if i + 1 !== publication.authors.length}
+									<div>&</div>
+								{/if}
 							{/each}
-							{publication.authors.at(-1)?.last_name},
-							{publication.authors.at(-1)?.first_name}
 						</div>
 					{/if}
 				</div>

@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems } from '@directus/sdk';
+import { readItem, readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 
 export async function load({ fetch, url }) {
@@ -20,16 +20,38 @@ export async function load({ fetch, url }) {
 		)
 		.then((res) => res.map(({ name }) => name));
 
-	const publications = await directus.request(
-		readItems('publications', {
-			filter: {
-				laboratory: {
-					name: { _in: filters.laboratories.length !== 0 ? filters.laboratories : undefined }
-				}
-			},
-			sort: ['-publish_date']
-		})
-	);
-
+	const publications = await directus
+		.request(
+			readItems('publications', {
+				filter: {
+					laboratory: {
+						name: { _in: filters.laboratories.length !== 0 ? filters.laboratories : undefined }
+					}
+				},
+				sort: ['-publish_date']
+			})
+		)
+		.then(
+			async (res) =>
+				await Promise.all(
+					res.map(async (item) => {
+						return await {
+							...item,
+							authors: await Promise.all(
+								item.authors.map(async (author) => {
+									if (typeof author.link === 'undefined') return author;
+									if (typeof author.link === 'object') {
+										const person = await directus.request(readItem('people', author.link.key));
+										return {
+											...author,
+											link: `/people/${person.category}/${person.username}`
+										};
+									}
+								})
+							)
+						};
+					})
+				)
+		);
 	return { publications, laboratories_filters };
 }
