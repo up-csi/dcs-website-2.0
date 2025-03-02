@@ -39,7 +39,7 @@
 						class="absolute h-full w-full object-cover"
 					/>
 					<div
-						class="container absolute mx-auto flex flex-col gap-y-5 pb-14 text-secondary-foreground"
+						class="container absolute mx-auto flex flex-col items-center gap-y-5 pb-14 text-center text-secondary-foreground md:items-start md:text-left"
 					>
 						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
 						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
