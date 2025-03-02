@@ -7,6 +7,7 @@
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 
+	export let news;
 	let api: CarouselAPI;
 	let current = 0;
 	let count = 0;
@@ -30,18 +31,18 @@
 		on:mouseleave={plugin.reset}
 	>
 		<Carousel.Content>
-			{#each Array(6) as _}
+			{#each news as news_item}
 				<Carousel.Item class="relative h-full">
 					<img
 						src="source/to/image"
 						alt="Carousel Item"
 						class="relative h-[90vh] w-full bg-secondary"
 					/>
-					<div class="hidden">{_}</div>
+					<div class="hidden">stuff</div>
 					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
-						<h1 class="mb-5 text-4xl font-bold">Some Big Bold Description Text</h1>
-						<p class="text-md mb-5 font-semibold">Some extra description</p>
-						<Button href="/">Button</Button>
+						<h1 class="mb-5 text-4xl font-bold">{news_item.title}</h1>
+						<p class="text-md mb-5 font-semibold">{news_item.summary}</p>
+						<Button href="/">Read Story</Button>
 					</div>
 				</Carousel.Item>
 			{/each}

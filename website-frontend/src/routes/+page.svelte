@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import Hero from '$lib/components/carousels/LandingHero.svelte';
+	import LandingHero from '$lib/components/carousels/LandingHero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 
 	export let data;
@@ -10,7 +10,7 @@
 	$: featured = events?.slice(0, 3);
 </script>
 
-<Hero />
+<LandingHero {news} />
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 	<div class="space-y-5">
