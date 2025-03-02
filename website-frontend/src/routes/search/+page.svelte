@@ -89,9 +89,15 @@
 					{/if}
 
 					{#if content.includes('publications', 0)}
-						{#each publications as { title, authors, hero_image, laboratory, abstract }}
+						{#each publications as { title, authors, hero_image, abstract }}
 							<SearchResult image={hero_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
+								<p>
+									{#each authors.slice(0, -1) as { last_name }}
+										{last_name}, 
+									{/each}
+									{authors.at([-1])?.last_name}
+								</p>
 								<p class="line-clamp-2">{abstract}</p>
 							</SearchResult>
 						{/each}
