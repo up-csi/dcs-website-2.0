@@ -39,13 +39,22 @@
 						class="absolute h-full w-full object-cover"
 					/>
 					<div
-						class="text-secondary-foreground container absolute mx-auto flex flex-col gap-y-5 pb-14"
+						class="container absolute mx-auto flex flex-col gap-y-5 pb-14 text-secondary-foreground"
 					>
 						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
 						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
 						<Button class="w-fit rounded-full" href="/news/{news_item.slug}">Read Story</Button>
-						<div class="text-secondary-foreground text-sm font-semibold">
-							Item {current} of {count}
+						<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
+							{#each [...Array(count).keys()] as index}
+								{#if index + 1 === current}
+									<div class="h-2 w-6 rounded-full bg-white"></div>
+								{:else}
+									<button
+										class="h-2 w-2 rounded-full bg-gray-300"
+										on:click={() => api.scrollTo(index)}
+									></button>
+								{/if}
+							{/each}
 						</div>
 					</div>
 				</Carousel.Item>
