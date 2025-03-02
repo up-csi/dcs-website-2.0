@@ -43,7 +43,9 @@
 
 		links.forEach(link => {
 			link.addEventListener('click', () => {
-				mobile_toggle?.click();
+				if (mobile_open) {
+					mobile_toggle?.click();
+				}
 			});
 		});
 	});
