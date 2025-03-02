@@ -52,13 +52,11 @@
 </div>
 
 <div id="more-news" class="bg-primary py-24 text-primary-foreground">
-	<div class="container mx-auto flex h-full flex-col justify-center gap-y-8">
+	<div class="container flex h-full flex-col justify-center gap-y-8">
 		<h2 class="text-center text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
-		<div class="flex flex-wrap gap-5">
+		<div class="grid gap-5 md:grid-cols-4">
 			{#each news as news_item}
-				<div class="min-w-0 shrink-0 grow-0 basis-full md:basis-1/4">
-					<NewsCard {news_item} />
-				</div>
+				<NewsCard {news_item} />
 			{/each}
 		</div>
 	</div>
