@@ -3,8 +3,9 @@
 	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
-	import MobileNavList from '$lib/components/nav/MobileNavList.svelte';
+	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
     import SearchInput from "../search/SearchInput.svelte";
+	import { onMount } from 'svelte';
 
 	export let favicon;
 	export let facebook_link;
@@ -13,7 +14,7 @@
 
 	let search_open = false;
 
-	export let open = false;
+	let mobile_open = false;
 
 	let mobile_nav_display_block = "hidden";
 	let mobile_nav_display_flex = "hidden";
@@ -21,7 +22,7 @@
 	let header_justify = "justify-center";
 	let header_stick = "";
 
-	$: if (open) {
+	$: if (mobile_open) {
 		mobile_nav_display_block = "block";
 		mobile_nav_display_flex = "flex";
 		mobile_display_favicon = "hidden";
@@ -34,6 +35,18 @@
 		header_justify = "justify-center";
 		header_stick = "";
 	}
+
+	// As long as it works, am at my wits' end na
+	onMount(() => {
+		const links = Array.from(document.getElementsByTagName('a'));
+		const mobile_toggle = document.getElementById('mobile-toggle');
+
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				mobile_toggle?.click();
+			});
+		});
+	});
 </script>
 
 <div class="h-14 items-center py-2 lg:h-16 {header_stick} bg-background">
@@ -83,8 +96,8 @@
 
 			<!-- Mobile Navbar -->
 			<div class="lg:hidden h-10 w-10">
-				<button on:click={() => { open = !(open); }}>
-					{#if open}
+				<button on:click={() => { mobile_open = !(mobile_open); }} id="mobile-toggle">
+					{#if mobile_open}
 						<X class="w-full h-full border border-secondary rounded-full p-2 text-secondary hover:text-primary" />
 					{:else}
 						<Menu class="w-full h-full border border-secondary rounded-full p-2 text-secondary hover:text-primary" />
@@ -101,31 +114,31 @@
 	class="
     absolute mt-2 hidden h-fit w-full justify-center
 	lg:flex
-"
-	on:click={() => { search_open = false; }}
->
-	<nav
-		class="
-        sticky flex h-fit w-fit justify-between
-        rounded-3xl border border-header bg-secondary px-5 lg:z-50
-    "
-	>
-		<ul
+">
+	<button on:click={() => { search_open = false; }}>
+		<nav
 			class="
-            bottom-10 right-0 flex w-full
-            justify-center gap-2
-        "
+			sticky flex h-fit w-fit justify-between
+			rounded-3xl border border-header bg-secondary px-5 lg:z-50
+		"
 		>
-			<NavList />
-		</ul>
-	</nav>
+			<ul
+				class="
+				bottom-10 right-0 flex w-full
+				justify-center gap-2
+			"
+			>
+				<NavList />
+			</ul>
+		</nav>
+	</button>
 </div>
 
 
 <!-- Mobile Navbar -->
 <div
 	class="
-    fixed my-14 h-screen w-full justify-center bg-background
+    fixed my-14 h-screen w-full bg-background
 	{mobile_nav_display_flex} z-50
 "
 >	
@@ -150,7 +163,9 @@
 
 		<div class="p-20 pt-0 *:pt-5">
 			<SearchInput />
-			<MobileNavList bind:open />
+			<ScrollArea id="mobile-nav" class="w-full *:font-bold *:text-xl h-[70dvh]">
+    			<NavList />
+			</ScrollArea>
 		</div>
 	</nav>
 </div>
