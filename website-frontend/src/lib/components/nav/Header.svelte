@@ -4,11 +4,14 @@
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import MobileNavList from '$lib/components/nav/MobileNavList.svelte';
+    import SearchInput from "../search/SearchInput.svelte";
 
 	export let favicon;
 	export let facebook_link;
 	export let x_link;
 
+
+	let search_open = false;
 
 	export let open = false;
 
@@ -54,6 +57,10 @@
 		</div>
 
 		<div class="flex items-center {header_justify}">
+			<div class="hidden lg:block">
+				<SearchInput bind:search_open />
+			</div>
+
 			<!-- Social Media Links -->
 			<div class="flex items-center justify-center">
 				<a
@@ -94,7 +101,9 @@
 	class="
     absolute mt-2 hidden h-fit w-full justify-center
 	lg:flex
-">
+"
+	on:click={() => { search_open = false; }}
+>
 	<nav
 		class="
         sticky flex h-fit w-fit justify-between
@@ -140,6 +149,7 @@
 		</div>
 
 		<div class="p-20 pt-0 *:pt-5">
+			<SearchInput />
 			<MobileNavList bind:open />
 		</div>
 	</nav>
