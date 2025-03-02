@@ -14,7 +14,7 @@
 
 <!-- NavItem -->
 <li
-	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:border-b-2 lg:block {custom}"
+	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:border-b-2 border-foreground lg:block {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -25,7 +25,7 @@
 	<div
 		class="
         flex items-center justify-start border-0
-        px-2 text-sm *:text-secondary-foreground
+        px-2 text-sm
     "
 	>
 		<Button
@@ -48,8 +48,8 @@
 	{#if show && dropdown}
 		<ul
 			class="
-				full absolute w-fit rounded-lg border
-				bg-background/10 p-0.5 pr-4
+				full absolute w-fit rounded-lg border border-secondary
+				bg-secondary/25 p-0.5 pr-4
 				{position}
 			"
 		>

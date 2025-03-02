@@ -119,7 +119,7 @@
 		<nav
 			class="
 			sticky flex h-fit w-fit justify-between
-			rounded-3xl border border-header bg-secondary px-5 lg:z-50
+			rounded-3xl border border-secondary bg-secondary/25 px-5 lg:z-50
 		"
 		>
 			<ul
