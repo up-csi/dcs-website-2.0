@@ -56,7 +56,7 @@
 
 		{#each tabs as { tab, content, res }}
 			<Tabs.Content value={tab}>
-				<p class="text-3xl font-bold">{res} Search results</p>
+				<p class="text-3xl font-bold">{res} Search result{#if res !== 1}s{/if}</p>
 
 				{#if res > 0}
 					{#if content.includes('events', 0)}
