@@ -7,9 +7,7 @@
 
 	export let data;
 
-	$: ({ title, description, news, events } = data);
-
-	$: featured = events?.slice(0, 3);
+	$: ({ news, events } = data);
 </script>
 
 <LandingHero {news} />
@@ -29,7 +27,7 @@
 	<h2 class="text-xl font-bold md:text-2xl">Recent Events</h2>
 	<Carousel.Root>
 		<Carousel.Content>
-			{#each featured as event}
+			{#each events as event}
 				<Carousel.Item class="basis-full md:basis-1/4">
 					<FeaturedEventCard {event} />
 				</Carousel.Item>
