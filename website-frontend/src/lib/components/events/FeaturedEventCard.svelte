@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="space-y-2 p-4">
-			<div class="text-lg font-bold">
+			<div class="line-clamp-3 text-lg font-bold">
 				<h1>{event.event_headline}</h1>
 			</div>
 			<div class="flex items-center space-x-2 text-sm font-medium">
