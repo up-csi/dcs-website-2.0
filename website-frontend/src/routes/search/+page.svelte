@@ -94,7 +94,7 @@
 								<p class="text-xl font-bold">{title}</p>
 								<p>
 									{#each authors.slice(0, -1) as { last_name }}
-										{last_name}, 
+										{last_name},
 									{/each}
 									{authors.at([-1])?.last_name}
 								</p>
