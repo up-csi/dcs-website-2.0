@@ -38,28 +38,31 @@
 						alt="Carousel Item"
 						class="absolute h-full w-full object-cover"
 					/>
-					<div
-						class="container absolute mx-auto flex flex-col items-center gap-y-5 pb-14 text-center text-secondary-foreground md:items-start md:text-left"
-					>
-						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
-						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
-						<small class="text-xs md:text-sm">
-							by {news_item.user_created.first_name}
-							{news_item.user_created.last_name}
-						</small>
-						<Button class="w-fit rounded-full px-5" href="/news/{news_item.slug}">Read Story</Button
+					<div class="absolute w-full bg-gradient-to-t from-black to-transparent">
+						<div
+							class="container mx-auto flex flex-col items-center gap-y-5 pb-14 pt-72 text-center text-secondary-foreground md:items-start md:text-left"
 						>
-						<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
-							{#each [...Array(count).keys()] as index}
-								{#if index + 1 === current}
-									<div class="h-2 w-6 rounded-full bg-white"></div>
-								{:else}
-									<button
-										class="h-2 w-2 rounded-full bg-gray-300"
-										on:click={() => api.scrollTo(index)}
-									></button>
-								{/if}
-							{/each}
+							<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
+							<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
+							<small class="text-xs md:text-sm">
+								by {news_item.user_created.first_name}
+								{news_item.user_created.last_name}
+							</small>
+							<Button class="w-fit rounded-full px-5" href="/news/{news_item.slug}"
+								>Read Story</Button
+							>
+							<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
+								{#each [...Array(count).keys()] as index}
+									{#if index + 1 === current}
+										<div class="h-2 w-6 rounded-full bg-white"></div>
+									{:else}
+										<button
+											class="h-2 w-2 rounded-full bg-gray-300"
+											on:click={() => api.scrollTo(index)}
+										></button>
+									{/if}
+								{/each}
+							</div>
 						</div>
 					</div>
 				</Carousel.Item>
