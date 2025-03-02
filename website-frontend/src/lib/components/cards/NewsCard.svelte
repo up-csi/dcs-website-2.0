@@ -27,8 +27,17 @@
 		<Card.Content>
 			<Card.Description class="line-clamp-2">{news_item.summary}</Card.Description>
 		</Card.Content>
-		<Card.Footer>
-			<small>Stuff</small>
+		<Card.Footer class="flex justify-between">
+			<small class="text-xs text-gray-500"
+				>by {news_item.user_created.first_name} {news_item.user_created.last_name}</small
+			>
+			<small class="text-xs text-gray-500">
+				{new Date(news_item.date_created).toLocaleDateString('en-US', {
+					month: 'long',
+					day: 'numeric',
+					year: 'numeric'
+				})}
+			</small>
 		</Card.Footer>
 	</Card.Root>
 </a>
