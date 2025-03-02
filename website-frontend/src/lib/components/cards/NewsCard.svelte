@@ -7,13 +7,13 @@
 </script>
 
 <a href="/news/{news_item.slug}" data-sveltekit-reload>
-	<Card.Root class="flex h-[25rem] flex-col justify-end rounded-lg">
+	<Card.Root class="flex h-[25rem] flex-col justify-end rounded-lg border-none">
 		<div class="flex min-h-0 flex-1 justify-center">
 			{#if news_item.background_image}
 				<img
 					src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
 					alt={news_item.title}
-					class="w-full object-cover"
+					class="w-full rounded-t-lg object-cover"
 				/>
 			{:else}
 				<div class="flex w-full items-center justify-center bg-muted">
