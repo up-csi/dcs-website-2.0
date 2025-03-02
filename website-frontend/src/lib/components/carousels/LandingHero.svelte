@@ -39,12 +39,12 @@
 						class="absolute h-full w-full object-cover"
 					/>
 					<div
-						class="container absolute mx-auto flex flex-col gap-y-5 pb-14 text-secondary-foreground"
+						class="text-secondary-foreground container absolute mx-auto flex flex-col gap-y-5 pb-14"
 					>
 						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
 						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
-						<Button class="w-fit" href="/news/{news_item.slug}">Read Story</Button>
-						<div class="text-sm font-semibold text-secondary-foreground">
+						<Button class="w-fit rounded-full" href="/news/{news_item.slug}">Read Story</Button>
+						<div class="text-secondary-foreground text-sm font-semibold">
 							Item {current} of {count}
 						</div>
 					</div>
