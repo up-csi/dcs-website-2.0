@@ -16,7 +16,7 @@
 					class="w-full rounded-t-lg object-cover"
 				/>
 			{:else}
-				<div class="flex w-full items-center justify-center bg-muted">
+				<div class="flex w-full items-center justify-center rounded-t-lg bg-muted">
 					<ScrollText class="w-20 bg-muted text-muted-foreground" />
 				</div>
 			{/if}
