@@ -12,11 +12,9 @@
 
 <LandingHero {news} />
 
-<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-	<div class="space-y-5">
-		<h1 class="h1">{title}</h1>
-		<p>{description}</p>
-	</div>
+<div class="container mx-auto my-8 flex h-full flex-col justify-center gap-y-5">
+	<h2 class="text-xl font-bold md:text-2xl">Recent News</h2>
+	<p>{description}</p>
 	<div class="my-5">
 		<div class="flex justify-between">
 			<h2>News</h2>
@@ -37,15 +35,10 @@
 			{/each}
 		</div>
 	</div>
-	<div class="my-5">
-		<div class="flex justify-between">
-			<h2>Events</h2>
-			<a href="/events">View all &#8594;</a>
-		</div>
-		<div class="my-12 flex space-x-8 overflow-x-auto">
-			{#each featured as event}
-				<FeaturedEventCard {event} />
-			{/each}
-		</div>
+	<h2 class="text-xl font-bold md:text-2xl">Recent Events</h2>
+	<div class="flex space-x-8 overflow-x-auto">
+		{#each featured as event}
+			<FeaturedEventCard {event} />
+		{/each}
 	</div>
 </div>
