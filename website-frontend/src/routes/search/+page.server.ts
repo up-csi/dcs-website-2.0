@@ -13,6 +13,6 @@ export async function load({ fetch }) {
 		events: await directus.request(readItems('events')),
 		people: await directus.request(readItems('people')),
 		laboratories: await directus.request(readItems('laboratories')),
-		publications: await directus.request(readItems('publications')),
+		publications: await directus.request(readItems('publications'))
 	};
 }

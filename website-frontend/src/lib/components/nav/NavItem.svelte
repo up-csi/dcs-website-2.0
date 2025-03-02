@@ -1,5 +1,5 @@
 <script lang="ts">
-    import * as Accordion from "$lib/@shadcn-svelte/ui/accordion";
+	import * as Accordion from '$lib/@shadcn-svelte/ui/accordion';
 	import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
@@ -14,7 +14,7 @@
 
 <!-- NavItem -->
 <li
-	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:border-b-2 border-foreground lg:block {custom}"
+	class="relative hidden w-full list-none border-foreground transition-colors duration-300 ease-in-out hover:border-b-2 lg:block {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -59,7 +59,7 @@
 </li>
 
 <!-- Mobile NavItem -->
-<div class="lg:hidden w-full py-2">
+<div class="w-full py-2 lg:hidden">
 	{#if dropdown}
 		<Accordion.Root>
 			<Accordion.Item value={to} class="border-none">
@@ -73,6 +73,6 @@
 			</Accordion.Item>
 		</Accordion.Root>
 	{:else}
-    	<a {href}>{to}</a>
+		<a {href}>{to}</a>
 	{/if}
 </div>

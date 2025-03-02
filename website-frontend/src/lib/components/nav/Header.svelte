@@ -4,36 +4,35 @@
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
-    import SearchInput from "../search/SearchInput.svelte";
+	import SearchInput from '../search/SearchInput.svelte';
 	import { onMount } from 'svelte';
 
 	export let favicon;
 	export let facebook_link;
 	export let x_link;
 
-
 	let search_open = false;
 
 	let mobile_open = false;
 
-	let mobile_nav_display_block = "hidden";
-	let mobile_nav_display_flex = "hidden";
-	let mobile_display_favicon = "flex";
-	let header_justify = "justify-center";
-	let header_stick = "";
+	let mobile_nav_display_block = 'hidden';
+	let mobile_nav_display_flex = 'hidden';
+	let mobile_display_favicon = 'flex';
+	let header_justify = 'justify-center';
+	let header_stick = '';
 
 	$: if (mobile_open) {
-		mobile_nav_display_block = "block";
-		mobile_nav_display_flex = "flex";
-		mobile_display_favicon = "hidden";
-		header_justify = "w-full justify-between";
-		header_stick = "fixed w-full z-50";
+		mobile_nav_display_block = 'block';
+		mobile_nav_display_flex = 'flex';
+		mobile_display_favicon = 'hidden';
+		header_justify = 'w-full justify-between';
+		header_stick = 'fixed w-full z-50';
 	} else {
-		mobile_nav_display_block = "hidden";
-		mobile_nav_display_flex = "hidden";
-		mobile_display_favicon = "flex";
-		header_justify = "justify-center";
-		header_stick = "";
+		mobile_nav_display_block = 'hidden';
+		mobile_nav_display_flex = 'hidden';
+		mobile_display_favicon = 'flex';
+		header_justify = 'justify-center';
+		header_stick = '';
 	}
 
 	// As long as it works, am at my wits' end na
@@ -41,7 +40,7 @@
 		const links = Array.from(document.getElementsByTagName('a'));
 		const mobile_toggle = document.getElementById('mobile-toggle');
 
-		links.forEach(link => {
+		links.forEach((link) => {
 			link.addEventListener('click', () => {
 				if (mobile_open) {
 					mobile_toggle?.click();
@@ -97,12 +96,21 @@
 			</div>
 
 			<!-- Mobile Navbar -->
-			<div class="lg:hidden h-10 w-10">
-				<button on:click={() => { mobile_open = !(mobile_open); }} id="mobile-toggle">
+			<div class="h-10 w-10 lg:hidden">
+				<button
+					on:click={() => {
+						mobile_open = !mobile_open;
+					}}
+					id="mobile-toggle"
+				>
 					{#if mobile_open}
-						<X class="w-full h-full border border-secondary rounded-full p-2 text-secondary hover:text-primary" />
+						<X
+							class="h-full w-full rounded-full border border-secondary p-2 text-secondary hover:text-primary"
+						/>
 					{:else}
-						<Menu class="w-full h-full border border-secondary rounded-full p-2 text-secondary hover:text-primary" />
+						<Menu
+							class="h-full w-full rounded-full border border-secondary p-2 text-secondary hover:text-primary"
+						/>
 					{/if}
 				</button>
 			</div>
@@ -110,14 +118,18 @@
 	</div>
 </div>
 
-
 <!-- Navbar -->
 <div
 	class="
     absolute mt-2 hidden h-fit w-full justify-center
 	lg:flex
-">
-	<button on:click={() => { search_open = false; }}>
+"
+>
+	<button
+		on:click={() => {
+			search_open = false;
+		}}
+	>
 		<nav
 			class="
 			sticky flex h-fit w-fit justify-between
@@ -136,14 +148,13 @@
 	</button>
 </div>
 
-
 <!-- Mobile Navbar -->
 <div
 	class="
     fixed my-14 h-screen w-full bg-background
 	{mobile_nav_display_flex} z-50
 "
->	
+>
 	<nav class="w-full">
 		<!-- Favicons -->
 		<div class="my-2 flex items-center justify-center lg:hidden">
@@ -165,8 +176,8 @@
 
 		<div class="p-20 pt-0 *:pt-5">
 			<SearchInput />
-			<ScrollArea id="mobile-nav" class="w-full *:font-bold *:text-xl h-[70dvh]">
-    			<NavList />
+			<ScrollArea id="mobile-nav" class="h-[70dvh] w-full *:text-xl *:font-bold">
+				<NavList />
 			</ScrollArea>
 		</div>
 	</nav>
