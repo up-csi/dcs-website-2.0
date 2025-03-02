@@ -44,7 +44,7 @@
 	<Tabs.Root value="All">
 		<ScrollArea orientation="horizontal">
 			<Tabs.List class="mt-20 flex w-full items-center justify-center bg-background">
-				{#each tabs as { tab, res, ...rest }}
+				{#each tabs as { tab, res }}
 					<Tabs.Trigger
 						value={tab}
 						class="focus:ring-none rounded-none data-[state=active]:shadow-none lg:data-[state=active]:border-b-2"
@@ -56,11 +56,13 @@
 
 		{#each tabs as { tab, content, res }}
 			<Tabs.Content value={tab}>
-				<p class="text-3xl font-bold">{res} Search result{#if res !== 1}s{/if}</p>
+				<p class="text-3xl font-bold">
+					{res} Search result{#if res !== 1}s{/if}
+				</p>
 
 				{#if res > 0}
 					{#if content.includes('events', 0)}
-						{#each events as { event_headline, event_content, hero_image, ...rest }}
+						{#each events as { event_headline, event_content, hero_image }}
 							<SearchResult image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
 								<p class="line-clamp-2">{@html event_content}</p>
@@ -69,7 +71,7 @@
 					{/if}
 
 					{#if content.includes('people', 0)}
-						{#each people as { first_name, last_name, profile_image, position, ...rest }}
+						{#each people as { first_name, last_name, profile_image, position }}
 							<SearchResult image={profile_image} name="{first_name} {last_name}">
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
 								<p>{position}</p>
@@ -78,7 +80,7 @@
 					{/if}
 
 					{#if content.includes('laboratories', 0)}
-						{#each laboratories as { name, description, logo, ...rest }}
+						{#each laboratories as { name, description, logo }}
 							<SearchResult image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								<p class="line-clamp-2">{description}</p>
@@ -87,7 +89,7 @@
 					{/if}
 
 					{#if content.includes('publications', 0)}
-						{#each publications as { title, authors, hero_image, laboratory, abstract, ...rest }}
+						{#each publications as { title, authors, hero_image, laboratory, abstract }}
 							<SearchResult image={hero_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
 								<p class="line-clamp-2">{abstract}</p>
@@ -96,10 +98,10 @@
 					{/if}
 				{:else}
 					<div class="relative h-[50vh]">
-						<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+						<div class="absolute left-0 top-0 flex h-full w-full items-center justify-center">
 							<Search class="h-[30vh] w-[30vh] text-secondary/25" />
 						</div>
-						<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+						<div class="absolute left-0 top-0 flex h-full w-full items-center justify-center">
 							<p>No search results for <b>{search_value}</b></p>
 						</div>
 					</div>
