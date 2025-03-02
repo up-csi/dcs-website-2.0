@@ -27,28 +27,29 @@
 	<Carousel.Root
 		bind:api
 		plugins={[plugin, Fade()]}
-		class="relative h-[90vh] w-full"
 		on:mousenter={plugin.stop}
 		on:mouseleave={plugin.reset}
 	>
 		<Carousel.Content>
 			{#each news as news_item}
-				<Carousel.Item class="relative h-full">
+				<Carousel.Item class="relative flex h-[90vh] flex-col items-center justify-end">
 					<img
 						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
 						alt="Carousel Item"
-						class="relative h-[90vh] w-full"
+						class="absolute h-full w-full object-cover"
 					/>
-					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
-						<h1 class="mb-5 text-4xl font-bold">{news_item.title}</h1>
-						<p class="text-md mb-5 font-semibold">{news_item.summary}</p>
-						<Button href="/news/{news_item.slug}">Read Story</Button>
+					<div
+						class="container absolute mx-auto flex flex-col gap-y-5 pb-14 text-secondary-foreground"
+					>
+						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
+						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
+						<Button class="w-fit" href="/news/{news_item.slug}">Read Story</Button>
+						<div class="text-sm font-semibold text-secondary-foreground">
+							Item {current} of {count}
+						</div>
 					</div>
 				</Carousel.Item>
 			{/each}
 		</Carousel.Content>
 	</Carousel.Root>
-	<div class="absolute -mt-20 text-sm font-semibold text-secondary-foreground md:px-20">
-		Item {current} of {count}
-	</div>
 </div>
