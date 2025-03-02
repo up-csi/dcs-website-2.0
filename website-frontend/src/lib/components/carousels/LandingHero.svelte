@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_APIURL } from '$env/static/public';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import Autoplay from 'embla-carousel-autoplay';
@@ -34,11 +35,10 @@
 			{#each news as news_item}
 				<Carousel.Item class="relative h-full">
 					<img
-						src="source/to/image"
+						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
 						alt="Carousel Item"
-						class="relative h-[90vh] w-full bg-secondary"
+						class="relative h-[90vh] w-full"
 					/>
-					<div class="hidden">stuff</div>
 					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
 						<h1 class="mb-5 text-4xl font-bold">{news_item.title}</h1>
 						<p class="text-md mb-5 font-semibold">{news_item.summary}</p>
