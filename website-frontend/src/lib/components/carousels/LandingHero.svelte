@@ -42,7 +42,7 @@
 					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
 						<h1 class="mb-5 text-4xl font-bold">{news_item.title}</h1>
 						<p class="text-md mb-5 font-semibold">{news_item.summary}</p>
-						<Button href="/">Read Story</Button>
+						<Button href="/news/{news_item.slug}">Read Story</Button>
 					</div>
 				</Carousel.Item>
 			{/each}
