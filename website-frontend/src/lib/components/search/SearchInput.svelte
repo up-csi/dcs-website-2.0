@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Search, X } from 'lucide-svelte';
-    import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 
     export let search_open = false;
     let typing = false;
@@ -19,13 +18,14 @@
 </script>
 
 <div class="h-fit w-full">
-    <form action="">
-        <div class="flex items-center border lg:{border_display} rounded-3xl w-full pr-1 pl-3" on:focusin={() => { typing = true; }} on:focusout={() => { setTimeout(() => { typing = false; }, 200); }}>
-            <input type="text" class="focus:outline-none w-full lg:{input_display}" bind:this={txt_area} />
+    <form action="" class="rounded-3xl border lg:{border_display}">
+        <div class="flex items-center w-full pr-1 pl-3">
+            <input type="text" class="focus:outline-none w-full lg:{input_display}" bind:this={txt_area} on:input={() => { typing = true; }} />
+
             {#if typing}
-                <button class="h-10 w-10 flex items-center justify-center" on:click={() => { txt_area.value = ""; }}><X class="h-8 w-8 bg-secondary rounded-3xl p-1" /></button>
+                <button class="h-10 w-10 flex items-center justify-center mr-2" on:click={() => { txt_area.value = ""; typing = false; }}><X class="h-8 w-8 bg-secondary rounded-3xl p-1" /></button>
             {:else}
-                <button type="submit" class="h-10 w-10 flex items-center justify-center" on:click={() => { search_open = true; }}><Search class="h-10 text-secondary hover:text-primary" /></button>
+                <button type="submit" class="h-10 w-10 flex items-center justify-center" on:click={() => { search_open = !(search_open); }}><Search class="h-10 text-secondary hover:text-primary" /></button>
             {/if}
         </div>
     </form>
