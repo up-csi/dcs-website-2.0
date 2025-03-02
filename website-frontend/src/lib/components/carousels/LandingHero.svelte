@@ -33,11 +33,13 @@
 		<Carousel.Content>
 			{#each news as news_item}
 				<Carousel.Item class="relative flex h-[90vh] flex-col items-center justify-end">
-					<img
-						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
-						alt="Carousel Item"
-						class="absolute h-full w-full object-cover"
-					/>
+					{#if news_item.background_image}
+						<img
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+							alt="Carousel Item"
+							class="absolute h-full w-full object-cover"
+						/>
+					{/if}
 					<div class="absolute w-full bg-gradient-to-t from-black to-transparent">
 						<div
 							class="container mx-auto flex flex-col items-center gap-y-5 pb-14 pt-72 text-center text-secondary-foreground md:items-start md:text-left"
