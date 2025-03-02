@@ -2,8 +2,11 @@
 	/** @type {import('./$types').PageData} */
 
 	import * as Tabs from '$lib/@shadcn-svelte/ui/tabs';
+	import { Search } from 'lucide-svelte';
 	import SearchResult from '$lib/components/search/SearchResult.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
+
+	export let search_value = 'clarisse';
 
 	export let data;
 	$: ({ events, people, laboratories, publications } = data);
@@ -12,7 +15,7 @@
 		{
 			tab: 'All',
 			content: ['events', 'people', 'laboratories', 'publications'],
-			res: 0
+			res: 1
 		},
 		{
 			tab: 'Events',
@@ -55,40 +58,51 @@
 			<Tabs.Content value={tab}>
 				<p class="text-3xl font-bold">{res} Search results</p>
 
-				{#if content.includes('events', 0)}
-					{#each events as { event_headline, event_content, hero_image, ...rest }}
-						<SearchResult image={hero_image} name={event_headline}>
-							<p class="text-xl font-bold">{event_headline}</p>
-							<p class="line-clamp-2">{@html event_content}</p>
-						</SearchResult>
-					{/each}
-				{/if}
+				{#if res > 0}
+					{#if content.includes('events', 0)}
+						{#each events as { event_headline, event_content, hero_image, ...rest }}
+							<SearchResult image={hero_image} name={event_headline}>
+								<p class="text-xl font-bold">{event_headline}</p>
+								<p class="line-clamp-2">{@html event_content}</p>
+							</SearchResult>
+						{/each}
+					{/if}
 
-				{#if content.includes('people', 0)}
-					{#each people as { first_name, last_name, profile_image, position, ...rest }}
-						<SearchResult image={profile_image} name="{first_name} {last_name}">
-							<p class="text-xl font-bold">{first_name} {last_name}</p>
-							<p>{position}</p>
-						</SearchResult>
-					{/each}
-				{/if}
+					{#if content.includes('people', 0)}
+						{#each people as { first_name, last_name, profile_image, position, ...rest }}
+							<SearchResult image={profile_image} name="{first_name} {last_name}">
+								<p class="text-xl font-bold">{first_name} {last_name}</p>
+								<p>{position}</p>
+							</SearchResult>
+						{/each}
+					{/if}
 
-				{#if content.includes('laboratories', 0)}
-					{#each laboratories as { name, description, logo, ...rest }}
-						<SearchResult image={logo} {name}>
-							<p class="text-xl font-bold">{name}</p>
-							<p class="line-clamp-2">{description}</p>
-						</SearchResult>
-					{/each}
-				{/if}
+					{#if content.includes('laboratories', 0)}
+						{#each laboratories as { name, description, logo, ...rest }}
+							<SearchResult image={logo} {name}>
+								<p class="text-xl font-bold">{name}</p>
+								<p class="line-clamp-2">{description}</p>
+							</SearchResult>
+						{/each}
+					{/if}
 
-				{#if content.includes('publications', 0)}
-					{#each publications as { title, authors, hero_image, laboratory, abstract, ...rest }}
-						<SearchResult image={hero_image} name={title}>
-							<p class="text-xl font-bold">{title}</p>
-							<p class="line-clamp-2">{abstract}</p>
-						</SearchResult>
-					{/each}
+					{#if content.includes('publications', 0)}
+						{#each publications as { title, authors, hero_image, laboratory, abstract, ...rest }}
+							<SearchResult image={hero_image} name={title}>
+								<p class="text-xl font-bold">{title}</p>
+								<p class="line-clamp-2">{abstract}</p>
+							</SearchResult>
+						{/each}
+					{/if}
+				{:else}
+					<div class="relative h-[50vh]">
+						<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+							<Search class="h-[30vh] w-[30vh] text-secondary/25" />
+						</div>
+						<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+							<p>No search results for <b>{search_value}</b></p>
+						</div>
+					</div>
 				{/if}
 			</Tabs.Content>
 		{/each}
