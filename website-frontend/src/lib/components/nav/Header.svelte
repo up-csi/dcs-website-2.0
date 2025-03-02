@@ -3,10 +3,12 @@
 	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
+	import MobileNavList from '$lib/components/nav/MobileNavList.svelte';
 
 	export let favicon;
 	export let facebook_link;
 	export let x_link;
+
 
 	export let open = false;
 
@@ -107,5 +109,38 @@
 		>
 			<NavList />
 		</ul>
+	</nav>
+</div>
+
+
+<!-- Mobile Navbar -->
+<div
+	class="
+    fixed my-14 h-screen w-full justify-center bg-background
+	{mobile_nav_display_flex} z-50
+"
+>	
+	<nav class="w-full">
+		<!-- Favicons -->
+		<div class="my-2 flex items-center justify-center lg:hidden">
+			<img
+				src={favicon}
+				alt="UP"
+				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+			/>
+			<img
+				src={favicon}
+				alt="DCS"
+				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+			/>
+			<div class="font-semibold text-primary">
+				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
+				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+			</div>
+		</div>
+
+		<div class="p-20 pt-0 *:pt-5">
+			<MobileNavList bind:open />
+		</div>
 	</nav>
 </div>
