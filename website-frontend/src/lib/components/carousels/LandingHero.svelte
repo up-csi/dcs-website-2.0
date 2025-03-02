@@ -43,6 +43,10 @@
 					>
 						<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
 						<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
+						<small class="text-xs md:text-sm">
+							by {news_item.user_created.first_name}
+							{news_item.user_created.last_name}
+						</small>
 						<Button class="w-fit rounded-full" href="/news/{news_item.slug}">Read Story</Button>
 						<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
 							{#each [...Array(count).keys()] as index}
