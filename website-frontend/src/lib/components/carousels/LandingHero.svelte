@@ -47,7 +47,8 @@
 							by {news_item.user_created.first_name}
 							{news_item.user_created.last_name}
 						</small>
-						<Button class="w-fit rounded-full" href="/news/{news_item.slug}">Read Story</Button>
+						<Button class="w-fit rounded-full px-5" href="/news/{news_item.slug}">Read Story</Button
+						>
 						<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
 							{#each [...Array(count).keys()] as index}
 								{#if index + 1 === current}
