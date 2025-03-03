@@ -72,7 +72,7 @@
 				<Carousel.Content>
 					{#each other_news as news_item}
 						<Carousel.Item class="basis-full md:basis-1/4">
-							<NewsCard {news_item} />
+							<NewsCard onDark {news_item} />
 						</Carousel.Item>
 					{/each}
 				</Carousel.Content>
