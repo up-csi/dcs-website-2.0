@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_APIURL } from '$env/static/public';
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
@@ -7,7 +8,8 @@
 	import SearchInput from '../search/SearchInput.svelte';
 	import { onMount } from 'svelte';
 
-	export let favicon;
+	export let primary_logo;
+	export let secondary_logo;
 	export let facebook_link;
 	export let x_link;
 
@@ -55,12 +57,12 @@
 		<!-- Favicons -->
 		<div class="my-auto {mobile_display_favicon} items-center justify-center">
 			<img
-				src={favicon}
+				src="{PUBLIC_APIURL}/assets/{primary_logo}"
 				alt="UP"
 				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 			/>
 			<img
-				src={favicon}
+				src="{PUBLIC_APIURL}/assets/{secondary_logo}"
 				alt="DCS"
 				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
 			/>
@@ -159,12 +161,12 @@
 		<!-- Favicons -->
 		<div class="my-2 flex items-center justify-center lg:hidden">
 			<img
-				src={favicon}
+				src="{PUBLIC_APIURL}/assets/{primary_logo}"
 				alt="UP"
 				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 			/>
 			<img
-				src={favicon}
+				src="{PUBLIC_APIURL}/assets/{secondary_logo}"
 				alt="DCS"
 				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
 			/>

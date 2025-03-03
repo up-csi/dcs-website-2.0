@@ -8,6 +8,8 @@
 		title,
 		description,
 		favicon,
+		primary_logo,
+		secondary_logo,
 		contact_number,
 		contact_email,
 		address,
@@ -44,7 +46,7 @@
 </svelte:head>
 
 <header>
-	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" {facebook_link} {x_link} />
+	<Header {primary_logo} {secondary_logo} {facebook_link} {x_link} />
 </header>
 
 <main>

@@ -6,7 +6,10 @@ const Metadata = object({
 	favicon: string()
 });
 
-const Header = object({});
+const Header = object({
+	primary_logo: string(),
+	secondary_logo: string()
+});
 
 const Footer = object({
 	address: array(
