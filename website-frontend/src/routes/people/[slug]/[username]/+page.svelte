@@ -3,6 +3,7 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/PeopleBanner.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
+	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
 
 	export let data;
 	const { person } = data;
@@ -33,33 +34,14 @@
 							authors: pub.authors,
 							publish_date: pub.publish_date,
 							hero_image: pub.hero_image,
-							linked_authors: pub.linked_authors
+							linked_authors: pub.linked_authors,
+							abstract: pub.abstract,
+							access_links: pub.access_links
 						};
 					}
 					return {};
 				})
 		: [];
-
-	const authors = publications.map((publication) => publication.authors);
-
-	const linked_authors = publications.map((publication) => {
-		return publication.linked_authors
-			? publication.linked_authors
-					.filter((linked_author) => typeof linked_author !== 'string')
-					.map((linked_author) => {
-						const author = linked_author.people_id;
-						if (typeof author !== 'string') {
-							return {
-								username: author.username,
-								category: author.category,
-								first_name: author.first_name,
-								last_name: author.last_name
-							};
-						}
-						return {};
-					})
-			: [];
-	});
 </script>
 
 <div>
@@ -102,60 +84,24 @@
 			{#if person.location || person.interests}
 				<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
 			{/if}
-
-			{#if publications.length > 0}
-				<h2 class="text-2xl font-bold text-primary-foreground">Publications</h2>
-				{#each publications as publication, i}
-					<div class="space-y-4">
-						<div class="space-y-4">
-							<div class="flex flex-col">
-								<div class="flex items-center space-x-4">
-									{#if publication.hero_image}
-										<img
-											src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
-											alt={publication.title}
-											class="h-16 w-16 rounded-md"
-										/>
-									{:else}
-										<div class="h-16 w-16 rounded-md bg-gray-300"></div>
-									{/if}
-									<div class="flex flex-col space-y-1">
-										<p class="text-lg font-bold text-primary-foreground">{publication.title}</p>
-										<p class="text-sm text-gray-400">{publication.publish_date}</p>
-									</div>
-								</div>
-								<div class="ml-20 flex flex-col">
-									{#if authors[i]}
-										<p class="text-md text-primary-foreground">Authors:</p>
-										<div class="flex flex-col">
-											{#each authors[i] as author}
-												<p class="text-sm text-gray-400">
-													{author.first_name}
-													{author.last_name}
-												</p>
-											{/each}
-										</div>
-									{/if}
-									{#if linked_authors[i]}
-										<div class="flex flex-col">
-											{#each linked_authors[i] as linked_author}
-												<a
-													class="text-sm text-blue-400"
-													href="/people/{linked_author.category}/{linked_author.username}"
-													data-sveltekit-reload
-												>
-													{linked_author.first_name}
-													{linked_author.last_name}
-												</a>
-											{/each}
-										</div>
-									{/if}
-								</div>
-							</div>
-						</div>
-					</div>
-				{/each}
-			{/if}
 		</div>
+		{#if publications.length > 0}
+			<div class="space-y-9 bg-white px-4 pb-16 pt-9 md:space-y-12 md:px-10 md:pb-24 md:pt-12">
+				<div class="mb-8 flex items-center justify-between">
+					<h2 class="text-primary-background text-2xl font-bold">Publications</h2>
+					<a href="/publications" class="flex items-center text-sm text-primary-foreground">
+						View all
+					</a>
+				</div>
+
+				<div
+					class="mx-auto grid max-w-[94vw] grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-4"
+				>
+					{#each publications as publication}
+						<PublicationCard {publication} />
+					{/each}
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>
