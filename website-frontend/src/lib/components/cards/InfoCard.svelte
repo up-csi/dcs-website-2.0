@@ -5,7 +5,7 @@
 	export let office: string = '';
 	export let interests: string = '';
 
-	let interestList = interests.split(",").map(i => i.trim());
+	let interestList = interests.split(',').map((i) => i.trim());
 </script>
 
 <div class="space-y-8 rounded-lg bg-background/20 p-6 md:p-10">
@@ -21,7 +21,7 @@
 			<p class="text-primary-foreground/60">Interests</p>
 			<ul class="list-disc pl-5 text-primary-foreground">
 				{#each interestList as interest}
-				  <li>{interest}</li>
+					<li>{interest}</li>
 				{/each}
 			</ul>
 		</div>
