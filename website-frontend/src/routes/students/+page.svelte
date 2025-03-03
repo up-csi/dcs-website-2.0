@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import Banner from '$lib/components/banner/Banner.svelte';
+	import Banner from '$lib/components/banners/Banner.svelte';
 
 	export let data;
 	const { students_overview } = data;

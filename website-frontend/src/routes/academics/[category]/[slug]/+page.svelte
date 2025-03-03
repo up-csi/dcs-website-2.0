@@ -1,6 +1,6 @@
 <script>
 	/** @type {import('./$types').PageData} */
-	import Banner from '$lib/components/banner/Banner.svelte';
+	import Banner from '$lib/components/banners/Banner.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 
 	export let data;

@@ -1,6 +1,8 @@
 <script>
 	/** @type {import('./$types').PageData} */
-	import { PUBLIC_APIURL } from '$env/static/public';
+	import Banner from '$lib/components/banners/PeopleBanner.svelte';
+	import InfoCard from '$lib/components/cards/InfoCard.svelte';
+
 	export let data;
 	const { person } = data;
 
@@ -14,35 +16,46 @@
 							laboratory: affiliation.laboratories_id.name
 						};
 					}
-					return null;
+					return {};
 				})
-				.filter(Boolean)
 		: [];
 </script>
 
 <div>
-	<h1 class="py-4 text-3xl font-bold">{person.first_name} {person.last_name}</h1>
-	<p class="text-md">{person.position}</p>
-	<img
-		src="{PUBLIC_APIURL}/assets/{person.profile_image}"
-		alt="{person.first_name} {person.last_name} profile picture"
-	/>
-	<p>{person.email}</p>
-	<p>{person.location}</p>
-	<p>{person.interests}</p>
-	{#if person.educational_attainment}
-		{#each person.educational_attainment as education}
-			<p>
-				{education.degree} from {education.institution} ({education.start_date} - {education.end_date})
-			</p>
-		{/each}
-	{/if}
-	{#if affiliations.length > 0}
-		<h2 class="py-2 text-2xl font-bold">Affiliations</h2>
-		<ul>
-			{#each affiliations as affiliation}
-				<li>{affiliation?.role} {affiliation?.laboratory}</li>
-			{/each}
-		</ul>
-	{/if}
+	<div class="relative z-0">
+		<Banner
+			background_image={person.background_image ?? ''}
+			profile_image={person.profile_image ?? ''}
+			first_name={person.first_name}
+			last_name={person.last_name}
+			position={person.position}
+			email={person.email ?? ''}
+			laboratory={affiliations[0]?.laboratory ?? ''}
+			category={person.category}
+		/>
+	</div>
+
+	<div class="bg-[#343541]">
+		<div
+			class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
+		>
+			<div class="text-lg leading-normal text-primary-foreground">
+				{#if person.educational_attainment}
+					{#each person.educational_attainment as education}
+						<p>
+							{education.degree} from {education.institution}
+							{education.start_date ? ` (${new Date(education.start_date).getFullYear()}` : ''}
+							{education.end_date
+								? ` - ${new Date(education.end_date).getFullYear()})`
+								: education.start_date
+									? ')'
+									: ''}
+						</p>
+					{/each}
+				{/if}
+			</div>
+
+			<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
+		</div>
+	</div>
 </div>

@@ -3,6 +3,7 @@
 
 	import { Person } from '$lib/models/people';
 	export let person: Person;
+	export let laboratory: string;
 </script>
 
 <div class="card relative flex h-full flex-col overflow-hidden md:h-[380px]">
@@ -39,9 +40,11 @@
 				{person.first_name}
 				{person.last_name}
 			</h3>
-			<div class="flex items-center justify-center text-xs text-gray-500 md:px-6">
-				<p class="line-clamp-2 w-full">Computer Vision and Machine Intelligence Group</p>
-			</div>
+			{#if laboratory}
+				<div class="flex items-center justify-center text-xs text-gray-500 md:px-6">
+					<p class="line-clamp-2 w-full">{laboratory}</p>
+				</div>
+			{/if}
 		</div>
 	</div>
 </div>

@@ -2,29 +2,49 @@
 	export let location: string = '';
 	export let contact_email: string = '';
 	export let founding_date: string = '';
+	export let office: string = '';
+	export let interests: string = '';
+
+	let interestList = interests.split(',').map((i) => i.trim());
 </script>
 
-<div class="space-y-5 rounded-lg bg-background/20 p-6 md:p-10">
+<div class="space-y-8 rounded-lg bg-background/20 p-6 md:p-10">
+	{#if office}
+		<div>
+			<p class="text-primary-foreground/60">Office</p>
+			<p class="text-primary-foreground">{office}</p>
+		</div>
+	{/if}
+
+	{#if interests}
+		<div>
+			<p class="text-primary-foreground/60">Interests</p>
+			<ul class="list-disc pl-5 text-primary-foreground">
+				{#each interestList as interest}
+					<li>{interest}</li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
+
 	{#if location}
 		<div>
 			<p class="text-primary-foreground/60">Location</p>
-			<p class="-mt-1 text-lg font-semibold text-primary-foreground">{location}</p>
+			<p class="text-lg text-primary-foreground">{location}</p>
 		</div>
 	{/if}
 
 	{#if contact_email}
 		<div>
 			<p class="text-primary-foreground/60">Contact Email</p>
-			<a class="-mt-1 text-lg font-semibold text-primary-foreground" href="mailto:{contact_email}"
-				>{contact_email}</a
-			>
+			<a class="text-lg text-primary-foreground" href="mailto:{contact_email}">{contact_email}</a>
 		</div>
 	{/if}
 
 	{#if founding_date}
 		<div>
 			<p class="text-primary-foreground/60">Founded</p>
-			<p class="-mt-1 text-lg font-semibold text-primary-foreground">
+			<p class="text-lg text-primary-foreground">
 				{new Date(founding_date).toLocaleDateString('en-US', {
 					month: 'long',
 					day: 'numeric',
