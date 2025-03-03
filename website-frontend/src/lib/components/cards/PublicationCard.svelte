@@ -78,7 +78,7 @@
 							{/if}
 							{#each publication.authors as author, i}
 								{#if author.link && typeof author.link === 'string'}
-									<a href={author.link} class="text-blue-500"
+									<a href={author.link} class="text-blue-500" data-sveltekit-reload
 										>{author.last_name}, {author.first_name}
 									</a>
 								{:else}
