@@ -36,26 +36,28 @@
 			<div
 				class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-20 md:pt-12 lg:pl-[302px]"
 			>
-				<div class="text-2xl font-semibold leading-tight text-primary-foreground md:leading-snug">
-					<p>insert laboratory.tagline here</p>
-				</div>
+				{#if laboratory.brief_description}
+					<div class="text-2xl font-semibold leading-tight text-primary-foreground md:leading-snug">
+						<p>{laboratory.brief_description}</p>
+					</div>
+				{/if}
 
 				<InfoCard
 					location={laboratory.location ?? ''}
 					contact_email={laboratory.contact_email ?? ''}
 				/>
 
-				<div class="text-lg leading-normal text-primary-foreground">
-					<p class="duration-400 overflow-hidden transition-all" class:line-clamp-6={!showFull}>
-						{@html laboratory.description}
-					</p>
-
-					{#if !showFull}
-						<div class="mt-9">
-							<ReadMore bind:showFull />
-						</div>
-					{/if}
-				</div>
+				{#if showFull}
+					<div class="text-lg leading-normal text-primary-foreground">
+						<p class="duration-400 overflow-hidden transition-all">
+							{laboratory.description}
+						</p>
+					</div>
+				{:else}
+					<div class="mt-9">
+						<ReadMore bind:showFull />
+					</div>
+				{/if}
 			</div>
 		</div>
 	{:else}
