@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as Accordion from '$lib/@shadcn-svelte/ui/accordion';
 	import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
@@ -11,8 +12,9 @@
 	let show = false;
 </script>
 
+<!-- NavItem -->
 <li
-	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:border-b-2 md:block {custom}"
+	class="relative hidden w-full list-none border-foreground transition-colors duration-300 ease-in-out hover:border-b-2 lg:block {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -23,7 +25,7 @@
 	<div
 		class="
         flex items-center justify-start border-0
-        px-2 text-sm *:text-secondary-foreground
+        px-2 text-sm
     "
 	>
 		<Button
@@ -46,8 +48,8 @@
 	{#if show && dropdown}
 		<ul
 			class="
-				full absolute w-fit rounded-lg border
-				bg-background/10 p-0.5 pr-4
+				full absolute w-fit rounded-lg border border-secondary
+				bg-secondary/25 p-0.5 pr-4
 				{position}
 			"
 		>
@@ -56,37 +58,21 @@
 	{/if}
 </li>
 
-<li class="relative w-full transition-colors duration-300 ease-in-out md:hidden {custom}">
-	<div
-		class="
-        flex items-center justify-end border-r-2 py-1 pr-2 text-right text-sm
-    "
-	>
-		<a {href} class="mr-1 font-bold">{to}</a>
-		<Button
-			variant="ghost"
-			class="p-0 hover:bg-background/0"
-			on:click={() => {
-				show = !show;
-			}}
-		>
-			{#if dropdown}
-				{#if show}
-					<ChevronUp />
-				{:else}
-					<ChevronDown />
-				{/if}
-			{/if}
-		</Button>
-	</div>
-	{#if show && dropdown}
-		<ul
-			class="
-                w-full bg-background pr-4
-                {position}
-            "
-		>
-			<slot />
-		</ul>
+<!-- Mobile NavItem -->
+<div class="w-full py-2 lg:hidden">
+	{#if dropdown}
+		<Accordion.Root>
+			<Accordion.Item value={to} class="border-none">
+				<div class="flex items-center justify-start">
+					<a {href} class="mr-5">{to}</a>
+					<Accordion.Trigger class="py-0" />
+				</div>
+				<Accordion.Content>
+					<slot />
+				</Accordion.Content>
+			</Accordion.Item>
+		</Accordion.Root>
+	{:else}
+		<a {href}>{to}</a>
 	{/if}
-</li>
+</div>

@@ -20,7 +20,6 @@
 
 	import Footer from '$lib/components/footer/Footer.svelte';
 	import Header from '$lib/components/nav/Header.svelte';
-	import NavBar from '$lib/components/nav/NavBar.svelte';
 
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
@@ -46,7 +45,6 @@
 
 <header>
 	<Header favicon="{PUBLIC_APIURL}/assets/{favicon}" {facebook_link} {x_link} />
-	<NavBar />
 </header>
 
 <main>
