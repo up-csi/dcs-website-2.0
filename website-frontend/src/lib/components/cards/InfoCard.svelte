@@ -16,7 +16,7 @@
 
 	{#if interests}
 		<div>
-			<p class="text-primary-foreground/60">Office</p>
+			<p class="text-primary-foreground/60">Interests</p>
 			<p class="text-primary-foreground">{interests}</p>
 		</div>
 	{/if}
