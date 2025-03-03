@@ -25,12 +25,25 @@
 		</div>
 
 		<div class="space-y-2 p-4">
-			<div class="text-lg font-bold">
+			<div class="line-clamp-3 text-lg font-bold">
 				<h1>{event.event_headline}</h1>
 			</div>
 			<div class="flex items-center space-x-2 text-sm font-medium">
 				<Calendar class="h-4 w-4" />
-				<p>7 - 8 February 2025</p>
+				<p>
+					{new Date(event.start_date).toLocaleDateString('en-US', {
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					})}
+					{#if event.end_date}
+						- {new Date(event.end_date).toLocaleDateString('en-US', {
+							month: 'long',
+							day: 'numeric',
+							year: 'numeric'
+						})}
+					{/if}
+				</p>
 			</div>
 			{#if event.display_location}
 				<div class="flex items-center space-x-2 text-sm text-gray-500">

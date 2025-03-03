@@ -20,7 +20,8 @@ export const NewsItem = object({
 	date_updated: pipe(string(), isoTimestamp()),
 	title: string(),
 	summary: string(),
-	flexible_content: pipe(string(), cleanHtml)
+	flexible_content: pipe(string(), cleanHtml),
+	background_image: string()
 });
 
 export const News = array(NewsItem);

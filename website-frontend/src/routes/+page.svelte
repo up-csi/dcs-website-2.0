@@ -1,50 +1,62 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import Hero from '$lib/components/carousels/LandingHero.svelte';
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
+	import { Button } from '$lib/@shadcn-svelte/ui/button';
+	import LandingHero from '$lib/components/carousels/LandingHero.svelte';
 	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import NewsCard from '$lib/components/cards/NewsCard.svelte';
+	import { ArrowRight } from 'lucide-svelte';
 
 	export let data;
 
-	$: ({ title, description, news, events } = data);
-
-	$: featured = events?.slice(0, 3);
+	$: ({ news, events } = data);
 </script>
 
-<Hero />
+<LandingHero {news} />
 
-<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-	<div class="space-y-5">
-		<h1 class="h1">{title}</h1>
-		<p>{description}</p>
+<div class="container mx-auto my-8 flex h-full flex-col justify-center gap-y-5">
+	<div class="flex justify-between">
+		<h2 class="text-xl font-bold md:text-2xl">Recent News</h2>
+		<Button href="#more-news" variant="outline" class="flex gap-x-2 rounded-full">
+			<p>View all</p>
+			<ArrowRight class="size-4" />
+		</Button>
 	</div>
-	<div class="my-5">
-		<div class="flex justify-between">
-			<h2>News</h2>
-			<a href="/events">View all &#8594;</a>
-		</div>
-		<div class="my-12 flex space-x-8 overflow-x-auto">
+	<Carousel.Root>
+		<Carousel.Content>
 			{#each news as news_item}
-				<!-- TODO: News Card -->
-				<div class="w-1/2">
-					<a href="/news/{news_item.slug}">
-						<p>{news_item.title}</p>
-						<br />
-						<p class="overflow-hidden text-ellipsis">{news_item.summary}</p>
-						<br />
-						<p>by {news_item.user_created.first_name} {news_item.user_created.last_name}</p>
-					</a>
-				</div>
+				<Carousel.Item class="basis-full md:basis-1/4">
+					<NewsCard {news_item} />
+				</Carousel.Item>
 			{/each}
-		</div>
+		</Carousel.Content>
+		<Carousel.Next />
+	</Carousel.Root>
+	<div class="flex justify-between">
+		<h2 class="text-xl font-bold md:text-2xl">Recent Events</h2>
+		<Button href="/events" variant="outline" class="flex gap-x-2 rounded-full">
+			<p>View all</p>
+			<ArrowRight class="size-4" />
+		</Button>
 	</div>
-	<div class="my-5">
-		<div class="flex justify-between">
-			<h2>Events</h2>
-			<a href="/events">View all &#8594;</a>
-		</div>
-		<div class="my-12 flex space-x-8 overflow-x-auto">
-			{#each featured as event}
-				<FeaturedEventCard {event} />
+	<Carousel.Root>
+		<Carousel.Content>
+			{#each events as event}
+				<Carousel.Item class="basis-full md:basis-1/4">
+					<FeaturedEventCard {event} />
+				</Carousel.Item>
+			{/each}
+		</Carousel.Content>
+		<Carousel.Next />
+	</Carousel.Root>
+</div>
+
+<div id="more-news" class="bg-primary py-24 text-primary-foreground">
+	<div class="container flex h-full flex-col justify-center gap-y-8">
+		<h2 class="text-center text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
+		<div class="grid gap-5 md:grid-cols-4">
+			{#each news as news_item}
+				<NewsCard onDark {news_item} />
 			{/each}
 		</div>
 	</div>

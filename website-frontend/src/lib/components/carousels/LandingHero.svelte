@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_APIURL } from '$env/static/public';
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import type { CarouselAPI } from '$lib/@shadcn-svelte/ui/carousel/context';
 	import Autoplay from 'embla-carousel-autoplay';
@@ -7,6 +8,7 @@
 
 	const plugin = Autoplay({ delay: 4000, stopOnInteraction: true });
 
+	export let news;
 	let api: CarouselAPI;
 	let current = 0;
 	let count = 0;
@@ -25,29 +27,50 @@
 	<Carousel.Root
 		bind:api
 		plugins={[plugin, Fade()]}
-		class="relative h-[90vh] w-full"
 		on:mousenter={plugin.stop}
 		on:mouseleave={plugin.reset}
 	>
 		<Carousel.Content>
-			{#each Array(6) as _}
-				<Carousel.Item class="relative h-full">
-					<img
-						src="source/to/image"
-						alt="Carousel Item"
-						class="relative h-[90vh] w-full bg-secondary"
-					/>
-					<div class="hidden">{_}</div>
-					<div class="absolute bottom-28 text-secondary-foreground md:px-20">
-						<h1 class="mb-5 text-4xl font-bold">Some Big Bold Description Text</h1>
-						<p class="text-md mb-5 font-semibold">Some extra description</p>
-						<Button href="/">Button</Button>
+			{#each news as news_item}
+				<Carousel.Item class="relative flex h-[90vh] flex-col items-center justify-end">
+					{#if news_item.background_image}
+						<img
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+							alt="Carousel Item"
+							class="absolute h-full w-full object-cover"
+						/>
+					{/if}
+					<div
+						class="absolute flex h-full w-full flex-col justify-end bg-gradient-to-t from-black to-transparent"
+					>
+						<div
+							class="container mx-auto flex flex-col items-center gap-y-5 pb-14 pt-72 text-center text-secondary-foreground md:items-start md:text-left"
+						>
+							<h1 class="text-2xl font-bold md:text-4xl">{news_item.title}</h1>
+							<p class="text-xs font-semibold md:text-base">{news_item.summary}</p>
+							<small class="text-xs md:text-sm">
+								by {news_item.user_created.first_name}
+								{news_item.user_created.last_name}
+							</small>
+							<Button class="w-fit rounded-full px-5" href="/news/{news_item.slug}"
+								>Read Story</Button
+							>
+							<div class="flex gap-x-2 text-sm font-semibold text-secondary-foreground">
+								{#each [...Array(count).keys()] as index}
+									{#if index + 1 === current}
+										<div class="h-2 w-6 rounded-full bg-white"></div>
+									{:else}
+										<button
+											class="h-2 w-2 rounded-full bg-gray-300"
+											on:click={() => api.scrollTo(index)}
+										></button>
+									{/if}
+								{/each}
+							</div>
+						</div>
 					</div>
 				</Carousel.Item>
 			{/each}
 		</Carousel.Content>
 	</Carousel.Root>
-	<div class="absolute -mt-20 text-sm font-semibold text-secondary-foreground md:px-20">
-		Item {current} of {count}
-	</div>
 </div>
