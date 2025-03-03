@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems, readSingleton } from '@directus/sdk';
+import { readItems } from '@directus/sdk';
 // import { parse } from 'valibot';
 // import { Events } from '$lib/models/event';
 // import { People } from '$lib/models/people';

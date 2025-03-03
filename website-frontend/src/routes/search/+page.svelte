@@ -96,7 +96,7 @@
 									{#each authors.slice(0, -1) as { last_name }}
 										{last_name},
 									{/each}
-									{authors.at([-1])?.last_name}
+									{authors.at(-1)?.last_name}
 								</p>
 								<p class="line-clamp-2">{abstract}</p>
 							</SearchResult>
