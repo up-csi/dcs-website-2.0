@@ -1,5 +1,6 @@
 import { array, lazy, nullable, object, string, union, type InferOutput } from 'valibot';
 import { LaboratoriesDirectusFiles } from './junctions/laboratories_directus_files';
+import { PeopleLaboratories } from './junctions/people_laboratories';
 
 export const Laboratory = object({
 	id: string(),
@@ -10,7 +11,8 @@ export const Laboratory = object({
 	logo: nullable(string()),
 	location: nullable(string()),
 	contact_email: nullable(string()),
-	background_images: union([array(string()), lazy(() => LaboratoriesDirectusFiles)])
+	background_images: union([array(string()), lazy(() => LaboratoriesDirectusFiles)]),
+	affiliates: union([array(string()), lazy(() => PeopleLaboratories)])
 });
 
 export const Laboratories = array(Laboratory);
