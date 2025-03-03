@@ -1,9 +1,8 @@
 <script>
-	import { PUBLIC_APIURL } from '$env/static/public';
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/PeopleBanner.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
-	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
+	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 
 	export let data;
 	const { person } = data;
@@ -34,13 +33,15 @@
 							authors: pub.authors,
 							publish_date: pub.publish_date,
 							hero_image: pub.hero_image,
-							linked_authors: pub.linked_authors,
 							abstract: pub.abstract,
-							access_links: pub.access_links
+							access_links: pub.access_links,
+							laboratory: '', // not needed
+							publication_tag: [] // not needed
 						};
 					}
-					return {};
+					return null;
 				})
+				.filter((item) => item !== null)
 		: [];
 </script>
 

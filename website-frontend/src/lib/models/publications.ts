@@ -10,7 +10,6 @@ import {
 	type InferOutput
 } from 'valibot';
 import { Laboratory } from './laboratories';
-import { PeoplePublications } from './junctions/people_publications';
 
 const Author = object({
 	first_name: string(),
@@ -33,7 +32,6 @@ export const Publication = object({
 	title: string(),
 	publish_date: nullable(pipe(string(), isoDate())),
 	authors: array(Author),
-	linked_authors: union([array(string()), lazy(() => PeoplePublications)]),
 	abstract: string(),
 	laboratory: union([string(), lazy(() => Laboratory)]),
 	hero_image: string(),
