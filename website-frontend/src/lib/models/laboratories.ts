@@ -5,6 +5,7 @@ export const Laboratory = object({
 	id: string(),
 	name: string(),
 	slug: string(),
+	brief_description: string(),
 	description: nullable(string()),
 	logo: nullable(string()),
 	location: nullable(string()),
