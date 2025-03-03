@@ -43,7 +43,13 @@
 				{#if person.educational_attainment}
 					{#each person.educational_attainment as education}
 						<p>
-							{education.degree} from {education.institution} ({education.start_date} - {education.end_date})
+							{education.degree} from {education.institution}
+							{education.start_date 
+								? ` (${new Date(education.start_date).getFullYear()}`
+								: ""}
+							{education.end_date 
+								? ` - ${new Date(education.end_date).getFullYear()})`
+								: (education.start_date ? ")" : "")}
 						</p>
 					{/each}
 				{/if}
