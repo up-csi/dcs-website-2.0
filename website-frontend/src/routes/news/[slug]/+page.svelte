@@ -15,9 +15,9 @@
 	{#if news_item}
 		<div class="flex flex-col gap-y-5">
 			{#if news_item.background_image}
-				<div class="mt-24 h-full px-5">
+				<div class="mt-8 h-full px-5 md:mt-24">
 					<img
-						class="h-[60svh] w-full object-cover"
+						class="h-[40svh] w-full object-cover md:h-[60svh]"
 						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
 						alt="Background"
 					/>
@@ -28,8 +28,8 @@
 				class:mt-8={news_item.background_image}
 				class:mt-24={!news_item.background_image}
 			>
-				<h1 class="text-6xl font-bold">{news_item.title}</h1>
-				<p class="text-xl">{news_item.summary}</p>
+				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
+				<p class="md:text-xl">{news_item.summary}</p>
 				<div class="flex justify-between">
 					<div class="flex flex-col">
 						<small
