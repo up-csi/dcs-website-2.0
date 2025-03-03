@@ -40,7 +40,9 @@
 							class="absolute h-full w-full object-cover"
 						/>
 					{/if}
-					<div class="absolute w-full bg-gradient-to-t from-black to-transparent">
+					<div
+						class="absolute flex h-full w-full flex-col justify-end bg-gradient-to-t from-black to-transparent"
+					>
 						<div
 							class="container mx-auto flex flex-col items-center gap-y-5 pb-14 pt-72 text-center text-secondary-foreground md:items-start md:text-left"
 						>
