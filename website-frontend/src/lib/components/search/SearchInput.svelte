@@ -14,8 +14,8 @@
 		border_display = 'border-0';
 	}
 
-	let txt_area: any;
-	let txt_area_mobile: any;
+	let txt_area: HTMLInputElement;
+	let txt_area_mobile: HTMLInputElement;
 </script>
 
 <div class="hidden h-fit w-full lg:block">
