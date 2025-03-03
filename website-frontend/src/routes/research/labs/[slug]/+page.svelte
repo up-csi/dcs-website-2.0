@@ -3,9 +3,10 @@
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
+	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
 
 	export let data;
-	const { laboratory } = data;
+	const { laboratory, publications } = data;
 
 	const background_images = laboratory.background_images
 		? laboratory.background_images
@@ -58,6 +59,15 @@
 						<ReadMore bind:showFull />
 					</div>
 				{/if}
+			</div>
+		</div>
+
+		<div class="mx-auto max-w-[94vw] md:max-w-[80vw]">
+			<h2 class="my-6 text-3xl font-bold">Publications</h2>
+			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+				{#each publications as publication}
+					<PublicationCard {publication} />
+				{/each}
 			</div>
 		</div>
 	{:else}
