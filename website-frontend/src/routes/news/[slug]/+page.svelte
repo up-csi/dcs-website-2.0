@@ -1,12 +1,14 @@
 <script>
 	/** @type {import('./$types').PageData} */
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
+	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import { Share } from 'lucide-svelte';
 	export let data;
 
-	$: ({ news_item } = data);
+	$: ({ other_news, news_item } = data);
 </script>
 
 <body>
@@ -63,4 +65,19 @@
 	{:else}
 		<p>Page not found</p>
 	{/if}
+	<div class="bg-primary py-24 text-primary-foreground">
+		<div class="container flex h-full flex-col gap-y-8">
+			<h2 class="text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
+			<Carousel.Root>
+				<Carousel.Content>
+					{#each other_news as news_item}
+						<Carousel.Item class="basis-full md:basis-1/4">
+							<NewsCard {news_item} />
+						</Carousel.Item>
+					{/each}
+				</Carousel.Content>
+				<Carousel.Next class="bg-primary" />
+			</Carousel.Root>
+		</div>
+	</div>
 </body>

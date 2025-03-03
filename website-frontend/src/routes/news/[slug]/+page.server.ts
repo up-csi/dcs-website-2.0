@@ -31,5 +31,24 @@ export async function load({ params, fetch }) {
 
 	const news_item = news[0];
 
-	return { news_item };
+	const other_news = await directus.request(
+		readItems('news', {
+			fields: [
+				'*',
+				{
+					user_created: ['first_name', 'last_name']
+				},
+				{
+					user_updated: ['first_name', 'last_name']
+				}
+			],
+			filter: {
+				slug: {
+					_neq: params.slug
+				}
+			}
+		})
+	);
+
+	return { other_news, news_item };
 }
