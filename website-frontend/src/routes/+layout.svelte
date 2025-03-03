@@ -10,6 +10,7 @@
 		favicon,
 		primary_logo,
 		secondary_logo,
+		secondary_logo_link,
 		contact_number,
 		contact_email,
 		address,
@@ -46,7 +47,7 @@
 </svelte:head>
 
 <header>
-	<Header {primary_logo} {secondary_logo} {facebook_link} {x_link} />
+	<Header {primary_logo} {secondary_logo} {secondary_logo_link} {facebook_link} {x_link} />
 </header>
 
 <main>

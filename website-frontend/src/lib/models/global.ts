@@ -1,4 +1,4 @@
-import { array, intersect, object, string, type InferOutput } from 'valibot';
+import { array, intersect, nullable, object, string, type InferOutput } from 'valibot';
 
 const Metadata = object({
 	title: string(),
@@ -8,7 +8,8 @@ const Metadata = object({
 
 const Header = object({
 	primary_logo: string(),
-	secondary_logo: string()
+	secondary_logo: string(),
+	secondary_logo_link: nullable(string())
 });
 
 const Footer = object({

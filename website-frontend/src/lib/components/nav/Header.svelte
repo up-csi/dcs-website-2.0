@@ -10,6 +10,7 @@
 
 	export let primary_logo;
 	export let secondary_logo;
+	export let secondary_logo_link;
 	export let facebook_link;
 	export let x_link;
 
@@ -56,16 +57,20 @@
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
 		<div class="my-auto {mobile_display_favicon} items-center justify-center">
-			<img
-				src="{PUBLIC_APIURL}/assets/{primary_logo}"
-				alt="UP"
-				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
-			/>
-			<img
-				src="{PUBLIC_APIURL}/assets/{secondary_logo}"
-				alt="DCS"
-				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
-			/>
+			<a href="/">
+				<img
+					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					alt="UP"
+					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+				/></a
+			>
+			<a href={secondary_logo_link ? secondary_logo_link : undefined}>
+				<img
+					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
+					alt="DCS"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+				/>
+			</a>
 			<div class="font-semibold text-primary">
 				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
 				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
@@ -160,16 +165,20 @@
 	<nav class="w-full">
 		<!-- Favicons -->
 		<div class="my-2 flex items-center justify-center lg:hidden">
-			<img
-				src="{PUBLIC_APIURL}/assets/{primary_logo}"
-				alt="UP"
-				class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
-			/>
-			<img
-				src="{PUBLIC_APIURL}/assets/{secondary_logo}"
-				alt="DCS"
-				class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
-			/>
+			<a href="/">
+				<img
+					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					alt="UP"
+					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+				/>
+			</a>
+			<a href={secondary_logo_link ? secondary_logo_link : undefined}>
+				<img
+					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
+					alt="DCS"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+				/>
+			</a>
 			<div class="font-semibold text-primary">
 				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
 				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
