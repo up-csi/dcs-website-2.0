@@ -56,7 +56,7 @@
 		<h2 class="text-center text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
 		<div class="grid gap-5 md:grid-cols-4">
 			{#each news as news_item}
-				<NewsCard {news_item} />
+				<NewsCard onDark {news_item} />
 			{/each}
 		</div>
 	</div>

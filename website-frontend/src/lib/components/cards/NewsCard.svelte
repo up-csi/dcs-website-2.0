@@ -4,19 +4,24 @@
 	import { NewsItem } from '$lib/models/news';
 	import { ScrollText } from 'lucide-svelte';
 	export let news_item: NewsItem;
+	export let onDark = false;
 </script>
 
 <a href="/news/{news_item.slug}" data-sveltekit-reload>
-	<Card.Root class="flex h-[25rem] flex-col justify-end rounded-lg border-none">
+	<Card.Root
+		class={onDark
+			? 'flex h-[25rem] flex-col justify-end overflow-clip rounded-lg border-primary'
+			: 'flex h-[25rem] flex-col justify-end overflow-clip rounded-lg'}
+	>
 		<div class="flex min-h-0 flex-1 justify-center">
 			{#if news_item.background_image}
 				<img
 					src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
 					alt={news_item.title}
-					class="w-full rounded-t-lg object-cover"
+					class="w-full object-cover"
 				/>
 			{:else}
-				<div class="flex w-full items-center justify-center rounded-t-lg bg-muted">
+				<div class="flex w-full items-center justify-center bg-muted">
 					<ScrollText class="w-20 bg-muted text-muted-foreground" />
 				</div>
 			{/if}
