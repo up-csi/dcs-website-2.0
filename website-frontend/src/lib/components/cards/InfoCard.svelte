@@ -4,6 +4,8 @@
 	export let founding_date: string = '';
 	export let office: string = '';
 	export let interests: string = '';
+
+	let interestList = interests.split(",").map(i => i.trim());
 </script>
 
 <div class="space-y-8 rounded-lg bg-background/20 p-6 md:p-10">
@@ -17,7 +19,11 @@
 	{#if interests}
 		<div>
 			<p class="text-primary-foreground/60">Interests</p>
-			<p class="text-primary-foreground">{interests}</p>
+			<ul class="list-disc pl-5 text-primary-foreground">
+				{#each interestList as interest}
+				  <li>{interest}</li>
+				{/each}
+			</ul>
 		</div>
 	{/if}
 
