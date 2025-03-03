@@ -21,6 +21,14 @@ export async function load({ params, fetch }) {
 							directus_files_id: ['id']
 						}
 					]
+				},
+				{
+					affiliates: [
+						'role',
+						{
+							people_id: ['*']
+						}
+					]
 				}
 			]
 		})

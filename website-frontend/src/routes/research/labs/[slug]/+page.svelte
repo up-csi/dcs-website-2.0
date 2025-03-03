@@ -4,6 +4,7 @@
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
 	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
+	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
 
 	export let data;
 	const { laboratory, publications } = data;
@@ -17,6 +18,30 @@
 					}
 					return '';
 				})
+		: [];
+
+	console.log(laboratory.affiliates);
+
+	const affiliates = laboratory.affiliates
+		? laboratory.affiliates
+				.filter((affiliate) => typeof affiliate !== 'string')
+				.map((affiliate) => {
+					const person = affiliate.people_id;
+					if (typeof person !== 'string')
+						return {
+							id: person.id,
+							first_name: person.first_name,
+							last_name: person.last_name,
+							username: person.username,
+							category: person.category,
+							profile_image: person.profile_image ?? '',
+							background_image: person.background_image ?? '',
+							position: affiliate.role,
+							affiliations: person.affiliations
+						};
+					return null;
+				})
+				.filter(Boolean)
 		: [];
 
 	let showFull = false;
@@ -67,6 +92,19 @@
 			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
 				{#each publications as publication}
 					<PublicationCard {publication} />
+				{/each}
+			</div>
+		</div>
+
+		<div class="mx-auto max-w-[94vw] md:max-w-[80vw]">
+			<h2 class="my-6 text-3xl font-bold">Members</h2>
+			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+				{#each affiliates as affiliate}
+					{#if affiliate}
+						<a href="/people/{affiliate.category}/{affiliate.username}">
+							<PeopleCard person={affiliate} laboratory={laboratory.name} />
+						</a>
+					{/if}
 				{/each}
 			</div>
 		</div>
