@@ -26,11 +26,13 @@ export async function load({ params, fetch }) {
 					publications: [
 						{
 							publications_id: [
+								'id',
 								'title',
 								'publish_date',
 								'authors',
 								'hero_image',
-								'id',
+								'abstract',
+								'access_links',
 								{
 									linked_authors: [
 										{
