@@ -1,5 +1,6 @@
 import { array, object, string, nullable, type InferOutput, optional, lazy, union } from 'valibot';
 import { PeopleLaboratories } from './junctions/people_laboratories';
+import { PeoplePublications } from './junctions/people_publications';
 
 export const EducationalAttainment = object({
 	degree: string(),
@@ -22,7 +23,8 @@ export const Person = object({
 	interests: optional(nullable(string())),
 	educational_attainment: optional(nullable(array(EducationalAttainment))),
 	username: string(),
-	affiliations: union([array(string()), lazy(() => PeopleLaboratories)])
+	affiliations: union([array(string()), lazy(() => PeopleLaboratories)]),
+	publications: union([array(string()), lazy(() => PeoplePublications)])
 });
 
 export const People = array(Person);

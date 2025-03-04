@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems } from '@directus/sdk';
+import { readItems, readItem } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 
@@ -21,6 +21,13 @@ export async function load({ params, fetch }) {
 							laboratories_id: ['name']
 						}
 					]
+				},
+				{
+					publications: [
+						{
+							publications_id: ['*']
+						}
+					]
 				}
 			],
 			limit: 1
@@ -32,6 +39,34 @@ export async function load({ params, fetch }) {
 	}
 
 	const person = people[0];
+
+	if (person.publications && person.publications.length > 0) {
+		const processedPublications = await Promise.all(
+			person.publications.map(async (pub) => {
+				if (typeof pub !== 'object' || !pub || !('publications_id' in pub)) {
+					return pub;
+				}
+				const publication = pub.publications_id;
+				if (publication && typeof publication === 'object' && publication.authors) {
+					publication.authors = await Promise.all(
+						publication.authors.map(async (author) => {
+							if (typeof author.link === 'undefined') return author;
+							if (typeof author.link === 'object') {
+								const person = await directus.request(readItem('people', author.link.key));
+								return {
+									...author,
+									link: `/people/${person.category}/${person.username}`
+								};
+							}
+							return author;
+						})
+					);
+				}
+				return pub;
+			})
+		);
+		person.publications = processedPublications as typeof person.publications;
+	}
 
 	return { person };
 }
