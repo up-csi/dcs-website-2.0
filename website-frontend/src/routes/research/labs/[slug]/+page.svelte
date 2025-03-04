@@ -1,12 +1,12 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
-	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
-	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
-	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
+	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
+	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 
 	export let data;
