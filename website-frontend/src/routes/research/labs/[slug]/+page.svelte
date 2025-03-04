@@ -5,6 +5,7 @@
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
 	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
 	import PeopleCard from '$lib/components/people/PeopleCard.svelte';
+	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 
 	export let data;
 	const { laboratory, publications } = data;
@@ -110,13 +111,17 @@
 						No members found
 					</p>
 				{:else}
-					{#each affiliates as affiliate}
-						{#if affiliate}
-							<a href="/people/{affiliate.category}/{affiliate.username}">
-								<PeopleCard person={affiliate} laboratory={laboratory.name} />
-							</a>
-						{/if}
-					{/each}
+					<div class="col-span-2 flex w-full justify-center md:col-span-4">
+						<CardPanel>
+							{#each affiliates as affiliate}
+								{#if affiliate}
+									<a href="/people/{affiliate.category}/{affiliate.username}">
+										<PeopleCard person={affiliate} laboratory={laboratory.name} />
+									</a>
+								{/if}
+							{/each}
+						</CardPanel>
+					</div>
 				{/if}
 			</div>
 		</div>
