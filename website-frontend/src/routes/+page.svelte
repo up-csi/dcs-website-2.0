@@ -22,10 +22,10 @@
 			<ArrowRight class="size-4" />
 		</Button>
 	</div>
-	<Carousel.Root>
+	<Carousel.Root opts={{ dragFree: true }}>
 		<Carousel.Content>
 			{#each news as news_item}
-				<Carousel.Item class="basis-full md:basis-1/4">
+				<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
 					<NewsCard {news_item} />
 				</Carousel.Item>
 			{/each}
@@ -39,10 +39,10 @@
 			<ArrowRight class="size-4" />
 		</Button>
 	</div>
-	<Carousel.Root>
+	<Carousel.Root opts={{ dragFree: true }}>
 		<Carousel.Content>
 			{#each events as event}
-				<Carousel.Item class="basis-full md:basis-1/4">
+				<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
 					<FeaturedEventCard {event} />
 				</Carousel.Item>
 			{/each}

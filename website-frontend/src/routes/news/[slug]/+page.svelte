@@ -68,10 +68,10 @@
 	<div class="bg-primary py-24 text-primary-foreground">
 		<div class="container flex h-full flex-col gap-y-8">
 			<h2 class="text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
-			<Carousel.Root>
+			<Carousel.Root opts={{ dragFree: true }}>
 				<Carousel.Content>
 					{#each other_news as news_item}
-						<Carousel.Item class="basis-full md:basis-1/4">
+						<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
 							<NewsCard onDark {news_item} />
 						</Carousel.Item>
 					{/each}
