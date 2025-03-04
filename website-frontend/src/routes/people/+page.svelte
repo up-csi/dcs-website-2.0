@@ -38,16 +38,17 @@
 	<div class="relative z-10 -mt-7">
 		<FilterBar {controls} />
 	</div>
-	<CardPanel>
-		{#each peopleList as person}
-			<a href="/people/{person.category}/{person.username}">
+
+	<div class="mx-auto px-4 md:px-8 lg:px-12">
+		<CardPanel>
+			{#each peopleList as person}
 				<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-			</a>
-		{/each}
-		{#if shown < people.length}
-			<div class="col-span-full mt-8 flex items-center justify-center">
-				<LoadMore {inc} bind:shown />
-			</div>
-		{/if}
-	</CardPanel>
+			{/each}
+			{#if shown < people.length}
+				<div class="col-span-full mt-8 flex items-center justify-center">
+					<LoadMore {inc} bind:shown />
+				</div>
+			{/if}
+		</CardPanel>
+	</div>
 </body>
