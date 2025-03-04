@@ -7,18 +7,8 @@
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	export let data;
 
-	$: ({ people, people_overview, position_filters, laboratory_filters } = data);
+	$: ({ people, people_overview } = data);
 
-	$: controls = [
-		{
-			name: 'position',
-			categories: position_filters
-		},
-		{
-			name: 'laboratory',
-			categories: laboratory_filters
-		}
-	];
 </script>
 
 <body>
