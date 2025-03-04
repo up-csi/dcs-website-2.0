@@ -35,19 +35,34 @@
 		/>
 	</div>
 
-	<div class="relative z-10 -mt-7">
-		<FilterBar {controls} />
-	</div>
-	<CardPanel>
-		{#each peopleList as person}
-			<a href="/people/{person.category}/{person.username}">
-				<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-			</a>
-		{/each}
-		{#if shown < people.length}
-			<div class="col-span-full mt-8 flex items-center justify-center">
-				<LoadMore {inc} bind:shown />
+
+	<div class="md:px-32">
+
+		<div>
+			<div class="flex space-x-2 pt-5 pb-2 text-xs font-medium">
+				<a class="" href="/">Home</a>
+				<p class="opacity-55">/</p>
+				<p class="opacity-55">People</p>
 			</div>
-		{/if}
-	</CardPanel>
+			<div class="h-[1px] w-full bg-primary opacity-20"></div>
+		</div>
+
+		<p class="text-3xl font-bold">Regular Faculty</p>
+		<p class="text-3xl font-bold">Lecturers & Teaching Associates</p>
+		<p class="text-3xl font-bold">Support Staff</p>
+
+
+		<CardPanel>
+			{#each peopleList as person}
+				<a href="/people/{person.category}/{person.username}">
+					<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
+				</a>
+			{/each}
+			{#if shown < people.length}
+				<div class="col-span-full mt-8 flex items-center justify-center">
+					<LoadMore {inc} bind:shown />
+				</div>
+			{/if}
+		</CardPanel>
+	</div>
 </body>
