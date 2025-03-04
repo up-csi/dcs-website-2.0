@@ -2,7 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
-	import PublicationCard from '$lib/components/card/PublicationCard.svelte';
+	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 
 	export let data;
