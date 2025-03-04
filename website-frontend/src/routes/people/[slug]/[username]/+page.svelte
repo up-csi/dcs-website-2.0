@@ -87,18 +87,14 @@
 			{/if}
 		</div>
 	</div>
+	{#if publications.length !== 0}
 	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
 		<h2 class="my-6 text-3xl font-bold">Publications</h2>
 		<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
-			{#if publications.length === 0}
-				<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
-					No publications found
-				</p>
-			{:else}
 				{#each publications as publication}
 					<PublicationCard {publication} />
 				{/each}
-			{/if}
+			</div>
 		</div>
-	</div>
+		{/if}
 </div>
