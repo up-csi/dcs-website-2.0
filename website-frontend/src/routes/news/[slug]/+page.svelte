@@ -71,7 +71,7 @@
 			<Carousel.Root opts={{ dragFree: true }}>
 				<Carousel.Content>
 					{#each other_news as news_item}
-						<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
+						<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
 							<NewsCard onDark {news_item} />
 						</Carousel.Item>
 					{/each}

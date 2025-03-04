@@ -25,7 +25,7 @@
 	<Carousel.Root opts={{ dragFree: true }}>
 		<Carousel.Content>
 			{#each news as news_item}
-				<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
+				<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
 					<NewsCard {news_item} />
 				</Carousel.Item>
 			{/each}
@@ -42,7 +42,7 @@
 	<Carousel.Root opts={{ dragFree: true }}>
 		<Carousel.Content>
 			{#each events as event}
-				<Carousel.Item class="-mr-20 basis-full pr-20 md:-mr-5 md:basis-1/4 md:pr-5">
+				<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
 					<FeaturedEventCard {event} />
 				</Carousel.Item>
 			{/each}
@@ -54,7 +54,7 @@
 <div id="more-news" class="bg-primary py-24 text-primary-foreground">
 	<div class="container flex h-full flex-col justify-center gap-y-8">
 		<h2 class="text-center text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
-		<div class="grid gap-5 md:grid-cols-4">
+		<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
 			{#each news as news_item}
 				<NewsCard onDark {news_item} />
 			{/each}
