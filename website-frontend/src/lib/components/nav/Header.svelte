@@ -42,7 +42,7 @@
 					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 				/></a
 			>
-			<a href={secondary_logo_link ? secondary_logo_link : undefined}>
+			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
 					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
 					alt="DCS"
@@ -154,7 +154,7 @@
 					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 				/>
 			</a>
-			<a href={secondary_logo_link ? secondary_logo_link : undefined}>
+			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
 					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
 					alt="DCS"
