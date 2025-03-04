@@ -86,23 +86,19 @@
 				<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
 			{/if}
 		</div>
-		{#if publications.length > 0}
-			<div class="space-y-9 bg-white px-4 pb-16 pt-9 md:space-y-12 md:px-10 md:pb-24 md:pt-12">
-				<div class="mb-8 flex items-center justify-between">
-					<h2 class="text-primary-background text-2xl font-bold">Publications</h2>
-					<a href="/publications" class="flex items-center text-sm text-primary-foreground">
-						View all
-					</a>
-				</div>
-
-				<div
-					class="mx-auto grid max-w-[94vw] grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-4"
-				>
-					{#each publications as publication}
-						<PublicationCard {publication} />
-					{/each}
-				</div>
-			</div>
-		{/if}
+	</div>
+	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
+		<h2 class="my-6 text-3xl font-bold">Publications</h2>
+		<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+			{#if publications.length === 0}
+				<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
+					No publications found
+				</p>
+			{:else}
+				{#each publications as publication}
+					<PublicationCard {publication} />
+				{/each}
+			{/if}
+		</div>
 	</div>
 </div>
