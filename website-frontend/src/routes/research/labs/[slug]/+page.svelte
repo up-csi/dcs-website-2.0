@@ -90,22 +90,34 @@
 		<div class="mx-auto max-w-[94vw] md:max-w-[80vw]">
 			<h2 class="my-6 text-3xl font-bold">Publications</h2>
 			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
-				{#each publications as publication}
-					<PublicationCard {publication} />
-				{/each}
+				{#if publications.length === 0}
+					<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
+						No publications found
+					</p>
+				{:else}
+					{#each publications as publication}
+						<PublicationCard {publication} />
+					{/each}
+				{/if}
 			</div>
 		</div>
 
 		<div class="mx-auto max-w-[94vw] md:max-w-[80vw]">
 			<h2 class="my-6 text-3xl font-bold">Members</h2>
 			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
-				{#each affiliates as affiliate}
-					{#if affiliate}
-						<a href="/people/{affiliate.category}/{affiliate.username}">
-							<PeopleCard person={affiliate} laboratory={laboratory.name} />
-						</a>
-					{/if}
-				{/each}
+				{#if affiliates.length === 0}
+					<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
+						No members found
+					</p>
+				{:else}
+					{#each affiliates as affiliate}
+						{#if affiliate}
+							<a href="/people/{affiliate.category}/{affiliate.username}">
+								<PeopleCard person={affiliate} laboratory={laboratory.name} />
+							</a>
+						{/if}
+					{/each}
+				{/if}
 			</div>
 		</div>
 	{:else}
