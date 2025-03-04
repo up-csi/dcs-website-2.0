@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import DetailsBanner from '$lib/components/events/DetailsBanner.svelte';
+	import DetailsBanner from '$lib/components/banners/EventBanner.svelte';
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 
