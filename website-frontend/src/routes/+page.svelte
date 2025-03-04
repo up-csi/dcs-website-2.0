@@ -22,7 +22,7 @@
 			<ArrowRight class="size-4" />
 		</Button>
 	</div>
-	<Carousel.Root opts={{ dragFree: true }}>
+	<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 		<Carousel.Content>
 			{#each news as news_item}
 				<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
@@ -39,7 +39,7 @@
 			<ArrowRight class="size-4" />
 		</Button>
 	</div>
-	<Carousel.Root opts={{ dragFree: true }}>
+	<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 		<Carousel.Content>
 			{#each events as event}
 				<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
