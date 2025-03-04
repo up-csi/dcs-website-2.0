@@ -5,7 +5,7 @@
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
-	import SearchInput from '../search/SearchInput.svelte';
+	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import { onMount } from 'svelte';
 
 	export let primary_logo;
