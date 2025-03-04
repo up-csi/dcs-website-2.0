@@ -29,10 +29,23 @@ export async function load({ params, fetch }) {
 							people_id: ['*']
 						}
 					]
+				},
+				{
+					events: [
+						{
+							events_id: ['*']
+						}
+					]
 				}
 			]
 		})
 	);
+
+	if (!laboratories || laboratories.length === 0) {
+		throw error(404, 'Lab not found');
+	}
+
+	const laboratory = laboratories[0];
 
 	const publications = await directus
 		.request(
@@ -70,12 +83,8 @@ export async function load({ params, fetch }) {
 				)
 		);
 
-	if (!laboratories || laboratories.length === 0) {
-		throw error(404, 'Lab not found');
-	}
-
 	return {
-		laboratory: laboratories[0],
+		laboratory,
 		publications
 	};
 }
