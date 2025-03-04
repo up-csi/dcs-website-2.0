@@ -1,5 +1,7 @@
 <script>
 	/** @type {import('./$types').PageData} */
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
+	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
@@ -40,9 +42,34 @@
 						};
 					return null;
 				})
-				.filter(Boolean)
 		: [];
 
+	const events = laboratory.events
+		? laboratory.events
+				.filter((event) => typeof event !== 'string')
+				.map((event) => {
+					const e = event.events_id;
+					if (typeof e !== 'string') {
+						return {
+							id: e.id,
+							slug: e.slug,
+							date_created: e.date_created,
+							event_headline: e.event_headline,
+							hero_image: e.hero_image ?? '',
+							event_content: e.event_content,
+							start_date: e.start_date,
+							end_date: e.end_date,
+							event_area: e.event_area,
+							display_location: e.display_location,
+							tags: e.tags,
+							event_tags: e.event_tags
+						};
+					}
+					return null;
+				})
+		: [];
+
+	console.log(events);
 	let showFull = false;
 </script>
 
@@ -86,11 +113,11 @@
 			</div>
 		</div>
 
-		<div class="mx-auto px-4 md:mt-12 md:px-10">
+		<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
 			<h2 class="my-6 text-3xl font-bold">Publications</h2>
-			<div class="grid grid-cols-2 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+			<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
 				{#if publications.length === 0}
-					<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
+					<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
 						No publications found
 					</p>
 				{:else}
@@ -101,7 +128,7 @@
 			</div>
 		</div>
 
-		<div class="mx-auto px-4 md:px-10">
+		<div class="mx-auto px-4 pb-4 md:px-10 md:pb-10">
 			<h2 class="my-6 text-3xl font-bold">Members</h2>
 			{#if affiliates.length === 0}
 				<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
@@ -115,6 +142,28 @@
 						{/if}
 					{/each}
 				</CardPanel>
+			{/if}
+		</div>
+
+		<div class="mx-auto px-4 pb-8 md:px-10 md:pb-20">
+			<h2 class="my-6 text-3xl font-bold">Events</h2>
+			{#if events.length === 0}
+				<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
+					No events found
+				</p>
+			{:else}
+				<Carousel.Root>
+					<Carousel.Content>
+						{#each events as event}
+							{#if event}
+								<Carousel.Item class="basis-full md:basis-1/4">
+									<FeaturedEventCard {event} />
+								</Carousel.Item>
+							{/if}
+						{/each}
+					</Carousel.Content>
+					<Carousel.Next />
+				</Carousel.Root>
 			{/if}
 		</div>
 	{:else}
