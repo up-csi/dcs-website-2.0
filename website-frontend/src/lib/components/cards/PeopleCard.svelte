@@ -6,8 +6,11 @@
 	export let laboratory: string;
 </script>
 
-<div class="card relative flex h-full flex-col overflow-hidden md:h-[380px]">
-	<div class="inset-0 h-24 rounded-t-lg bg-gray-300 md:h-40">
+<a
+	class="card relative flex w-full max-w-96 flex-col overflow-hidden md:h-[380px]"
+	href="/people/{person.category}/{person.username}"
+>
+	<div class="inset-0 h-40 rounded-t-lg bg-gray-300">
 		{#if person.background_image}
 			<img
 				class="h-full w-full rounded-t-lg object-cover"
@@ -47,4 +50,4 @@
 			{/if}
 		</div>
 	</div>
-</div>
+</a>
