@@ -15,30 +15,8 @@
 	export let x_link;
 
 	let search_open = false;
-
 	let mobile_open = false;
 
-	let mobile_nav_display_block = 'hidden';
-	let mobile_nav_display_flex = 'hidden';
-	let mobile_display_favicon = 'flex';
-	let header_justify = 'justify-center';
-	let header_stick = '';
-
-	$: if (mobile_open) {
-		mobile_nav_display_block = 'block';
-		mobile_nav_display_flex = 'flex';
-		mobile_display_favicon = 'hidden';
-		header_justify = 'w-full justify-between';
-		header_stick = 'fixed w-full z-50';
-	} else {
-		mobile_nav_display_block = 'hidden';
-		mobile_nav_display_flex = 'hidden';
-		mobile_display_favicon = 'flex';
-		header_justify = 'justify-center';
-		header_stick = '';
-	}
-
-	// As long as it works, am at my wits' end na
 	onMount(() => {
 		const links = Array.from(document.getElementsByTagName('a'));
 		const mobile_toggle = document.getElementById('mobile-toggle');
@@ -53,10 +31,10 @@
 	});
 </script>
 
-<div class="h-14 items-center py-2 lg:h-16 {header_stick} bg-background">
+<div class="h-14 items-center bg-background py-2 lg:h-16 {mobile_open ? 'fixed z-50 w-full' : ''}">
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
-		<div class="my-auto {mobile_display_favicon} items-center justify-center">
+		<div class="my-auto items-center justify-center {mobile_open ? 'hidden' : 'flex'}">
 			<a href="/">
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
@@ -77,7 +55,7 @@
 			</div>
 		</div>
 
-		<div class="flex items-center {header_justify}">
+		<div class="flex items-center {mobile_open ? 'w-full justify-between' : 'justify-center'}">
 			<div class="hidden lg:block">
 				<SearchInput bind:search_open />
 			</div>
@@ -88,7 +66,9 @@
 					href={facebook_link}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mx-3 {mobile_nav_display_block} h-7 pb-[2px] text-secondary transition-colors duration-300 hover:text-primary lg:block"
+					class="mx-3 h-7 pb-[2px] text-secondary transition-colors duration-300 hover:text-primary lg:block {mobile_open
+						? 'block'
+						: 'hidden'}"
 				>
 					<FacebookIcon />
 				</a>
@@ -96,7 +76,9 @@
 					href={x_link}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mr-3 {mobile_nav_display_block} h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block"
+					class="mr-3 h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block {mobile_open
+						? 'block'
+						: 'hidden'}"
 				>
 					<XIcon />
 				</a>
@@ -158,8 +140,8 @@
 <!-- Mobile Navbar -->
 <div
 	class="
-    fixed my-14 h-screen w-full bg-background
-	{mobile_nav_display_flex} z-50
+    fixed z-50 my-14 h-screen w-full
+	 bg-background {mobile_open ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
