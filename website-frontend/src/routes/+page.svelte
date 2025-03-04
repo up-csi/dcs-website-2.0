@@ -3,7 +3,7 @@
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import LandingHero from '$lib/components/carousels/LandingHero.svelte';
-	import FeaturedEventCard from '$lib/components/events/FeaturedEventCard.svelte';
+	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import { ArrowRight } from 'lucide-svelte';
 
