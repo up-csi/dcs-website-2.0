@@ -34,9 +34,9 @@
 			<div class="h-[1px] w-full bg-primary opacity-20"></div>
 		</div>
 
-		<div class="space-y-4 py-10">
+		<div class="space-y-4 py-8 md:py-10">
 			{#if regularList.length > 0}
-				<a class="text-2xl md:text-3xl font-bold block pb-4" href="/people/regular-faculty">Regular Faculty</a>
+				<a class="text-2xl md:text-3xl font-bold block pb-3 md:pb-4 leading-none" href="/people/regular-faculty">Regular Faculty</a>
 				<CardPanel>
 					{#each regularList as person}
 						<a href="/people/{person.category}/{person.username}">
@@ -46,7 +46,7 @@
 				</CardPanel>
 			{/if}
 			{#if lecturerList.length > 0}
-				<a class="text-2xl md:text-3xl font-bold block pb-4" href="/people/lecturers-and-teaching-associates">Lecturers & Teaching Associates</a>
+				<a class="text-2xl md:text-3xl font-bold block pb-3 md:pb-4 leading-none" href="/people/lecturers-and-teaching-associates">Lecturers & Teaching Associates</a>
 				<CardPanel>
 					{#each lecturerList as person}
 						<a href="/people/{person.category}/{person.username}">
@@ -56,7 +56,7 @@
 				</CardPanel>
 			{/if}
 			{#if supportList.length > 0}
-				<a class="text-2xl md:text-3xl font-bold block pb-4" href="/people/support-staff">Support Staff</a>
+				<a class="text-2xl md:text-3xl font-bold block pb-3 md:pb-4 leading-none" href="/people/support-staff">Support Staff</a>
 				<CardPanel>
 					{#each supportList as person}
 						<a href="/people/{person.category}/{person.username}">
