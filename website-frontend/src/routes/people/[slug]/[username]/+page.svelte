@@ -35,27 +35,33 @@
 		/>
 	</div>
 
-	<div class="bg-[#343541]">
+	<div class="-mt-[1px] bg-[#343541]">
 		<div
 			class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
 		>
 			<div class="text-lg leading-normal text-primary-foreground">
 				{#if person.educational_attainment}
-					{#each person.educational_attainment as education}
-						<p>
-							{education.degree} from {education.institution}
-							{education.start_date ? ` (${new Date(education.start_date).getFullYear()}` : ''}
-							{education.end_date
-								? ` - ${new Date(education.end_date).getFullYear()})`
-								: education.start_date
-									? ')'
+					<ul class="list-disc pl-5 text-primary-foreground">
+						{#each person.educational_attainment as education}
+							<li>
+								{education.degree} from {education.institution}
+								{education.start_date
+									? ` (${new Date(education.start_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`
 									: ''}
-						</p>
-					{/each}
+								{education.end_date
+									? ` - ${new Date(education.end_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })})`
+									: education.start_date
+										? '- present)'
+										: ''}
+							</li>
+						{/each}
+					</ul>
 				{/if}
 			</div>
 
-			<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
+			{#if person.location || person.interests}
+				<InfoCard office={person.location ?? ''} interests={person.interests ?? ''} />
+			{/if}
 		</div>
 	</div>
 </div>
