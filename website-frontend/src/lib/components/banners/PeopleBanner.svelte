@@ -13,17 +13,6 @@
 	export let laboratory: string = '';
 	export let category: string = '';
 	export let website: string = '';
-
-	const copyToClipboard = async () => {
-		if (!email) return;
-
-		try {
-			await navigator.clipboard.writeText(email);
-			alert(`Copied: ${email}`);
-		} catch (err) {
-			console.error('Failed to copy:', err);
-		}
-	};
 </script>
 
 <div class="bg-[#343541]">
@@ -81,19 +70,20 @@
 
 					<div class="mt-5 flex space-x-1 lg:mt-0">
 						<div class="group relative">
-							<Button
-								class="max-w-xs rounded-full bg-background/20 px-3 hover:bg-background/30"
-								on:click={copyToClipboard}
-								aria-label="Copy {first_name} {last_name}'s email to clipboard"
-							>
-								<Mail class="h-4 w-4" />
-							</Button>
+							<a href="mailto:{email}" class="max-w-xs">
+								<Button
+									class="w-full rounded-full bg-background/20 px-3 hover:bg-background/30"
+									aria-label="Send an email to {first_name} {last_name}"
+								>
+									<Mail class="h-4 w-4" />
+								</Button>
+							</a>
 							<span
 								class="absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 rounded bg-white px-2 py-1 text-xs text-primary group-hover:block"
 							>
 								{email}
 							</span>
-						</div>
+						</div>						
 
 						{#if website}
 							<a href={website} target="_blank" rel="noopener noreferrer" class="max-w-xs">
