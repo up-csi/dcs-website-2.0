@@ -12,6 +12,7 @@
 	export let email: string = '';
 	export let laboratory: string = '';
 	export let category: string = '';
+	export let website: string = '';
 
 	const copyToClipboard = async () => {
 		if (!email) return;
@@ -94,12 +95,21 @@
 							</span>
 						</div>
 
-						<Button
-							class="max-w-xs rounded-full bg-background/20 px-3 hover:bg-background/30"
-							aria-label="Go to {first_name} {last_name}'s website"
-						>
-							<Globe class="h-4 w-4" />
-						</Button>
+						{#if website}
+							<a
+								href="{website}"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="max-w-xs"
+							>
+								<Button
+									class="w-full rounded-full bg-background/20 px-3 hover:bg-background/30"
+									aria-label="Go to {first_name} {last_name}'s website"
+								>
+									<Globe class="h-4 w-4" />
+								</Button>
+							</a>
+						{/if}
 					</div>
 				</div>
 			</div>
