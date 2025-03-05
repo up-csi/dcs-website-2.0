@@ -83,7 +83,7 @@
 							>
 								{email}
 							</span>
-						</div>						
+						</div>
 
 						{#if website}
 							<a href={website} target="_blank" rel="noopener noreferrer" class="max-w-xs">
