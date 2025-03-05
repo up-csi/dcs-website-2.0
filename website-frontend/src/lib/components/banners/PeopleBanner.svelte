@@ -28,11 +28,11 @@
 
 <div class="bg-[#343541]">
 	<div
-		class="h-[45vh] lg:h-[83vh] bg-cover bg-center"
+		class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
 		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 	></div>
 
-	<div class="-mt-14 lg:absolute w-full px-4 lg:-bottom-16 lg:px-32">
+	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
 		<div class="flex space-x-2 py-4 text-sm text-secondary-foreground">
 			<p class="">Home /</p>
 			<a class="" href="/people">People /</a>
@@ -42,7 +42,7 @@
 		<div class="h-[2px] w-full bg-white opacity-40"></div>
 
 		<div
-			class="flex w-full flex-col items-center pt-10 lg:py-10 text-secondary-foreground lg:bottom-10 lg:flex-row"
+			class="flex w-full flex-col items-center pt-10 text-secondary-foreground lg:bottom-10 lg:flex-row lg:py-10"
 		>
 			<div
 				class="mx-auto flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-t from-[#667080] to-[#D1D8DD] md:h-48 md:w-48"
@@ -96,12 +96,7 @@
 						</div>
 
 						{#if website}
-							<a
-								href="{website}"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="max-w-xs"
-							>
+							<a href={website} target="_blank" rel="noopener noreferrer" class="max-w-xs">
 								<Button
 									class="w-full rounded-full bg-background/20 px-3 hover:bg-background/30"
 									aria-label="Go to {first_name} {last_name}'s website"

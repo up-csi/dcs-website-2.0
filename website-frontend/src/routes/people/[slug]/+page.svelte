@@ -20,9 +20,9 @@
 			/>
 		</div>
 
-		<div class="w-[94vw] md:w-[80vw] mx-auto">
+		<div class="mx-auto w-[94vw] md:w-[80vw]">
 			<div>
-				<div class="flex space-x-2 pt-5 pb-2 text-xs font-medium">
+				<div class="flex space-x-2 pb-2 pt-5 text-xs font-medium">
 					<a class="" href="/">Home</a>
 					<p class="opacity-55">/</p>
 					<a class="" href="/people">People</a>
@@ -31,7 +31,7 @@
 				</div>
 				<div class="h-[1px] w-full bg-primary opacity-20"></div>
 			</div>
-		
+
 			<CardPanel>
 				{#each people as person}
 					<a href="/people/{category.title}/{person.username}">

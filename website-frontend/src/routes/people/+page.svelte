@@ -8,9 +8,11 @@
 
 	$: ({ people, people_overview } = data);
 
-	$: regularList = people?.filter((person: Person) => person.category === "regular-faculty") ?? [];
-	$: lecturerList = people?.filter((person: Person) => person.category === "lecturers-and-teaching-associates") ?? [];
-	$: supportList = people?.filter((person: Person) => person.category === "support-staff") ?? [];
+	$: regularList = people?.filter((person: Person) => person.category === 'regular-faculty') ?? [];
+	$: lecturerList =
+		people?.filter((person: Person) => person.category === 'lecturers-and-teaching-associates') ??
+		[];
+	$: supportList = people?.filter((person: Person) => person.category === 'support-staff') ?? [];
 
 	let heading = `text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 leading-none`;
 </script>
@@ -24,10 +26,9 @@
 		/>
 	</div>
 
-	<div class="w-[94vw] md:w-[80vw] mx-auto">
-
+	<div class="mx-auto w-[94vw] md:w-[80vw]">
 		<div>
-			<div class="flex space-x-2 pt-5 pb-2 text-xs font-medium">
+			<div class="flex space-x-2 pb-2 pt-5 text-xs font-medium">
 				<a class="" href="/">Home</a>
 				<p class="opacity-55">/</p>
 				<p class="opacity-55">People</p>
@@ -37,7 +38,7 @@
 
 		<div class="space-y-4 py-8 md:py-10">
 			{#if regularList.length > 0}
-				<a class="{heading}" href="/people/regular-faculty">Regular Faculty</a>
+				<a class={heading} href="/people/regular-faculty">Regular Faculty</a>
 				<CardPanel>
 					{#each regularList as person}
 						<a href="/people/{person.category}/{person.username}">
@@ -47,7 +48,9 @@
 				</CardPanel>
 			{/if}
 			{#if lecturerList.length > 0}
-				<a class="{heading}" href="/people/lecturers-and-teaching-associates">Lecturers & Teaching Associates</a>
+				<a class={heading} href="/people/lecturers-and-teaching-associates"
+					>Lecturers & Teaching Associates</a
+				>
 				<CardPanel>
 					{#each lecturerList as person}
 						<a href="/people/{person.category}/{person.username}">
@@ -57,7 +60,7 @@
 				</CardPanel>
 			{/if}
 			{#if supportList.length > 0}
-				<a class="{heading}" href="/people/support-staff">Support Staff</a>
+				<a class={heading} href="/people/support-staff">Support Staff</a>
 				<CardPanel>
 					{#each supportList as person}
 						<a href="/people/{person.category}/{person.username}">
