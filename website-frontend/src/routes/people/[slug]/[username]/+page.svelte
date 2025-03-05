@@ -35,14 +35,15 @@
 		/>
 	</div>
 
-	<div class="bg-[#343541]">
+	<div class="bg-[#343541] -mt-[1px]">
 		<div
 			class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
 		>
 			<div class="text-lg leading-normal text-primary-foreground">
 				{#if person.educational_attainment}
+					<ul class="list-disc pl-5 text-primary-foreground">
 					{#each person.educational_attainment as education}
-						<p>
+						<li>
 							{education.degree} from {education.institution}
 							{education.start_date ? ` (${new Date(education.start_date).getFullYear()}` : ''}
 							{education.end_date
@@ -50,8 +51,9 @@
 								: education.start_date
 									? ')'
 									: ''}
-						</p>
+						</li>
 					{/each}
+					</ul>
 				{/if}
 			</div>
 
