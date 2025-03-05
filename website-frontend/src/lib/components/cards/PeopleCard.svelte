@@ -7,7 +7,7 @@
 </script>
 
 <div class="card group relative flex h-full w-full flex-col overflow-hidden">
-	<div class="inset-0 h-28 overflow-hidden rounded-t-lg bg-gray-300 md:h-44">
+	<div class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52">
 		{#if person.background_image}
 			<img
 				class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
