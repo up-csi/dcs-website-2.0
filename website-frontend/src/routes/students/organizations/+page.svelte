@@ -1,6 +1,7 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	export let data;
 
@@ -18,8 +19,12 @@
 		<p>Page not found</p>
 	{/if}
 
-	{#each students_organizations as students_organization}
-		<div class="px-4 py-10 text-base md:px-32">
+	<div class="px-4 py-10 text-base md:px-32">
+		<div class="mb-5">
+			<Breadcrumb />
+		</div>
+
+		{#each students_organizations as students_organization}
 			<div class="flex items-start gap-6">
 				{#if students_organization.logo}
 					<a href="/students/organizations/{students_organization.slug}">
@@ -70,6 +75,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </body>
