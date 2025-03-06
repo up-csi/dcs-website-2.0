@@ -62,26 +62,30 @@
 
 				{#if res > 0}
 					{#if tab === 'All'}
-						{#each events as { event_headline, event_content, hero_image }}
-							<SearchResult image={hero_image} name={event_headline}>
+						{#each events as { slug, event_headline, event_content, hero_image }}
+							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
 								<p class="line-clamp-2">{@html event_content}</p>
 							</SearchResult>
 						{/each}
-						{#each people as { first_name, last_name, profile_image, position }}
-							<SearchResult image={profile_image} name="{first_name} {last_name}">
+						{#each people as { category, username, first_name, last_name, profile_image, position }}
+							<SearchResult
+								href="/people/{category}/{username}"
+								image={profile_image}
+								name="{first_name} {last_name}"
+							>
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
 								<p>{position}</p>
 							</SearchResult>
 						{/each}
-						{#each laboratories as { name, description, logo }}
-							<SearchResult image={logo} {name}>
+						{#each laboratories as { slug, name, description, logo }}
+							<SearchResult href="/laboratories/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								<p class="line-clamp-2">{description}</p>
 							</SearchResult>
 						{/each}
 						{#each publications as { title, authors, hero_image, abstract }}
-							<SearchResult image={hero_image} name={title}>
+							<SearchResult href="/publications" image={hero_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
 								<p>
 									{#each authors.slice(0, -1) as { last_name }}
@@ -93,29 +97,33 @@
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Events'}
-						{#each events as { event_headline, event_content, hero_image }}
-							<SearchResult image={hero_image} name={event_headline}>
+						{#each events as { slug, event_headline, event_content, hero_image }}
+							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
 								<p class="line-clamp-2">{@html event_content}</p>
 							</SearchResult>
 						{/each}
 					{:else if tab === 'People'}
-						{#each people as { first_name, last_name, profile_image, position }}
-							<SearchResult image={profile_image} name="{first_name} {last_name}">
+						{#each people as { category, username, first_name, last_name, profile_image, position }}
+							<SearchResult
+								href="/people/{category}/{username}"
+								image={profile_image}
+								name="{first_name} {last_name}"
+							>
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
 								<p>{position}</p>
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Laboratories'}
-						{#each laboratories as { name, description, logo }}
-							<SearchResult image={logo} {name}>
+						{#each laboratories as { slug, name, description, logo }}
+							<SearchResult href="/laboratories/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								<p class="line-clamp-2">{description}</p>
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Publications'}
 						{#each publications as { title, authors, hero_image, abstract }}
-							<SearchResult image={hero_image} name={title}>
+							<SearchResult href="/publications" image={hero_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
 								<p>
 									{#each authors.slice(0, -1) as { last_name }}
