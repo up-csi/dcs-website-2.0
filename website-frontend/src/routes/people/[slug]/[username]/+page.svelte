@@ -26,20 +26,7 @@
 				.filter((publication) => typeof publication !== 'string')
 				.map((publication) => {
 					const pub = publication.publications_id;
-					if (typeof pub !== 'string') {
-						return {
-							id: pub.id,
-							title: pub.title,
-							authors: pub.authors,
-							publish_date: pub.publish_date,
-							hero_image: pub.hero_image,
-							abstract: pub.abstract,
-							access_links: pub.access_links,
-							laboratory: '', // not needed
-							publication_tag: [] // not needed
-						};
-					}
-					return null;
+					return typeof pub !== 'string' ? pub : null;
 				})
 				.filter((item) => item !== null)
 		: [];
@@ -88,13 +75,13 @@
 		</div>
 	</div>
 	{#if publications.length !== 0}
-	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
-		<h2 class="my-6 text-3xl font-bold">Publications</h2>
-		<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+		<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
+			<h2 class="my-6 text-3xl font-bold">Publications</h2>
+			<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
 				{#each publications as publication}
 					<PublicationCard {publication} />
 				{/each}
 			</div>
 		</div>
-		{/if}
+	{/if}
 </div>
