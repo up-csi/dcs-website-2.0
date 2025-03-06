@@ -6,6 +6,8 @@
     import type { NavPaths } from '$lib/types/path';
     import { ChevronDown } from 'lucide-svelte';
 
+    export let page_name: string = '';
+
     const whole_path = $page.url.pathname.split('/').slice(1);
     let app_path = '';
 
@@ -37,7 +39,7 @@
             {#if current_page}
                 <Breadcrumb.Separator>/</Breadcrumb.Separator>
                 <Breadcrumb.Item>
-                    <Breadcrumb.Page class="text-muted-foreground/80 font-medium">{current_page}</Breadcrumb.Page>
+                    <Breadcrumb.Page class="text-muted-foreground/80 font-medium">{page_name ? page_name : current_page}</Breadcrumb.Page>
                 </Breadcrumb.Item>
             {/if}
         </Breadcrumb.List>
@@ -71,7 +73,7 @@
             {#if current_page}
                 <Breadcrumb.Separator>/</Breadcrumb.Separator>
                 <Breadcrumb.Item>
-                    <Breadcrumb.Page class="text-muted-foreground/80 font-medium">{current_page}</Breadcrumb.Page>
+                    <Breadcrumb.Page class="text-muted-foreground/80 font-medium">{page_name ? page_name : current_page}</Breadcrumb.Page>
                 </Breadcrumb.Item>
             {/if}
         </Breadcrumb.List>
