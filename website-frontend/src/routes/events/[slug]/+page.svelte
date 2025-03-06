@@ -3,6 +3,7 @@
 	import DetailsBanner from '$lib/components/banners/EventBanner.svelte';
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
 	$: ({ event, related_events } = data);
@@ -20,6 +21,9 @@
 	</div>
 
 	<div class="px-4 py-14 md:px-64 md:py-16">
+		<div class="mb-5">
+			<Breadcrumb />
+		</div>
 		<FlexibleContent content={event.event_content} />
 	</div>
 
