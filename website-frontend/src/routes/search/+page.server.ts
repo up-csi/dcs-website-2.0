@@ -4,6 +4,11 @@ import getDirectusInstance from '$lib/directus';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
+	const news = await directus.request(
+		readItems('news', {
+			search: url.searchParams.get('q') ?? undefined
+		})
+	);
 	const events = await directus.request(
 		readItems('events', {
 			search: url.searchParams.get('q') ?? undefined
@@ -26,6 +31,7 @@ export async function load({ fetch, url }) {
 	);
 
 	return {
+		news,
 		events,
 		people,
 		laboratories,

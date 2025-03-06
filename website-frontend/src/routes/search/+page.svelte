@@ -10,12 +10,16 @@
 	export let data;
 	let tabs;
 
-	$: ({ events, people, laboratories, publications } = data);
+	$: ({ news, events, people, laboratories, publications } = data);
 
 	$: tabs = [
 		{
 			tab: 'All',
-			res: events.length + people.length + laboratories.length + publications.length
+			res: news.length + events.length + people.length + laboratories.length + publications.length
+		},
+		{
+			tab: 'News',
+			res: news.length
 		},
 		{
 			tab: 'Events',
@@ -62,6 +66,12 @@
 
 				{#if res > 0}
 					{#if tab === 'All'}
+						{#each news as { slug, title, summary, background_image }}
+							<SearchResult href="/events/{slug}" image={background_image} name={title}>
+								<p class="text-xl font-bold">{title}</p>
+								<p class="line-clamp-2">{@html summary}</p>
+							</SearchResult>
+						{/each}
 						{#each events as { slug, event_headline, event_content, hero_image }}
 							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
@@ -94,6 +104,13 @@
 									{authors.at(-1)?.last_name}
 								</p>
 								<p class="line-clamp-2">{abstract}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'News'}
+						{#each news as { slug, title, summary, background_image }}
+							<SearchResult href="/events/{slug}" image={background_image} name={title}>
+								<p class="text-xl font-bold">{title}</p>
+								<p class="line-clamp-2">{@html summary}</p>
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Events'}
