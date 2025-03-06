@@ -105,10 +105,9 @@
 							>
 								<p class="text-xl font-bold">{publication.title}</p>
 								<p>
-									{#each publication.authors.slice(0, -1) as { last_name }}
-										{last_name},
+									{#each publication.authors as { last_name }, i}
+										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
 									{/each}
-									{publication.authors.at(-1)?.last_name}
 								</p>
 								<p class="line-clamp-2">{publication.abstract}</p>
 							</SearchResult>
@@ -155,10 +154,9 @@
 							>
 								<p class="text-xl font-bold">{publication.title}</p>
 								<p>
-									{#each publication.authors.slice(0, -1) as { last_name }}
-										{last_name},
+									{#each publication.authors as { last_name }, i}
+										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
 									{/each}
-									{publication.authors.at(-1)?.last_name}
 								</p>
 								<p class="line-clamp-2">{publication.abstract}</p>
 							</SearchResult>
