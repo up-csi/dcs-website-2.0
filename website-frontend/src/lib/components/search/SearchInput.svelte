@@ -4,26 +4,16 @@
 	export let search_open = false;
 	let typing = false;
 
-	let input_display = 'hidden';
-	let border_display = 'border-0';
-	$: if (search_open) {
-		input_display = 'block';
-		border_display = 'border';
-	} else {
-		input_display = 'hidden';
-		border_display = 'border-0';
-	}
-
 	let txt_area: HTMLInputElement;
 	let txt_area_mobile: HTMLInputElement;
 </script>
 
 <div class="hidden h-fit w-full lg:block">
-	<form action="" class="rounded-3xl {border_display}">
+	<form action="" class="rounded-3xl {search_open ? 'border' : 'border-0'}">
 		<div class="flex w-full items-center pl-3 pr-1">
 			<input
 				type="text"
-				class="w-full focus:outline-none lg:{input_display}"
+				class="w-full focus:outline-none lg:{search_open ? 'block' : 'hidden'}"
 				bind:this={txt_area}
 				on:input={() => {
 					typing = true;
@@ -56,7 +46,7 @@
 		<div class="flex w-full items-center pl-3 pr-1">
 			<input
 				type="text"
-				class="w-full focus:outline-none lg:{input_display}"
+				class="w-full focus:outline-none lg:{search_open ? 'block' : 'hidden'}"
 				bind:this={txt_area_mobile}
 				on:input={() => {
 					typing = true;
