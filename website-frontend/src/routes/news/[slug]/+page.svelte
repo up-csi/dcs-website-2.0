@@ -6,6 +6,7 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import { Share } from 'lucide-svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	export let data;
 
 	$: ({ other_news, news_item } = data);
@@ -14,8 +15,12 @@
 <body>
 	{#if news_item}
 		<div class="flex flex-col gap-y-5">
+			<div class="container mx-auto md:mt-16">
+				<Breadcrumb />
+			</div>
+
 			{#if news_item.background_image}
-				<div class="mt-8 h-full px-5 md:mt-24">
+				<div class="h-full px-5">
 					<img
 						class="h-[40svh] w-full object-cover md:h-[60svh]"
 						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
