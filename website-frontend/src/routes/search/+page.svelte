@@ -67,7 +67,7 @@
 				{#if res > 0}
 					{#if tab === 'All'}
 						{#each news as { slug, title, summary, background_image }}
-							<SearchResult href="/events/{slug}" image={background_image} name={title}>
+							<SearchResult href="/news/{slug}" image={background_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
 								<p class="line-clamp-2">{@html summary}</p>
 							</SearchResult>
@@ -113,7 +113,7 @@
 						{/each}
 					{:else if tab === 'News'}
 						{#each news as { slug, title, summary, background_image }}
-							<SearchResult href="/events/{slug}" image={background_image} name={title}>
+							<SearchResult href="/news/{slug}" image={background_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
 								<p class="line-clamp-2">{@html summary}</p>
 							</SearchResult>
