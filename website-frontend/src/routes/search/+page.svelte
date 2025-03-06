@@ -94,16 +94,21 @@
 								<p class="line-clamp-2">{description}</p>
 							</SearchResult>
 						{/each}
-						{#each publications as { title, authors, hero_image, abstract }}
-							<SearchResult href="/publications" image={hero_image} name={title}>
-								<p class="text-xl font-bold">{title}</p>
+						{#each publications as publication}
+							<SearchResult
+								{publication}
+								href="/publications"
+								image={publication.hero_image}
+								name={publication.title}
+							>
+								<p class="text-xl font-bold">{publication.title}</p>
 								<p>
-									{#each authors.slice(0, -1) as { last_name }}
+									{#each publication.authors.slice(0, -1) as { last_name }}
 										{last_name},
 									{/each}
-									{authors.at(-1)?.last_name}
+									{publication.authors.at(-1)?.last_name}
 								</p>
-								<p class="line-clamp-2">{abstract}</p>
+								<p class="line-clamp-2">{publication.abstract}</p>
 							</SearchResult>
 						{/each}
 					{:else if tab === 'News'}
@@ -139,16 +144,21 @@
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Publications'}
-						{#each publications as { title, authors, hero_image, abstract }}
-							<SearchResult href="/publications" image={hero_image} name={title}>
-								<p class="text-xl font-bold">{title}</p>
+						{#each publications as publication}
+							<SearchResult
+								{publication}
+								href="/publications"
+								image={publication.hero_image}
+								name={publication.title}
+							>
+								<p class="text-xl font-bold">{publication.title}</p>
 								<p>
-									{#each authors.slice(0, -1) as { last_name }}
+									{#each publication.authors.slice(0, -1) as { last_name }}
 										{last_name},
 									{/each}
-									{authors.at(-1)?.last_name}
+									{publication.authors.at(-1)?.last_name}
 								</p>
-								<p class="line-clamp-2">{abstract}</p>
+								<p class="line-clamp-2">{publication.abstract}</p>
 							</SearchResult>
 						{/each}
 					{/if}
