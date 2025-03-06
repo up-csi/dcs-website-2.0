@@ -1,5 +1,6 @@
 <script>
 	/** @type {import('./$types').PageData} */
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import Banner from '$lib/components/banners/PeopleBanner.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
@@ -77,11 +78,16 @@
 	{#if publications.length !== 0}
 		<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
 			<h2 class="my-6 text-3xl font-bold">Publications</h2>
-			<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
-				{#each publications as publication}
-					<PublicationCard {publication} />
-				{/each}
-			</div>
+			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
+				<Carousel.Content>
+					{#each publications as publication}
+						<Carousel.Item class="-mr-10 h-full basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
+							<PublicationCard {publication} />
+						</Carousel.Item>
+					{/each}
+				</Carousel.Content>
+				<Carousel.Next />
+			</Carousel.Root>
 		</div>
 	{/if}
 </div>
