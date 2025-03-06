@@ -16,7 +16,7 @@
 	{#if news_item}
 		<div class="flex flex-col gap-y-5">
 			<div class="container mx-auto md:mt-16">
-				<Breadcrumb />
+				<Breadcrumb page_name={news_item.title} />
 			</div>
 
 			{#if news_item.background_image}

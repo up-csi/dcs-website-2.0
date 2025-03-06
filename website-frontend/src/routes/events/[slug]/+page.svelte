@@ -22,7 +22,7 @@
 
 	<div class="px-4 py-14 md:px-64 md:py-16">
 		<div class="mb-5">
-			<Breadcrumb />
+			<Breadcrumb page_name={event.event_headline} />
 		</div>
 		<FlexibleContent content={event.event_content} />
 	</div>

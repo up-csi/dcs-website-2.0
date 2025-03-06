@@ -17,7 +17,7 @@
 <Banner title="Featured Outputs" />
 <div class="container mx-auto my-8">
 	<div class="mb-5">
-		<Breadcrumb />
+		<Breadcrumb page_name="Featured Outputs" />
 	</div>
 
 	<div class="my-12">
