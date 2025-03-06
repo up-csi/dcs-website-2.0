@@ -56,15 +56,17 @@
 
 		{#each tabs as { tab, res }}
 			<Tabs.Content value={tab}>
-				<p class="text-3xl font-bold">
-					{res} Search result{#if res !== 1}s
-					{/if}
-					{#if tab !== 'All'}
-						<span>in {tab}</span>
-					{/if}
-				</p>
-
 				{#if res > 0}
+					<div class="py-5">
+						<p class="text-3xl font-bold">
+							{res} Search result{#if res !== 1}s{/if} for
+							<span class="font-normal">{$page.url.searchParams.get('q')}</span>
+							{#if tab !== 'All'}
+								<span>in {tab}</span>
+							{/if}
+						</p>
+					</div>
+
 					{#if tab === 'All'}
 						{#each news as { slug, title, summary, background_image }}
 							<SearchResult href="/news/{slug}" image={background_image} name={title}>
