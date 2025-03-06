@@ -1,6 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	import { PUBLIC_APIURL } from '$env/static/public';
 
@@ -15,6 +16,10 @@
 />
 
 <div class="container mx-auto my-8 h-full flex-col items-center justify-center">
+	<div class="mb-5">
+		<Breadcrumb />
+	</div>
+
 	{#each laboratories as laboratory}
 		<div class="my-5 border-b py-5 md:grid md:grid-cols-6 md:items-center">
 			<div>
