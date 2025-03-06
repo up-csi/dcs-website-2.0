@@ -3,6 +3,7 @@
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import DataTable from '$lib/components/table/DataTable.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
 	$: ({ academics_category, academics_programs, academics_courses } = data);
@@ -11,6 +12,10 @@
 <body>
 	{#if academics_category}
 		<Banner title="Academics" />
+
+		<div class="container mx-auto my-8 mb-5">
+			<Breadcrumb />
+		</div>
 
 		<div class="prose px-4 py-10 text-base md:px-32">
 			{#if academics_category.flexible_content}
