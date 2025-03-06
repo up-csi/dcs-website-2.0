@@ -4,6 +4,7 @@
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import { Person } from '$lib/models/people';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	export let data;
 
 	$: ({ people, people_overview } = data);
@@ -27,13 +28,8 @@
 	</div>
 
 	<div class="mx-auto w-[94vw] md:w-[80vw]">
-		<div>
-			<div class="flex space-x-2 pb-2 pt-5 text-xs font-medium">
-				<a class="" href="/">Home</a>
-				<p class="opacity-55">/</p>
-				<p class="opacity-55">People</p>
-			</div>
-			<div class="h-[1px] w-full bg-primary opacity-20"></div>
+		<div class="mt-5">
+			<Breadcrumb />
 		</div>
 
 		<div class="space-y-4 py-8 md:py-10">
