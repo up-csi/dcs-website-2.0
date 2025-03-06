@@ -2,26 +2,26 @@
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 
-export async function load({ fetch, params }) {
+export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const events = await directus.request(
 		readItems('events', {
-			search: params.input
+			search: url.searchParams.get('q') ?? undefined
 		})
 	);
 	const people = await directus.request(
 		readItems('people', {
-			search: params.input
+			search: url.searchParams.get('q') ?? undefined
 		})
 	);
 	const laboratories = await directus.request(
 		readItems('laboratories', {
-			search: params.input
+			search: url.searchParams.get('q') ?? undefined
 		})
 	);
 	const publications = await directus.request(
 		readItems('publications', {
-			search: params.input
+			search: url.searchParams.get('q') ?? undefined
 		})
 	);
 

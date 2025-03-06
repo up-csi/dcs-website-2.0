@@ -6,9 +6,10 @@
 </script>
 
 <div class="hidden h-fit w-full lg:block">
-	<form action="/search/{searchInput}" class="rounded-3xl {search_open ? 'border' : 'border-0'}">
+	<form action="/search" class="rounded-3xl {search_open ? 'border' : 'border-0'}">
 		<div class="flex w-full items-center pl-3 pr-1">
 			<input
+				name="q"
 				type="text"
 				class="w-full focus:outline-none lg:{search_open ? 'block' : 'hidden'}"
 				bind:value={searchInput}
@@ -41,9 +42,10 @@
 </div>
 
 <div class="h-fit w-full lg:hidden">
-	<form action="/search/{searchInput}" class="rounded-3xl border">
+	<form action="/search" class="rounded-3xl border">
 		<div class="flex w-full items-center pl-3 pr-1">
 			<input
+				name="q"
 				type="text"
 				class="w-full focus:outline-none lg:{search_open ? 'block' : 'hidden'}"
 				bind:value={searchInput}
