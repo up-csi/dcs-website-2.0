@@ -134,9 +134,13 @@
 						</div>
 						<div class="absolute left-0 top-0 flex h-full w-full items-center justify-center">
 							<p>
-								No search results for <b>{$page.params.input}</b>
-								{#if tab !== 'All'}
-									<span>in {tab}</span>
+								{#if $page.url.searchParams.get('q')}
+									No search results for <b>{$page.url.searchParams.get('q')}</b>
+									{#if tab !== 'All'}
+										<span>in {tab}</span>
+									{/if}
+								{:else}
+									Please provide a search input
 								{/if}
 							</p>
 						</div>
