@@ -10,38 +10,30 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger>
-		<div class="relative flex h-96 justify-center">
-			<div
-				class="absolute bottom-0 h-80 w-full rounded-lg border shadow-[1px_2px_10px_0px_rgba(0,0,0,0.09)]"
-			></div>
-			<Card.Root
-				class="absolute bottom-0 z-10 flex h-96 w-full flex-col justify-end border-none !bg-transparent shadow-none"
-			>
-				<div class="flex min-h-0 flex-1 justify-center">
+	<Dialog.Trigger class="h-full w-full pt-20">
+		<Card.Root class="h-full w-full">
+			<Card.Header class="relative flex h-80 flex-col items-center">
+				<div
+					class="-mt-24 w-full max-w-[calc(var(--card-height)*0.5)] flex-grow overflow-hidden rounded-lg bg-gray-100"
+				>
 					{#if publication.hero_image}
 						<img
 							src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
 							alt={publication.title}
-							class="w-[calc(var(--card-height)*0.5)] rounded-lg object-cover"
+							class="h-full w-full rounded-lg object-cover"
 						/>
 					{:else}
-						<div class="flex w-[calc(var(--card-height)*0.5)] items-center justify-center bg-muted">
+						<div class="flex h-full w-full items-center justify-center rounded-lg bg-muted">
 							<ScrollText class="w-20 bg-muted text-muted-foreground" />
 						</div>
 					{/if}
 				</div>
-				<Card.Header class="mb-5">
-					<Card.Title class="flex justify-center text-center">{publication.title}</Card.Title>
-				</Card.Header>
-				<Card.Footer class="flex justify-between">
-					<small class="text-sm text-gray-500">
-						{#each publication.authors.slice(0, -1) as author}
-							{author.last_name},
-						{/each}
-						{publication.authors.at(-1)?.last_name}
-					</small>
-					<small class="text-sm text-gray-500">
+				<Card.Title class="w-full py-2 text-center">{publication.title}</Card.Title>
+				<Card.Description class="flex w-full flex-col justify-between pb-4 lg:flex-row">
+					<p class="text-center text-sm text-gray-500 lg:text-start">
+						{publication.authors.map((a) => a.last_name).join(', ')}
+					</p>
+					<p class="text-center text-sm text-gray-500 lg:text-end">
 						{#if publication.publish_date}
 							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
 								year: 'numeric',
@@ -49,18 +41,18 @@
 								day: 'numeric'
 							})}
 						{/if}
-					</small>
-				</Card.Footer>
-			</Card.Root>
-		</div>
+					</p>
+				</Card.Description>
+			</Card.Header>
+		</Card.Root>
 	</Dialog.Trigger>
-	<Dialog.Content>
+	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg">
 		<Dialog.Header class="flex flex-col gap-y-1">
 			<Dialog.Title>{publication.title}</Dialog.Title>
 			<Dialog.Description class="flex flex-col gap-y-2">
 				<div>
 					{#if publication.publish_date}
-						<div>
+						<div class="text-start">
 							<strong>Date published:</strong>
 							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
 								year: 'numeric',
@@ -92,7 +84,7 @@
 					{/if}
 				</div>
 				{#if publication.abstract}
-					<div>
+					<div class="text-start">
 						<small><strong>Abstract:</strong> {publication.abstract}</small>
 					</div>
 				{/if}
