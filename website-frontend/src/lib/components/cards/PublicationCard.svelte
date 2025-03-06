@@ -29,7 +29,7 @@
 					{/if}
 				</div>
 				<Card.Title class="w-full py-2 text-center">{publication.title}</Card.Title>
-				<Card.Description class="flex w-full flex-col justify-between pb-4 lg:flex-row">
+				<Card.Description class="flex w-full flex-col justify-between gap-x-4 pb-4 lg:flex-row">
 					<p class="text-center text-sm text-gray-500 lg:text-start">
 						{publication.authors.map((a) => a.last_name).join(', ')}
 					</p>
