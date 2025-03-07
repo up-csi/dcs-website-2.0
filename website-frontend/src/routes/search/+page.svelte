@@ -5,37 +5,37 @@
 	import { Search } from 'lucide-svelte';
 	import SearchResult from '$lib/components/search/SearchResult.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
-
-	export let search_value = 'clarisse';
+	import { page } from '$app/stores';
 
 	export let data;
-	$: ({ events, people, laboratories, publications } = data);
+	let tabs;
 
-	const tabs = [
+	$: ({ news, events, people, laboratories, publications } = data);
+
+	$: tabs = [
 		{
 			tab: 'All',
-			content: ['events', 'people', 'laboratories', 'publications'],
-			res: 1
+			res: news.length + events.length + people.length + laboratories.length + publications.length
+		},
+		{
+			tab: 'News',
+			res: news.length
 		},
 		{
 			tab: 'Events',
-			content: ['events'],
-			res: 0
+			res: events.length
 		},
 		{
 			tab: 'People',
-			content: ['people'],
-			res: 0
+			res: people.length
 		},
 		{
 			tab: 'Laboratories',
-			content: ['laboratories'],
-			res: 0
+			res: laboratories.length
 		},
 		{
 			tab: 'Publications',
-			content: ['publications'],
-			res: 0
+			res: publications.length
 		}
 	];
 </script>
@@ -54,51 +54,111 @@
 			</Tabs.List>
 		</ScrollArea>
 
-		{#each tabs as { tab, content, res }}
+		{#each tabs as { tab, res }}
 			<Tabs.Content value={tab}>
-				<p class="text-3xl font-bold">
-					{res} Search result{#if res !== 1}s{/if}
-				</p>
-
 				{#if res > 0}
-					{#if content.includes('events', 0)}
-						{#each events as { event_headline, event_content, hero_image }}
-							<SearchResult image={hero_image} name={event_headline}>
+					<div class="py-5">
+						<p class="text-3xl font-bold">
+							{res} Search result{#if res !== 1}s{/if} for
+							<span class="font-normal">{$page.url.searchParams.get('q')}</span>
+							{#if tab !== 'All'}
+								<span>in {tab}</span>
+							{/if}
+						</p>
+					</div>
+
+					{#if tab === 'All'}
+						{#each news as { slug, title, summary, background_image }}
+							<SearchResult href="/news/{slug}" image={background_image} name={title}>
+								<p class="text-xl font-bold">{title}</p>
+								<p class="line-clamp-2">{@html summary}</p>
+							</SearchResult>
+						{/each}
+						{#each events as { slug, event_headline, event_content, hero_image }}
+							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
 								<p class="line-clamp-2">{@html event_content}</p>
 							</SearchResult>
 						{/each}
-					{/if}
-
-					{#if content.includes('people', 0)}
-						{#each people as { first_name, last_name, profile_image, position }}
-							<SearchResult image={profile_image} name="{first_name} {last_name}">
+						{#each people as { category, username, first_name, last_name, profile_image, position }}
+							<SearchResult
+								href="/people/{category}/{username}"
+								image={profile_image}
+								name="{first_name} {last_name}"
+							>
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
 								<p>{position}</p>
 							</SearchResult>
 						{/each}
-					{/if}
-
-					{#if content.includes('laboratories', 0)}
-						{#each laboratories as { name, description, logo }}
-							<SearchResult image={logo} {name}>
+						{#each laboratories as { slug, name, description, logo }}
+							<SearchResult href="/labs/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								<p class="line-clamp-2">{description}</p>
 							</SearchResult>
 						{/each}
-					{/if}
-
-					{#if content.includes('publications', 0)}
-						{#each publications as { title, authors, hero_image, abstract }}
-							<SearchResult image={hero_image} name={title}>
-								<p class="text-xl font-bold">{title}</p>
+						{#each publications as publication}
+							<SearchResult
+								{publication}
+								href="/publications"
+								image={publication.hero_image}
+								name={publication.title}
+							>
+								<p class="text-xl font-bold">{publication.title}</p>
 								<p>
-									{#each authors.slice(0, -1) as { last_name }}
-										{last_name},
+									{#each publication.authors as { last_name }, i}
+										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
 									{/each}
-									{authors.at(-1)?.last_name}
 								</p>
-								<p class="line-clamp-2">{abstract}</p>
+								<p class="line-clamp-2">{publication.abstract}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'News'}
+						{#each news as { slug, title, summary, background_image }}
+							<SearchResult href="/news/{slug}" image={background_image} name={title}>
+								<p class="text-xl font-bold">{title}</p>
+								<p class="line-clamp-2">{@html summary}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'Events'}
+						{#each events as { slug, event_headline, event_content, hero_image }}
+							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
+								<p class="text-xl font-bold">{event_headline}</p>
+								<p class="line-clamp-2">{@html event_content}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'People'}
+						{#each people as { category, username, first_name, last_name, profile_image, position }}
+							<SearchResult
+								href="/people/{category}/{username}"
+								image={profile_image}
+								name="{first_name} {last_name}"
+							>
+								<p class="text-xl font-bold">{first_name} {last_name}</p>
+								<p>{position}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'Laboratories'}
+						{#each laboratories as { slug, name, description, logo }}
+							<SearchResult href="/labs/{slug}" image={logo} {name}>
+								<p class="text-xl font-bold">{name}</p>
+								<p class="line-clamp-2">{description}</p>
+							</SearchResult>
+						{/each}
+					{:else if tab === 'Publications'}
+						{#each publications as publication}
+							<SearchResult
+								{publication}
+								href="/publications"
+								image={publication.hero_image}
+								name={publication.title}
+							>
+								<p class="text-xl font-bold">{publication.title}</p>
+								<p>
+									{#each publication.authors as { last_name }, i}
+										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
+									{/each}
+								</p>
+								<p class="line-clamp-2">{publication.abstract}</p>
 							</SearchResult>
 						{/each}
 					{/if}
@@ -108,7 +168,16 @@
 							<Search class="h-[30vh] w-[30vh] text-secondary/25" />
 						</div>
 						<div class="absolute left-0 top-0 flex h-full w-full items-center justify-center">
-							<p>No search results for <b>{search_value}</b></p>
+							<p>
+								{#if $page.url.searchParams.get('q')}
+									No search results for <b>{$page.url.searchParams.get('q')}</b>
+									{#if tab !== 'All'}
+										<span>in {tab}</span>
+									{/if}
+								{:else}
+									Please provide a search input
+								{/if}
+							</p>
 						</div>
 					</div>
 				{/if}

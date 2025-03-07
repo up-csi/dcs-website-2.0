@@ -6,35 +6,19 @@
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
-	import { onMount } from 'svelte';
+	import { searchOpen, mobileOpen } from '$lib/stores';
 
 	export let primary_logo;
 	export let secondary_logo;
 	export let secondary_logo_link;
 	export let facebook_link;
 	export let x_link;
-
-	let search_open = false;
-	let mobile_open = false;
-
-	onMount(() => {
-		const links = Array.from(document.getElementsByTagName('a'));
-		const mobile_toggle = document.getElementById('mobile-toggle');
-
-		links.forEach((link) => {
-			link.addEventListener('click', () => {
-				if (mobile_open) {
-					mobile_toggle?.click();
-				}
-			});
-		});
-	});
 </script>
 
-<div class="h-14 items-center bg-background py-2 lg:h-16 {mobile_open ? 'fixed z-50 w-full' : ''}">
+<div class="h-14 items-center bg-background py-2 lg:h-16 {$mobileOpen ? 'fixed z-50 w-full' : ''}">
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
-		<div class="my-auto items-center justify-center {mobile_open ? 'hidden' : 'flex'}">
+		<div class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}">
 			<a href="/">
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
@@ -55,9 +39,9 @@
 			</div>
 		</div>
 
-		<div class="flex items-center {mobile_open ? 'w-full justify-between' : 'justify-center'}">
+		<div class="flex items-center {$mobileOpen ? 'w-full justify-between' : 'justify-center'}">
 			<div class="hidden lg:block">
-				<SearchInput bind:search_open />
+				<SearchInput />
 			</div>
 
 			<!-- Social Media Links -->
@@ -66,7 +50,7 @@
 					href={facebook_link}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mx-3 h-7 pb-[2px] text-secondary transition-colors duration-300 hover:text-primary lg:block {mobile_open
+					class="mx-3 h-7 pb-[2px] text-secondary transition-colors duration-300 hover:text-primary lg:block {$mobileOpen
 						? 'block'
 						: 'hidden'}"
 				>
@@ -76,7 +60,7 @@
 					href={x_link}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mr-3 h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block {mobile_open
+					class="mr-3 h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block {$mobileOpen
 						? 'block'
 						: 'hidden'}"
 				>
@@ -88,11 +72,11 @@
 			<div class="h-10 w-10 lg:hidden">
 				<button
 					on:click={() => {
-						mobile_open = !mobile_open;
+						$mobileOpen = !$mobileOpen;
 					}}
 					id="mobile-toggle"
 				>
-					{#if mobile_open}
+					{#if $mobileOpen}
 						<X
 							class="h-full w-full rounded-full border border-secondary p-2 text-secondary hover:text-primary"
 						/>
@@ -116,7 +100,7 @@
 >
 	<button
 		on:click={() => {
-			search_open = false;
+			$searchOpen = false;
 		}}
 	>
 		<nav
@@ -141,7 +125,7 @@
 <div
 	class="
     fixed z-50 my-14 h-screen w-full
-	 bg-background {mobile_open ? 'flex' : 'hidden'}
+	 bg-background {$mobileOpen ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
