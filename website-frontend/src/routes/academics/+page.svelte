@@ -58,9 +58,14 @@
 					<LinkButton text="Go To Graduate Page" link="academics/graduate" />
 				</div>
 
-				<h1 class="mt-12 mb-8 text-3xl font-bold">
-					Courses offered by the department
-				</h1>
+				<div class="mt-16 mb-10">
+					<h1 class="text-3xl font-bold">
+						Courses offered by the department
+					</h1>
+					<p class="mt-2 ml-[2px] text-xs font-medium opacity-55">
+						Last Updated: March XX, 2025
+					</p>
+				</div>
 				<DataTable data={academics_courses} />
 
 			</div>
