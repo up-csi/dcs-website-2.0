@@ -19,7 +19,7 @@
 			const add_path: NavPath = {
 				to: deslugify(path_end),
 				href: app_path
-			}
+			};
 			nav_paths = [...nav_paths, add_path];
 		});
 	}
