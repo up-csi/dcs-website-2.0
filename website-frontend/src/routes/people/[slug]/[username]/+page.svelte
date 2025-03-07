@@ -31,7 +31,6 @@
 			position={person.position}
 			email={person.email ?? ''}
 			laboratory={affiliations[0]?.laboratory ?? ''}
-			category={person.category}
 		/>
 	</div>
 

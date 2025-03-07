@@ -2,7 +2,7 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Image, Mail, Globe } from 'lucide-svelte';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
-	import { deslugify } from '$lib/utils';
+	import Breadcrumb from '../breadcrumbs/BannerBreadcrumb.svelte';
 
 	export let background_image: string = '';
 	export let profile_image: string = '';
@@ -11,7 +11,6 @@
 	export let position: string = '';
 	export let email: string = '';
 	export let laboratory: string = '';
-	export let category: string = '';
 	export let website: string = '';
 </script>
 
@@ -22,13 +21,7 @@
 	></div>
 
 	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
-		<div class="flex space-x-2 py-4 text-sm text-secondary-foreground">
-			<p class="">Home /</p>
-			<a class="" href="/people">People /</a>
-			<a class="" href="/people/{category}">{category ? deslugify(category) : category} /</a>
-			<p class="text-[#D9D9D9]">{first_name} {last_name}</p>
-		</div>
-		<div class="h-[2px] w-full bg-white opacity-40"></div>
+		<Breadcrumb page_name="{first_name} {last_name}" />
 
 		<div
 			class="flex w-full flex-col items-center pt-10 text-secondary-foreground lg:bottom-10 lg:flex-row lg:py-10"

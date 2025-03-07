@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import DataTable from '$lib/components/table/DataTable.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
 	$: ({ academics_category, academics_courses } = data);
@@ -10,6 +11,10 @@
 <body>
 	{#if academics_category}
 		<Banner title="Academics" />
+
+		<div class="container mx-auto my-8 mb-5">
+			<Breadcrumb />
+		</div>
 
 		<br />
 		<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">

@@ -4,6 +4,7 @@
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
 
@@ -34,14 +35,13 @@
 	$: publicationsList = sortedPublications?.slice(0, shown);
 </script>
 
-<body>
-	<div class="relative z-0">
-		<Banner title="Publications" />
-	</div>
+<Banner title="Publications" />
 
-	<div class="relative z-10 -mt-7">
-		<FilterBar {controls} />
+<div class="container mx-auto my-8">
+	<div class="mb-5">
+		<Breadcrumb />
 	</div>
+	<FilterBar {controls} />
 
 	<div class="mx-auto my-4 flex justify-center gap-4">
 		<button
@@ -72,4 +72,4 @@
 			<LoadMore {inc} bind:shown />
 		</div>
 	{/if}
-</body>
+</div>

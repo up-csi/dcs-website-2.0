@@ -5,6 +5,7 @@
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import LoadMore from '$lib/components/buttons/LoadMore.svelte';
+	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
 
@@ -37,17 +38,19 @@
 		<Banner {title} flexible_content={`This is the ${title} page.`} from_bottom={'bottom-40'} />
 	</div>
 
-	<div class="-mt-28 pb-16">
-		<Carousel.Root>
-			<Carousel.Content class="-ml-6 px-16 py-10">
-				{#each featured as event}
-					<Carousel.Item class="basis-1 pl-6 md:basis-1/4">
-						<FeaturedEventCard {event} />
-					</Carousel.Item>
-				{/each}
-			</Carousel.Content>
-		</Carousel.Root>
+	<div class="container mx-auto my-8 mb-5">
+		<Breadcrumb />
 	</div>
+
+	<Carousel.Root>
+		<Carousel.Content class="-ml-6 px-16 py-10">
+			{#each featured as event}
+				<Carousel.Item class="basis-1 pl-6 md:basis-1/4">
+					<FeaturedEventCard {event} />
+				</Carousel.Item>
+			{/each}
+		</Carousel.Content>
+	</Carousel.Root>
 
 	<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">Related Events</h1>
 
