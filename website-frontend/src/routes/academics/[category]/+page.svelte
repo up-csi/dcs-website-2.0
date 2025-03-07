@@ -49,7 +49,7 @@
 						<div class="space-y-3">
 							{#each academics_programs as program}
 								{#if typeof program.category !== 'string'}
-									<a href="academics/{program.category.slug}/programs/{program.slug}" class="block">
+									<a href="{program.category.slug}/programs/{program.slug}" class="block">
 										<HorizontalCard name={program.title}/>
 									</a>
 								{/if}
@@ -62,18 +62,11 @@
 							Other Things
 						</h1>
 						<div class="space-y-1">
-							<LinkButton text="Admission Procedure" link="academics/{academics_category.slug}/admission-procedure" />
-							<LinkButton text="Academic Processes & Rules" link="academics/{academics_category.slug}/academic-processes-and-rules" />
-							<LinkButton text="Forms" link="academics/{academics_category.slug}/forms" />
+							<LinkButton text="{academics_category.name} Courses" link="{academics_category.slug}/courses" />
+							<LinkButton text="Admission Procedure" link="{academics_category.slug}/admission-procedure" />
+							<LinkButton text="Academic Processes & Rules" link="{academics_category.slug}/academic-processes-and-rules" />
+							<LinkButton text="Forms" link="{academics_category.slug}/forms" />
 						</div>
-					</div>
-
-					<div>
-						<div class="mb-6 md:mb-10">
-							<h1 class="text-2xl md:text-3xl leading-tight font-bold"> {academics_category.name} Courses </h1>
-							<p class="mt-2 ml-[2px] text-xs font-medium opacity-55"> Last Updated: March XX, 2025 </p>
-						</div>
-						<CoursesTable data={academics_courses} />
 					</div>
 
 				</div>
