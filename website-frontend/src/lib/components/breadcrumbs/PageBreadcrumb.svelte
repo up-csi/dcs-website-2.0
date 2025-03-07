@@ -3,25 +3,29 @@
 	import { page } from '$app/stores';
 	import * as Breadcrumb from '$lib/@shadcn-svelte/ui/breadcrumb/index.js';
 	import * as DropdownMenu from '$lib/@shadcn-svelte/ui/dropdown-menu/index.js';
-	import type { NavPaths } from '$lib/types/path';
+	import type { NavPath, NavPaths } from '$lib/types/path';
 	import { ChevronDown } from 'lucide-svelte';
 
 	export let page_name: string = '';
 
-	const whole_path = $page.url.pathname.split('/').slice(1);
-	let app_path = '';
+	$: whole_path = $page.url.pathname.split('/').slice(1);
+	$: app_path = '';
 
 	let nav_paths: NavPaths = [];
-	whole_path.forEach((path_end) => {
-		app_path = app_path.concat('/' + path_end);
-		nav_paths.push({
-			to: path_end === '' ? 'Home' : deslugify(path_end),
-			href: app_path
+	$: {
+		nav_paths = [];
+		whole_path.forEach((path_end) => {
+			app_path = app_path.concat('/' + path_end);
+			const add_path: NavPath = {
+				to: deslugify(path_end),
+				href: app_path
+			}
+			nav_paths = [...nav_paths, add_path];
 		});
-	});
+	}
 
-	const to_current_path: NavPaths = nav_paths.slice(0, -1);
-	const current_page = nav_paths[nav_paths.length - 1].to;
+	$: to_current_path = nav_paths.slice(0, -1);
+	$: current_page = nav_paths[nav_paths.length - 1].to;
 </script>
 
 <div class="hidden border-b border-muted-foreground/40 pb-2 lg:block">
