@@ -4,7 +4,6 @@
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
-	import { deslugify } from '$lib/utils';
 
 	export let data;
 

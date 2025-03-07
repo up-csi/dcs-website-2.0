@@ -57,7 +57,7 @@
 			</Carousel.Content>
 		</Carousel.Root>
 	</div>
-	
+
 	<div class="absolute bottom-16 w-full text-secondary-foreground lg:bottom-10 lg:px-16">
 		<div class="mb-8 px-16 lg:px-0">
 			<Breadcrumb page_name={title} />
