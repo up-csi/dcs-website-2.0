@@ -8,7 +8,7 @@
 
 	export let data;
 
-	$: ({ publications, laboratories_filters } = data);
+	$: ({ publications, laboratories_filters, tags_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
@@ -19,6 +19,10 @@
 		{
 			name: 'laboratory',
 			categories: laboratories_filters
+		},
+		{
+			name: 'tags',
+			categories: tags_filters
 		}
 	];
 
