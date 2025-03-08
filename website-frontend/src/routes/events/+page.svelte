@@ -4,7 +4,7 @@
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
-	import Calendar from '../../lib/components/table/Calendar.svelte';
+	import Calendar from '$lib/components/table/Calendar.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
