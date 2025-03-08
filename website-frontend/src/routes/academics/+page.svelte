@@ -15,9 +15,8 @@
 		<Banner title="Academics" />
 
 		<div class="flex justify-center px-4">
-			<div class="pb-16 md:pb-24 max-w-6xl w-full">
+			<div class="w-full max-w-6xl pb-16 md:pb-24">
 				<div class="space-y-10 md:space-y-16">
-
 					<div class="pt-5">
 						<Breadcrumb />
 					</div>
@@ -31,7 +30,7 @@
 					</div>
 
 					<div>
-						<h1 class="mb-3 md:mb-6 text-2xl md:text-3xl leading-tight font-bold">
+						<h1 class="mb-3 text-2xl font-bold leading-tight md:mb-6 md:text-3xl">
 							Programs offered by the department
 						</h1>
 						<div class="space-y-1">
@@ -42,16 +41,18 @@
 
 					<div>
 						<div class="mb-6 md:mb-10">
-							<h1 class="text-2xl md:text-3xl leading-tight font-bold"> Courses offered by the department </h1>
-							<p class="mt-2 ml-[2px] text-xs font-medium opacity-55"> Last Updated: March XX, 2025 </p>
+							<h1 class="text-2xl font-bold leading-tight md:text-3xl">
+								Courses offered by the department
+							</h1>
+							<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
+								Last Updated: March XX, 2025
+							</p>
 						</div>
 						<CoursesTable data={academics_courses} />
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 	{:else}
 		<p>Page not found</p>
 	{/if}
