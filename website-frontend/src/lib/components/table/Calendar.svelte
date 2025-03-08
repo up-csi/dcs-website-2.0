@@ -170,9 +170,9 @@
 											<div class="mt-2">
 												{#if event.event_content}
 													<div
-														class="text-base text-slate-600 line-clamp-{event.display_location
-															? '1'
-															: '2'}"
+														class="text-base text-slate-600 {event.display_location
+															? 'line-clamp-1'
+															: 'line-clamp-2'}"
 													>
 														{@html event.event_content}
 													</div>
