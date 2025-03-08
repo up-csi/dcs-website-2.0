@@ -15,23 +15,12 @@
 	{#if academics_category}
 		<Banner title={academics_category.name} />
 
-		<div class="container mx-auto my-8 mb-5">
-			<Breadcrumb />
-		</div>
-
 		<div class="flex justify-center px-4">
 			<div class="pb-16 md:pb-24 max-w-6xl w-full">
 				<div class="space-y-12 md:space-y-16">
 
-					<div>
-						<div class="flex space-x-2 pb-2 pt-5 text-xs font-medium">
-							<a class="" href="/">Home</a>
-							<p class="opacity-55">/</p>
-							<a class="" href="/academics">Academics</a>
-							<p class="opacity-55">/</p>
-							<p class="opacity-55">{academics_category.name}</p>
-						</div>
-						<div class="h-[1px] w-full bg-primary opacity-20"></div>
+					<div class="pt-5">
+						<Breadcrumb />
 					</div>
 
 					<div class="prose text-base">
