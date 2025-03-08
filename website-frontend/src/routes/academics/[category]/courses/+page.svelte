@@ -1,7 +1,7 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
-	import DataTable from '$lib/components/table/DataTable.svelte';
+	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
@@ -10,17 +10,24 @@
 
 <body>
 	{#if academics_category}
-		<Banner title="Academics" />
+		<Banner title="{academics_category.name} Courses" />
 
-		<div class="container mx-auto my-8 mb-5">
-			<Breadcrumb />
+		<div class="flex justify-center px-4">
+			<div class="w-full max-w-6xl pb-16 md:pb-24">
+				<div class="space-y-12">
+					<div class="pt-5">
+						<Breadcrumb />
+					</div>
+
+					<div>
+						<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
+							Last Updated: March XX, 2025
+						</p>
+						<CoursesTable data={academics_courses} />
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<br />
-		<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">
-			{academics_category.name} courses offered by the department
-		</h1>
-		<DataTable data={academics_courses} />
 	{:else}
 		<p>Page not found</p>
 	{/if}
