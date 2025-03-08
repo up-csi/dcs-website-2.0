@@ -4,16 +4,16 @@
 
 	export let data: Array<object>;
 
-	const hiddenColumns = ["user_created", "date_created", "user_updated", "date_updated"];
+	const hiddenColumns = ['user_created', 'date_created', 'user_updated', 'date_updated'];
 </script>
 
 {#if data.length !== 0}
 	<div class="shadow-lg">
-		<Table.Root class="rounded-lg overflow-hidden">
+		<Table.Root class="overflow-hidden rounded-lg">
 			<Table.Header class="bg-gray-100">
 				<Table.Row>
-					{#each Object.keys(data[0]).filter(col => !hiddenColumns.includes(col)) as heading}
-						<Table.Head class="px-4 py-2 text-left text-sm font-semibold bg-gray-100 text-gray-700">
+					{#each Object.keys(data[0]).filter((col) => !hiddenColumns.includes(col)) as heading}
+						<Table.Head class="bg-gray-100 px-4 py-2 text-left text-sm font-semibold text-gray-700">
 							{deslugify(heading)}
 						</Table.Head>
 					{/each}

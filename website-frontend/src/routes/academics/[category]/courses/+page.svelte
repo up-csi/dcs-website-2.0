@@ -13,18 +13,18 @@
 		<Banner title="{academics_category.name} Courses" />
 
 		<div class="flex justify-center px-4">
-			<div class="pb-16 md:pb-24 max-w-6xl w-full">
+			<div class="w-full max-w-6xl pb-16 md:pb-24">
 				<div class="space-y-12">
-
 					<div class="pt-5">
 						<Breadcrumb />
 					</div>
 
 					<div>
-						<p class="mb-3 mt-2 ml-[2px] text-xs font-medium opacity-55"> Last Updated: March XX, 2025 </p>
+						<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
+							Last Updated: March XX, 2025
+						</p>
 						<CoursesTable data={academics_courses} />
 					</div>
-
 				</div>
 			</div>
 		</div>

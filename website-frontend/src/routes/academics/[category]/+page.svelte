@@ -16,9 +16,8 @@
 		<Banner title={academics_category.name} />
 
 		<div class="flex justify-center px-4">
-			<div class="pb-16 md:pb-24 max-w-6xl w-full">
+			<div class="w-full max-w-6xl pb-16 md:pb-24">
 				<div class="space-y-12 md:space-y-16">
-
 					<div class="pt-5">
 						<Breadcrumb />
 					</div>
@@ -32,14 +31,14 @@
 					</div>
 
 					<div>
-						<h1 class="mb-6 md:mb-10 text-2xl md:text-3xl leading-tight font-bold">
+						<h1 class="mb-6 text-2xl font-bold leading-tight md:mb-10 md:text-3xl">
 							{academics_category.name} Programs
 						</h1>
 						<div class="space-y-3">
 							{#each academics_programs as program}
 								{#if typeof program.category !== 'string'}
 									<a href="{program.category.slug}/programs/{program.slug}" class="block">
-										<HorizontalCard name={program.title}/>
+										<HorizontalCard name={program.title} />
 									</a>
 								{/if}
 							{/each}
@@ -47,21 +46,26 @@
 					</div>
 
 					<div>
-						<h1 class="mb-3 md:mb-6 text-2xl md:text-3xl leading-tight font-bold">
-							Other Things
-						</h1>
+						<h1 class="mb-3 text-2xl font-bold leading-tight md:mb-6 md:text-3xl">Other Things</h1>
 						<div class="space-y-1">
-							<LinkButton text="{academics_category.name} Courses" link="{academics_category.slug}/courses" />
-							<LinkButton text="Admission Procedure" link="{academics_category.slug}/admission-procedure" />
-							<LinkButton text="Academic Processes & Rules" link="{academics_category.slug}/academic-processes-and-rules" />
+							<LinkButton
+								text="{academics_category.name} Courses"
+								link="{academics_category.slug}/courses"
+							/>
+							<LinkButton
+								text="Admission Procedure"
+								link="{academics_category.slug}/admission-procedure"
+							/>
+							<LinkButton
+								text="Academic Processes & Rules"
+								link="{academics_category.slug}/academic-processes-and-rules"
+							/>
 							<LinkButton text="Forms" link="{academics_category.slug}/forms" />
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 	{:else}
 		<p>Page not found</p>
 	{/if}
