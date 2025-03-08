@@ -20,6 +20,8 @@ import { StudentsOrganizations } from './students_organizations';
 import { StudentsOrganizationsOverview } from './students_organizations_overview';
 import { StudentsOrganizationsDirectusFiles } from './junctions/students_organizations_directus_files';
 import { Publications } from './publications';
+import { PublicationsTags } from './publications_tags';
+import { PublicationsRelated } from './junctions/publications_related';
 import { EventsTags } from './events_tags';
 import { EventsRelated } from './junctions/events_related';
 import { EventsTagsCategories } from './events_tags_categories';
@@ -57,6 +59,8 @@ export const Schema = object({
 	students_organizations_overview: StudentsOrganizationsOverview,
 	students_organizations_directus_files: StudentsOrganizationsDirectusFiles,
 	publications: Publications,
+	publications_tags: PublicationsTags,
+	publications_related: PublicationsRelated,
 	academics: Academics,
 	academics_categories: AcademicsCategories,
 	academics_programs: AcademicsPrograms,
