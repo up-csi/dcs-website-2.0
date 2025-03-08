@@ -148,11 +148,13 @@
 
 										<div class="flex-1">
 											<div class="mb-1 flex flex-wrap gap-1">
-												{#each event.tags || [] as tag}
-													<span
-														class="inline-block rounded bg-slate-700 px-3 py-0.5 text-sm text-white"
-														>{tag}</span
-													>
+												{#each event.event_tags as tag}
+													{#if typeof tag !== 'string' && typeof tag.events_tags_id !== 'string'}
+														<span
+															class="inline-block rounded bg-slate-700 px-3 py-0.5 text-sm text-white"
+															>{tag.events_tags_id.name}</span
+														>
+													{/if}
 												{/each}
 											</div>
 
