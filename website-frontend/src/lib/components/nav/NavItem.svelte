@@ -2,6 +2,7 @@
 	import * as Accordion from '$lib/@shadcn-svelte/ui/accordion';
 	import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
+	import { page } from '$app/stores';
 
 	export let href: string,
 		to: string,
@@ -35,7 +36,12 @@
             px-1 py-2 text-left text-primary-dark hover:no-underline
 			"
 		>
-			<span class="pr-1">{to}</span>
+			<span class="relative inline-block mr-1">
+				{to}
+				{#if $page.url.pathname === href}
+					<div class="absolute -bottom-[11px] left-0 bg-[#760C11] h-[2px] w-full" />
+				{/if}
+			</span>
 			{#if dropdown}
 				{#if show}
 					<ChevronUp class="h-4 w-4 opacity-65" />
