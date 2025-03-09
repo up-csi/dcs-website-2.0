@@ -14,7 +14,7 @@
 
 <!-- NavItem -->
 <li
-	class="relative hidden w-full list-none border-foreground transition-colors duration-300 ease-in-out hover:border-b-2 lg:block {custom}"
+	class="relative hidden w-full list-none transition-colors duration-300 ease-in-out hover:bg-primary/10 rounded-xl lg:block {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -35,7 +35,7 @@
             px-1 py-2 text-left hover:no-underline
 			"
 		>
-			<span class="pr-1 font-bold">{to}</span>
+			<span class="pr-1 ">{to}</span>
 			{#if dropdown}
 				{#if show}
 					<ChevronUp class="h-4 w-4" />
@@ -46,12 +46,13 @@
 		</Button>
 	</div>
 	{#if show && dropdown}
+		<div class="absolute w-full bg-transparent h-2"></div>
 		<ul
 			class="
-				full absolute w-fit rounded-lg border border-secondary
-				bg-secondary/25 p-0.5 pr-4
+				full absolute w-fit rounded-lg mt-2
+				bg-white p-0.5 pr-2 pl-1 shadow-lg
 				{position}
-			"
+			" 
 		>
 			<slot />
 		</ul>
