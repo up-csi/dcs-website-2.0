@@ -18,7 +18,7 @@
 	let autoplayRunning = true;
 	let startTime = Date.now();
 	let elapsed = 0;
-	
+
 	$: if (api) {
 		count = api.scrollSnapList().length;
 		current = api.selectedScrollSnap() + 1;
@@ -60,13 +60,10 @@
 </script>
 
 <div>
-	<Carousel.Root
-		bind:api
-		plugins={[plugin, Fade()]}
-	>
+	<Carousel.Root bind:api plugins={[plugin, Fade()]}>
 		<Carousel.Content>
 			{#each news as news_item, index}
-				<Carousel.Item class="relative flex h-[60vh] md:h-[90vh] flex-col items-center justify-end">
+				<Carousel.Item class="relative flex h-[60vh] flex-col items-center justify-end md:h-[90vh]">
 					{#if news_item.background_image}
 						<img
 							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
@@ -78,64 +75,74 @@
 						class="absolute flex h-full w-full flex-col justify-end bg-gradient-to-t from-[#0000009e] to-transparent"
 					>
 						<div
-							class="container max-w-3xl mx-auto flex flex-col items-center gap-y-5 pb-9 md:pb-14 pt-72 text-center text-secondary-foreground md:items-start md:text-left md:mx-12"
+							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-12 md:items-start md:pb-14 md:text-left"
 							on:mouseenter={stopAutoplay}
 							on:mouseleave={resetAutoplay}
 						>
 							{#if index + 1 === current}
-								<div 
-									in:fly={{ x: 40, duration: 1000, easing: cubicOut }} 
+								<div
+									in:fly={{ x: 40, duration: 1000, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 1000, easing: cubicOut }}
 								>
-									<h1 class="text-2xl leading-tight md:leading-tight font-bold md:text-4xl drop-shadow-lg">{news_item.title}</h1>
-					   			</div>					   
-
-								<div 
-									class="hidden md:block"
-								   	in:fly={{ x: 40, duration: 900, easing: cubicOut }} 
-									out:fly={{ x: -40, duration: 900 }}
-							   	>
-									<p class="text-xs font-medium md:text-base drop-shadow-lg line-clamp-3">{news_item.summary}</p>
+									<h1
+										class="text-2xl font-bold leading-tight drop-shadow-lg md:text-4xl md:leading-tight"
+									>
+										{news_item.title}
+									</h1>
 								</div>
 
-								<div 
-									class="block md:hidden"
-								   	in:fly={{ x: 40, duration: 700, easing: cubicOut }} 
-									out:fly={{ x: -40, duration: 700 }}
-							   	>
-								   <p class="text-xs md:text-sm text-white font-medium opacity-70 drop-shadow-lg">
-										by {news_item.user_created.first_name} {news_item.user_created.last_name}
+								<div
+									class="hidden md:block"
+									in:fly={{ x: 40, duration: 900, easing: cubicOut }}
+									out:fly={{ x: -40, duration: 900 }}
+								>
+									<p class="line-clamp-3 text-xs font-medium drop-shadow-lg md:text-base">
+										{news_item.summary}
 									</p>
 								</div>
 
 								<div
-									class="flex items-center space-x-6" 
-								   	in:fly={{ x: 40, duration: 500, easing: cubicOut }} 
+									class="block md:hidden"
+									in:fly={{ x: 40, duration: 700, easing: cubicOut }}
+									out:fly={{ x: -40, duration: 700 }}
+								>
+									<p class="text-xs font-medium text-white opacity-70 drop-shadow-lg md:text-sm">
+										by {news_item.user_created.first_name}
+										{news_item.user_created.last_name}
+									</p>
+								</div>
+
+								<div
+									class="flex items-center space-x-6"
+									in:fly={{ x: 40, duration: 500, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 500 }}
-							   	>
+								>
 									<Button class="w-fit rounded-full px-5" href="/news/{news_item.slug}">
 										Read Story
 									</Button>
-									<p class="hidden md:block text-xs md:text-sm text-white font-medium opacity-70 drop-shadow-lg">
-										by {news_item.user_created.first_name} {news_item.user_created.last_name}
+									<p
+										class="hidden text-xs font-medium text-white opacity-70 drop-shadow-lg md:block md:text-sm"
+									>
+										by {news_item.user_created.first_name}
+										{news_item.user_created.last_name}
 									</p>
 								</div>
 							{/if}
 
 							<!-- Pagination -->
-							<div class="flex gap-x-3 text-sm font-semibold text-secondary-foreground md:ml-[6px] md:mt-4">
+							<div
+								class="flex gap-x-3 text-sm font-semibold text-secondary-foreground md:ml-[6px] md:mt-4"
+							>
 								{#each [...Array(count).keys()] as i}
 									{#if i + 1 === current}
-										<div class="overflow-hidden relative h-2 w-8 rounded-full bg-white/40">
-											<div 
-												class="rounded-full absolute top-0 left-0 h-full bg-white transition-[width] duration-300 ease-linear"
+										<div class="relative h-2 w-8 overflow-hidden rounded-full bg-white/40">
+											<div
+												class="absolute left-0 top-0 h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
 												style="width: {progress}%;"
 											></div>
 										</div>
 									{:else}
-										<button
-											class="h-2 w-2 rounded-full bg-white/40"
-											on:click={() => goToSlide(i)}
+										<button class="h-2 w-2 rounded-full bg-white/40" on:click={() => goToSlide(i)}
 										></button>
 									{/if}
 								{/each}
