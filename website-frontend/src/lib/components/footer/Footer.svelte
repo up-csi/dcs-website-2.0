@@ -10,7 +10,7 @@
 	export let x_link;
 </script>
 
-<div class="bg-primary text-primary-foreground">
+<div class="bg-background-dark text-primary-foreground">
 	<div class="container p-10 lg:grid lg:grid-cols-3 lg:gap-4">
 		<div class="my-4 lg:mx-2 lg:my-0">
 			<p class="py-2 text-2xl font-bold lg:text-xl">Department of Computer Science</p>
@@ -54,6 +54,6 @@
 		</div>
 	</div>
 </div>
-<div class="flex justify-center bg-primary text-primary-foreground">
+<div class="flex justify-center bg-background-dark text-primary-foreground">
 	<p class="my-6 text-sm">&copy; 2024 UP Department of Computer Science</p>
 </div>
