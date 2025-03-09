@@ -38,9 +38,9 @@
 			<span class="pr-1 ">{to}</span>
 			{#if dropdown}
 				{#if show}
-					<ChevronUp class="h-4 w-4" />
+					<ChevronUp class="h-4 w-4 opacity-65" />
 				{:else}
-					<ChevronDown class="h-4 w-4" />
+					<ChevronDown class="h-4 w-4 opacity-65" />
 				{/if}
 			{/if}
 		</Button>
