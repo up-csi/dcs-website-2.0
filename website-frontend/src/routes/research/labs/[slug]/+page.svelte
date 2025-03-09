@@ -38,7 +38,8 @@
 							profile_image: person.profile_image ?? '',
 							background_image: person.background_image ?? '',
 							position: affiliate.role,
-							affiliations: person.affiliations
+							affiliations: person.affiliations,
+							publications: person.publications ?? []
 						};
 					return null;
 				})
