@@ -51,7 +51,7 @@
 	</Carousel.Root>
 </div>
 
-<div id="more-news" class="bg-primary py-24 text-primary-foreground">
+<div id="more-news" class="bg-background-dark py-24 text-primary-foreground">
 	<div class="container flex h-full flex-col justify-center gap-y-8">
 		<h2 class="text-center text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
 		<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
