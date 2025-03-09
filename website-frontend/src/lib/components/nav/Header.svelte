@@ -49,15 +49,15 @@
 			<a href="/">
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
-					alt="UP"
-					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+					alt="DCS"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-1 lg:h-12 lg:w-12"
 				/></a
 			>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
 					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
-					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+					alt="UP"
+					class="hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block lg:mr-3 "
 				/>
 			</a>
 			<div class="font-semibold text-[#136734]">
