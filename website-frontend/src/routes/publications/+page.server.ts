@@ -8,12 +8,21 @@ export async function load({ fetch, url }) {
 	const filters = {
 		year: url.searchParams.getAll('year'),
 		laboratories: url.searchParams.getAll('laboratory'),
-		tags: url.searchParams.getAll('laboratory')
+		tags: url.searchParams.getAll('tags')
 	};
 
 	const laboratories_filters = await directus
 		.request(
 			readItems('laboratories', {
+				fields: ['name'],
+				sort: ['name']
+			})
+		)
+		.then((res) => res.map(({ name }) => name));
+
+	const tags_filters = await directus
+		.request(
+			readItems('publications_tags', {
 				fields: ['name'],
 				sort: ['name']
 			})
@@ -26,6 +35,11 @@ export async function load({ fetch, url }) {
 				filter: {
 					laboratory: {
 						name: { _in: filters.laboratories.length !== 0 ? filters.laboratories : undefined }
+					},
+					publication_tags: {
+						publications_tags_id: {
+							name: { _in: filters.tags.length !== 0 ? filters.tags : undefined }
+						}
 					}
 				},
 				sort: ['-publish_date']
@@ -53,5 +67,6 @@ export async function load({ fetch, url }) {
 					})
 				)
 		);
-	return { publications, laboratories_filters };
+
+	return { publications, laboratories_filters, tags_filters };
 }
