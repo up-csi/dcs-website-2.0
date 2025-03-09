@@ -36,10 +36,10 @@
             px-1 py-2 text-left text-primary-dark hover:no-underline
 			"
 		>
-			<span class="relative inline-block mr-1">
+			<span class="relative mr-1 inline-block">
 				{to}
 				{#if $page.url.pathname === href}
-					<div class="absolute -bottom-[11px] left-0 bg-[#760C11] h-[2px] w-full" />
+					<div class="absolute -bottom-[11px] left-0 h-[2px] w-full bg-[#760C11]" />
 				{/if}
 			</span>
 			{#if dropdown}
