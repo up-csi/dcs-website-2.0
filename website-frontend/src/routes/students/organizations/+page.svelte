@@ -2,79 +2,33 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
-	import { PUBLIC_APIURL } from '$env/static/public';
+	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
+	import OrganizationItem from '$lib/components/list_items/OrganizationItem.svelte';
 	export let data;
 
 	$: ({ students_organizations, students_organizations_overview } = data);
+
+	const title = 'Student Organizations';
 </script>
 
 <body>
-	{#if students_organizations_overview}
-		<Banner
-			title="Organizations"
-			background_image={students_organizations_overview.background_image ?? ''}
-			flexible_content={students_organizations_overview.flexible_content ?? ''}
-		/>
-	{:else}
-		<p>Page not found</p>
-	{/if}
+	<Banner {title} background_image={students_organizations_overview.background_image ?? ''} />
 
-	<div class="px-4 py-10 text-base md:px-32">
-		<div class="mb-5">
-			<Breadcrumb />
+	<div class="mx-20 mb-36">
+		<div class="my-5">
+			<Breadcrumb page_name={title} />
 		</div>
 
-		{#each students_organizations as students_organization}
-			<div class="flex items-start gap-6">
-				{#if students_organization.logo}
-					<a href="/students/organizations/{students_organization.slug}">
-						<img
-							src={`${PUBLIC_APIURL}/assets/${students_organization.logo}`}
-							alt={students_organization.name}
-							class="h-24 w-24 object-contain"
-						/>
-					</a>
-				{/if}
-				<div>
-					<h2 class="text-2xl font-bold">{students_organization.name}</h2>
-					{#if students_organization.description}
-						<p class="mt-2">{students_organization.description}</p>
-					{/if}
-					<div class="mt-4 space-y-2">
-						{#if students_organization.mission}
-							<p><strong>Mission:</strong> {students_organization.mission}</p>
-						{/if}
-						{#if students_organization.founding_date}
-							<p>
-								<strong>Founded:</strong>
-								{new Date(students_organization.founding_date).toLocaleDateString('en-US', {
-									month: 'long',
-									day: 'numeric',
-									year: 'numeric'
-								})}
-							</p>
-						{/if}
-						{#if students_organization.email || students_organization.website}
-							<div class="flex gap-4">
-								{#if students_organization.email}
-									<a
-										href="mailto:{students_organization.email}"
-										class="text-primary hover:underline">Email</a
-									>
-								{/if}
-								{#if students_organization.website}
-									<a
-										href={students_organization.website}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="text-primary hover:underline">Website</a
-									>
-								{/if}
-							</div>
-						{/if}
-					</div>
-				</div>
+		{#if students_organizations_overview.flexible_content}
+			<div class="mb-10 w-full px-40">
+				<FlexibleContent content={students_organizations_overview.flexible_content} />
 			</div>
+		{/if}
+
+		<p class="text-2xl font-bold">CS Network</p>
+
+		{#each students_organizations as organization}
+			<OrganizationItem {organization} />
 		{/each}
 	</div>
 </body>
