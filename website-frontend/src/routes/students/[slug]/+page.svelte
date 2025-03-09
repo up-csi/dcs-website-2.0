@@ -17,7 +17,7 @@
 				<Breadcrumb />
 			</div>
 
-			<div class="w-full px-40 mb-10">
+			<div class="mb-10 w-full px-40">
 				{#if page.flexible_content}
 					<FlexibleContent content={page.flexible_content} />
 				{:else}
