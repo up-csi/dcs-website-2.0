@@ -8,16 +8,14 @@
 </script>
 
 <body>
-	<div class="relative z-0">
-		<Banner
-			title="Students"
-			background_image={students_overview.background_image ?? ''}
-			flexible_content={students_overview.flexible_content}
-		/>
-	</div>
+	<Banner
+		title="Students"
+		background_image={students_overview.background_image ?? ''}
+		flexible_content={students_overview.flexible_content}
+	/>
 
-	<div class="px-4 py-10">
-		<div class="mb-5">
+	<div class="mx-20">
+		<div class="my-5">
 			<Breadcrumb />
 		</div>
 	</div>
