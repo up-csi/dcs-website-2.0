@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NavItem from './NavItem.svelte';
+	import NavItem from '../list_items/NavItem.svelte';
 </script>
 
 <NavItem href="/" to="Home" />
