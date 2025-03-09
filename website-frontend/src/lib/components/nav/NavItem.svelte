@@ -32,7 +32,7 @@
 			variant="link"
 			{href}
 			class="
-            px-1 py-2 text-left hover:no-underline
+            px-1 py-2 text-left hover:no-underline text-primary-dark
 			"
 		>
 			<span class="pr-1 ">{to}</span>
