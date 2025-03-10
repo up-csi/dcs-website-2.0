@@ -14,13 +14,16 @@
 
 		<div class="flex justify-center px-4">
 			<div class="w-full max-w-6xl pb-16 md:pb-24">
-				<div class="space-y-12">
+				<div class="space-y-8 md:space-y-12">
 					<div class="pt-5">
 						<Breadcrumb />
 					</div>
 
-					<div>
-						<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
+					<div class="mb-6 md:mb-10">
+						<h1 class="text-2xl font-bold leading-tight md:text-3xl">
+							{academics_category.name} courses offered by the department
+						</h1>
+						<p class="ml-[2px] mt-2 text-xs font-medium opacity-55 mb-3">
 							Last Updated: March XX, 2025
 						</p>
 						<CoursesTable data={academics_courses} />
