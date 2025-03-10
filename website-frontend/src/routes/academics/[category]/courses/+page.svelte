@@ -20,7 +20,7 @@
 					</div>
 
 					<div>
-						<p class="ml-[2px] mt-2 text-xs font-medium opacity-55 mb-3">
+						<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
 							Last Updated: March XX, 2025
 						</p>
 						<CoursesTable data={academics_courses} />

@@ -18,7 +18,7 @@
 					<div class="pt-5">
 						<Breadcrumb />
 					</div>
-					
+
 					<div class="space-y-3">
 						{#each academics_programs as program}
 							{#if typeof program.category !== 'string'}
@@ -28,7 +28,7 @@
 							{/if}
 						{/each}
 					</div>
-                </div>
+				</div>
 			</div>
 		</div>
 	{:else}
