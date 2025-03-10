@@ -4,11 +4,10 @@
 	import LinkButton from '$lib/components/buttons/LinkButton.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import HorizontalCard from '$lib/components/cards/HorizontalCard.svelte';
-	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
-	$: ({ academics_category, academics_programs, academics_courses } = data);
+	$: ({ academics_category, academics_programs } = data);
 </script>
 
 <body>
