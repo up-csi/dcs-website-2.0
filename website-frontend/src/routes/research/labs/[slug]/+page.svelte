@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
@@ -8,9 +8,13 @@
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
+	import { Laboratory } from '$lib/models/laboratories';
+	import { Publications } from '$lib/models/publications';
 
 	export let data;
-	const { laboratory, publications } = data;
+	let laboratory: Laboratory;
+	let publications: Publications;
+	$: ({ laboratory, publications } = data);
 
 	const background_images = laboratory.background_images
 		? laboratory.background_images
@@ -58,8 +62,8 @@
 							event_headline: e.event_headline,
 							hero_image: e.hero_image ?? '',
 							event_content: e.event_content,
-							start_date: e.start_date,
-							end_date: e.end_date,
+							start_date: e.start_date as 'datetime',
+							end_date: e.end_date as 'datetime',
 							event_area: e.event_area,
 							display_location: e.display_location,
 							tags: e.tags,
