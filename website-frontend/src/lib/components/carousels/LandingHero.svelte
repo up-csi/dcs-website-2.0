@@ -75,6 +75,7 @@
 						class="absolute flex h-full w-full flex-col justify-end bg-gradient-to-t from-[#0000009e] to-transparent"
 					>
 						<div
+							role="button"
 							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-12 md:items-start md:pb-14 md:text-left"
 							on:mouseenter={stopAutoplay}
 							on:mouseleave={resetAutoplay}
