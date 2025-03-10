@@ -22,7 +22,9 @@
 			<Table.Body>
 				{#each data as item}
 					<Table.Row>
-						{#each Object.keys(item).filter((key) => !hiddenColumns.includes(key)).map((key) => item[key]) as value}
+						{#each Object.keys(item)
+							.filter((key) => !hiddenColumns.includes(key))
+							.map((key) => item[key]) as value}
 							<Table.Cell class="bg-white text-gray-600">
 								{value}
 							</Table.Cell>
