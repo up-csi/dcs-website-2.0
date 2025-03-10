@@ -70,7 +70,7 @@ export const Schema = object({
 	students_organizations_directus_files: StudentsOrganizationsDirectusFiles,
 	students_organizations_overview: StudentsOrganizationsOverview,
 	students_overview: StudentsOverview,
-	students_pages: StudentsPages,
+	students_pages: StudentsPages
 });
 
 export type Schema = InferOutput<typeof Schema>;
