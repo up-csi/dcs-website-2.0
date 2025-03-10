@@ -7,30 +7,61 @@
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import { searchOpen, mobileOpen } from '$lib/stores';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
 
 	export let primary_logo;
 	export let secondary_logo;
 	export let secondary_logo_link;
 	export let facebook_link;
 	export let x_link;
+
+	let atTop = writable(true); // Track if at the top
+	let lastScrollY = 0;
+	let isVisible = writable(true); // Track navbar visibility
+
+	onMount(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+
+			// Check if we're at the top of the page
+			atTop.set(currentScrollY === 0);
+
+			// Show navbar when scrolling up, hide when scrolling down
+			if (currentScrollY > lastScrollY) {
+				isVisible.set(false); // Hide when scrolling down
+			} else {
+				isVisible.set(true); // Show when scrolling up
+			}
+
+			lastScrollY = currentScrollY;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	});
 </script>
 
-<div class="h-14 items-center bg-background py-2 lg:h-16 {$mobileOpen ? 'fixed z-50 w-full' : ''}">
+<div
+	class="h-14 items-center bg-background/80 py-2 backdrop-blur-md lg:h-16 {$mobileOpen
+		? 'fixed z-50 w-full'
+		: ''}"
+>
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
 		<div class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}">
 			<a href="/">
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
-					alt="UP"
-					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+					alt="DCS"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary object-cover lg:mr-1 lg:h-12 lg:w-12"
 				/></a
 			>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
 					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
-					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+					alt="UP"
+					class="hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:mr-3 lg:block"
 				/>
 			</a>
 			<div class="font-semibold text-primary">
@@ -93,10 +124,10 @@
 
 <!-- Navbar -->
 <div
-	class="
-    absolute mt-2 hidden h-fit w-full justify-center
-	lg:flex
-"
+	class="fixed z-50 hidden w-full justify-center transition-all duration-300 ease-in-out lg:flex"
+	class:top-[4.5rem]={$atTop}
+	class:top-3={!$atTop}
+	class:-translate-y-[calc(100%+0.75rem)]={!$isVisible}
 >
 	<button
 		on:click={() => {
@@ -106,7 +137,7 @@
 		<nav
 			class="
 			sticky flex h-fit w-fit justify-between
-			rounded-3xl border border-secondary bg-secondary/25 px-5 lg:z-50
+			rounded-3xl border border-primary/15 bg-white/80 px-5 backdrop-blur-2xl lg:z-50
 		"
 		>
 			<ul
@@ -125,7 +156,7 @@
 <div
 	class="
     fixed z-50 my-14 h-screen w-full
-	 bg-background {$mobileOpen ? 'flex' : 'hidden'}
+	bg-background {$mobileOpen ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
