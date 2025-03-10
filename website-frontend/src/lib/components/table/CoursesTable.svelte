@@ -2,7 +2,7 @@
 	import * as Table from '$lib/@shadcn-svelte/ui/table';
 	import { deslugify } from '$lib/utils';
 
-	export let data: Array<Record<string, any>>;
+	export let data: Array<object>;
 
 	const hiddenColumns = ['user_created', 'date_created', 'user_updated', 'date_updated'];
 </script>
@@ -22,9 +22,9 @@
 			<Table.Body>
 				{#each data as item}
 					<Table.Row>
-						{#each Object.keys(item)
-							.filter((key) => !hiddenColumns.includes(key))
-							.map((key) => item[key]) as value}
+						{#each Object.entries(item)
+							.filter(([key]) => !hiddenColumns.includes(key))
+							.map((entry) => entry[1]) as value}
 							<Table.Cell class="bg-white text-gray-600">
 								{value}
 							</Table.Cell>
