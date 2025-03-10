@@ -7,6 +7,7 @@
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+	import { onMount } from 'svelte';
 
 	const delay = 6000;
 	const plugin = Autoplay({ delay, stopOnInteraction: true });
@@ -18,6 +19,7 @@
 	let autoplayRunning = true;
 	let startTime = Date.now();
 	let elapsed = 0;
+	let progress = 0;
 
 	$: if (api) {
 		count = api.scrollSnapList().length;
@@ -46,6 +48,7 @@
 	function updateTime() {
 		if (autoplayRunning) {
 			elapsed = Date.now() - startTime;
+			progress = Math.round((elapsed / delay) * 100);
 			requestAnimationFrame(updateTime);
 		}
 	}
@@ -55,8 +58,9 @@
 		progress = 1;
 	}
 
-	updateTime();
-	$: progress = Math.round((elapsed / delay) * 100);
+	onMount(() => {
+		updateTime();
+	});
 </script>
 
 <div>
