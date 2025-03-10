@@ -2,7 +2,7 @@
 	import * as Table from '$lib/@shadcn-svelte/ui/table';
 	import { deslugify } from '$lib/utils';
 
-	export let data: Array<object>;
+	export let data: Array<Record<string, any>>;
 
 	const hiddenColumns = ['user_created', 'date_created', 'user_updated', 'date_updated'];
 </script>
