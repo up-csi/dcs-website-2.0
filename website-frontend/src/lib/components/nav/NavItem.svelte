@@ -2,6 +2,7 @@
 	import * as Accordion from '$lib/@shadcn-svelte/ui/accordion';
 	import Button from '$lib/@shadcn-svelte/ui/button/button.svelte';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
+	import { page } from '$app/stores';
 
 	export let href: string,
 		to: string,
@@ -14,7 +15,7 @@
 
 <!-- NavItem -->
 <li
-	class="relative hidden w-full list-none border-foreground transition-colors duration-300 ease-in-out hover:border-b-2 lg:block {custom}"
+	class="relative hidden w-full list-none rounded-xl transition-colors duration-300 ease-in-out hover:bg-primary/10 lg:block {custom}"
 	on:mouseenter={() => {
 		show = true;
 	}}
@@ -32,24 +33,30 @@
 			variant="link"
 			{href}
 			class="
-            px-1 py-2 text-left hover:no-underline
+            px-1 py-2 text-left text-primary-dark hover:no-underline
 			"
 		>
-			<span class="pr-1 font-bold">{to}</span>
+			<span class="relative mr-1 inline-block">
+				{to}
+				{#if $page.url.pathname === href}
+					<div class="absolute -bottom-[11px] left-0 h-[2px] w-full bg-[#760C11]" />
+				{/if}
+			</span>
 			{#if dropdown}
 				{#if show}
-					<ChevronUp class="h-4 w-4" />
+					<ChevronUp class="h-4 w-4 opacity-65" />
 				{:else}
-					<ChevronDown class="h-4 w-4" />
+					<ChevronDown class="h-4 w-4 opacity-65" />
 				{/if}
 			{/if}
 		</Button>
 	</div>
 	{#if show && dropdown}
+		<div class="absolute h-2 w-full bg-transparent"></div>
 		<ul
 			class="
-				full absolute w-fit rounded-lg border border-secondary
-				bg-secondary/25 p-0.5 pr-4
+				full absolute mt-2 w-fit rounded-lg
+				bg-white p-0.5 pl-1 pr-2 shadow-lg
 				{position}
 			"
 		>
