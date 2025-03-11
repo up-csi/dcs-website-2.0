@@ -79,10 +79,5 @@
 	<NavItem href="/students/organizations" to="Organizations" />
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
-<NavItem href="/linkages" to="Linkages" dropdown={true} position="md:right-0 lg:left-0">
-	<NavItem
-		href="/linkages/partnerships"
-		to="Partnerships"
-		custom="flex justify-end p-0 block justify-start"
-	/>
+<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0">
 </NavItem>
