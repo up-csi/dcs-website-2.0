@@ -46,14 +46,16 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<header class="w-full overflow-clip">
-	<Header {primary_logo} {secondary_logo} {secondary_logo_link} {facebook_link} {x_link} />
-</header>
-
-<main class="w-full overflow-clip">
-	<slot />
-</main>
-
-<footer class="w-full overflow-clip">
-	<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
-</footer>
+<div class="flex flex-col justify-between h-full">
+	<header class="w-full overflow-clip">
+		<Header {primary_logo} {secondary_logo} {secondary_logo_link} {facebook_link} {x_link} />
+	</header>
+	
+	<main class="w-full overflow-clip">
+		<slot />
+	</main>
+	
+	<footer class="w-full overflow-clip">
+		<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+	</footer>
+</div>
