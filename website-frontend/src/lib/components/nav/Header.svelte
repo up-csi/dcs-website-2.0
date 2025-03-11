@@ -50,13 +50,6 @@
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
 		<div class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}">
-			<a href="/">
-				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}"
-					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary object-cover lg:mr-1 lg:h-12 lg:w-12"
-				/></a
-			>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
 					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
@@ -64,10 +57,17 @@
 					class="hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:mr-3 lg:block"
 				/>
 			</a>
-			<div class="font-semibold text-primary">
+			<a href="/">
+				<img
+					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					alt="DCS"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary object-cover lg:mr-1 lg:h-12 lg:w-12"
+				/>
+			</a>
+			<a href="/" class="font-semibold text-primary">
 				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
 				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
-			</div>
+			</a>
 		</div>
 
 		<div class="flex items-center {$mobileOpen ? 'w-full justify-between' : 'justify-center'}">
