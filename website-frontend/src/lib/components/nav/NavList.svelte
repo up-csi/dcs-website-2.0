@@ -79,5 +79,4 @@
 	<NavItem href="/students/organizations" to="Organizations" />
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
-<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0">
-</NavItem>
+<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0"></NavItem>
