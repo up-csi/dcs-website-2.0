@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 </script>
 
 <div class="container prose mt-20 flex flex-col items-center">
