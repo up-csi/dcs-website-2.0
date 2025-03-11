@@ -61,7 +61,7 @@
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
 					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary object-cover lg:mr-1 lg:h-12 lg:w-12"
+					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary object-cover lg:mr-3 lg:h-12 lg:w-12"
 				/>
 			</a>
 			<a href="/" class="font-semibold text-primary">
