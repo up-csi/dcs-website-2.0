@@ -14,7 +14,7 @@
 
 <LandingHero {news} />
 
-<div class="container mx-auto my-8 flex h-full flex-col justify-center gap-y-5">
+<div class="container mx-auto my-8 flex flex-col justify-center gap-y-5">
 	<div class="flex justify-between">
 		<h2 class="text-xl font-bold md:text-2xl">Recent News</h2>
 		<Button href="#more-news" variant="outline" class="flex gap-x-2 rounded-full">
