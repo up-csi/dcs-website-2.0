@@ -3,7 +3,7 @@
 </script>
 
 <div class="container prose mt-20 flex flex-col items-center">
-	<h1>{page.status}: {page.error?.message}</h1>
+	<h1>{$page.status}: {$page.error?.message}</h1>
 
 	<aside>
 		<blockquote>
