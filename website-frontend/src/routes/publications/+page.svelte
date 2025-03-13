@@ -8,7 +8,7 @@
 
 	export let data;
 
-	$: ({ publications, laboratories_filters, tags_filters } = data);
+	$: ({ publications, years_filters, laboratories_filters, tags_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
@@ -16,6 +16,10 @@
 	let sortMethod: 'date' | 'author' = 'date';
 
 	$: controls = [
+		{
+			name: 'year',
+			categories: years_filters
+		},
 		{
 			name: 'laboratory',
 			categories: laboratories_filters
