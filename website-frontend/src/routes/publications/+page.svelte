@@ -5,6 +5,7 @@
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import Sort from '$lib/components/sort/Sort.svelte';
 
 	export let data;
 
@@ -45,11 +46,12 @@
 
 <Banner title="Publications" />
 
-<div class="container mx-auto my-8">
+<div class="container mx-auto my-8 gap-y-5">
 	<div class="mb-5">
 		<Breadcrumb />
 	</div>
 	<FilterBar {controls} />
+	<Sort />
 
 	<div class="mx-auto my-4 flex justify-center gap-4">
 		<button
