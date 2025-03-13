@@ -17,7 +17,7 @@
 	let organization: StudentsOrganization;
 	let events: Events;
 	let news: News;
-	$: ({ organization, events, news } = data);
+	({ organization, events, news } = data);
 
 	let showFull = false;
 
