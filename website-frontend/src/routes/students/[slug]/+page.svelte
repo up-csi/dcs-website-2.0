@@ -12,16 +12,18 @@
 	{#if page}
 		<Banner title={page.title} />
 
-		<div class="px-4 py-10 text-base md:px-32">
-			<div class="mb-5">
+		<div class="mx-20">
+			<div class="my-5">
 				<Breadcrumb />
 			</div>
 
-			{#if page.flexible_content}
-				<FlexibleContent content={page.flexible_content} />
-			{:else}
-				<p>Page is empty.</p>
-			{/if}
+			<div class="mb-10 w-full px-40">
+				{#if page.flexible_content}
+					<FlexibleContent content={page.flexible_content} />
+				{:else}
+					<p>Page is empty.</p>
+				{/if}
+			</div>
 		</div>
 	{:else}
 		<p>Page not found</p>
