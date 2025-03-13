@@ -34,5 +34,8 @@ export async function load({ params, fetch }) {
 		throw error(404, 'Organization not found');
 	}
 
-	return { organization };
+	const events = await directus.request(readItems('events'));
+	const news = await directus.request(readItems('news'));
+
+	return { organization, events, news };
 }
