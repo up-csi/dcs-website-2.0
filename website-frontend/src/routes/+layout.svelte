@@ -1,6 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').LayoutData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import { page } from '$app/state';
 
 	export let data;
 
@@ -56,6 +57,6 @@
 	</main>
 
 	<footer class="w-full overflow-clip">
-		<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+		<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} homePage={page.url.pathname === "/"}/>
 	</footer>
 </div>
