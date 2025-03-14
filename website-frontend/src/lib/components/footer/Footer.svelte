@@ -8,12 +8,13 @@
 	export let quick_links;
 	export let facebook_link;
 	export let x_link;
+	export let homePage = false;
 </script>
 
-<div class="bg-background-dark text-primary-foreground">
-	<div class="container p-10 lg:grid lg:grid-cols-3 lg:gap-4">
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-2xl font-bold lg:text-xl">Department of Computer Science</p>
+<div class="flex justify-center px-4 bg-background-dark text-primary-foreground">
+	<div class="w-full py-10 flex flex-col space-y-10 md:flex-row md:space-x-12 md:items-baseline" class:max-w-7xl={homePage} class:max-w-6xl={!homePage}>
+		<div class="max-w-md">
+			<p class="pb-5 text-xl font-bold">Department of Computer Science</p>
 			{#each address as { address_line }}
 				<p>{address_line}</p>
 			{/each}
@@ -24,15 +25,15 @@
 				>
 			</p>
 		</div>
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-xl font-bold">Quick Links</p>
+		<div>
+			<p class="pb-5 text-xl font-bold">Quick Links</p>
 			{#each quick_links as { name, link }}
 				<a href={link} class="transition-colors duration-300 hover:text-secondary">{name}</a>
 				<br />
 			{/each}
 		</div>
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-xl font-bold">Follow Us On</p>
+		<div>
+			<p class="pb-5 text-xl font-bold">Follow Us On</p>
 			<div class="flex items-center">
 				<a
 					href={facebook_link}
