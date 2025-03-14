@@ -48,8 +48,8 @@
 					</div>
 
 					<div>
-						<div class="mb-6 md:mb-10">
-							<h1 class="text-2xl font-bold leading-tight md:text-3xl">
+						<div class="heading-padding">
+							<h1 class="heading-text">
 								Courses offered by the department
 							</h1>
 							<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">

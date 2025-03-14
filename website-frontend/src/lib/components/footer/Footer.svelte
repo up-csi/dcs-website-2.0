@@ -8,7 +8,7 @@
 	export let quick_links;
 	export let facebook_link;
 	export let x_link;
-	export let homePage = false;
+	export let homePage;
 </script>
 
 <div class="flex justify-center px-4 bg-background-dark text-primary-foreground">
