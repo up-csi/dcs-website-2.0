@@ -7,7 +7,7 @@ export async function load({ fetch }) {
 	const academics = await directus.request(readSingleton('academics'));
 	const academics_categories = await directus.request(
 		readItems('academics_categories', {
-			fields: ['name', 'slug']
+			fields: ['name', 'slug', 'description']
 		})
 	);
 	const academics_programs = await directus.request(

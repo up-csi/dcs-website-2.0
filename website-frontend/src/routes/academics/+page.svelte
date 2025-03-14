@@ -5,6 +5,7 @@
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import HorizontalCard from '$lib/components/cards/HorizontalCard.svelte';
 
 	export let data;
 	$: ({ academics, academics_categories, academics_courses } = data);
@@ -34,9 +35,14 @@
 							Programs offered by the department
 						</h1>
 						{#if academics_categories}
-							<div class="space-y-1">
+							<div class="space-y-3">
 								{#each academics_categories as acad_category}
-									<LinkButton text={acad_category.name} link="academics/{acad_category.slug}" />
+									<a href="academics/{acad_category.slug}" class="block">
+										<HorizontalCard
+											name={acad_category.name}
+											description={acad_category.description ?? undefined}
+										/>
+									</a>
 								{/each}
 							</div>
 						{/if}
