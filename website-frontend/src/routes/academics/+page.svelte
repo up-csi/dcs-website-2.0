@@ -7,7 +7,7 @@
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 
 	export let data;
-	$: ({ academics, academics_courses } = data);
+	$: ({ academics, academics_categories, academics_courses } = data);
 </script>
 
 <body>
@@ -33,10 +33,13 @@
 						<h1 class="mb-3 text-2xl font-bold leading-tight md:mb-6 md:text-3xl">
 							Programs offered by the department
 						</h1>
-						<div class="space-y-1">
-							<LinkButton text="Undergraduate Page" link="academics/undergraduate" />
-							<LinkButton text="Graduate Page" link="academics/graduate" />
-						</div>
+						{#if academics_categories}
+							<div class="space-y-1">
+								{#each academics_categories as acad_category}
+									<LinkButton text={acad_category.name} link="academics/{acad_category.slug}" />
+								{/each}
+							</div>
+						{/if}
 					</div>
 
 					<div>
