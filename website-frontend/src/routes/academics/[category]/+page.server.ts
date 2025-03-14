@@ -42,23 +42,6 @@ export async function load({ fetch, params }) {
 		})
 	);
 
-	const academics_courses = await directus.request(
-		readItems('academics_courses', {
-			sort: ['course_code'],
-			filter: {
-				related_academics_programs: {
-					academics_programs_id: {
-						category: {
-							slug: {
-								_eq: params.category
-							}
-						}
-					}
-				}
-			}
-		})
-	);
-
 	const academics_pages = await directus.request(
 		readItems('academics_pages', {
 			fields: ['title', 'slug'],
@@ -72,5 +55,5 @@ export async function load({ fetch, params }) {
 		})
 	);
 
-	return { academics_category, academics_programs, academics_courses, academics_pages };
+	return { academics_category, academics_programs, academics_pages };
 }
