@@ -5,6 +5,11 @@ import { readItems, readSingleton } from '@directus/sdk';
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
 	const academics = await directus.request(readSingleton('academics'));
+	const academics_categories = await directus.request(
+		readItems('academics_categories', {
+			fields: ['name', 'slug', 'description']
+		})
+	);
 	const academics_programs = await directus.request(
 		readItems('academics_programs', {
 			fields: [
@@ -22,5 +27,5 @@ export async function load({ fetch }) {
 		})
 	);
 
-	return { academics, academics_programs, academics_courses };
+	return { academics, academics_categories, academics_programs, academics_courses };
 }
