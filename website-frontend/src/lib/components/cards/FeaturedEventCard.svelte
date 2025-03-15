@@ -1,60 +1,117 @@
 <script lang="ts">
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Event } from '$lib/models/event';
-	import { Calendar, MapPin } from 'lucide-svelte';
+	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
 	export let item: Event;
+
+	function formatTimeRange(startTime: string, endTime: string) {
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+
+    const startHour = start.getHours() % 12 || 12; // Convert to 12-hour format
+    const startMinutes = start.getMinutes();
+    const endHour = end.getHours() % 12 || 12;
+    const endMinutes = end.getMinutes();
+
+    const startPeriod = start.getHours() >= 12 ? 'PM' : 'AM';
+    const endPeriod = end.getHours() >= 12 ? 'PM' : 'AM';
+
+    // Case 1: Same period (AM/PM) & flat hour
+    if (startPeriod === endPeriod && startMinutes === 0 && endMinutes === 0) {
+      return `${startHour} - ${endHour} ${startPeriod}`;
+    }
+    
+    // Case 2: Different periods (AM/PM)
+    if (startPeriod !== endPeriod) {
+      return `${startHour}${startMinutes !== 0 ? `:${startMinutes}` : ''} ${startPeriod} - ${endHour}${endMinutes !== 0 ? `:${endMinutes}` : ''} ${endPeriod}`;
+    }
+
+    // Case 3: Same period, but different minutes
+    if (startMinutes !== 0 || endMinutes !== 0) {
+      return `${startHour}${startMinutes !== 0 ? `:${startMinutes}` : ''} - ${endHour}${endMinutes !== 0 ? `:${endMinutes}` : ''} ${startPeriod}`;
+    }
+
+    // Default: Full time format
+    return `${startHour} ${startPeriod} - ${endHour} ${endPeriod}`;
+  }
 </script>
 
 <a href="/events/{item.slug}" data-sveltekit-reload>
 	<div
-		class="relative flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-xl"
+		class="relative flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md mb-2 group"
 	>
-		<div class="inset-0 h-24 flex-grow rounded-t-lg bg-gray-300 md:h-44">
+		<div class="inset-0 h-24 flex-grow rounded-t-lg md:h-44 overflow-hidden
+			{item.hero_image ? '' : 'bg-gradient-to-b from-[#D1D8DD] to-[#66708076] flex items-center justify-center'}"
+		>
 			{#if item.hero_image}
-				<img
-					class="h-full w-full rounded-t-lg object-cover"
-					src="{PUBLIC_APIURL}/assets/{item.hero_image}"
-					alt="Background"
-				/>
+				<div class="h-full w-full">
+					<img
+					  class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+					  src="{PUBLIC_APIURL}/assets/{item.hero_image}"
+					  alt="Background"
+					/>
+			  	</div>
+			{:else}
+				<Image class="h-8 w-8 text-white opacity-70" />
 			{/if}
 		</div>
 
-		<div class="space-y-2 p-4">
-			<div class="line-clamp-3 text-lg font-bold">
+		<div class="space-y-3 p-4">
+			<div class="line-clamp-3 text-[17px] font-bold leading-tight">
 				<h1>{item.event_headline}</h1>
 			</div>
-			<div class="flex items-center space-x-2 text-sm font-medium">
+
+			<div class="flex items-center space-x-2 text-[13px] font-medium">
 				<Calendar class="h-4 w-4" />
 				<p>
-					{new Date(item.start_date).toLocaleDateString('en-US', {
-						month: 'long',
-						day: 'numeric',
-						year: 'numeric'
-					})}
 					{#if item.end_date}
-						- {new Date(item.end_date).toLocaleDateString('en-US', {
-							month: 'long',
-							day: 'numeric',
-							year: 'numeric'
-						})}
+					  	{#if new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
+					  	  	<!-- Same day event -->
+					  	  	{new Date(item.start_date).toLocaleDateString('en-GB', {
+					  	  	  	day: 'numeric',
+					  	  	  	month: 'long',
+					  	  	  	year: 'numeric'
+					  	  	})}
+					  	{:else if new Date(item.start_date).getMonth() === new Date(item.end_date).getMonth()}
+					  	  	<!-- Same month -->
+					  	  	{new Date(item.start_date).getDate()}-{new Date(item.end_date).getDate()} 
+					  	  	{new Date(item.end_date).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+					  	{:else}
+					  	  	<!-- Different months -->
+					  	  	{new Date(item.start_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })} - 
+					  	  	{new Date(item.end_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+					  	{/if}
+					{:else}
+					  	<!-- Single date -->
+					  	{new Date(item.start_date).toLocaleDateString('en-GB', {
+					  	  	day: 'numeric',
+					  	  	month: 'long',
+					  	  	year: 'numeric'
+					  	})}
 					{/if}
 				</p>
 			</div>
-			{#if item.display_location}
-				<div class="flex items-center space-x-2 text-sm text-gray-500">
-					<MapPin class="h-4 w-4" />
-					<p>{item.display_location}</p>
-				</div>
-			{/if}
-			{#if item.event_tags}
-				<div class="py-1 text-xs font-bold text-gray-600">
-					{#each item.event_tags as tag, index}
-						{#if typeof tag !== 'string' && typeof tag.events_tags_id !== 'string'}
-							<p>{tag.events_tags_id.name}{index < item.event_tags.length - 1 ? ',' : ''}</p>
-						{/if}
-					{/each}
-				</div>
-			{/if}
+
+			<div>
+				{#if item.display_location}
+					<div class="flex items-center space-x-2 text-[13px] opacity-60">
+						<MapPin class="h-4 w-4" />
+						<p class="line-clamp-1">{item.display_location}</p>
+					</div>
+				{/if}
+
+				{#if item.end_date && new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
+					<div class="flex items-center space-x-2 text-[13px] opacity-60">
+						<Clock class="mx-[1px] h-[14px] w-[14px]" />
+						<p>{formatTimeRange(item.start_date, item.end_date)}</p>
+					</div>
+				{:else}
+					<div class="flex items-center space-x-2 text-[13px] opacity-60">
+						<Clock class="mx-[1px] h-[14px] w-[14px]" />
+						<p>Whole day event</p>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
 </a>

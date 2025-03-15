@@ -19,7 +19,7 @@
 
 		<div>
 			<div class="heading-padding flex justify-between items-center text-primary-dark">
-				<h2 class="heading-text"> Recent News </h2>
+				<h2 class="heading-text border-l-[5px] border-secondary-red pl-2"> Recent News </h2>
 				<Button href="#more-news" variant="outline" class="flex gap-x-1 rounded-full text-[0.8rem] h-auto">
 					<p>View all</p>
 					<ChevronRight class="size-4" />
@@ -30,7 +30,7 @@
 		
 		<div>
 			<div class="heading-padding flex justify-between items-center text-primary-dark">
-				<h2 class="heading-text"> Recent Events </h2>
+				<h2 class="heading-text border-l-[5px] border-secondary-red pl-2"> Recent Events </h2>
 				<Button href="#more-news" variant="outline" class="flex gap-x-1 rounded-full text-[0.8rem] h-auto">
 					<p>View all</p>
 					<ChevronRight class="size-4" />
