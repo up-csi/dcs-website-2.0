@@ -42,7 +42,7 @@
 		<Carousel.Content class="-ml-6 px-16 py-10">
 			{#each featured as event}
 				<Carousel.Item class="basis-1 pl-6 md:basis-1/4">
-					<FeaturedEventCard {event} />
+					<FeaturedEventCard item={event} />
 				</Carousel.Item>
 			{/each}
 		</Carousel.Content>

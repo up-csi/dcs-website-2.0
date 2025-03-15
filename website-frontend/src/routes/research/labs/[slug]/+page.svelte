@@ -162,7 +162,7 @@
 						{#each events as event}
 							{#if event}
 								<Carousel.Item class="basis-full md:basis-1/4">
-									<FeaturedEventCard {event} />
+									<FeaturedEventCard item={event} />
 								</Carousel.Item>
 							{/if}
 						{/each}
