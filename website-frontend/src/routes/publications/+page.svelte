@@ -6,6 +6,7 @@
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import Sort from '$lib/components/sort/Sort.svelte';
+	import { page } from '$app/stores';
 
 	export let data;
 
@@ -14,7 +15,7 @@
 	const inc = 12;
 	let shown = inc;
 
-	let sortMethod: 'date' | 'author' = 'date';
+	$: sort_options = ['date', 'author'];
 
 	$: controls = [
 		{
@@ -32,7 +33,7 @@
 	];
 
 	$: sortedPublications = [...publications].sort((a, b) => {
-		if (sortMethod === 'author') {
+		if (($page.url.searchParams.get('sort') ?? '') === 'author') {
 			const aLastName = a.authors[0]?.last_name || '';
 			const bLastName = b.authors[0]?.last_name || '';
 			return aLastName.localeCompare(bLastName);
@@ -51,18 +52,20 @@
 		<Breadcrumb />
 	</div>
 	<FilterBar {controls} />
-	<Sort />
+	<Sort {sort_options} />
 
 	<div class="mx-auto my-4 flex justify-center gap-4">
 		<button
-			class="rounded px-4 py-2 {sortMethod === 'date' ? 'bg-blue-600 text-white' : 'bg-gray-200'}"
-			on:click={() => (sortMethod = 'date')}
+			class="rounded px-4 py-2 {($page.url.searchParams.get('sort') ?? '') === 'date'
+				? 'bg-blue-600 text-white'
+				: 'bg-gray-200'}"
 		>
 			Sort by Date
 		</button>
 		<button
-			class="rounded px-4 py-2 {sortMethod === 'author' ? 'bg-blue-600 text-white' : 'bg-gray-200'}"
-			on:click={() => (sortMethod = 'author')}
+			class="rounded px-4 py-2 {($page.url.searchParams.get('sort') ?? '') === 'author'
+				? 'bg-blue-600 text-white'
+				: 'bg-gray-200'}"
 		>
 			Sort by Author
 		</button>

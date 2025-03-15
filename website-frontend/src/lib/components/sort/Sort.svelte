@@ -4,17 +4,14 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
+	export let sort_options: string[];
 	let hide = true;
-	let name = 'hi';
 
 	$: query = new URLSearchParams($page.url.searchParams.toString());
+	$: sort = query.get('sort') ?? '';
 
 	function nav(name: string, value: string): void {
-		if (!query.has(name, value)) {
-			query.append(name, value);
-		} else {
-			query.delete(name, value);
-		}
+		query.set(name, value);
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
 </script>
@@ -33,7 +30,7 @@
 					hide = !hide;
 				}}
 			>
-				<span>{name}</span>
+				<span>{$page.url.searchParams.get('sort') ?? 'N/A'}</span>
 				{#if hide}
 					<ChevronDown class="ml-2 h-4 w-4" />
 				{:else}
@@ -42,30 +39,17 @@
 			</button>
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content>
-			<DropdownMenu.Group>
-				{#each ['stuff', 'hello'] as categoryName}
-					<DropdownMenu.CheckboxItem
-						checked={query.has(name, categoryName)}
-						onCheckedChange={() => {
-							nav(name, categoryName);
+			<DropdownMenu.RadioGroup value={sort}>
+				{#each sort_options as sort_option}
+					<DropdownMenu.RadioItem
+						value={sort_option}
+						on:click={() => {
+							nav('sort', sort_option);
 							hide = !hide;
-						}}>{categoryName}</DropdownMenu.CheckboxItem
+						}}>{sort_option}</DropdownMenu.RadioItem
 					>
 				{/each}
-			</DropdownMenu.Group>
-			<!-- {#if categories}
-			<DropdownMenu.Group>
-				{#each categories as categoryName}
-					<DropdownMenu.CheckboxItem
-						checked={query.has(name, categoryName)}
-						onCheckedChange={() => {
-							nav(name, categoryName);
-							hide = !hide;
-						}}>{categoryName}</DropdownMenu.CheckboxItem
-					>
-				{/each}
-			</DropdownMenu.Group>
-		{/if} -->
+			</DropdownMenu.RadioGroup>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 </div>
