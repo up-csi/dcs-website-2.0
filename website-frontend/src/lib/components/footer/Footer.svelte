@@ -1,6 +1,7 @@
 <script>
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
+	import { page } from '$app/stores';
 
 	export let address;
 	export let contact_number;
@@ -8,7 +9,8 @@
 	export let quick_links;
 	export let facebook_link;
 	export let x_link;
-	export let homePage;
+	
+	$: homePage = $page.url.pathname === "/";
 </script>
 
 <div class="flex justify-center px-4 bg-background-dark text-primary-foreground">
