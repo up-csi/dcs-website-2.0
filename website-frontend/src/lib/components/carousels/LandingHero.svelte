@@ -67,7 +67,7 @@
 	<Carousel.Root bind:api plugins={[plugin, Fade()]}>
 		<Carousel.Content>
 			{#each news as news_item, index}
-				<Carousel.Item class="relative flex h-[60vh] flex-col items-center justify-end md:h-[90vh]">
+				<Carousel.Item class="relative flex h-[70vh] flex-col items-center justify-end md:h-[90vh]">
 					{#if news_item.background_image}
 						<img
 							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
@@ -81,7 +81,7 @@
 						<div
 							role="button"
 							tabindex="0"
-							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-12 md:items-start md:pb-14 md:text-left"
+							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-10 md:items-start md:pb-14 md:text-left"
 							on:mouseenter={stopAutoplay}
 							on:mouseleave={resetAutoplay}
 						>
