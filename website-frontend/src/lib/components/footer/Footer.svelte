@@ -1,6 +1,7 @@
 <script>
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
+	import { page } from '$app/stores';
 
 	export let address;
 	export let contact_number;
@@ -8,12 +9,18 @@
 	export let quick_links;
 	export let facebook_link;
 	export let x_link;
+
+	$: homePage = $page.url.pathname === '/';
 </script>
 
-<div class="bg-background-dark text-primary-foreground">
-	<div class="container p-10 lg:grid lg:grid-cols-3 lg:gap-4">
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-2xl font-bold lg:text-xl">Department of Computer Science</p>
+<div class="flex justify-center bg-background-dark px-4 text-primary-foreground">
+	<div
+		class="flex w-full flex-col space-y-10 py-10 md:flex-row md:items-baseline md:space-x-16 md:space-y-0 md:pl-1"
+		class:md:mx-14={homePage}
+		class:max-w-6xl={!homePage}
+	>
+		<div>
+			<p class="pb-5 text-xl font-bold">Department of Computer Science</p>
 			{#each address as { address_line }}
 				<p>{address_line}</p>
 			{/each}
@@ -24,15 +31,15 @@
 				>
 			</p>
 		</div>
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-xl font-bold">Quick Links</p>
+		<div>
+			<p class="pb-5 text-xl font-bold">Quick Links</p>
 			{#each quick_links as { name, link }}
 				<a href={link} class="transition-colors duration-300 hover:text-secondary">{name}</a>
 				<br />
 			{/each}
 		</div>
-		<div class="my-4 lg:mx-2 lg:my-0">
-			<p class="py-2 text-xl font-bold">Follow Us On</p>
+		<div>
+			<p class="pb-5 text-xl font-bold">Follow Us On</p>
 			<div class="flex items-center">
 				<a
 					href={facebook_link}

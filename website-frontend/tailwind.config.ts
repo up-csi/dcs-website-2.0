@@ -31,7 +31,8 @@ const config: Config = {
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
-					foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)'
+					foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)',
+					red: 'hsl(var(--secondary-red) / <alpha-value>)'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
