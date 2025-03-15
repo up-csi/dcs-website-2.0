@@ -54,24 +54,7 @@
 	<FilterBar {controls} />
 	<Sort {sort_options} />
 
-	<div class="mx-auto my-4 flex justify-center gap-4">
-		<button
-			class="rounded px-4 py-2 {($page.url.searchParams.get('sort') ?? '') === 'date'
-				? 'bg-blue-600 text-white'
-				: 'bg-gray-200'}"
-		>
-			Sort by Date
-		</button>
-		<button
-			class="rounded px-4 py-2 {($page.url.searchParams.get('sort') ?? '') === 'author'
-				? 'bg-blue-600 text-white'
-				: 'bg-gray-200'}"
-		>
-			Sort by Author
-		</button>
-	</div>
-
-	<div class="mx-auto grid max-w-[80vw] grid-cols-1 gap-4 pb-10 md:grid-cols-3 lg:grid-cols-4">
+	<div class="mx-auto mt-5 grid max-w-[80vw] grid-cols-1 gap-4 pb-10 md:grid-cols-3 lg:grid-cols-4">
 		{#each publicationsList as publication}
 			<PublicationCard {publication} />
 		{/each}
