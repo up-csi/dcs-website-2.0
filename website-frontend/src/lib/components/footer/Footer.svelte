@@ -14,7 +14,7 @@
 </script>
 
 <div class="flex justify-center px-4 bg-background-dark text-primary-foreground">
-	<div class="w-full py-10 flex flex-col space-y-10 md:space-y-0 md:flex-row md:space-x-16 md:items-baseline md:pl-1" class:max-w-7xl={homePage} class:max-w-6xl={!homePage}>
+	<div class="w-full py-10 flex flex-col space-y-10 md:space-y-0 md:flex-row md:space-x-16 md:items-baseline md:pl-1" class:md:mx-14={homePage} class:max-w-6xl={!homePage}>
 		<div>
 			<p class="pb-5 text-xl font-bold">Department of Computer Science</p>
 			{#each address as { address_line }}
