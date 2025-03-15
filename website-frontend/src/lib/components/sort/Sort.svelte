@@ -8,10 +8,11 @@
 	let hide = true;
 
 	$: query = new URLSearchParams($page.url.searchParams.toString());
-	$: sort = query.get('sort') ?? '';
+	$: sort = query.get('sort') ?? 'date';
 
-	function nav(name: string, value: string): void {
-		query.set(name, value);
+	function sort_nav(value: string): void {
+		if (value == 'author') query.set('sort', value);
+		else query.delete('sort');
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
 </script>
@@ -30,7 +31,7 @@
 					hide = !hide;
 				}}
 			>
-				<span>{$page.url.searchParams.get('sort') ?? 'N/A'}</span>
+				<span>{$page.url.searchParams.get('sort') ?? 'date'}</span>
 				{#if hide}
 					<ChevronDown class="ml-2 h-4 w-4" />
 				{:else}
@@ -44,7 +45,7 @@
 					<DropdownMenu.RadioItem
 						value={sort_option}
 						on:click={() => {
-							nav('sort', sort_option);
+							sort_nav(sort_option);
 							hide = !hide;
 						}}>{sort_option}</DropdownMenu.RadioItem
 					>
