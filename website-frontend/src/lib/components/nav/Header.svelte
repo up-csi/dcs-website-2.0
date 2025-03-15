@@ -65,8 +65,8 @@
 				/>
 			</a>
 			<a href="/" class="font-semibold text-primary">
-				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="mt-[1px] text-[11px] lg:text-sm">University of the Philippines Diliman</h1>
+				<h1 class="text-[14px] -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
 			</a>
 		</div>
 
@@ -100,7 +100,7 @@
 			</div>
 
 			<!-- Mobile Navbar -->
-			<div class="h-10 w-10 lg:hidden">
+			<div class="h-10 w-10 items-center lg:hidden">
 				<button
 					on:click={() => {
 						$mobileOpen = !$mobileOpen;
@@ -109,11 +109,11 @@
 				>
 					{#if $mobileOpen}
 						<X
-							class="h-full w-full rounded-full border border-secondary p-2 text-secondary hover:text-primary"
+							class="h-9 w-9 rounded-full border border-secondary mt-[2px] p-2 text-secondary hover:text-primary"
 						/>
 					{:else}
 						<Menu
-							class="h-full w-full rounded-full border border-secondary p-2 text-secondary hover:text-primary"
+							class="h-9 w-9 rounded-full border border-secondary mt-[2px] p-2 text-secondary hover:text-primary"
 						/>
 					{/if}
 				</button>
@@ -155,13 +155,13 @@
 <!-- Mobile Navbar -->
 <div
 	class="
-    fixed z-50 my-14 h-screen w-full
-	bg-background {$mobileOpen ? 'flex' : 'hidden'}
+    fixed z-50 my-14 h-screen w-full text-white
+	bg-background-dark {$mobileOpen ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
 		<!-- Favicons -->
-		<div class="my-2 flex items-center justify-center lg:hidden">
+		<div class="mt-5 flex items-center justify-center lg:hidden">
 			<a href="/">
 				<img
 					src="{PUBLIC_APIURL}/assets/{primary_logo}"
@@ -171,18 +171,18 @@
 			</a>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
-					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
+					src="{PUBLIC_APIURL}/assets/{primary_logo}"
 					alt="DCS"
 					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
 				/>
 			</a>
-			<div class="font-semibold text-primary">
+			<div class="font-medium">
 				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
 				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
 			</div>
 		</div>
 
-		<div class="p-20 pt-0 *:pt-5">
+		<div class="px-4 pt-0 *:pt-5">
 			<SearchInput />
 			<ScrollArea id="mobile-nav" class="h-[70dvh] w-full *:text-xl *:font-bold">
 				<NavList />
