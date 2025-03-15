@@ -9,12 +9,16 @@
 	export let quick_links;
 	export let facebook_link;
 	export let x_link;
-	
-	$: homePage = $page.url.pathname === "/";
+
+	$: homePage = $page.url.pathname === '/';
 </script>
 
-<div class="flex justify-center px-4 bg-background-dark text-primary-foreground">
-	<div class="w-full py-10 flex flex-col space-y-10 md:space-y-0 md:flex-row md:space-x-16 md:items-baseline md:pl-1" class:md:mx-14={homePage} class:max-w-6xl={!homePage}>
+<div class="flex justify-center bg-background-dark px-4 text-primary-foreground">
+	<div
+		class="flex w-full flex-col space-y-10 py-10 md:flex-row md:items-baseline md:space-x-16 md:space-y-0 md:pl-1"
+		class:md:mx-14={homePage}
+		class:max-w-6xl={!homePage}
+	>
 		<div>
 			<p class="pb-5 text-xl font-bold">Department of Computer Science</p>
 			{#each address as { address_line }}

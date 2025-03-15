@@ -15,7 +15,7 @@
 		<Banner title="Academics" />
 
 		<div class="flex justify-center px-4">
-			<div class="max-w-6xl pb-16 md:pb-24 w-full space-y-10 md:space-y-16">
+			<div class="w-full max-w-6xl space-y-10 pb-16 md:space-y-16 md:pb-24">
 				<div class="pt-5">
 					<Breadcrumb />
 				</div>
@@ -27,9 +27,7 @@
 					{/if}
 				</div>
 				<div>
-					<h1 class="mb-3 md:mb-6 heading-text">
-						Programs offered by the department
-					</h1>
+					<h1 class="heading-text mb-3 md:mb-6">Programs offered by the department</h1>
 					<div class="space-y-1">
 						<LinkButton text="Undergraduate Page" link="academics/undergraduate" />
 						<LinkButton text="Graduate Page" link="academics/graduate" />
@@ -37,12 +35,8 @@
 				</div>
 				<div>
 					<div class="heading-padding">
-						<h1 class="heading-text">
-							Courses offered by the department
-						</h1>
-						<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
-							Last Updated: March XX, 2025
-						</p>
+						<h1 class="heading-text">Courses offered by the department</h1>
+						<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
 					</div>
 					<CoursesTable data={academics_courses} />
 				</div>

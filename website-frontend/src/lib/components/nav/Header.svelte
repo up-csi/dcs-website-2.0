@@ -66,7 +66,7 @@
 			</a>
 			<a href="/" class="font-semibold text-primary">
 				<h1 class="mt-[1px] text-[11px] lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="text-[14px] -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="-mt-1 text-[14px] lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
 			</a>
 		</div>
 
@@ -109,11 +109,11 @@
 				>
 					{#if $mobileOpen}
 						<X
-							class="h-9 w-9 rounded-full border border-secondary mt-[2px] p-2 text-secondary hover:text-primary"
+							class="mt-[2px] h-9 w-9 rounded-full border border-secondary p-2 text-secondary hover:text-primary"
 						/>
 					{:else}
 						<Menu
-							class="h-9 w-9 rounded-full border border-secondary mt-[2px] p-2 text-secondary hover:text-primary"
+							class="mt-[2px] h-9 w-9 rounded-full border border-secondary p-2 text-secondary hover:text-primary"
 						/>
 					{/if}
 				</button>
@@ -155,8 +155,8 @@
 <!-- Mobile Navbar -->
 <div
 	class="
-    fixed z-50 my-14 h-screen w-full text-white
-	bg-background-dark {$mobileOpen ? 'flex' : 'hidden'}
+    fixed z-50 my-14 h-screen w-full bg-background-dark
+	text-white {$mobileOpen ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
