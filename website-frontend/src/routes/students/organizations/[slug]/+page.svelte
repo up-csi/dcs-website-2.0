@@ -75,7 +75,7 @@
 		</div>
 	</div>
 
-	<div class="container mx-auto my-8 flex h-full flex-col justify-center gap-y-5">
+	<div class="container mx-auto my-8 flex flex-col justify-center gap-y-5">
 		<!-- Events -->
 		<div class="flex justify-between">
 			<h2 class="text-xl font-bold md:text-2xl">Events by {organization.name}</h2>
