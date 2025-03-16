@@ -2,6 +2,7 @@
 export async function load({ data }) {
 	return {
 		publications: data.publications,
+		years_filters: data.years_filters,
 		laboratories_filters: data.laboratories_filters,
 		tags_filters: data.tags_filters
 	};
