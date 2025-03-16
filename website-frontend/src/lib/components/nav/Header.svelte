@@ -155,8 +155,8 @@
 <!-- Mobile Navbar -->
 <div
 	class="
-    fixed z-50 my-14 h-screen w-full bg-background-dark
-	text-white {$mobileOpen ? 'flex' : 'hidden'}
+    fixed z-50 my-14 h-screen w-full
+	bg-background {$mobileOpen ? 'flex' : 'hidden'}
 "
 >
 	<nav class="w-full">
