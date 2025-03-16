@@ -17,11 +17,11 @@
 	let organization: StudentsOrganization;
 	let events: Events;
 	let news: News;
-	({ organization, events, news } = data);
+	$: ({ organization, events, news } = data);
 
 	let showFull = false;
 
-	const background_images = organization.background_images
+	$: background_images = organization.background_images
 		? organization.background_images
 				.filter((img) => typeof img !== 'string')
 				.map((img) => {
