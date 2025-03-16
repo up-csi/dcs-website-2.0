@@ -1,7 +1,6 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
-	import LinkButton from '$lib/components/buttons/LinkButton.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
