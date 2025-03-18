@@ -1,0 +1,16 @@
+website-frontend/.dockerignore
+website-frontend/.git
+website-frontend/.gitignore
+website-frontend/.gitattributes
+website-frontend/README.md
+website-frontend/.npmrc
+website-frontend/.prettierrc
+website-frontend/.eslintrc.cjs
+website-frontend/.graphqlrc
+website-frontend/.editorconfig
+website-frontend/.svelte-kit
+website-frontend/.vscode
+website-frontend/node_modules
+website-frontend/build
+website-frontend/package
+**/.env
