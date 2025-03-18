@@ -1,13 +1,13 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
-	import LinkButton from '$lib/components/buttons/LinkButton.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import HorizontalCard from '$lib/components/cards/HorizontalCard.svelte';
 
 	export let data;
-	$: ({ academics, academics_courses } = data);
+	$: ({ academics, academics_categories, academics_courses } = data);
 </script>
 
 <body>
@@ -33,10 +33,18 @@
 						<h1 class="mb-3 text-2xl font-bold leading-tight md:mb-6 md:text-3xl">
 							Programs offered by the department
 						</h1>
-						<div class="space-y-1">
-							<LinkButton text="Undergraduate Page" link="academics/undergraduate" />
-							<LinkButton text="Graduate Page" link="academics/graduate" />
-						</div>
+						{#if academics_categories}
+							<div class="space-y-3">
+								{#each academics_categories as acad_category}
+									<a href="academics/{acad_category.slug}" class="block">
+										<HorizontalCard
+											name={acad_category.name}
+											description={acad_category.description ?? undefined}
+										/>
+									</a>
+								{/each}
+							</div>
+						{/if}
 					</div>
 
 					<div>
