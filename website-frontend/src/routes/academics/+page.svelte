@@ -49,9 +49,7 @@
 
 					<div>
 						<div class="heading-padding">
-							<h1 class="heading-text">
-								Courses offered by the department
-							</h1>
+							<h1 class="heading-text">Courses offered by the department</h1>
 							<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
 								Last Updated: March XX, 2025
 							</p>
