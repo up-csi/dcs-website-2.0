@@ -1,16 +1,27 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
+	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
+	import { ArrowRight } from 'lucide-svelte';
+	import NewsCard from '$lib/components/cards/NewsCard.svelte';
+	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
+	import type { StudentsOrganization } from '$lib/models/students_organizations';
+	import type { Events } from '$lib/models/event';
+	import type { News } from '$lib/models/news';
 
 	export let data;
-	const { organization } = data;
+	let organization: StudentsOrganization;
+	let events: Events;
+	let news: News;
+	$: ({ organization, events, news } = data);
 
 	let showFull = false;
 
-	const background_images = organization.background_images
+	$: background_images = organization.background_images
 		? organization.background_images
 				.filter((img) => typeof img !== 'string')
 				.map((img) => {
@@ -62,6 +73,46 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="container mx-auto my-8 flex flex-col justify-center gap-y-5">
+		<!-- Events -->
+		<div class="flex justify-between">
+			<h2 class="text-xl font-bold md:text-2xl">Events by {organization.name}</h2>
+			<Button href="/events" variant="outline" class="flex gap-x-2 rounded-full">
+				<p>View all</p>
+				<ArrowRight class="size-4" />
+			</Button>
+		</div>
+		<Carousel.Root opts={{ align: 'start', dragFree: true }}>
+			<Carousel.Content>
+				{#each events as event}
+					<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
+						<FeaturedEventCard {event} />
+					</Carousel.Item>
+				{/each}
+			</Carousel.Content>
+			<Carousel.Next />
+		</Carousel.Root>
+
+		<!-- News -->
+		<div class="flex justify-between">
+			<h2 class="text-xl font-bold md:text-2xl">News from {organization.name}</h2>
+			<Button href="#more-news" variant="outline" class="flex gap-x-2 rounded-full">
+				<p>View all</p>
+				<ArrowRight class="size-4" />
+			</Button>
+		</div>
+		<Carousel.Root opts={{ align: 'start', dragFree: true }}>
+			<Carousel.Content>
+				{#each news as news_item}
+					<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
+						<NewsCard {news_item} />
+					</Carousel.Item>
+				{/each}
+			</Carousel.Content>
+			<Carousel.Next />
+		</Carousel.Root>
 	</div>
 {:else}
 	<p>Research lab not found</p>
