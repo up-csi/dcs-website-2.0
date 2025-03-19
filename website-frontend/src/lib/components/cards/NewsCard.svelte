@@ -1,48 +1,50 @@
 <script lang="ts">
-	import * as Card from '$lib/@shadcn-svelte/ui/card';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { NewsItem } from '$lib/models/news';
-	import { ScrollText } from 'lucide-svelte';
-	export let news_item: NewsItem;
-	export let onDark = false;
+	import { Image } from 'lucide-svelte';
+	export let item: NewsItem;
 </script>
 
-<a href="/news/{news_item.slug}" data-sveltekit-reload>
-	<Card.Root
-		class={onDark
-			? 'flex h-[25rem] flex-col justify-end overflow-clip rounded-lg border-primary'
-			: 'flex h-[25rem] flex-col justify-end overflow-clip rounded-lg'}
+<a href="/news/{item.slug}" data-sveltekit-reload>
+	<div
+		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>
-		<div class="flex min-h-0 flex-1 justify-center">
-			{#if news_item.background_image}
-				<img
-					src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
-					alt={news_item.title}
-					class="w-full object-cover"
-				/>
-			{:else}
-				<div class="flex w-full items-center justify-center bg-muted">
-					<ScrollText class="w-20 bg-muted text-muted-foreground" />
+		<div
+			class="inset-0 h-24 flex-grow overflow-hidden rounded-t-lg md:h-44
+		{item.background_image
+				? ''
+				: 'flex items-center justify-center bg-gradient-to-b from-[#D1D8DD] to-[#66708076]'}"
+		>
+			{#if item.background_image}
+				<div class="h-full w-full">
+					<img
+						class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+						src="{PUBLIC_APIURL}/assets/{item.background_image}"
+						alt="Background"
+					/>
 				</div>
+			{:else}
+				<Image class="h-8 w-8 text-white opacity-70" />
 			{/if}
 		</div>
-		<Card.Header>
-			<Card.Title class="line-clamp-3">{news_item.title}</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			<Card.Description class="line-clamp-2">{news_item.summary}</Card.Description>
-		</Card.Content>
-		<Card.Footer class="flex justify-between">
-			<small class="text-xs text-gray-500"
-				>by {news_item.user_created.first_name} {news_item.user_created.last_name}</small
-			>
-			<small class="text-xs text-gray-500">
-				{new Date(news_item.date_created).toLocaleDateString('en-US', {
-					month: 'long',
-					day: 'numeric',
-					year: 'numeric'
-				})}
-			</small>
-		</Card.Footer>
-	</Card.Root>
+
+		<div class="space-y-4 p-4">
+			<h1 class="line-clamp-3 text-[17px] font-bold leading-tight">{item.title}</h1>
+			<p class="line-clamp-2 text-[13px] leading-tight opacity-60">{item.summary}</p>
+			<div class="flex justify-between">
+				<p
+					class="flex flex-wrap gap-1 py-1 text-[11px] font-bold uppercase leading-none opacity-60"
+				>
+					tag
+				</p>
+				<p class="text-[11px] font-medium opacity-60">
+					{new Date(item.date_created).toLocaleDateString('en-GB', {
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					})}
+				</p>
+			</div>
+		</div>
+	</div>
 </a>

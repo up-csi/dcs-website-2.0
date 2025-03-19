@@ -39,7 +39,7 @@
 			<span class="relative mr-1 inline-block">
 				{to}
 				{#if $page.url.pathname === href}
-					<div class="absolute -bottom-[11px] left-0 h-[2px] w-full bg-[#760C11]" />
+					<div class="absolute -bottom-[11px] left-0 h-[2px] w-full bg-secondary-red" />
 				{/if}
 			</span>
 			{#if dropdown}
@@ -56,7 +56,7 @@
 		<ul
 			class="
 				full absolute mt-2 w-fit rounded-lg
-				bg-white p-0.5 pl-1 pr-2 shadow-lg
+				bg-white p-0.5 px-1 shadow-lg
 				{position}
 			"
 		>

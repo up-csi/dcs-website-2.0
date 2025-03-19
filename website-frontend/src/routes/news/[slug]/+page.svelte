@@ -77,7 +77,7 @@
 				<Carousel.Content>
 					{#each other_news as news_item}
 						<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-							<NewsCard onDark {news_item} />
+							<NewsCard item={news_item} />
 						</Carousel.Item>
 					{/each}
 				</Carousel.Content>

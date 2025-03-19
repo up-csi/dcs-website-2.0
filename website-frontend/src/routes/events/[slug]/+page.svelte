@@ -37,7 +37,7 @@
 		>
 			{#each related_events as related_event}
 				{#if typeof related_event !== 'string'}
-					<FeaturedEventCard event={related_event} />
+					<FeaturedEventCard item={related_event} />
 				{/if}
 			{/each}
 		</div>
