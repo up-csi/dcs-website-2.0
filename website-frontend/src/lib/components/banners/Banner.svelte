@@ -19,11 +19,11 @@
 	<div class="h-[45vh] bg-cover bg-center md:h-[60vh]" style={background}></div>
 
 	<div
-		class="absolute bottom-11 w-full text-white px-4 text-center
+		class="absolute bottom-11 w-full px-4 text-center text-white
 		md:flex md:justify-center"
 	>
 		<div class="w-full max-w-6xl text-center md:text-start">
-			<h1 class="text-3xl font-bold leading-none md:text-5xl md:max-w-[50vw]">{deslugify_title}</h1>
+			<h1 class="text-3xl font-bold leading-none md:max-w-[50vw] md:text-5xl">{deslugify_title}</h1>
 			{#if flexible_content}
 				<h4 class="hidden md:mt-4 md:block md:max-w-[50vw]">{@html flexible_content}</h4>
 			{/if}
