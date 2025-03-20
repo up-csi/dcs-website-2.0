@@ -9,10 +9,12 @@
 
 	$: ({ people, people_overview } = data);
 
-	$: positions = Array.from(new Set(people.map((person: Person) => person.position).filter(Boolean)));
+	$: positions = Array.from(
+		new Set(people.map((person: Person) => person.position).filter(Boolean))
+	);
 	$: peopleByPosition = positions.map((position) => ({
-	    position,
-	    people: people.filter((person: Person) => person.position === position)
+		position,
+		people: people.filter((person: Person) => person.position === position)
 	}));
 </script>
 
@@ -25,12 +27,11 @@
 
 	<div class="flex justify-center px-4">
 		<div class="content-padding">
-
 			<div class="pt-5">
 				<Breadcrumb />
 			</div>
 
-			{#each peopleByPosition as { position, people } }
+			{#each peopleByPosition as { position, people }}
 				<div>
 					<p class="heading-text">{position}s</p>
 					<CardPanel>
@@ -42,7 +43,6 @@
 					</CardPanel>
 				</div>
 			{/each}
-
 		</div>
 	</div>
 </body>
