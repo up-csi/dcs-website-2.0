@@ -31,7 +31,7 @@
 
 <body class="bg-slate-50">
 	<div class="relative z-0">
-		<Banner {title} flexible_content={`This is the ${title} page.`} from_bottom={'bottom-40'} />
+		<Banner {title} flexible_content={`This is the ${title} page.`} />
 	</div>
 
 	<div class="container mx-auto my-8 mb-5">

@@ -118,6 +118,11 @@
 						<Clock class="mx-[1px] h-[14px] w-[14px]" />
 						<p>{formatTimeRange(item.start_date, item.end_date)}</p>
 					</div>
+				{:else if item.end_date && new Date(item.start_date).toDateString() !== new Date(item.end_date).toDateString()}
+					<div class="flex items-center space-x-2 text-[13px] opacity-60">
+						<Clock class="mx-[1px] h-[14px] w-[14px]" />
+						<p>Multi-day event</p>
+					</div>
 				{:else}
 					<div class="flex items-center space-x-2 text-[13px] opacity-60">
 						<Clock class="mx-[1px] h-[14px] w-[14px]" />
