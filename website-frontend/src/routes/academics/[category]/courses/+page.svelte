@@ -23,7 +23,7 @@
 						<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
 							Last Updated: March XX, 2025
 						</p>
-						<CoursesTable data={academics_courses} />
+						<CoursesTable {academics_courses} />
 					</div>
 				</div>
 			</div>

@@ -54,7 +54,7 @@
 								Last Updated: March XX, 2025
 							</p>
 						</div>
-						<CoursesTable data={academics_courses} />
+						<CoursesTable {academics_courses} />
 					</div>
 				</div>
 			</div>

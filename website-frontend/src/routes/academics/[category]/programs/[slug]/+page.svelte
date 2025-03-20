@@ -2,8 +2,8 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
-	import DataTable from '$lib/components/table/DataTable.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
 
 	export let data;
 	$: ({ academics_program } = data);
@@ -48,8 +48,8 @@
 									<!-- First Semester -->
 									<h3 class="mt-4 font-semibold">First Semester</h3>
 									<div class="px-4">
-										<DataTable
-											data={academics_program.curriculum_table
+										<CoursesTable
+											academics_courses={academics_program.curriculum_table
 												.filter((item) => typeof item !== 'number')
 												.filter((item) => item.year === year && item.semester === 'first')}
 										/>
@@ -58,8 +58,8 @@
 									<!-- Second Semester -->
 									<h3 class="mt-4 font-semibold">Second Semester</h3>
 									<div class="px-4">
-										<DataTable
-											data={academics_program.curriculum_table
+										<CoursesTable
+											academics_courses={academics_program.curriculum_table
 												.filter((item) => typeof item !== 'number')
 												.filter((item) => item.year === year && item.semester === 'second')}
 										/>
@@ -68,8 +68,8 @@
 									<!-- Midyear -->
 									<h3 class="mt-4 font-semibold">Midyear</h3>
 									<div class="px-4">
-										<DataTable
-											data={academics_program.curriculum_table
+										<CourseTable
+											academics_courses={academics_program.curriculum_table
 												.filter((item) => typeof item !== 'number')
 												.filter((item) => item.year === year && item.semester === 'midyear')}
 										/>
