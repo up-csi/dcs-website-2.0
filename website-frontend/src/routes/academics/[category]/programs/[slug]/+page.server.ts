@@ -10,7 +10,12 @@ export async function load({ fetch, params }) {
 			fields: [
 				'*',
 				{
-					curriculum_table: ['*']
+					curriculum_table: [
+						'*',
+						{
+							academics_courses_course_code: ['*']
+						}
+					]
 				}
 			],
 			filter: {
