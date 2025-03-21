@@ -15,6 +15,7 @@ import { AcademicsCourses } from './academics_courses';
 import { AcademicsPages } from './academics_pages';
 import { AcademicsPrograms } from './academics_programs';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
+import { AlumniOverview } from './alumni_overview';
 import { DirectusFiles } from './directus_files';
 import { DirectusUsers } from './directus_users';
 import { EventsAreas } from './events_areas';
@@ -52,6 +53,7 @@ export const Schema = object({
 	academics_pages: AcademicsPages,
 	academics_programs: AcademicsPrograms,
 	academics_programs_courses: AcademicsProgramsCourses,
+	alumni_overview: AlumniOverview,
 	directus_files: DirectusFiles,
 	directus_users: DirectusUsers,
 	events_areas: EventsAreas,
