@@ -4,6 +4,7 @@
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import CoursesTable from '$lib/components/table/CoursesTable.svelte';
+	import { error } from '@sveltejs/kit';
 
 	export let data;
 	$: ({ academics_program } = data);
@@ -40,23 +41,23 @@
 							<div class="overflow-hidden rounded-lg bg-white p-4 shadow-lg">
 								{#each [...new Set(academics_program.curriculum_table
 											.filter((item) => typeof item !== 'number')
+											.filter((item) => item.year !== null)
 											.map((item) => item.year)
 											.sort((a, b) => {
-												if (a == null) return Number.MAX_SAFE_INTEGER;
-												if (b == null) return -Number.MAX_SAFE_INTEGER;
-												return a - b;
+												if (a && b) return a - b;
+												return error(500);
 											}))] as year}
 									<!-- For N/A year or semesters -->
 									{#if academics_program.curriculum_table
 										.filter((item) => typeof item !== 'number')
-										.filter((item) => item.year === null || item.semester === null)
+										.filter((item) => !item.year && !item.semester)
 										.map((item) => item.academics_courses_course_code)
 										.filter((item) => typeof item !== 'string')}
 										<div class="px-4">
 											<CoursesTable
 												academics_courses={academics_program.curriculum_table
 													.filter((item) => typeof item !== 'number')
-													.filter((item) => item.year === null || item.semester === null)
+													.filter((item) => !item.year && !item.semester)
 													.map((item) => item.academics_courses_course_code)
 													.filter((item) => typeof item !== 'string')}
 											/>
@@ -70,7 +71,7 @@
 
 									{#if academics_program.curriculum_table
 										.filter((item) => typeof item !== 'number')
-										.filter((item) => item.year === year && item.semester === 'first')
+										.filter((item) => item.year && item.semester && item.year === year && item.semester === 'first')
 										.map((item) => item.academics_courses_course_code)
 										.filter((item) => typeof item !== 'string').length !== 0}
 										<!-- First Semester -->
@@ -79,7 +80,13 @@
 											<CoursesTable
 												academics_courses={academics_program.curriculum_table
 													.filter((item) => typeof item !== 'number')
-													.filter((item) => item.year === year && item.semester === 'first')
+													.filter(
+														(item) =>
+															item.year &&
+															item.semester &&
+															item.year === year &&
+															item.semester === 'first'
+													)
 													.map((item) => item.academics_courses_course_code)
 													.filter((item) => typeof item !== 'string')}
 											/>
@@ -88,16 +95,21 @@
 
 									{#if academics_program.curriculum_table
 										.filter((item) => typeof item !== 'number')
-										.filter((item) => item.year === year && item.semester === 'second')
+										.filter((item) => item.year && item.semester && item.year === year && item.semester === 'second')
 										.map((item) => item.academics_courses_course_code)
 										.filter((item) => typeof item !== 'string').length !== 0}
-										<!-- Second Semester -->
 										<h3 class="mt-4 font-semibold">Second Semester</h3>
 										<div class="px-4">
 											<CoursesTable
 												academics_courses={academics_program.curriculum_table
 													.filter((item) => typeof item !== 'number')
-													.filter((item) => item.year === year && item.semester === 'second')
+													.filter(
+														(item) =>
+															item.year &&
+															item.semester &&
+															item.year === year &&
+															item.semester === 'second'
+													)
 													.map((item) => item.academics_courses_course_code)
 													.filter((item) => typeof item !== 'string')}
 											/>
@@ -106,7 +118,7 @@
 
 									{#if academics_program.curriculum_table
 										.filter((item) => typeof item !== 'number')
-										.filter((item) => item.year === year && item.semester === 'midyear')
+										.filter((item) => item.year && item.semester && item.year === year && item.semester === 'midyear')
 										.map((item) => item.academics_courses_course_code)
 										.filter((item) => typeof item !== 'string').length !== 0}
 										<!-- Midyear -->
@@ -115,7 +127,13 @@
 											<CoursesTable
 												academics_courses={academics_program.curriculum_table
 													.filter((item) => typeof item !== 'number')
-													.filter((item) => item.year === year && item.semester === 'midyear')
+													.filter(
+														(item) =>
+															item.year &&
+															item.semester &&
+															item.year === year &&
+															item.semester === 'midyear'
+													)
 													.map((item) => item.academics_courses_course_code)
 													.filter((item) => typeof item !== 'string')}
 											/>
