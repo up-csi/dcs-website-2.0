@@ -41,45 +41,86 @@
 								{#each [...new Set(academics_program.curriculum_table
 											.filter((item) => typeof item !== 'number')
 											.map((item) => item.year)
-											.sort((a, b) => a - b))] as year}
+											.sort((a, b) => {
+												if (a == null) return Number.MAX_SAFE_INTEGER;
+												if (b == null) return -Number.MAX_SAFE_INTEGER;
+												return a - b;
+											}))] as year}
+									<!-- For N/A year or semesters -->
+									{#if academics_program.curriculum_table
+										.filter((item) => typeof item !== 'number')
+										.filter((item) => item.year === null || item.semester === null)
+										.map((item) => item.academics_courses_course_code)
+										.filter((item) => typeof item !== 'string')}
+										<div class="px-4">
+											<CoursesTable
+												academics_courses={academics_program.curriculum_table
+													.filter((item) => typeof item !== 'number')
+													.filter((item) => item.year === null || item.semester === null)
+													.map((item) => item.academics_courses_course_code)
+													.filter((item) => typeof item !== 'string')}
+											/>
+										</div>
+									{/if}
+
 									<!-- Year Heading -->
-									<h2 class="mt-8 border-b pb-2 text-2xl font-bold">Year {year}</h2>
+									{#if year}
+										<h2 class="mt-8 border-b pb-2 text-2xl font-bold">Year {year}</h2>
+									{/if}
 
-									<!-- First Semester -->
-									<h3 class="mt-4 font-semibold">First Semester</h3>
-									<div class="px-4">
-										<CoursesTable
-											academics_courses={academics_program.curriculum_table
-												.filter((item) => typeof item !== 'number')
-												.filter((item) => item.year === year && item.semester === 'first')
-												.map((item) => item.academics_courses_course_code)
-												.filter((item) => typeof item !== 'string')}
-										/>
-									</div>
+									{#if academics_program.curriculum_table
+										.filter((item) => typeof item !== 'number')
+										.filter((item) => item.year === year && item.semester === 'first')
+										.map((item) => item.academics_courses_course_code)
+										.filter((item) => typeof item !== 'string').length !== 0}
+										<!-- First Semester -->
+										<h3 class="mt-4 font-semibold">First Semester</h3>
+										<div class="px-4">
+											<CoursesTable
+												academics_courses={academics_program.curriculum_table
+													.filter((item) => typeof item !== 'number')
+													.filter((item) => item.year === year && item.semester === 'first')
+													.map((item) => item.academics_courses_course_code)
+													.filter((item) => typeof item !== 'string')}
+											/>
+										</div>
+									{/if}
 
-									<!-- Second Semester -->
-									<h3 class="mt-4 font-semibold">Second Semester</h3>
-									<div class="px-4">
-										<CoursesTable
-											academics_courses={academics_program.curriculum_table
-												.filter((item) => typeof item !== 'number')
-												.filter((item) => item.year === year && item.semester === 'second')
-												.map((item) => item.academics_courses_course_code)
-												.filter((item) => typeof item !== 'string')}
-										/>
-									</div>
+									{#if academics_program.curriculum_table
+										.filter((item) => typeof item !== 'number')
+										.filter((item) => item.year === year && item.semester === 'second')
+										.map((item) => item.academics_courses_course_code)
+										.filter((item) => typeof item !== 'string').length !== 0}
+										<!-- Second Semester -->
+										<h3 class="mt-4 font-semibold">Second Semester</h3>
+										<div class="px-4">
+											<CoursesTable
+												academics_courses={academics_program.curriculum_table
+													.filter((item) => typeof item !== 'number')
+													.filter((item) => item.year === year && item.semester === 'second')
+													.map((item) => item.academics_courses_course_code)
+													.filter((item) => typeof item !== 'string')}
+											/>
+										</div>
+									{/if}
 
-									<!-- Midyear -->
-									<h3 class="mt-4 font-semibold">Midyear</h3>
-									<div class="px-4">
-										<CoursesTable
-											academics_courses={academics_program.curriculum_table
-												.filter((item) => typeof item !== 'number')
-												.filter((item) => item.year === year && item.semester === 'midyear')
-												.map((item) => item.academics_courses_course_code)
-												.filter((item) => typeof item !== 'string')}
-										/>
-									</div>
+									{#if academics_program.curriculum_table
+										.filter((item) => typeof item !== 'number')
+										.filter((item) => item.year === year && item.semester === 'midyear')
+										.map((item) => item.academics_courses_course_code)
+										.filter((item) => typeof item !== 'string').length !== 0}
+										<!-- Midyear -->
+										<h3 class="mt-4 font-semibold">Midyear</h3>
+										<div class="px-4">
+											<CoursesTable
+												academics_courses={academics_program.curriculum_table
+													.filter((item) => typeof item !== 'number')
+													.filter((item) => item.year === year && item.semester === 'midyear')
+													.map((item) => item.academics_courses_course_code)
+													.filter((item) => typeof item !== 'string')}
+											/>
+										</div>
+									{/if}
 								{/each}
 							</div>
 						{/if}
