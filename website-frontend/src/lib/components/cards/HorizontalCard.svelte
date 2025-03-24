@@ -12,9 +12,10 @@
 		height = 'h-40';
 	}
 
-	let background = 'background-image: linear-gradient(to right, #0D4824 -5%, #D1D8DD 70%)';
+	let background =
+		'background-image: linear-gradient(to right, hsl(var(--primary)) -5%, #D1D8DD 70%)';
 	$: if (background_image) {
-		background = `background-image: linear-gradient(to top, #0D4824 -5%, transparent 70%), url('${PUBLIC_APIURL}/assets/${background_image}')`;
+		background = `background-image: linear-gradient(to right, hsl(var(--primary)) -5%, transparent 70%), url('${PUBLIC_APIURL}/assets/${background_image}')`;
 	}
 </script>
 
