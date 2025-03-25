@@ -9,62 +9,66 @@
 
 	$: ({ people, people_overview } = data);
 
-	$: regularList = people?.filter((person: Person) => person.category === 'regular-faculty') ?? [];
-	$: lecturerList =
-		people?.filter((person: Person) => person.category === 'lecturers-and-teaching-associates') ??
-		[];
-	$: supportList = people?.filter((person: Person) => person.category === 'support-staff') ?? [];
+	const priority = [
+		'Professor',
+		'Associate Professor',
+		'Assistant Professor',
+		'Instructor',
+		'Lecturer',
+		'Researcher'
+	];
 
-	let heading = `text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 leading-none`;
+	$: positions = Array.from(
+		new Set(people.map((person: Person) => person.position).filter(Boolean))
+	)
+		.map((pos) => pos as string)
+		.sort((a, b) => {
+			const indexA = priority.indexOf(a);
+			const indexB = priority.indexOf(b);
+
+			// If both positions are in the priority list, sort by their order
+			if (indexA !== -1 && indexB !== -1) {
+				return indexA - indexB;
+			}
+			// If only one is in the priority list, prioritize it
+			if (indexA !== -1) return -1;
+			if (indexB !== -1) return 1;
+
+			// Otherwise, sort alphabetically
+			return a.localeCompare(b);
+		});
+
+	$: peopleByPosition = positions.map((position) => ({
+		position,
+		people: people.filter((person: Person) => person.position === position)
+	}));
 </script>
 
 <body>
-	<div class="relative z-0">
-		<Banner
-			title="People"
-			background_image={people_overview.background_image ?? ''}
-			flexible_content={people_overview.flexible_content}
-		/>
-	</div>
+	<Banner
+		title="People"
+		background_image={people_overview.background_image ?? ''}
+		flexible_content={people_overview.flexible_content}
+	/>
 
-	<div class="mx-auto w-[94vw] md:w-[80vw]">
-		<div class="mt-5">
-			<Breadcrumb />
-		</div>
+	<div class="flex justify-center px-4">
+		<div class="content-padding">
+			<div class="pt-5">
+				<Breadcrumb />
+			</div>
 
-		<div class="space-y-4 py-8 md:py-10">
-			{#if regularList.length > 0}
-				<a class={heading} href="/people/regular-faculty">Regular Faculty</a>
-				<CardPanel>
-					{#each regularList as person}
-						<a href="/people/{person.category}/{person.username}">
-							<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-						</a>
-					{/each}
-				</CardPanel>
-			{/if}
-			{#if lecturerList.length > 0}
-				<a class={heading} href="/people/lecturers-and-teaching-associates"
-					>Lecturers & Teaching Associates</a
-				>
-				<CardPanel>
-					{#each lecturerList as person}
-						<a href="/people/{person.category}/{person.username}">
-							<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-						</a>
-					{/each}
-				</CardPanel>
-			{/if}
-			{#if supportList.length > 0}
-				<a class={heading} href="/people/support-staff">Support Staff</a>
-				<CardPanel>
-					{#each supportList as person}
-						<a href="/people/{person.category}/{person.username}">
-							<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-						</a>
-					{/each}
-				</CardPanel>
-			{/if}
+			{#each peopleByPosition as { position, people }}
+				<div>
+					<p class="heading-text">{position}s</p>
+					<CardPanel>
+						{#each people as person (person.username)}
+							<a href="/people/{person.category}/{person.username}">
+								<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
+							</a>
+						{/each}
+					</CardPanel>
+				</div>
+			{/each}
 		</div>
 	</div>
 </body>
