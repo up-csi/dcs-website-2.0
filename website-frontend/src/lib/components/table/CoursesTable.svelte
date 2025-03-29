@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Table from '$lib/@shadcn-svelte/ui/table';
 	import type { AcademicsCourses } from '$lib/models/academics_courses';
+	import ShowMoreCourseDetails from '$lib/components/buttons/ShowMoreCourseDetails.svelte';
 
 	export let academics_courses: AcademicsCourses;
 </script>
@@ -21,11 +22,6 @@
 						Title
 					</Table.Head>
 					<Table.Head
-						class="w-1/12 bg-gray-100 px-4 py-2 text-left text-xs font-semibold text-gray-700 md:text-sm"
-					>
-						Units
-					</Table.Head>
-					<Table.Head
 						class="w-7/12 bg-gray-100 px-4 py-2 text-left text-xs font-semibold text-gray-700 md:text-sm"
 					>
 						Description
@@ -43,13 +39,11 @@
 						<Table.Cell class="w-3/12 bg-white text-xs text-gray-600 md:text-sm">
 							{course_title}
 						</Table.Cell>
-						<Table.Cell class="w-1/12 bg-white text-xs text-gray-600 md:text-sm">
-							{course_units}
-						</Table.Cell>
 						<Table.Cell class="w-7/12 bg-white text-xs text-gray-600 md:text-sm">
 							{#if course_description}
 								{course_description}
 							{/if}
+							<ShowMoreCourseDetails {course_units} />
 						</Table.Cell>
 					</Table.Row>
 				{/each}
