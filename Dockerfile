@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM node:lts AS builder
 
 WORKDIR /app
