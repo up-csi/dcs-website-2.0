@@ -2,6 +2,7 @@ import {
 	array,
 	integer,
 	lazy,
+	nullable,
 	number,
 	object,
 	pipe,
@@ -13,16 +14,16 @@ import { AcademicsProgram } from '../academics_programs';
 import { AcademicsCourse } from '../academics_courses';
 
 export type AcademicsProgramsCourses = {
-	year: number;
-	semester: string;
+	year: number | null;
+	semester: string | null;
 	academics_programs_id: string | AcademicsProgram;
 	academics_courses_course_code: string | AcademicsCourse;
 }[];
 
 export const AcademicsProgramsCourses: GenericSchema<AcademicsProgramsCourses> = array(
 	object({
-		year: pipe(number(), integer()),
-		semester: string(),
+		year: nullable(pipe(number(), integer())),
+		semester: nullable(string()),
 		academics_programs_id: union([string(), lazy(() => AcademicsProgram)]),
 		academics_courses_course_code: union([string(), lazy(() => AcademicsCourse)])
 	})
