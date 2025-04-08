@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { Partner } from '$lib/types/partners';
 	import * as Card from '$lib/@shadcn-svelte/ui/card';
 	import { Image } from 'lucide-svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import type { Partnerships } from '$lib/models/partnerships';
 
-	export let partner: Partner;
-	$: ({ src, name, description } = partner);
+	export let partner: Partnerships;
+	$: ({ display_image, name, description } = partner);
 </script>
 
 <Card.Root class="card h-[286px] w-[376px] border-0">
 	<Card.Content class="card h-full w-full p-3">
 		<div class="flex">
-			{#if src}
-				<img src="{PUBLIC_APIURL}/assets/{src}" alt={name} />
+			{#if display_image}
+				<img src="{PUBLIC_APIURL}/assets/{display_image}" alt={name} />
 			{:else}
 				<div class="flex h-32 w-32 items-center justify-center rounded-full bg-secondary">
 					<Image class="h-10 w-10 text-background" />
