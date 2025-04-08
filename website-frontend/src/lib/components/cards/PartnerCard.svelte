@@ -2,9 +2,9 @@
 	import * as Card from '$lib/@shadcn-svelte/ui/card';
 	import { Image } from 'lucide-svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
-	import type { Partnerships } from '$lib/models/partnerships';
+	import type { Partnership } from '$lib/models/partnerships';
 
-	export let partner: Partnerships;
+	export let partner: Partnership;
 	$: ({ display_image, name, description } = partner);
 </script>
 
