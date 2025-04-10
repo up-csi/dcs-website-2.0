@@ -12,7 +12,9 @@
 	<Card.Content class="card h-full w-full p-3">
 		<div class="flex">
 			{#if display_image}
-				<img src="{PUBLIC_APIURL}/assets/{display_image}" alt={name} />
+				<div class="h-32 w-32">
+					<img src="{PUBLIC_APIURL}/assets/{display_image}" alt={name} />
+				</div>
 			{:else}
 				<div class="flex h-32 w-32 items-center justify-center rounded-full bg-secondary">
 					<Image class="h-10 w-10 text-background" />
