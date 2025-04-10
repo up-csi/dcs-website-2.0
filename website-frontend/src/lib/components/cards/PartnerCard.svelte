@@ -9,7 +9,7 @@
 </script>
 
 <Card.Root class="card h-[286px] w-[376px] border-0">
-	<Card.Content class="card h-full w-full p-3">
+	<Card.Content class="card h-full w-full p-4">
 		<div class="flex">
 			{#if display_image}
 				<div class="h-32 w-32">
