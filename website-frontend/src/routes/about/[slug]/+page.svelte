@@ -13,8 +13,8 @@
 	<FullWidthBreakout>
 		<Banner title={page.title} />
 	</FullWidthBreakout>
-	
-	<div class="pb-16 md:pb-24 text-base">
+
+	<div class="pb-16 text-base md:pb-24">
 		<div class="py-2 md:py-8">
 			<Breadcrumb />
 		</div>
@@ -25,7 +25,6 @@
 			<p>Page is empty.</p>
 		{/if}
 	</div>
-	
 {:else}
 	<p>Page not found</p>
 {/if}

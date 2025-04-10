@@ -35,17 +35,17 @@
 </FullWidthBreakout>
 
 <div class="pb-16 md:pb-24">
-	<div class="pt-2 pb-5 md:py-8">
+	<div class="pb-5 pt-2 md:py-8">
 		<Breadcrumb />
 	</div>
 
 	<Carousel.Root>
 		<Carousel.Content class="-ml-6">
 			{#each featured as event}
-				<Carousel.Item class="basis-1 pl-6 md:basis-1/4 pb-16">
+				<Carousel.Item class="basis-1 pb-16 pl-6 md:basis-1/4">
 					<FeaturedEventCard item={event} />
 				</Carousel.Item>
-			{/each}	
+			{/each}
 		</Carousel.Content>
 	</Carousel.Root>
 

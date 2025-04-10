@@ -45,31 +45,31 @@
 	}));
 </script>
 
-	<FullWidthBreakout>
-		<Banner
-			title="People"
-			background_image={people_overview.background_image ?? ''}
-			flexible_content={people_overview.flexible_content}
-		/>
-	</FullWidthBreakout>
+<FullWidthBreakout>
+	<Banner
+		title="People"
+		background_image={people_overview.background_image ?? ''}
+		flexible_content={people_overview.flexible_content}
+	/>
+</FullWidthBreakout>
 
-	<div class="pb-16 md:pb-24">
-		<div class="py-2 pb-8 md:py-8">
-			<Breadcrumb />
-		</div>
-
-		<div class="space-y-16 md:space-y-24">
-			{#each peopleByPosition as { position, people }}
-				<div>
-					<p class="heading-text">{position}s</p>
-					<CardPanel>
-						{#each people as person (person.username)}
-							<a href="/people/{person.category}/{person.username}">
-								<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-							</a>
-						{/each}
-					</CardPanel>
-				</div>
-			{/each}
-		</div>
+<div class="pb-16 md:pb-24">
+	<div class="py-2 pb-8 md:py-8">
+		<Breadcrumb />
 	</div>
+
+	<div class="space-y-16 md:space-y-24">
+		{#each peopleByPosition as { position, people }}
+			<div>
+				<p class="heading-text">{position}s</p>
+				<CardPanel>
+					{#each people as person (person.username)}
+						<a href="/people/{person.category}/{person.username}">
+							<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
+						</a>
+					{/each}
+				</CardPanel>
+			</div>
+		{/each}
+	</div>
+</div>

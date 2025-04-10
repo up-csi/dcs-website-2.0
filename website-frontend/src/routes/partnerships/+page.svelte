@@ -13,25 +13,25 @@
 	const title = 'Our Partnerships';
 </script>
 
-	<FullWidthBreakout>
-		<Banner {title} />
-	</FullWidthBreakout>
+<FullWidthBreakout>
+	<Banner {title} />
+</FullWidthBreakout>
 
-	<div class="pb-16 md:pb-24 text-base">
-		<div class="py-2 md:py-8">
-			<Breadcrumb page_name={title} />
-		</div>
-
-		{#if partnerships_overview.flexible_content}
-			<div class="mb-10 w-full">
-				<FlexibleContent content={partnerships_overview.flexible_content} />
-			</div>
-		{/if}
-
-		<p class="heading-text">Our Partners</p>
-		<CardPanel width={376}>
-			{#each partners as partner}
-				<PartnerCard {partner} />
-			{/each}
-		</CardPanel>
+<div class="pb-16 text-base md:pb-24">
+	<div class="py-2 md:py-8">
+		<Breadcrumb page_name={title} />
 	</div>
+
+	{#if partnerships_overview.flexible_content}
+		<div class="mb-10 w-full">
+			<FlexibleContent content={partnerships_overview.flexible_content} />
+		</div>
+	{/if}
+
+	<p class="heading-text">Our Partners</p>
+	<CardPanel width={376}>
+		{#each partners as partner}
+			<PartnerCard {partner} />
+		{/each}
+	</CardPanel>
+</div>

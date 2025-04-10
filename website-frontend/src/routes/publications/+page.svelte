@@ -50,11 +50,11 @@
 	<Banner title="Publications" />
 </FullWidthBreakout>
 
-<div class="pb-16 md:pb-24 text-base">
+<div class="pb-16 text-base md:pb-24">
 	<div class="py-2 md:py-8">
 		<Breadcrumb />
 	</div>
-	
+
 	<FilterBar {controls} />
 	<Sort {sort_options} />
 

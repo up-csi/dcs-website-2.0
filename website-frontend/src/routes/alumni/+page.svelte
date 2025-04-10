@@ -18,7 +18,7 @@
 </FullWidthBreakout>
 
 <div class="pb-16 md:pb-24">
-	<div class="pt-2 pb-8 md:py-8">
+	<div class="pb-8 pt-2 md:py-8">
 		<Breadcrumb />
 	</div>
 

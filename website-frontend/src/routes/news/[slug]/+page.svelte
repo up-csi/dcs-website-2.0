@@ -1,6 +1,5 @@
 <script>
 	/** @type {import('./$types').PageData} */
-	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import { PUBLIC_APIURL } from '$env/static/public';
@@ -14,72 +13,72 @@
 	$: ({ other_news, news_item } = data);
 </script>
 
-	{#if news_item}
-		<FullWidthBreakout>
-			<div class="flex flex-col gap-y-5 bg-white">
-				<div class="md:px-6 md:mt-16">
-					<Breadcrumb page_name={news_item.title} />
-				</div>
-
-				{#if news_item.background_image}
-					<div class="h-full px-5">
-						<img
-							class="h-[40svh] w-full object-cover md:h-[60svh]"
-							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
-							alt="Background"
-						/>
-					</div>
-				{/if}
-				<div
-					class="px-4 md:px-14 max-w-[1220px] 2xl:max-w-screen-2xl mx-auto w-full gap-y-5 pb-16 flex flex-col"
-					class:mt-8={news_item.background_image}
-					class:mt-24={!news_item.background_image}
-				>
-					<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
-					<p class="md:text-xl">{news_item.summary}</p>
-					<div class="flex justify-between">
-						<div class="flex flex-col">
-							<small
-								>Written by {news_item.user_created.first_name}
-								{news_item.user_created.last_name}</small
-							>
-							<small class="text-gray-500"
-								>Published on {new Date(news_item.date_created).toLocaleDateString('en-US', {
-									month: 'long',
-									day: 'numeric',
-									year: 'numeric'
-								})} | {new Date(news_item.date_created).toLocaleTimeString('en-US', {
-									timeZone: 'PST',
-									timeZoneName: 'short'
-								})}
-							</small>
-						</div>
-						<Button variant="outline" class="flex gap-x-2 rounded-full"
-							>Share <Share class="size-4" /></Button
-						>
-					</div>
-				</div>
-			</div>
-		</FullWidthBreakout>
-
-		<div class="pb-24 pt-16">
-			<div class="md:px-6">
-				{#if news_item.flexible_content}
-					<FlexibleContent content={news_item.flexible_content} />
-				{:else}
-					<p>Page is empty.</p>
-				{/if}
-			</div>
-		</div>
-	{:else}
-		<p>Page not found</p>
-	{/if}
-
+{#if news_item}
 	<FullWidthBreakout>
-		<div class="bg-background-dark py-24 text-primary-foreground">
-			<div class="container flex h-full flex-col gap-y-8">
-				<h2 class="heading-text">More News from UPD DCS</h2>
-				<CardCarousel CardComponent={NewsCard} items={other_news} />
+		<div class="flex flex-col gap-y-5 bg-white">
+			<div class="md:mt-16 md:px-6">
+				<Breadcrumb page_name={news_item.title} />
+			</div>
+
+			{#if news_item.background_image}
+				<div class="h-full px-5">
+					<img
+						class="h-[40svh] w-full object-cover md:h-[60svh]"
+						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+						alt="Background"
+					/>
+				</div>
+			{/if}
+			<div
+				class="mx-auto flex w-full max-w-[1220px] flex-col gap-y-5 px-4 pb-16 md:px-14 2xl:max-w-screen-2xl"
+				class:mt-8={news_item.background_image}
+				class:mt-24={!news_item.background_image}
+			>
+				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
+				<p class="md:text-xl">{news_item.summary}</p>
+				<div class="flex justify-between">
+					<div class="flex flex-col">
+						<small
+							>Written by {news_item.user_created.first_name}
+							{news_item.user_created.last_name}</small
+						>
+						<small class="text-gray-500"
+							>Published on {new Date(news_item.date_created).toLocaleDateString('en-US', {
+								month: 'long',
+								day: 'numeric',
+								year: 'numeric'
+							})} | {new Date(news_item.date_created).toLocaleTimeString('en-US', {
+								timeZone: 'PST',
+								timeZoneName: 'short'
+							})}
+						</small>
+					</div>
+					<Button variant="outline" class="flex gap-x-2 rounded-full"
+						>Share <Share class="size-4" /></Button
+					>
+				</div>
 			</div>
 		</div>
 	</FullWidthBreakout>
+
+	<div class="pb-24 pt-16">
+		<div class="md:px-6">
+			{#if news_item.flexible_content}
+				<FlexibleContent content={news_item.flexible_content} />
+			{:else}
+				<p>Page is empty.</p>
+			{/if}
+		</div>
+	</div>
+{:else}
+	<p>Page not found</p>
+{/if}
+
+<FullWidthBreakout>
+	<div class="bg-background-dark py-24 text-primary-foreground">
+		<div class="container flex h-full flex-col gap-y-8">
+			<h2 class="heading-text">More News from UPD DCS</h2>
+			<CardCarousel CardComponent={NewsCard} items={other_news} />
+		</div>
+	</div>
+</FullWidthBreakout>

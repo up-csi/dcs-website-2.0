@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="pb-16 md:pb-24">
-		<div class="pt-2 pb-5 md:py-8">
+		<div class="pb-5 pt-2 md:py-8">
 			<Breadcrumb page_name={event.event_headline} />
 		</div>
 		<FlexibleContent content={event.event_content} />

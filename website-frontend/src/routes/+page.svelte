@@ -57,7 +57,7 @@
 
 <FullWidthBreakout>
 	<div id="more-news" class="flex justify-center bg-background-dark text-primary-foreground">
-		<div class="px-4 md:px-8 max-w-[1330px] 2xl:max-w-screen-2xl py-16 md:py-24">
+		<div class="max-w-[1330px] px-4 py-16 md:px-8 md:py-24 2xl:max-w-screen-2xl">
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
 			<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
 				{#each news as item}

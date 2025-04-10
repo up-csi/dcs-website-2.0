@@ -52,21 +52,21 @@
 				<div class="text-2xl font-semibold leading-tight text-primary-foreground md:leading-snug">
 					<p>{organization.mission}</p>
 				</div>
-			
+
 				<InfoCard
 					location="insert organization.location here"
 					contact_email={organization.email ?? ''}
 					founding_date={organization.founding_date ?? ''}
 				/>
-			
+
 				<FlexibleContent content={organization.flexible_content} />
-			
+
 				<div class="text-lg leading-normal text-primary-foreground">
 					<div class="text-lg leading-normal text-primary-foreground">
 						<p class="duration-400 overflow-hidden transition-all" class:line-clamp-6={!showFull}>
 							{organization.description}
 						</p>
-					
+
 						{#if !showFull}
 							<div class="mt-9">
 								<ReadMore bind:showFull />

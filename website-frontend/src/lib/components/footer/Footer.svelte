@@ -1,7 +1,6 @@
 <script>
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
 	import XIcon from '$lib/assets/XIcon.svelte';
-	import { page } from '$app/stores';
 
 	export let address;
 	export let contact_number;
@@ -13,7 +12,7 @@
 
 <div class="flex justify-center text-primary-foreground">
 	<div
-		class="flex text-[16px] w-full flex-col space-y-10 pt-10 pb-5 md:pb-8 md:flex-row md:items-baseline md:space-x-24 md:space-y-0 md:pl-1"
+		class="flex w-full flex-col space-y-10 pb-5 pt-10 text-[16px] md:flex-row md:items-baseline md:space-x-24 md:space-y-0 md:pb-8 md:pl-1"
 	>
 		<div>
 			<p class="pb-5 text-xl font-bold">Department of Computer Science</p>

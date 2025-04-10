@@ -11,54 +11,50 @@
 	$: ({ academics, academics_categories, academics_courses } = data);
 </script>
 
-	{#if academics}
-		<FullWidthBreakout>
-			<Banner title="Academics" />
-		</FullWidthBreakout>
+{#if academics}
+	<FullWidthBreakout>
+		<Banner title="Academics" />
+	</FullWidthBreakout>
 
-		<div class="pb-16 md:pb-24">
-			<div class="py-2 md:py-8">
-				<Breadcrumb />
+	<div class="pb-16 md:pb-24">
+		<div class="py-2 md:py-8">
+			<Breadcrumb />
+		</div>
+
+		<div class="space-y-16 md:space-y-24">
+			<div class="prose text-base">
+				{#if academics.flexible_content}
+					<FlexibleContent content={academics.flexible_content} />
+				{:else}
+					<p>Page is empty.</p>
+				{/if}
 			</div>
 
-			<div class="space-y-16 md:space-y-24">
-				<div class="prose text-base">
-					{#if academics.flexible_content}
-						<FlexibleContent content={academics.flexible_content} />
-					{:else}
-						<p>Page is empty.</p>
-					{/if}
-				</div>
-
-				<div>
-					<h1 class="heading-text heading-padding">
-						Programs offered by the department
-					</h1>
-					{#if academics_categories}
-						<div class="space-y-3">
-							{#each academics_categories as acad_category}
-								<a href="academics/{acad_category.slug}" class="block">
-									<HorizontalCard
-										name={acad_category.name}
-										description={acad_category.description ?? undefined}
-									/>
-								</a>
-							{/each}
-						</div>
-					{/if}
-				</div>
-
-				<div>
-					<div class="heading-padding">
-						<h1 class="heading-text">Courses offered by the department</h1>
-						<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
-							Last Updated: March XX, 2025
-						</p>
+			<div>
+				<h1 class="heading-text heading-padding">Programs offered by the department</h1>
+				{#if academics_categories}
+					<div class="space-y-3">
+						{#each academics_categories as acad_category}
+							<a href="academics/{acad_category.slug}" class="block">
+								<HorizontalCard
+									name={acad_category.name}
+									description={acad_category.description ?? undefined}
+								/>
+							</a>
+						{/each}
 					</div>
-					<CoursesTable {academics_courses} />
+				{/if}
+			</div>
+
+			<div>
+				<div class="heading-padding">
+					<h1 class="heading-text">Courses offered by the department</h1>
+					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
 				</div>
+				<CoursesTable {academics_courses} />
 			</div>
 		</div>
-	{:else}
-		<p>Page not found</p>
-	{/if}
+	</div>
+{:else}
+	<p>Page not found</p>
+{/if}

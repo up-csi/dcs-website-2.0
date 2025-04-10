@@ -80,7 +80,7 @@
 	</FullWidthBreakout>
 
 	{#if publications.length !== 0}
-		<div class="mx-auto md:mt-12 pb-16 md:pb-24">
+		<div class="mx-auto pb-16 md:mt-12 md:pb-24">
 			<h2 class="my-6 text-3xl font-bold">Publications</h2>
 			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 				<Carousel.Content>

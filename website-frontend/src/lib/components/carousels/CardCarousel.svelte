@@ -6,9 +6,7 @@
 	export let items: NewsItem[] | Event[] = [];
 </script>
 
-<Carousel.Root
-	opts={{ align: 'start', dragFree: true }}
->
+<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 	<Carousel.Content class="-ml-[85%] -mr-[81%] md:-ml-[18%] md:-mr-[17%]">
 		<Carousel.Item class="basis-1/3 md:basis-1/6">
 			<div class="h-full" />
