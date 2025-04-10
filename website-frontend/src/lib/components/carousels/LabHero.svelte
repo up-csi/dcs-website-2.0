@@ -50,7 +50,7 @@
 					<Carousel.Item class="h-full">
 						<div
 							class="h-[82vh] bg-cover bg-center md:h-[80vh]"
-							style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+							style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 						></div>
 					</Carousel.Item>
 				{/each}

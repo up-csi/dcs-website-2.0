@@ -8,7 +8,6 @@
 
 <Carousel.Root
 	opts={{ align: 'start', dragFree: true }}
-	class="relative left-1/2 -ml-[50vw] w-screen"
 >
 	<Carousel.Content class="-ml-[85%] -mr-[81%] md:-ml-[18%] md:-mr-[17%]">
 		<Carousel.Item class="basis-1/3 md:basis-1/6">

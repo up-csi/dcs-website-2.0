@@ -4,6 +4,7 @@
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { Person } from '$lib/models/people';
 
 	export let data;
@@ -45,20 +46,22 @@
 	}));
 </script>
 
-<body>
+
 	{#if category}
-		<Banner
-			title={category.title}
-			background_image={category.background_image ?? ''}
-			flexible_content={category.flexible_content}
-		/>
+		<FullWidthBreakout>
+			<Banner
+				title={category.title}
+				background_image={category.background_image ?? ''}
+				flexible_content={category.flexible_content}
+			/>
+		</FullWidthBreakout>
 
-		<div class="flex justify-center px-4">
-			<div class="content-padding">
-				<div class="pt-5">
-					<Breadcrumb />
-				</div>
+		<div class="pb-16 md:pb-24">
+			<div class="py-2 md:py-8">
+				<Breadcrumb />
+			</div>
 
+			<div class="space-y-16 md:space-y-24">
 				{#each peopleByPosition as { position, people }}
 					<div>
 						<p class="heading-text">{position}s</p>
@@ -79,4 +82,4 @@
 	{:else}
 		<p>People category not found</p>
 	{/if}
-</body>
+

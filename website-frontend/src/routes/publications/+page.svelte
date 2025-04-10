@@ -6,6 +6,7 @@
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import Sort from '$lib/components/sort/Sort.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { page } from '$app/stores';
 
 	export let data;
@@ -45,12 +46,15 @@
 	$: publicationsList = sortedPublications?.slice(0, shown);
 </script>
 
-<Banner title="Publications" />
+<FullWidthBreakout>
+	<Banner title="Publications" />
+</FullWidthBreakout>
 
-<div class="container mx-auto my-8 gap-y-5">
-	<div class="mb-5">
+<div class="pb-16 md:pb-24 text-base">
+	<div class="py-2 md:py-8">
 		<Breadcrumb />
 	</div>
+	
 	<FilterBar {controls} />
 	<Sort {sort_options} />
 

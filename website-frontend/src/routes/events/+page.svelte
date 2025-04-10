@@ -6,6 +6,7 @@
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	import Calendar from '$lib/components/table/Calendar.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 
 	export let data;
 
@@ -29,26 +30,26 @@
 	const title = 'Events';
 </script>
 
-<body class="bg-slate-50">
-	<div class="relative z-0">
-		<Banner {title} flexible_content={`This is the ${title} page.`} />
-	</div>
+<FullWidthBreakout>
+	<Banner {title} flexible_content={`This is the ${title} page.`} />
+</FullWidthBreakout>
 
-	<div class="container mx-auto my-8 mb-5">
+<div class="pb-16 md:pb-24">
+	<div class="pt-2 pb-5 md:py-8">
 		<Breadcrumb />
 	</div>
 
 	<Carousel.Root>
-		<Carousel.Content class="-ml-6 px-16 py-10">
+		<Carousel.Content class="-ml-6">
 			{#each featured as event}
-				<Carousel.Item class="basis-1 pl-6 md:basis-1/4">
+				<Carousel.Item class="basis-1 pl-6 md:basis-1/4 pb-16">
 					<FeaturedEventCard item={event} />
 				</Carousel.Item>
-			{/each}
+			{/each}	
 		</Carousel.Content>
 	</Carousel.Root>
 
-	<h1 class="mb-8 px-4 text-3xl font-bold text-gray-900 md:px-16">Find Events</h1>
+	<h1 class="heading-text">Find Events</h1>
 
 	<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 		<div class="flex items-center justify-between md:block">
@@ -58,4 +59,4 @@
 			<Calendar {events} />
 		</div>
 	</div>
-</body>
+</div>

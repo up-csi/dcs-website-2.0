@@ -7,59 +7,63 @@
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import { Share } from 'lucide-svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	export let data;
 
 	$: ({ other_news, news_item } = data);
 </script>
 
-<body>
 	{#if news_item}
-		<div class="flex flex-col gap-y-5">
-			<div class="container mx-auto md:mt-16">
-				<Breadcrumb page_name={news_item.title} />
-			</div>
+		<FullWidthBreakout>
+			<div class="flex flex-col gap-y-5 bg-white">
+				<div class="md:px-6 md:mt-16">
+					<Breadcrumb page_name={news_item.title} />
+				</div>
 
-			{#if news_item.background_image}
-				<div class="h-full px-5">
-					<img
-						class="h-[40svh] w-full object-cover md:h-[60svh]"
-						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
-						alt="Background"
-					/>
-				</div>
-			{/if}
-			<div
-				class="container mx-auto flex flex-col justify-center gap-y-5 pb-16"
-				class:mt-8={news_item.background_image}
-				class:mt-24={!news_item.background_image}
-			>
-				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
-				<p class="md:text-xl">{news_item.summary}</p>
-				<div class="flex justify-between">
-					<div class="flex flex-col">
-						<small
-							>Written by {news_item.user_created.first_name}
-							{news_item.user_created.last_name}</small
-						>
-						<small class="text-gray-500"
-							>Published on {new Date(news_item.date_created).toLocaleDateString('en-US', {
-								month: 'long',
-								day: 'numeric',
-								year: 'numeric'
-							})} | {new Date(news_item.date_created).toLocaleTimeString('en-US', {
-								timeZone: 'PST',
-								timeZoneName: 'short'
-							})}
-						</small>
+				{#if news_item.background_image}
+					<div class="h-full px-5">
+						<img
+							class="h-[40svh] w-full object-cover md:h-[60svh]"
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+							alt="Background"
+						/>
 					</div>
-					<Button variant="outline" class="flex gap-x-2 rounded-full"
-						>Share <Share class="size-4" /></Button
-					>
+				{/if}
+				<div
+					class="px-4 md:px-14 max-w-[1220px] 2xl:max-w-screen-2xl mx-auto w-full gap-y-5 pb-16 flex flex-col"
+					class:mt-8={news_item.background_image}
+					class:mt-24={!news_item.background_image}
+				>
+					<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
+					<p class="md:text-xl">{news_item.summary}</p>
+					<div class="flex justify-between">
+						<div class="flex flex-col">
+							<small
+								>Written by {news_item.user_created.first_name}
+								{news_item.user_created.last_name}</small
+							>
+							<small class="text-gray-500"
+								>Published on {new Date(news_item.date_created).toLocaleDateString('en-US', {
+									month: 'long',
+									day: 'numeric',
+									year: 'numeric'
+								})} | {new Date(news_item.date_created).toLocaleTimeString('en-US', {
+									timeZone: 'PST',
+									timeZoneName: 'short'
+								})}
+							</small>
+						</div>
+						<Button variant="outline" class="flex gap-x-2 rounded-full"
+							>Share <Share class="size-4" /></Button
+						>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="bg-gray-100 pb-24 pt-16">
-			<div class="container">
+		</FullWidthBreakout>
+
+		<div class="pb-24 pt-16">
+			<div class="md:px-6">
 				{#if news_item.flexible_content}
 					<FlexibleContent content={news_item.flexible_content} />
 				{:else}
@@ -70,19 +74,12 @@
 	{:else}
 		<p>Page not found</p>
 	{/if}
-	<div class="bg-primary py-24 text-primary-foreground">
-		<div class="container flex h-full flex-col gap-y-8">
-			<h2 class="text-xl font-bold md:text-2xl">More News from UPD DCS</h2>
-			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
-				<Carousel.Content>
-					{#each other_news as news_item}
-						<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-							<NewsCard item={news_item} />
-						</Carousel.Item>
-					{/each}
-				</Carousel.Content>
-				<Carousel.Next class="bg-primary" />
-			</Carousel.Root>
+
+	<FullWidthBreakout>
+		<div class="bg-background-dark py-24 text-primary-foreground">
+			<div class="container flex h-full flex-col gap-y-8">
+				<h2 class="heading-text">More News from UPD DCS</h2>
+				<CardCarousel CardComponent={NewsCard} items={other_news} />
+			</div>
 		</div>
-	</div>
-</body>
+	</FullWidthBreakout>

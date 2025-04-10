@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 
 	import { PUBLIC_APIURL } from '$env/static/public';
 
@@ -10,18 +11,20 @@
 	$: ({ laboratories } = data);
 </script>
 
-<Banner
-	title="Research"
-	flexible_content={'The Department of Computer Science houses nine research laboratories catering to theoretical and applied fields in computer science.'}
-/>
+<FullWidthBreakout>
+	<Banner
+		title="Research"
+		flexible_content={'The Department of Computer Science houses nine research laboratories catering to theoretical and applied fields in computer science.'}
+	/>
+</FullWidthBreakout>
 
-<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-	<div class="mb-5">
+<div class="pb-11 md:pb-20">
+	<div class="py-2 md:py-8">
 		<Breadcrumb />
 	</div>
 
 	{#each laboratories as laboratory}
-		<div class="my-5 border-b py-5 md:grid md:grid-cols-6 md:items-center">
+		<div class="my-5 border-b pb-5 md:grid md:grid-cols-6 md:items-center">
 			<div>
 				<img src="{PUBLIC_APIURL}/assets/{laboratory.logo}" alt={laboratory.name} />
 			</div>

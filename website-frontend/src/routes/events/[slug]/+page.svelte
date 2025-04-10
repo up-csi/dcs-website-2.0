@@ -4,6 +4,7 @@
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 
 	export let data;
 	$: ({ event, related_events } = data);
@@ -11,24 +12,26 @@
 
 {#if event}
 	<div class="relative">
-		<DetailsBanner
-			title={event.event_headline}
-			background_image={event.hero_image ?? ''}
-			display_location={event.display_location ?? ''}
-			start_date={event.start_date}
-			end_date={event.end_date ?? null}
-		/>
+		<FullWidthBreakout>
+			<DetailsBanner
+				title={event.event_headline}
+				background_image={event.hero_image ?? ''}
+				display_location={event.display_location ?? ''}
+				start_date={event.start_date}
+				end_date={event.end_date ?? null}
+			/>
+		</FullWidthBreakout>
 	</div>
 
-	<div class="px-4 py-14 md:px-64 md:py-16">
-		<div class="mb-5">
+	<div class="pb-16 md:pb-24">
+		<div class="pt-2 pb-5 md:py-8">
 			<Breadcrumb page_name={event.event_headline} />
 		</div>
 		<FlexibleContent content={event.event_content} />
 	</div>
 
 	{#if related_events}
-		<h1 class="mb-8 px-4 text-2xl font-bold md:px-32">Related Events</h1>
+		<h1 class="heading-text">Related Events</h1>
 
 		<div
 			class="mx-auto my-3 grid

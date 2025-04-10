@@ -52,7 +52,7 @@
 	</Breadcrumb.Root>
 </div>
 
-<div class="border-b border-muted-foreground/40 pb-2 lg:hidden">
+<div class="border-b border-muted-foreground/40 pb-1 md:pb-2 lg:hidden">
 	<Breadcrumb.Root>
 		<Breadcrumb.List class="text-xs font-medium hover:text-primary">
 			<Breadcrumb.Item class="text-foreground">

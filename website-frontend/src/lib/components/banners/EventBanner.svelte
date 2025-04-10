@@ -53,11 +53,11 @@
 <div class="relative z-0">
 	<div
 		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
-		style="background-image: linear-gradient(to top, hsl(var(--primary)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
 	></div>
 
 	<div
-		class="-mt-[0.4px] w-full bg-primary pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
+		class="-mt-[0.4px] w-full bg-[#343541] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
 	>
 		<div
 			class="-mt-16 flex w-full
