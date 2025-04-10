@@ -24,7 +24,7 @@
 
 		<div class="flex h-full w-full grow flex-col pt-1 *:mt-2">
 			<p class="text-xl font-bold text-primary">{name}</p>
-			<p class="text-sm text-secondary">{description}</p>
+			<p class="text-sm text-secondary line-clamp-3">{description}</p>
 		</div>
 	</Card.Content>
 </Card.Root>
