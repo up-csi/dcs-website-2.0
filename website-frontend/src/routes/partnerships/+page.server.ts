@@ -6,12 +6,14 @@ import { readItems, readSingleton } from '@directus/sdk';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
-	
-	const content: PartnershipsOverview = await directus.request(readSingleton('partnerships_overview'));
+
+	const content: PartnershipsOverview = await directus.request(
+		readSingleton('partnerships_overview')
+	);
 	const partnerships: Partnerships = await directus.request(readItems('partnerships'));
 
 	return {
 		content,
 		partnerships
-	}
+	};
 }

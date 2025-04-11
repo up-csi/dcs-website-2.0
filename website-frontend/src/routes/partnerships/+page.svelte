@@ -22,11 +22,11 @@
 		<Breadcrumb page_name={title} />
 	</div>
 
-		{#if content.flexible_content}
-			<div class="mb-10 w-full px-40">
-				<FlexibleContent content={content.flexible_content} />
-			</div>
-		{/if}
+	{#if content.flexible_content}
+		<div class="mb-10 w-full px-40">
+			<FlexibleContent content={content.flexible_content} />
+		</div>
+	{/if}
 
 	<p class="heading-text">Our Partners</p>
 	<CardPanel width={376}>
