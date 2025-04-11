@@ -8,6 +8,7 @@
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
 	import CardPanel from '$lib/components/panel/CardPanel.svelte';
+	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { Laboratory } from '$lib/models/laboratories';
 	import { Publications } from '$lib/models/publications';
 
@@ -81,8 +82,8 @@
 	let showFull = false;
 </script>
 
-<body>
-	{#if laboratory}
+{#if laboratory}
+	<FullWidthBreakout>
 		<div class="relative z-0">
 			<Hero
 				title={laboratory.name}
@@ -92,7 +93,7 @@
 			/>
 		</div>
 
-		<div class="bg-primary">
+		<div class="bg-background-dark">
 			<div
 				class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-20 md:pt-12 lg:pl-[302px]"
 			>
@@ -120,61 +121,57 @@
 				{/if}
 			</div>
 		</div>
+	</FullWidthBreakout>
 
-		<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
-			<h2 class="my-6 text-3xl font-bold">Publications</h2>
-			<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
-				{#if publications.length === 0}
-					<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
-						No publications found
-					</p>
-				{:else}
-					{#each publications as publication}
-						<PublicationCard {publication} />
-					{/each}
-				{/if}
-			</div>
-		</div>
-
-		<div class="mx-auto px-4 pb-4 md:px-10 md:pb-10">
-			<h2 class="my-6 text-3xl font-bold">Members</h2>
-			{#if affiliates.length === 0}
-				<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
-					No members found
+	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
+		<h2 class="my-6 text-3xl font-bold">Publications</h2>
+		<div class="grid grid-cols-1 items-end gap-2 md:my-8 md:grid-cols-4 md:items-end md:gap-4">
+			{#if publications.length === 0}
+				<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
+					No publications found
 				</p>
 			{:else}
-				<CardPanel>
-					{#each affiliates as affiliate}
-						{#if affiliate}
-							<PeopleCard person={affiliate} laboratory={laboratory.name} />
+				{#each publications as publication}
+					<PublicationCard {publication} />
+				{/each}
+			{/if}
+		</div>
+	</div>
+
+	<div class="mx-auto px-4 pb-4 md:px-10 md:pb-10">
+		<h2 class="my-6 text-3xl font-bold">Members</h2>
+		{#if affiliates.length === 0}
+			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">No members found</p>
+		{:else}
+			<CardPanel>
+				{#each affiliates as affiliate}
+					{#if affiliate}
+						<PeopleCard person={affiliate} laboratory={laboratory.name} />
+					{/if}
+				{/each}
+			</CardPanel>
+		{/if}
+	</div>
+
+	<div class="mx-auto px-4 pb-8 md:px-10 md:pb-20">
+		<h2 class="my-6 text-3xl font-bold">Events</h2>
+		{#if events.length === 0}
+			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">No events found</p>
+		{:else}
+			<Carousel.Root>
+				<Carousel.Content>
+					{#each events as event}
+						{#if event}
+							<Carousel.Item class="basis-full md:basis-1/4">
+								<FeaturedEventCard item={event} />
+							</Carousel.Item>
 						{/if}
 					{/each}
-				</CardPanel>
-			{/if}
-		</div>
-
-		<div class="mx-auto px-4 pb-8 md:px-10 md:pb-20">
-			<h2 class="my-6 text-3xl font-bold">Events</h2>
-			{#if events.length === 0}
-				<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
-					No events found
-				</p>
-			{:else}
-				<Carousel.Root>
-					<Carousel.Content>
-						{#each events as event}
-							{#if event}
-								<Carousel.Item class="basis-full md:basis-1/4">
-									<FeaturedEventCard item={event} />
-								</Carousel.Item>
-							{/if}
-						{/each}
-					</Carousel.Content>
-					<Carousel.Next />
-				</Carousel.Root>
-			{/if}
-		</div>
-	{:else}
-		<p>Laboratory not found</p>
-	{/if}
-</body>
+				</Carousel.Content>
+				<Carousel.Next />
+			</Carousel.Root>
+		{/if}
+	</div>
+{:else}
+	<p>Laboratory not found</p>
+{/if}
