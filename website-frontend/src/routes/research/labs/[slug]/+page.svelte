@@ -97,7 +97,7 @@
 				class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-20 md:pt-12 lg:pl-[302px]"
 			>
 				{#if laboratory.brief_description}
-					<div class="text-primary-foreground text-2xl font-semibold leading-tight md:leading-snug">
+					<div class="text-2xl font-semibold leading-tight text-primary-foreground md:leading-snug">
 						<p>{laboratory.brief_description}</p>
 					</div>
 				{/if}
@@ -108,7 +108,7 @@
 				/>
 
 				{#if showFull}
-					<div class="text-primary-foreground text-lg leading-normal">
+					<div class="text-lg leading-normal text-primary-foreground">
 						<p class="duration-400 overflow-hidden transition-all">
 							{laboratory.description}
 						</p>
