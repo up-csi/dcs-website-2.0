@@ -14,7 +14,7 @@
 	export let website: string = '';
 </script>
 
-<div class="bg-[#343541]">
+<div class="bg-background-dark">
 	<div
 		class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
 		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"

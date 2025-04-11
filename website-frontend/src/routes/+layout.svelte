@@ -1,8 +1,19 @@
 <script lang="ts">
 	/** @type {import('./$types').LayoutData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import { page } from '$app/stores';
 
 	export let data;
+
+	let marginType = 'default';
+
+	$: {
+		if ($page.url.pathname === '/') {
+			marginType = 'wide';
+		} else {
+			marginType = 'default';
+		}
+	}
 
 	$: ({
 		title,
@@ -51,11 +62,19 @@
 		<Header {primary_logo} {secondary_logo} {secondary_logo_link} {facebook_link} {x_link} />
 	</header>
 
-	<main class="w-full overflow-clip">
-		<slot />
+	<main class="w-full overflow-clip bg-slate-50">
+		<div
+			class={`px-4 md:px-8 ${marginType === 'wide' ? 'max-w-[1330px]' : 'max-w-[1220px]'} mx-auto w-full 2xl:max-w-screen-2xl`}
+		>
+			<slot />
+		</div>
 	</main>
 
-	<footer class="w-full overflow-clip">
-		<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+	<footer class="w-full overflow-clip bg-background-dark">
+		<div
+			class={`px-4 md:px-8 ${marginType === 'wide' ? 'max-w-[1330px]' : 'max-w-[1220px]'} mx-auto w-full 2xl:max-w-screen-2xl`}
+		>
+			<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+		</div>
 	</footer>
 </div>
