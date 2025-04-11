@@ -14,9 +14,12 @@
 	export let data;
 	let laboratory: Laboratory;
 	let publications: Publications;
+	let background_images;
+	let affiliates;
+	let events;
 	$: ({ laboratory, publications } = data);
 
-	const background_images = laboratory.background_images
+	$: background_images = laboratory.background_images
 		? laboratory.background_images
 				.filter((img) => typeof img !== 'string')
 				.map((img) => {
@@ -27,7 +30,7 @@
 				})
 		: [];
 
-	const affiliates = laboratory.affiliates
+	$: affiliates = laboratory.affiliates
 		? laboratory.affiliates
 				.filter((affiliate) => typeof affiliate !== 'string')
 				.map((affiliate) => {
@@ -49,7 +52,7 @@
 				})
 		: [];
 
-	const events = laboratory.events
+	$: events = laboratory.events
 		? laboratory.events
 				.filter((event) => typeof event !== 'string')
 				.map((event) => {
