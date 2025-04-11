@@ -141,9 +141,7 @@
 	<div class="mx-auto px-4 pb-4 md:px-10 md:pb-10">
 		<h2 class="my-6 text-3xl font-bold">Members</h2>
 		{#if affiliates.length === 0}
-			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
-				No members found
-			</p>
+			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">No members found</p>
 		{:else}
 			<CardPanel>
 				{#each affiliates as affiliate}
@@ -158,9 +156,7 @@
 	<div class="mx-auto px-4 pb-8 md:px-10 md:pb-20">
 		<h2 class="my-6 text-3xl font-bold">Events</h2>
 		{#if events.length === 0}
-			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">
-				No events found
-			</p>
+			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">No events found</p>
 		{:else}
 			<Carousel.Root>
 				<Carousel.Content>
