@@ -1,38 +1,19 @@
 /** @type {import('./$types').PageServerLoad} */
-import type { Partners } from '$lib/types/partners';
+import getDirectusInstance from '$lib/directus.js';
+import type { Partnerships } from '$lib/models/partnerships.js';
+import type { PartnershipsOverview } from '$lib/models/partnerships_overview.js';
+import { readItems, readSingleton } from '@directus/sdk';
 
-const partnerships_overview = {
-	flexible_content:
-		'The UP Department of Computer Science has partnered with <b><u>a lot</u></b> of companies and organizations over the years for internships, events, and the like. Our staff and students are trusted by many.'
-};
+export async function load({ fetch }) {
+	const directus = getDirectusInstance(fetch);
 
-const partners: Partners = [
-	{
-		src: '',
-		name: 'Accenture Philippines',
-		description:
-			'Some company that does company stuff. Description here. Dorime latire ameno. Ameno imperavi.'
-	},
-	{
-		src: '',
-		name: 'Accenture Philippines',
-		description:
-			'Some company that does company stuff. Description here. Dorime latire ameno. Ameno imperavi.'
-	},
-	{
-		src: '',
-		name: 'Accenture Philippines',
-		description:
-			'Some company that does company stuff. Description here. Dorime latire ameno. Ameno imperavi.'
-	},
-	{
-		src: '',
-		name: 'Accenture Philippines',
-		description:
-			'Some company that does company stuff. Description here. Dorime latire ameno. Ameno imperavi.'
-	}
-];
+	const content: PartnershipsOverview = await directus.request(
+		readSingleton('partnerships_overview')
+	);
+	const partnerships: Partnerships = await directus.request(readItems('partnerships'));
 
-export async function load() {
-	return { partnerships_overview, partners };
+	return {
+		content,
+		partnerships
+	};
 }
