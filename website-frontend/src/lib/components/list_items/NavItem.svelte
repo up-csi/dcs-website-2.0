@@ -72,9 +72,13 @@
 		<Accordion.Root>
 			<Accordion.Item value={to} class="border-none">
 				<div class="flex items-center justify-start">
-					<a {href} class="mr-5" on:click={() => {
-			$mobileOpen = false;
-		}}>{to}</a>
+					<a
+						{href}
+						class="mr-5"
+						on:click={() => {
+							$mobileOpen = false;
+						}}>{to}</a
+					>
 					<Accordion.Trigger class="py-0" />
 				</div>
 				<Accordion.Content>
@@ -83,8 +87,11 @@
 			</Accordion.Item>
 		</Accordion.Root>
 	{:else}
-		<a {href} on:click={() => {
-			$mobileOpen = false;
-		}}>{to}</a>
+		<a
+			{href}
+			on:click={() => {
+				$mobileOpen = false;
+			}}>{to}</a
+		>
 	{/if}
 </div>
