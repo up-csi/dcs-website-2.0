@@ -11,14 +11,14 @@
 	$: sort = query.get('sort') ?? 'date';
 
 	function sort_nav(value: string): void {
-		if (value == 'author') query.set('sort', value);
+		if (value == 'author' || value == 'title') query.set('sort', value);
 		else query.delete('sort');
 		goto(`?${query.toString()}`, { noScroll: true });
 	}
 </script>
 
 <div class="mt-5 flex max-w-[88vw] items-center justify-end gap-x-3">
-	<span class="text-xs font-semibold uppercase text-muted-foreground"> SORT BY </span>
+	<span class="text-muted-foreground text-xs font-semibold uppercase"> SORT BY </span>
 	<DropdownMenu.Root
 		onOutsideClick={() => {
 			hide = true;
