@@ -40,7 +40,7 @@
 			<div class="heading-padding flex items-center justify-between text-primary-dark">
 				<h2 class="heading-text border-l-[5px] border-secondary-red pl-2">Recent Events</h2>
 				<Button
-					href="#more-news"
+					href="/events"
 					variant="outline"
 					class="flex h-auto gap-x-1 rounded-full text-[0.8rem]"
 				>

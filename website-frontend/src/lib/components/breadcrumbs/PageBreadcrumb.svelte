@@ -52,18 +52,18 @@
 	</Breadcrumb.Root>
 </div>
 
-<div class="border-b border-muted-foreground/40 pb-1 md:pb-2 lg:hidden">
+<div class="my-4 border-b border-muted-foreground/40 pb-1 md:pb-2 lg:hidden">
 	<Breadcrumb.Root>
 		<Breadcrumb.List class="text-xs font-medium hover:text-primary">
 			<Breadcrumb.Item class="text-foreground">
 				<Breadcrumb.Link href="/">Home</Breadcrumb.Link>
 			</Breadcrumb.Item>
-			{#if to_current_path}
+			{#if to_current_path.length > 0}
 				<Breadcrumb.Separator>/</Breadcrumb.Separator>
 				<Breadcrumb.Item class="text-foreground">
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger class="flex items-center gap-1">
-							<Breadcrumb.Ellipsis />
+							<Breadcrumb.Ellipsis class="h-4 w-4" />
 							<ChevronDown class="h-4 w-4" />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
