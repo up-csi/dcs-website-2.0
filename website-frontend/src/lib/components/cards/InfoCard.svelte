@@ -7,7 +7,7 @@
 	export let telephone: string = '';
 	export let interests: string = '';
 	export let awards: string = '';
-	export let affiliations: { role: string; name: string }[] = [];
+	export let affiliations: { role: string; affiliation: string }[] = [];
 	export let educational_attainment: {
 		status: string;
 		degree: string;
@@ -66,8 +66,8 @@
 		<div>
 			<p class="text-primary-foreground/60">Affiliations</p>
 			<ul class="list-disc pl-5 text-primary-foreground">
-				{#each affiliations as { role, name }}
-					<li>{role} at {name}</li>
+				{#each affiliations as { role, affiliation }}
+					<li>{role} at {affiliation}</li>
 				{/each}
 			</ul>
 		</div>

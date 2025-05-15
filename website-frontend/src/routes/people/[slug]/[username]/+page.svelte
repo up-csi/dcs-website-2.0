@@ -34,6 +34,11 @@
 				.filter((item) => item !== null)
 		: [];
 
+	const affiliationList = affiliations.map((a) => ({
+	  role: a.role ?? '',
+	  affiliation: a.laboratory ?? ''
+	}));
+
 	// Booleans for which tabs should show
 	$: showEducation = !!person.educational_attainment?.length;
 	$: showAffiliations = !!person.affiliations?.length;
@@ -96,12 +101,7 @@
 					{#if showAffiliations}
 						<Tabs.Content value="affiliations">
 							<InfoCard
-								affiliations={[
-								  { role: "Founder", name: "Tech Innovators PH" },
-								  { role: "Research Assistant", name: "University of the Philippines" },
-								  { role: "Sample Role", name: "Example Affiliation" },
-								  { role: "Placeholder Role", name: "Placeholder Affiliation" }
-								]}
+								affiliations={affiliationList}
 							/>
 						</Tabs.Content>
 					{/if}
