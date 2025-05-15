@@ -35,8 +35,8 @@
 		: [];
 
 	const affiliationList = affiliations.map((a) => ({
-	  role: a.role ?? '',
-	  affiliation: a.laboratory ?? ''
+		role: a.role ?? '',
+		affiliation: a.laboratory ?? ''
 	}));
 
 	// Booleans for which tabs should show
@@ -83,32 +83,31 @@
 							<Tabs.Trigger value="awards">Awards</Tabs.Trigger>
 						{/if}
 					</Tabs.List>
-				
+
 					<Tabs.Content value="basic info">
-						<InfoCard 
-							office={person.location ?? ''} 
-							telephone={person.telephone ?? ''} 
+						<InfoCard
+							office={person.location ?? ''}
+							telephone={person.telephone ?? ''}
 							contact_email={person.email ?? ''}
-							interests={person.interests ?? ''}/>
+							interests={person.interests ?? ''}
+						/>
 					</Tabs.Content>
-				
+
 					{#if showEducation}
 						<Tabs.Content value="education">
-							<InfoCard educational_attainment={person.educational_attainment ?? undefined}/>
+							<InfoCard educational_attainment={person.educational_attainment ?? undefined} />
 						</Tabs.Content>
 					{/if}
-					
+
 					{#if showAffiliations}
 						<Tabs.Content value="affiliations">
-							<InfoCard
-								affiliations={affiliationList}
-							/>
+							<InfoCard affiliations={affiliationList} />
 						</Tabs.Content>
 					{/if}
-					
+
 					{#if showAwards}
 						<Tabs.Content value="awards">
-							<InfoCard awards={person.awards ?? ''}/>
+							<InfoCard awards={person.awards ?? ''} />
 						</Tabs.Content>
 					{/if}
 				</Tabs.Root>
@@ -117,8 +116,11 @@
 	</FullWidthBreakout>
 
 	{#if publications.length !== 0}
-		<div class="mx-auto pb-12 py-10 md:py-20">
-			<h2 class="heading-padding heading-text border-l-[5px] border-secondary-red pl-2">Publications by {person.first_name} {person.last_name}</h2>
+		<div class="mx-auto py-10 pb-12 md:py-20">
+			<h2 class="heading-padding heading-text border-l-[5px] border-secondary-red pl-2">
+				Publications by {person.first_name}
+				{person.last_name}
+			</h2>
 			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 				<Carousel.Content>
 					{#each publications as publication}
