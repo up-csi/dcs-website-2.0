@@ -2,6 +2,7 @@
 	import { Button } from '$lib/@shadcn-svelte/ui/button/index.js';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 	export let course_units;
+	export let course_syllabus;
 	let isDetailsHidden: boolean = true;
 </script>
 
@@ -20,7 +21,12 @@
 >
 
 {#if !isDetailsHidden}
-	<small class="mt-2 flex text-xs">
+	<small class="mt-2 flex flex-col text-xs">
 		<p>Units: {course_units}</p>
+		{#if course_syllabus}
+			<p class="italic text-blue-500 underline">
+				<a href={course_syllabus} target="_blank">Syllabus</a>
+			</p>
+		{/if}
 	</small>
 {/if}
