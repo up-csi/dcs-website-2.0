@@ -17,6 +17,7 @@ export const AcademicsCourse = object({
 	course_title: string(),
 	course_units: pipe(number(), integer()),
 	course_description: nullable(string()),
+	course_syllabus: nullable(string()),
 	related_academics_programs: union([array(number()), lazy(() => AcademicsProgramsCourses)])
 });
 
