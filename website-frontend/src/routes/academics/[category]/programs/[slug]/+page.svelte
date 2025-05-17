@@ -33,7 +33,16 @@
 			<div>
 				<div class="mb-6 md:mb-10">
 					<h1 class="text-2xl font-bold leading-tight md:text-3xl">Curriculum Checklist</h1>
-					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
+					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
+						Last Updated: {new Date(academics_program.curriculum_last_updated).toLocaleDateString(
+							'en-US',
+							{
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							}
+						)}
+					</p>
 				</div>
 
 				{#if academics_program.curriculum_table}
