@@ -41,5 +41,22 @@ export async function load({ fetch, params, url }) {
 		})
 	);
 
-	return { academics_category, academics_courses };
+	const curriculum_last_updated = await (async () => {
+		const academics_programs = await directus.request(
+			readItems('academics_programs', {
+				filter: {
+					category: {
+						slug: {
+							_eq: params.category
+						}
+					}
+				},
+				fields: ['curriculum_last_updated']
+			})
+		);
+		const dates = academics_programs.map((program) => new Date(program.curriculum_last_updated));
+		return new Date(Math.max(...dates.map((date) => date.getTime())));
+	})();
+
+	return { academics_category, academics_courses, curriculum_last_updated };
 }
