@@ -61,9 +61,7 @@
 			/>
 		</div>
 
-		<div class="hidden">
-		  grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5
-		</div>
+		<div class="hidden">grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5</div>
 
 		<div class="-mt-[1px] bg-background-dark">
 			<div
