@@ -49,6 +49,23 @@
 					<div
 						class="flex flex-col gap-y-10 overflow-hidden rounded-lg bg-white px-5 py-10 shadow-lg"
 					>
+						<!-- For N/A year or semesters -->
+						{#if academics_program.curriculum_table
+							.filter((item) => typeof item !== 'number')
+							.filter((item) => !item.year && !item.semester)
+							.map((item) => item.academics_courses_course_code)
+							.filter((item) => typeof item !== 'string').length !== 0}
+							<div class="px-4">
+								<CoursesTable
+									academics_courses={academics_program.curriculum_table
+										.filter((item) => typeof item !== 'number')
+										.filter((item) => !item.year && !item.semester)
+										.map((item) => item.academics_courses_course_code)
+										.filter((item) => typeof item !== 'string')}
+								/>
+							</div>
+						{/if}
+
 						{#each [...new Set(academics_program.curriculum_table
 									.filter((item) => typeof item !== 'number')
 									.filter((item) => item.year !== null)
@@ -57,23 +74,6 @@
 										if (a && b) return a - b;
 										return error(500);
 									}))] as year}
-							<!-- For N/A year or semesters -->
-							{#if academics_program.curriculum_table
-								.filter((item) => typeof item !== 'number')
-								.filter((item) => !item.year && !item.semester)
-								.map((item) => item.academics_courses_course_code)
-								.filter((item) => typeof item !== 'string').length !== 0}
-								<div class="px-4">
-									<CoursesTable
-										academics_courses={academics_program.curriculum_table
-											.filter((item) => typeof item !== 'number')
-											.filter((item) => !item.year && !item.semester)
-											.map((item) => item.academics_courses_course_code)
-											.filter((item) => typeof item !== 'string')}
-									/>
-								</div>
-							{/if}
-
 							<!-- Year Heading -->
 							<div class="flex flex-col gap-y-5">
 								{#if year}
