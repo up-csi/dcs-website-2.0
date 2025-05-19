@@ -39,15 +39,10 @@
 		affiliation: a.laboratory ?? ''
 	}));
 
-	// Booleans for which tabs should show
 	$: showEducation = !!person.educational_attainment?.length;
 	$: showAffiliations = !!person.affiliations?.length;
 	$: showAwards = !!person.awards?.length;
-
-	// Total visible tabs (basic info is always shown)
 	$: tabCount = 1 + Number(showEducation) + Number(showAffiliations) + Number(showAwards);
-
-	// Build dynamic grid-cols class
 	$: gridColsClass = `grid-cols-${tabCount}`;
 </script>
 
@@ -64,6 +59,10 @@
 				website={person.website ?? ''}
 				laboratory={affiliations[0]?.laboratory ?? ''}
 			/>
+		</div>
+
+		<div class="hidden">
+		  grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5
 		</div>
 
 		<div class="-mt-[1px] bg-background-dark">
