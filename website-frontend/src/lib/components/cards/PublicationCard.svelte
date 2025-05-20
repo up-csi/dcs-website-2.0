@@ -46,7 +46,7 @@
 			</Card.Header>
 		</Card.Root>
 	</Dialog.Trigger>
-	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg">
+	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-1">
 			<Dialog.Title>{publication.title}</Dialog.Title>
 			<Dialog.Description class="flex flex-col gap-y-2">
