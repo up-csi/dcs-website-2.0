@@ -12,6 +12,13 @@ export async function load({ data }) {
 		address: data.global.address,
 		quick_links: data.global.quick_links,
 		facebook_link: data.global.facebook_link,
-		x_link: data.global.x_link
+		x_link: data.global.x_link,
+		about_pages: data.about_pages,
+		people_categories: data.people_categories,
+		academics_categories: data.academics_categories,
+		academics_programs: data.academics_programs,
+		academics_pages: data.academics_pages,
+		laboratories: data.laboratories,
+		students_pages: data.students_pages
 	};
 }

@@ -27,7 +27,14 @@
 		address,
 		quick_links,
 		facebook_link,
-		x_link
+		x_link,
+		about_pages,
+		people_categories,
+		academics_categories,
+		academics_programs,
+		academics_pages,
+		laboratories,
+		students_pages
 	} = data);
 
 	import '../app.postcss';
@@ -59,7 +66,20 @@
 
 <div class="flex h-full flex-col justify-between">
 	<header class="w-full overflow-clip">
-		<Header {primary_logo} {secondary_logo} {secondary_logo_link} {facebook_link} {x_link} />
+		<Header
+			{primary_logo}
+			{secondary_logo}
+			{secondary_logo_link}
+			{facebook_link}
+			{x_link}
+			{about_pages}
+			{people_categories}
+			{academics_categories}
+			{academics_programs}
+			{academics_pages}
+			{laboratories}
+			{students_pages}
+		/>
 	</header>
 
 	<main class="w-full overflow-clip bg-slate-50">

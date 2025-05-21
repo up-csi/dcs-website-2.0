@@ -1,82 +1,83 @@
 <script lang="ts">
 	import NavItem from '../list_items/NavItem.svelte';
+	import { AboutPage } from '$lib/models/about_pages';
+	import { PeopleCategory } from '$lib/models/people_categories';
+	import { AcademicsCategory } from '$lib/models/academics_categories';
+	import { AcademicsProgram } from '$lib/models/academics_programs';
+	import { AcademicsPage } from '$lib/models/academics_pages';
+	import { Laboratory } from '$lib/models/laboratories';
+	import { StudentsPage } from '$lib/models/students_pages';
+	import { deslugify } from '$lib/utils';
+
+	export let about_pages: Pick<AboutPage, 'title' | 'slug'>[];
+	export let people_categories: Pick<PeopleCategory, 'title'>[];
+	export let academics_categories: Pick<AcademicsCategory, 'name' | 'slug'>[];
+	export let academics_programs: Pick<AcademicsProgram, 'title' | 'slug' | 'category'>[];
+	export let academics_pages: Pick<AcademicsPage, 'title' | 'slug' | 'category'>[];
+	export let laboratories: Pick<Laboratory, 'name' | 'slug'>[];
+	export let students_pages: Pick<StudentsPage, 'title' | 'slug'>[];
 </script>
 
 <NavItem href="/" to="Home" />
 <NavItem href="/about" to="About" dropdown={true}>
 	<NavItem href="/about" to="Overview" />
-	<NavItem href="/about/department" to="Department" />
-	<NavItem href="/about/administration" to="Administration" />
-	<NavItem href="/about/history" to="History" />
-	<NavItem href="/about/facts-and-figures" to="Facts and Figures" />
-	<NavItem href="/about/contact-us" to="Contact Us" />
-	<NavItem href="/about/citizens-charter" to="Citizen's Charter" />
+	{#each about_pages as about_page}
+		<NavItem href="/about/{about_page.slug}" to={about_page.title} />
+	{/each}
 </NavItem>
 <NavItem href="/events" to="Events" />
 <NavItem href="/publications" to="Publications" />
 <NavItem href="/people" to="People" dropdown={true}>
-	<NavItem href="/people/regular-faculty" to="Regular Faculty" />
-	<NavItem
-		href="/people/lecturers-and-teaching-associates"
-		to="Lecturers and Teaching Associates"
-	/>
-	<NavItem href="/people/support-staff" to="Support Staff" />
+	{#each people_categories as people_category}
+		<NavItem href="/people/{people_category.title}" to={deslugify(people_category.title)} />
+	{/each}
 </NavItem>
 <NavItem href="/academics" to="Academics" dropdown={true}>
 	<NavItem href="/academics" to="Overview" />
-	<NavItem
-		href="/academics/undergraduate"
-		to="Undergraduate"
-		dropdown={true}
-		position="left-36 top-0"
-	>
+	{#each academics_categories as academics_category}
 		<NavItem
-			href="/academics/undergraduate/programs/bs-cs"
-			to="Bachelor of Science in Computer Science"
-		/>
-		<NavItem href="/academics/undergraduate/courses" to="Undergraduate courses" />
-	</NavItem>
-	<NavItem href="/academics/graduate" to="Graduate" dropdown={true} position="left-36 top-0">
-		<NavItem
-			href="/academics/graduate/programs/msc-cs"
-			to="Master of Science in Computer Science"
-		/>
-		<NavItem
-			href="/academics/graduate/programs/ms-bioinformatics"
-			to="Master of Science in Bioinformatics"
-		/>
-		<NavItem
-			href="/academics/graduate/programs/phd-cs"
-			to="Doctor of Philosophy in Computer Science"
-		/>
-		<NavItem href="/academics/graduate/courses" to="Graduate courses" />
-	</NavItem>
+			href="/academics/{academics_category.slug}"
+			to={academics_category.name}
+			dropdown={true}
+			position="left-36 top-0"
+		>
+			{#each academics_programs.filter(({ category }) => {
+				if (typeof category !== 'string') return category.slug == academics_category.slug;
+			}) as academics_program}
+				<NavItem
+					href="/academics/{academics_category.slug}/programs/{academics_program.slug}"
+					to={academics_program.title}
+				/>
+			{/each}
+			<NavItem
+				href="/academics/{academics_category.slug}/courses"
+				to="{academics_category.name} courses"
+			/>
+			{#each academics_pages.filter(({ category }) => {
+				if (typeof category !== 'string') return category.slug == academics_category.slug;
+			}) as academics_page}
+				<NavItem
+					href="/academics/{academics_category.slug}/{academics_page.slug}"
+					to={academics_page.title}
+				/>
+			{/each}
+		</NavItem>
+	{/each}
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
 	<NavItem href="/research" to="Overview" />
 	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="left-36 top-0">
-		<NavItem href="/research/labs/ndsl" to="Networks and Distributed Systems Laboratory" />
-		<NavItem href="/research/labs/cvmil" to="Computer Vision and Machine Intelligence Laboratory" />
-		<NavItem href="/research/labs/s3" to="Service Science and Software Engineering Laboratory" />
-		<NavItem href="/research/labs/acl" to="Algorithms and Complexity Laboratory" />
-		<NavItem href="/research/labs/lcl" to="Logic and Computability Laboratory" />
-		<NavItem href="/research/labs/wsl" to="Web Science Laboratory" />
-		<NavItem href="/research/labs/csl" to="Computer Security Laboratory" />
-		<NavItem href="/research/labs/smsl" to="System Modeling and Simulation Laboratory" />
-		<NavItem href="/research/labs/scl" to="Scientific Computing Laboratory" />
+		{#each laboratories as laboratory}
+			<NavItem href="/research/labs/{laboratory.slug}" to={laboratory.name} />
+		{/each}
 	</NavItem>
-	<NavItem href="/research/outputs" to="Featured Outputs" />
 </NavItem>
 <NavItem href="/students" to="Students" dropdown={true}>
 	<NavItem href="/students" to="Overview" />
-	<NavItem href="/students/batch-representatives" to="Batch Representatives" />
-	<NavItem
-		href="/students/student-ethics-health-and-wellbeing"
-		to="Student Ethics, Health, and Wellbeing"
-	/>
-	<NavItem href="/students/student-opportunities" to="Student Opportunities" />
-	<NavItem href="/students/student-council" to="Student Council" />
 	<NavItem href="/students/organizations" to="Organizations" />
+	{#each students_pages as students_page}
+		<NavItem href="/students/{students_page.slug}" to={students_page.title} />
+	{/each}
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
-<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0"></NavItem>
+<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0" />
