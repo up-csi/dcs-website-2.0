@@ -1,14 +1,12 @@
 const elementClassMap = {
 	strong: 'text-red-600 font-bold',
 	em: 'text-green-600 italic',
-	img: 'rounded-xl shadow-lg max-w-full h-auto mb-6 mx-auto',
+	img: 'rounded-xl shadow-lg max-w-full h-auto mx-auto',
 	a: 'text-blue-600 hover:text-blue-800 underline',
-	ul: 'list-disc list-inside pl-4 mb-4',
-	ol: 'list-decimal list-inside pl-4 mb-4',
-	li: 'mb-2',
-	blockquote: 'border-l-4 border-gray-300 pl-4 italic mb-4',
-	iframe: 'rounded-xl shadow-lg  mb-6 mx-auto',
-	hr: 'my-4'
+	ul: 'list-disc',
+	ol: 'list-decimal',
+	blockquote: 'border-l-4 border-gray-300 italic',
+	iframe: 'rounded-xl shadow-lg mx-auto'
 };
 
 // TODO: Add dark mode implementation
