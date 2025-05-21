@@ -3,7 +3,9 @@ import { array, nullable, object, optional, string, type InferOutput } from 'val
 export const Partnership = object({
 	name: string(),
 	display_image: optional(nullable(string())),
-	description: string()
+	email: nullable(string()),
+	website: nullable(string()),
+	description: nullable(string())
 });
 
 export const Partnerships = array(Partnership);
