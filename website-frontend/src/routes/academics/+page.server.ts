@@ -2,7 +2,7 @@
 import getDirectusInstance from '$lib/directus';
 import { readItems, readSingleton } from '@directus/sdk';
 
-export async function load({ fetch }) {
+export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const academics = await directus.request(readSingleton('academics'));
 	const academics_categories = await directus.request(
@@ -23,6 +23,7 @@ export async function load({ fetch }) {
 	);
 	const academics_courses = await directus.request(
 		readItems('academics_courses', {
+			search: url.searchParams.get('q') ?? '',
 			sort: ['course_code']
 		})
 	);

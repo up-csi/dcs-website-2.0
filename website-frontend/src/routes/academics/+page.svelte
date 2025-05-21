@@ -6,6 +6,7 @@
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import HorizontalCard from '$lib/components/cards/HorizontalCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
+	import ContentSearchBar from '$lib/components/search/ContentSearchBar.svelte';
 
 	export let data;
 	$: ({ academics, academics_categories, academics_courses } = data);
@@ -51,7 +52,10 @@
 					<h1 class="heading-text">Courses offered by the department</h1>
 					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
 				</div>
-				<CoursesTable {academics_courses} />
+				<div class="flex flex-col gap-y-5">
+					<ContentSearchBar placeholder="Search a course" />
+					<CoursesTable {academics_courses} />
+				</div>
 			</div>
 		</div>
 	</div>

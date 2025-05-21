@@ -3,7 +3,7 @@ import getDirectusInstance from '$lib/directus';
 import { readItems } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
 
-export async function load({ fetch, params }) {
+export async function load({ fetch, params, url }) {
 	const directus = getDirectusInstance(fetch);
 
 	const academics_categories = await directus.request(
@@ -25,6 +25,7 @@ export async function load({ fetch, params }) {
 
 	const academics_courses = await directus.request(
 		readItems('academics_courses', {
+			search: url.searchParams.get('q') ?? '',
 			sort: ['course_code'],
 			filter: {
 				related_academics_programs: {
