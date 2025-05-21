@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Image } from 'lucide-svelte';
 
@@ -34,8 +33,6 @@
 	$: if (background_images.length === 0) {
 		background_images = [`default1.jpg`, `default2.jpg`, `default3.jpg`, `default4.jpg`];
 	}
-
-	$: deslugify_title = deslugify(title);
 </script>
 
 <div>
@@ -83,7 +80,7 @@
 					<h1
 						class="max-w-2xl text-center text-4xl font-bold lg:text-start lg:text-5xl lg:leading-[3.2rem]"
 					>
-						{deslugify_title}
+						{title}
 					</h1>
 				</div>
 
