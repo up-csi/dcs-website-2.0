@@ -40,6 +40,13 @@ export async function load({ fetch }) {
 									},
 									{
 										user_updated: ['first_name', 'last_name']
+									},
+									{
+										news_tags: [
+											{
+												news_tags_id: ['name']
+											}
+										]
 									}
 								]
 							}
@@ -55,6 +62,13 @@ export async function load({ fetch }) {
 									},
 									{
 										user_updated: ['first_name', 'last_name']
+									},
+									{
+										news_tags: [
+											{
+												news_tags_id: ['name']
+											}
+										]
 									}
 								]
 							}
