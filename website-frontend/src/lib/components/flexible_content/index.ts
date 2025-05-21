@@ -1,6 +1,6 @@
 const elementClassMap = {
-	strong: 'text-red-600 font-bold',
-	em: 'text-green-600 italic',
+	strong: 'font-bold',
+	em: 'italic',
 	img: 'rounded-xl shadow-lg max-w-full h-auto mx-auto',
 	a: 'text-blue-600 hover:text-blue-800 underline',
 	ul: 'list-disc',
