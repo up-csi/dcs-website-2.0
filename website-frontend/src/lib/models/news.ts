@@ -7,9 +7,11 @@ import {
 	pipe,
 	required,
 	string,
+	union,
 	type InferOutput
 } from 'valibot';
 import { DirectusUser } from './directus_users';
+import { NewsRelated } from './junctions/news_related';
 
 export const NewsItem = object({
 	id: string(),
@@ -21,7 +23,8 @@ export const NewsItem = object({
 	title: string(),
 	summary: string(),
 	flexible_content: pipe(string(), cleanHtml),
-	background_image: string()
+	background_image: string(),
+	news_tags: union([array(string()), lazy(() => NewsRelated)])
 });
 
 export const News = array(NewsItem);
