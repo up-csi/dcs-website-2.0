@@ -27,6 +27,16 @@ export async function load({ fetch, url }) {
 			sort: ['course_code']
 		})
 	);
+	const curriculum_last_updated = (() => {
+		const dates = academics_programs.map((program) => new Date(program.curriculum_last_updated));
+		return new Date(Math.max(...dates.map((date) => date.getTime())));
+	})();
 
-	return { academics, academics_categories, academics_programs, academics_courses };
+	return {
+		academics,
+		academics_categories,
+		academics_programs,
+		academics_courses,
+		curriculum_last_updated
+	};
 }

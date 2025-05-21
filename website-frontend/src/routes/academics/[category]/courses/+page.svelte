@@ -7,7 +7,7 @@
 	import ContentSearchBar from '$lib/components/search/ContentSearchBar.svelte';
 
 	export let data;
-	$: ({ academics_category, academics_courses } = data);
+	$: ({ academics_category, academics_courses, curriculum_last_updated } = data);
 </script>
 
 {#if academics_category}
@@ -20,7 +20,13 @@
 			<Breadcrumb />
 		</div>
 
-		<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
+		<p class="mb-3 ml-[2px] mt-2 text-xs font-medium opacity-55">
+			Last Updated: {curriculum_last_updated.toLocaleDateString('en-US', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			})}
+		</p>
 		<div class="flex flex-col gap-y-5">
 			<ContentSearchBar placeholder="Search a course" />
 			<CoursesTable {academics_courses} />

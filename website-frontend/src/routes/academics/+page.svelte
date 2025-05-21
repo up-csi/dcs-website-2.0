@@ -9,7 +9,7 @@
 	import ContentSearchBar from '$lib/components/search/ContentSearchBar.svelte';
 
 	export let data;
-	$: ({ academics, academics_categories, academics_courses } = data);
+	$: ({ academics, academics_categories, academics_courses, curriculum_last_updated } = data);
 </script>
 
 {#if academics}
@@ -50,7 +50,13 @@
 			<div>
 				<div class="heading-padding">
 					<h1 class="heading-text">Courses offered by the department</h1>
-					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">Last Updated: March XX, 2025</p>
+					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
+						Last Updated: {curriculum_last_updated.toLocaleDateString('en-US', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</p>
 				</div>
 				<div class="flex flex-col gap-y-5">
 					<ContentSearchBar placeholder="Search a course" />

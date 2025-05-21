@@ -1,4 +1,14 @@
-import { array, lazy, number, object, pipe, string, union, type InferOutput } from 'valibot';
+import {
+	array,
+	isoDate,
+	lazy,
+	number,
+	object,
+	pipe,
+	string,
+	union,
+	type InferOutput
+} from 'valibot';
 import { AcademicsCategory } from './academics_categories';
 import { cleanHtml } from '$lib/models-helpers';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
@@ -8,7 +18,8 @@ export const AcademicsProgram = object({
 	slug: string(),
 	category: union([string(), lazy(() => AcademicsCategory)]),
 	flexible_content: pipe(string(), cleanHtml),
-	curriculum_table: union([array(number()), lazy(() => AcademicsProgramsCourses)])
+	curriculum_table: union([array(number()), lazy(() => AcademicsProgramsCourses)]),
+	curriculum_last_updated: pipe(string(), isoDate())
 });
 
 export const AcademicsPrograms = array(AcademicsProgram);
