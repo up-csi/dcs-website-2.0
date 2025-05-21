@@ -79,14 +79,21 @@
 						</div>
 
 						{#if website}
-							<a href={website} target="_blank" rel="noopener noreferrer" class="max-w-xs">
-								<Button
-									class="w-full rounded-full bg-background/20 px-3 hover:bg-background/30"
-									aria-label="Go to {first_name} {last_name}'s website"
+							<div class="group relative">
+								<a href={website} target="_blank" rel="noopener noreferrer" class="max-w-xs">
+									<Button
+										class="w-full rounded-full bg-background/20 px-3 hover:bg-background/30"
+										aria-label="Go to {first_name} {last_name}'s website"
+									>
+										<Globe class="h-4 w-4" />
+									</Button>
+								</a>
+								<span
+									class="absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 rounded bg-white px-2 py-1 text-xs text-primary group-hover:block"
 								>
-									<Globe class="h-4 w-4" />
-								</Button>
-							</a>
+									{website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+								</span>
+							</div>
 						{/if}
 					</div>
 				</div>
