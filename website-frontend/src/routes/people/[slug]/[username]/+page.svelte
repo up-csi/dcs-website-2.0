@@ -42,8 +42,6 @@
 	$: showEducation = !!person.educational_attainment?.length;
 	$: showAffiliations = !!person.affiliations?.length;
 	$: showAwards = !!person.awards?.length;
-	$: tabCount = 1 + Number(showEducation) + Number(showAffiliations) + Number(showAwards);
-	$: gridColsClass = `grid-cols-${tabCount}`;
 </script>
 
 <div>
@@ -61,23 +59,21 @@
 			/>
 		</div>
 
-		<div class="hidden">grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5</div>
-
 		<div class="-mt-[1px] bg-background-dark">
 			<div
 				class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
 			>
 				<Tabs.Root value="basic info" class="w-full">
-					<Tabs.List class={`grid w-full ${gridColsClass}`}>
-						<Tabs.Trigger value="basic info">Basic Info</Tabs.Trigger>
+					<Tabs.List class="flex">
+						<Tabs.Trigger value="basic info" class="w-full">Basic Info</Tabs.Trigger>
 						{#if showEducation}
-							<Tabs.Trigger value="education">Education</Tabs.Trigger>
+							<Tabs.Trigger value="education" class="w-full">Education</Tabs.Trigger>
 						{/if}
 						{#if showAffiliations}
-							<Tabs.Trigger value="affiliations">Affiliations</Tabs.Trigger>
+							<Tabs.Trigger value="affiliations" class="w-full">Affiliations</Tabs.Trigger>
 						{/if}
 						{#if showAwards}
-							<Tabs.Trigger value="awards">Awards</Tabs.Trigger>
+							<Tabs.Trigger value="awards" class="w-full">Awards</Tabs.Trigger>
 						{/if}
 					</Tabs.List>
 
