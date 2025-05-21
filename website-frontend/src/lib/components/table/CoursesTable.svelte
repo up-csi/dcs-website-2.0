@@ -29,7 +29,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each academics_courses as { course_code, course_title, course_description, course_units }}
+				{#each academics_courses as { course_code, course_title, course_description, course_units, course_syllabus }}
 					<Table.Row>
 						<Table.Cell
 							class="w-1/12 min-w-20 bg-white text-xs text-gray-600 md:min-w-28 md:text-sm"
@@ -43,7 +43,7 @@
 							{#if course_description}
 								{course_description}
 							{/if}
-							<ShowMoreCourseDetails {course_units} />
+							<ShowMoreCourseDetails {course_units} {course_syllabus} />
 						</Table.Cell>
 					</Table.Row>
 				{/each}
