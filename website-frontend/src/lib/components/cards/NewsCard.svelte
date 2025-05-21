@@ -39,8 +39,8 @@
 		<div class="space-y-4 p-4">
 			<h1 class="line-clamp-3 text-[17px] font-bold leading-tight">{item.title}</h1>
 			<p class="line-clamp-2 text-[13px] leading-tight opacity-60">{item.summary}</p>
-			<div class="flex justify-between">
-				<p class="flex flex-wrap gap-1 py-1 text-[11px] font-bold leading-none opacity-60">
+			<div class="flex items-end justify-between">
+				<p class="mr-4 flex flex-wrap gap-1 py-1 text-[11px] font-bold leading-none opacity-60">
 					{#if news_tags.length !== 0}
 						<span class="uppercase">
 							{news_tags[0]}
@@ -56,7 +56,7 @@
 						</span>
 					{/if}
 				</p>
-				<p class="text-[11px] font-medium opacity-60">
+				<p class="text-nowrap text-[11px] font-medium opacity-60">
 					{new Date(item.date_created).toLocaleDateString('en-GB', {
 						month: 'long',
 						day: 'numeric',
