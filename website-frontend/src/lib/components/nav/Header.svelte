@@ -16,6 +16,14 @@
 	export let facebook_link;
 	export let x_link;
 
+	export let about_pages;
+	export let people_categories;
+	export let academics_categories;
+	export let academics_programs;
+	export let academics_pages;
+	export let laboratories;
+	export let students_pages;
+
 	let atTop = writable(true); // Track if at the top
 	let lastScrollY = 0;
 	let isVisible = writable(true); // Track navbar visibility
@@ -146,7 +154,15 @@
 				justify-center gap-2
 			"
 			>
-				<NavList />
+				<NavList
+					{about_pages}
+					{people_categories}
+					{academics_categories}
+					{academics_programs}
+					{academics_pages}
+					{laboratories}
+					{students_pages}
+				/>
 			</ul>
 		</nav>
 	</button>
@@ -185,7 +201,15 @@
 		<div class="px-4 pt-0 *:pt-5">
 			<SearchInput />
 			<ScrollArea id="mobile-nav" class="h-[70dvh] w-full *:text-xl *:font-bold">
-				<NavList />
+				<NavList
+					{about_pages}
+					{people_categories}
+					{academics_categories}
+					{academics_programs}
+					{academics_pages}
+					{laboratories}
+					{students_pages}
+				/>
 			</ScrollArea>
 		</div>
 	</nav>
