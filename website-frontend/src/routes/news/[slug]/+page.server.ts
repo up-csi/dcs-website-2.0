@@ -14,6 +14,13 @@ export async function load({ params, fetch }) {
 				},
 				{
 					user_updated: ['first_name', 'last_name']
+				},
+				{
+					news_tags: [
+						{
+							news_tags_id: ['name']
+						}
+					]
 				}
 			],
 			filter: {
