@@ -10,11 +10,11 @@
 
 	export let data;
 
-	$: ({ news, events } = data);
+	$: ({ news, featured_news, recent_news, recent_events } = data);
 </script>
 
 <FullWidthBreakout>
-	<LandingHero {news} />
+	<LandingHero news={featured_news} />
 </FullWidthBreakout>
 
 <div class="flex justify-center">
@@ -32,7 +32,7 @@
 				</Button>
 			</div>
 			<FullWidthBreakout>
-				<CardCarousel CardComponent={NewsCard} items={news} />
+				<CardCarousel CardComponent={NewsCard} items={recent_news} />
 			</FullWidthBreakout>
 		</div>
 
@@ -49,7 +49,7 @@
 				</Button>
 			</div>
 			<FullWidthBreakout>
-				<CardCarousel CardComponent={FeaturedEventCard} items={events} />
+				<CardCarousel CardComponent={FeaturedEventCard} items={recent_events} />
 			</FullWidthBreakout>
 		</div>
 	</div>

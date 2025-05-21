@@ -1,9 +1,9 @@
 /** @type {import('./$types').PageLoad} */
 export async function load({ data }) {
 	return {
-		title: data.global.title,
-		description: data.global.description,
 		news: data.news,
-		events: data.events
+		featured_news: data.featured_news,
+		recent_news: data.recent_news,
+		recent_events: data.recent_events
 	};
 }

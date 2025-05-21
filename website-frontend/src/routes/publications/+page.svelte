@@ -16,7 +16,7 @@
 	const inc = 12;
 	let shown = inc;
 
-	$: sort_options = ['date', 'author'];
+	$: sort_options = ['date', 'author', 'title'];
 
 	$: controls = [
 		{
@@ -38,6 +38,10 @@
 			const aLastName = a.authors[0]?.last_name || '';
 			const bLastName = b.authors[0]?.last_name || '';
 			return aLastName.localeCompare(bLastName);
+		} else if (($page.url.searchParams.get('sort') ?? '') === 'title') {
+			const a_title = a.title || '';
+			const b_title = b.title || '';
+			return a_title.localeCompare(b_title);
 		} else {
 			return (b.publish_date ?? '1970-01-01').localeCompare(a.publish_date ?? '1970-01-01');
 		}

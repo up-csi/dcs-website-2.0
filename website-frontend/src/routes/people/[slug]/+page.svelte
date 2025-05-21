@@ -6,10 +6,11 @@
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { Person } from '$lib/models/people';
+	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 
 	export let data;
 
-	$: ({ category, people } = data);
+	$: ({ category, people, position_filters, laboratory_filters } = data);
 
 	const priority = [
 		'Professor',
@@ -44,6 +45,17 @@
 		position,
 		people: people.filter((person: Person) => person.position === position)
 	}));
+
+	$: controls = [
+		{
+			name: 'position',
+			categories: position_filters
+		},
+		{
+			name: 'laboratory',
+			categories: laboratory_filters
+		}
+	];
 </script>
 
 {#if category}
@@ -60,19 +72,34 @@
 			<Breadcrumb />
 		</div>
 
+		<FilterBar {controls} />
+
 		<div class="space-y-16 md:space-y-24">
-			{#each peopleByPosition as { position, people }}
-				<div>
-					<p class="heading-text">{position}s</p>
-					<CardPanel>
-						{#each people as person (person.username)}
-							<a href="/people/{person.category}/{person.username}">
-								<PeopleCard {person} laboratory={person.affiliations?.[0]?.laboratories_id?.name} />
-							</a>
-						{/each}
-					</CardPanel>
+			{#if peopleByPosition.length === 0 || peopleByPosition.every(({ people }) => people.length === 0)}
+				<div class="pt-16 text-center md:pt-24">
+					<p class="text-sm italic text-slate-600 md:text-lg">
+						No people found matching the selected filters.
+					</p>
 				</div>
-			{/each}
+			{:else}
+				{#each peopleByPosition as { position, people }}
+					{#if people.length > 0}
+						<div class="pt-8">
+							<p class="heading-text">{position}s</p>
+							<CardPanel>
+								{#each people as person (person.username)}
+									<a href="/people/{person.category}/{person.username}">
+										<PeopleCard
+											{person}
+											laboratory={person.affiliations?.[0]?.laboratories_id?.name}
+										/>
+									</a>
+								{/each}
+							</CardPanel>
+						</div>
+					{/if}
+				{/each}
+			{/if}
 		</div>
 	</div>
 {:else}

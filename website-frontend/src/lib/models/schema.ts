@@ -1,5 +1,6 @@
 import { object, type InferOutput } from 'valibot';
 import { Global } from './global';
+import { Home } from './home';
 import { About } from './about';
 import { Academics } from './academics';
 import { Alumni } from './alumni';
@@ -37,9 +38,16 @@ import { StudentsOverview } from './students_overview';
 import { StudentsPages } from './students_pages';
 import { Partnerships } from './partnerships';
 import { PartnershipsOverview } from './partnerships_overview';
+import { FeaturedNews } from './junctions/featured_news';
+import { RecentEvents } from './junctions/recent_events';
+import { RecentNews } from './junctions/recent_news';
 
 export const Schema = object({
 	global: Global,
+	home: Home,
+	featured_news: FeaturedNews,
+	recent_news: RecentNews,
+	recent_events: RecentEvents,
 	about: About,
 	academics: Academics,
 	alumni: Alumni,
