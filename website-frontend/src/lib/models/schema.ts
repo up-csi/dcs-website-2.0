@@ -8,6 +8,8 @@ import { Events } from './event';
 import { Laboratories } from './laboratories';
 import { Linkages } from './linkages';
 import { News } from './news';
+import { NewsTags } from './news_tags';
+import { NewsRelated } from './junctions/news_related';
 import { People } from './people';
 import { Publications } from './publications';
 import { AboutPages } from './about_pages';
@@ -55,6 +57,8 @@ export const Schema = object({
 	laboratories: Laboratories,
 	linkages: Linkages,
 	news: News,
+	news_related: NewsRelated,
+	news_tags: NewsTags,
 	people: People,
 	publications: Publications,
 	about_pages: AboutPages,

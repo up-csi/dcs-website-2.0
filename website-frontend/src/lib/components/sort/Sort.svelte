@@ -18,7 +18,7 @@
 </script>
 
 <div class="mt-5 flex max-w-[88vw] items-center justify-end gap-x-3">
-	<span class="text-muted-foreground text-xs font-semibold uppercase"> SORT BY </span>
+	<span class="text-xs font-semibold uppercase text-muted-foreground"> SORT BY </span>
 	<DropdownMenu.Root
 		onOutsideClick={() => {
 			hide = true;

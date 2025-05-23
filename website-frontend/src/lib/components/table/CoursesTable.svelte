@@ -6,7 +6,6 @@
 	export let academics_courses: AcademicsCourses;
 </script>
 
-
 <div class="shadow-lg">
 	<Table.Root class="overflow-hidden rounded-lg">
 		<Table.Header class="bg-gray-100">
