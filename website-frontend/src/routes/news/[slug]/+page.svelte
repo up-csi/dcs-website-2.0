@@ -35,7 +35,9 @@
 				class:mt-24={!news_item.background_image}
 			>
 				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
-				<p class="md:text-xl">{news_item.summary}</p>
+				{#if news_item.summary}
+					<p class="md:text-xl">{news_item.summary}</p>
+				{/if}
 				<div class="flex justify-between">
 					<div class="flex flex-col">
 						<small
