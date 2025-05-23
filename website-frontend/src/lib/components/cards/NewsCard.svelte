@@ -38,7 +38,9 @@
 
 		<div class="space-y-4 p-4">
 			<h1 class="line-clamp-3 text-[17px] font-bold leading-tight">{item.title}</h1>
-			<p class="line-clamp-2 text-[13px] leading-tight opacity-60">{item.summary}</p>
+			{#if item.summary}
+				<p class="line-clamp-2 text-[13px] leading-tight opacity-60">{item.summary}</p>
+			{/if}
 			<div class="flex items-end justify-between">
 				<p class="mr-4 flex flex-wrap gap-1 py-1 text-[11px] font-bold leading-none opacity-60">
 					{#if news_tags.length !== 0}
