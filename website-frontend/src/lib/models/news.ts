@@ -3,6 +3,7 @@ import {
 	array,
 	isoTimestamp,
 	lazy,
+	nullable,
 	object,
 	pipe,
 	required,
@@ -24,7 +25,7 @@ export const NewsItem = object({
 	summary: string(),
 	flexible_content: pipe(string(), cleanHtml),
 	background_image: string(),
-	news_tags: union([array(string()), lazy(() => NewsRelated)])
+	news_tags: nullable(union([array(string()), lazy(() => NewsRelated)]))
 });
 
 export const News = array(NewsItem);

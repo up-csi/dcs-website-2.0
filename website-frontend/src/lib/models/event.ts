@@ -28,7 +28,7 @@ export const Event = object({
 	end_date: nullable(custom<'datetime'>((input) => typeof input === 'string')),
 	event_area: union([string(), lazy(() => EventsArea)]),
 	display_location: nullable(string()),
-	event_tags: union([array(string()), lazy(() => EventsRelated)])
+	event_tags: nullable(union([array(string()), lazy(() => EventsRelated)]))
 });
 
 export const Events = array(Event);
