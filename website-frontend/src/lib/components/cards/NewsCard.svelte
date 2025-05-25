@@ -5,12 +5,13 @@
 	import { error } from '@sveltejs/kit';
 
 	export let item: NewsItem;
-	const news_tags = item.news_tags
-		.filter((item) => typeof item !== 'string')
-		.map(({ news_tags_id }) => {
-			if (typeof news_tags_id !== 'string') return news_tags_id.name;
-			else error(500);
-		});
+	const news_tags =
+		item.news_tags
+			?.filter((item) => typeof item !== 'string')
+			.map(({ news_tags_id }) => {
+				if (typeof news_tags_id !== 'string') return news_tags_id.name;
+				else return error(500);
+			}) ?? [];
 </script>
 
 <a href="/news/{item.slug}" data-sveltekit-reload>
