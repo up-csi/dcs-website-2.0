@@ -7,7 +7,9 @@ const elementClassMap = {
 	ol: 'list-decimal',
 	blockquote: 'border-l-4 border-gray-300 italic',
 	iframe: 'rounded-xl shadow-lg mx-auto',
-	hr: 'my-8'
+	hr: 'my-8',
+	th: 'p-2 text-center',
+	td: 'p-2'
 };
 
 // TODO: Add dark mode implementation
