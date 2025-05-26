@@ -11,6 +11,14 @@
 
 	$: ({ academics_program } = data);
 
+	$: curriculum_last_updated = new Date(
+		academics_program.curriculum_last_updated
+	).toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
+
 	$: sorted_years = [
 		...new Set(
 			academics_program.curriculum_table
@@ -91,14 +99,7 @@
 				<div class="mb-6 md:mb-10">
 					<h1 class="text-2xl font-bold leading-tight md:text-3xl">Curriculum Checklist</h1>
 					<p class="ml-[2px] mt-2 text-xs font-medium opacity-55">
-						Last Updated: {new Date(academics_program.curriculum_last_updated).toLocaleDateString(
-							'en-US',
-							{
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							}
-						)}
+						Last Updated: {curriculum_last_updated}
 					</p>
 				</div>
 
