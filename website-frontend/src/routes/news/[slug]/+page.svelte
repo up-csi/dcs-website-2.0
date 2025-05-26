@@ -11,6 +11,17 @@
 	export let data;
 
 	$: ({ other_news, news_item } = data);
+
+	$: publish_date = new Date(news_item.date_created).toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric'
+	});
+
+	$: publish_time = new Date(news_item.date_created).toLocaleTimeString('en-US', {
+		timeZone: 'PST',
+		timeZoneName: 'short'
+	});
 </script>
 
 {#if news_item}
@@ -44,16 +55,7 @@
 							>Written by {news_item.user_created.first_name}
 							{news_item.user_created.last_name}</small
 						>
-						<small class="text-gray-500"
-							>Published on {new Date(news_item.date_created).toLocaleDateString('en-US', {
-								month: 'long',
-								day: 'numeric',
-								year: 'numeric'
-							})} | {new Date(news_item.date_created).toLocaleTimeString('en-US', {
-								timeZone: 'PST',
-								timeZoneName: 'short'
-							})}
-						</small>
+						<small class="text-gray-500">Published on {publish_date} | {publish_time} </small>
 					</div>
 					<Button variant="outline" class="flex gap-x-2 rounded-full"
 						>Share <Share class="size-4" /></Button
