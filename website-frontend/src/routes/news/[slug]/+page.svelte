@@ -19,6 +19,8 @@
 	});
 
 	$: publish_time = new Date(news_item.date_created).toLocaleTimeString('en-US', {
+		hour: 'numeric',
+		minute: 'numeric',
 		timeZone: 'PST',
 		timeZoneName: 'short'
 	});
