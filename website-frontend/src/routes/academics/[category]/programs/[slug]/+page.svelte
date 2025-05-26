@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import Banner from '$lib/components/banners/Banner.svelte';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
@@ -8,7 +8,64 @@
 	import { error } from '@sveltejs/kit';
 
 	export let data;
+
 	$: ({ academics_program } = data);
+
+	$: sorted_years = [
+		...new Set(
+			academics_program.curriculum_table
+				?.filter((item) => typeof item !== 'number')
+				.filter((item) => item.year !== null)
+				.map((item) => item.year)
+				.sort((a, b) => {
+					if (a && b) return a - b;
+					return error(500);
+				})
+		)
+	];
+
+	$: null_semester_curriculum_table =
+		academics_program.curriculum_table
+			?.filter((item) => typeof item !== 'number')
+			.filter((item) => !item.year && !item.semester)
+			.map((item) => item.academics_courses_course_code)
+			.filter((item) => typeof item !== 'string') ?? [];
+
+	function first_semester_curriculum_table(year: number | null) {
+		return (
+			academics_program.curriculum_table
+				?.filter((item) => typeof item !== 'number')
+				.filter(
+					(item) => item.year && item.semester && item.year === year && item.semester === 'first'
+				)
+				.map((item) => item.academics_courses_course_code)
+				.filter((item) => typeof item !== 'string') ?? []
+		);
+	}
+
+	function second_semester_curriculum_table(year: number | null) {
+		return (
+			academics_program.curriculum_table
+				?.filter((item) => typeof item !== 'number')
+				.filter(
+					(item) => item.year && item.semester && item.year === year && item.semester === 'second'
+				)
+				.map((item) => item.academics_courses_course_code)
+				.filter((item) => typeof item !== 'string') ?? []
+		);
+	}
+
+	function midyear_semester_curriculum_table(year: number | null) {
+		return (
+			academics_program.curriculum_table
+				?.filter((item) => typeof item !== 'number')
+				.filter(
+					(item) => item.year && item.semester && item.year === year && item.semester === 'midyear'
+				)
+				.map((item) => item.academics_courses_course_code)
+				.filter((item) => typeof item !== 'string') ?? []
+		);
+	}
 </script>
 
 {#if academics_program}
@@ -50,113 +107,48 @@
 						class="flex flex-col gap-y-10 overflow-hidden rounded-lg bg-white px-5 py-10 shadow-lg"
 					>
 						<!-- For N/A year or semesters -->
-						{#if academics_program.curriculum_table
-							.filter((item) => typeof item !== 'number')
-							.filter((item) => !item.year && !item.semester)
-							.map((item) => item.academics_courses_course_code)
-							.filter((item) => typeof item !== 'string').length !== 0}
+						{#if null_semester_curriculum_table.length !== 0}
 							<div class="px-4">
-								<CoursesTable
-									academics_courses={academics_program.curriculum_table
-										.filter((item) => typeof item !== 'number')
-										.filter((item) => !item.year && !item.semester)
-										.map((item) => item.academics_courses_course_code)
-										.filter((item) => typeof item !== 'string')}
-								/>
+								<CoursesTable academics_courses={null_semester_curriculum_table} />
 							</div>
 						{/if}
 
-						{#each [...new Set(academics_program.curriculum_table
-									.filter((item) => typeof item !== 'number')
-									.filter((item) => item.year !== null)
-									.map((item) => item.year)
-									.sort((a, b) => {
-										if (a && b) return a - b;
-										return error(500);
-									}))] as year}
+						{#each sorted_years as year}
 							<!-- Year Heading -->
-							<div class="flex flex-col gap-y-5">
-								{#if year}
+							{#if year}
+								<div class="flex flex-col gap-y-5">
 									<h2 class="border-b text-2xl font-bold">Year {year}</h2>
-								{/if}
 
-								{#if academics_program.curriculum_table
-									.filter((item) => typeof item !== 'number')
-									.filter((item) => item.year && item.semester && item.year === year && item.semester === 'first')
-									.map((item) => item.academics_courses_course_code)
-									.filter((item) => typeof item !== 'string').length !== 0}
-									<!-- First Semester -->
-									<div class="flex flex-col gap-y-5">
-										<h3 class="font-semibold">First Semester</h3>
-										<div class="px-4">
-											<CoursesTable
-												academics_courses={academics_program.curriculum_table
-													.filter((item) => typeof item !== 'number')
-													.filter(
-														(item) =>
-															item.year &&
-															item.semester &&
-															item.year === year &&
-															item.semester === 'first'
-													)
-													.map((item) => item.academics_courses_course_code)
-													.filter((item) => typeof item !== 'string')}
-											/>
+									{#if first_semester_curriculum_table(year).length !== 0}
+										<!-- First Semester -->
+										<div class="flex flex-col gap-y-5">
+											<h3 class="font-semibold">First Semester</h3>
+											<div class="px-4">
+												<CoursesTable academics_courses={first_semester_curriculum_table(year)} />
+											</div>
 										</div>
-									</div>
-								{/if}
+									{/if}
 
-								{#if academics_program.curriculum_table
-									.filter((item) => typeof item !== 'number')
-									.filter((item) => item.year && item.semester && item.year === year && item.semester === 'second')
-									.map((item) => item.academics_courses_course_code)
-									.filter((item) => typeof item !== 'string').length !== 0}
-									<div class="flex flex-col gap-y-5">
-										<h3 class="font-semibold">Second Semester</h3>
-										<div class="px-4">
-											<CoursesTable
-												academics_courses={academics_program.curriculum_table
-													.filter((item) => typeof item !== 'number')
-													.filter(
-														(item) =>
-															item.year &&
-															item.semester &&
-															item.year === year &&
-															item.semester === 'second'
-													)
-													.map((item) => item.academics_courses_course_code)
-													.filter((item) => typeof item !== 'string')}
-											/>
+									{#if second_semester_curriculum_table(year).length !== 0}
+										<div class="flex flex-col gap-y-5">
+											<h3 class="font-semibold">Second Semester</h3>
+											<div class="px-4">
+												<CoursesTable academics_courses={second_semester_curriculum_table(year)} />
+											</div>
 										</div>
-									</div>
-								{/if}
+									{/if}
 
-								{#if academics_program.curriculum_table
-									.filter((item) => typeof item !== 'number')
-									.filter((item) => item.year && item.semester && item.year === year && item.semester === 'midyear')
-									.map((item) => item.academics_courses_course_code)
-									.filter((item) => typeof item !== 'string').length !== 0}
-									<!-- Midyear -->
-									<div class="flex flex-col gap-y-5">
-										<h3 class="font-semibold">Midyear</h3>
-										<div class="px-4">
-											<CoursesTable
-												academics_courses={academics_program.curriculum_table
-													.filter((item) => typeof item !== 'number')
-													.filter(
-														(item) =>
-															item.year &&
-															item.semester &&
-															item.year === year &&
-															item.semester === 'midyear'
-													)
-													.map((item) => item.academics_courses_course_code)
-													.filter((item) => typeof item !== 'string')}
-											/>
+									{#if midyear_semester_curriculum_table(year).length !== 0}
+										<!-- Midyear -->
+										<div class="flex flex-col gap-y-5">
+											<h3 class="font-semibold">Midyear</h3>
+											<div class="px-4">
+												<CoursesTable academics_courses={midyear_semester_curriculum_table(year)} />
+											</div>
 										</div>
-									</div>
-								{/if}
-							</div>
+									{/if}
+								</div>
+							{/if}
 						{/each}
 					</div>
 				{/if}
