@@ -17,6 +17,10 @@
 		'Associate Professor',
 		'Assistant Professor',
 		'Instructor',
+		'Professorial Lecturer',
+		'Senior Lecturer',
+		'Teaching Fellow',
+		'Teaching Assistant',
 		'Lecturer',
 		'Researcher'
 	];
