@@ -66,7 +66,7 @@
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
 	<NavItem href="/research" to="Overview" />
-	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="left-36 top-0">
+	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="left-32 top-0">
 		{#each laboratories as laboratory}
 			<NavItem href="/research/labs/{laboratory.slug}" to={laboratory.name} />
 		{/each}
