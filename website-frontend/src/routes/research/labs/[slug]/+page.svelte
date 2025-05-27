@@ -146,7 +146,9 @@
 			<CardPanel>
 				{#each affiliates as affiliate}
 					{#if affiliate}
-						<PeopleCard person={affiliate} laboratory={laboratory.name} />
+						<a href="/people/{affiliate.category}/{affiliate.username}">
+							<PeopleCard person={affiliate} laboratory={laboratory.name} />
+						</a>
 					{/if}
 				{/each}
 			</CardPanel>
