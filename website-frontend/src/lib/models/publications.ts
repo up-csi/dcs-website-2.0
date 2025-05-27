@@ -36,7 +36,7 @@ export const Publication = object({
 	abstract: string(),
 	laboratory: union([string(), lazy(() => Laboratory)]),
 	hero_image: string(),
-	publication_tags: union([array(string()), lazy(() => PublicationsRelated)]),
+	publication_tags: nullable(union([array(string()), lazy(() => PublicationsRelated)])),
 	access_links: nullable(array(AccessLink))
 });
 
