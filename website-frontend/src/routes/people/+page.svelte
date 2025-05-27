@@ -12,12 +12,20 @@
 	$: ({ people, people_overview, position_filters, laboratory_filters } = data);
 
 	const priority = [
+		'Professor Emeritus',
+		'Professor Emerita',
+		'Department Chair',
 		'Professor',
 		'Associate Professor',
 		'Assistant Professor',
 		'Instructor',
+		'Professorial Lecturer',
+		'Senior Lecturer',
 		'Lecturer',
-		'Researcher'
+		'Teaching Fellow',
+		'Teaching Assistant',
+		'Researcher',
+		'Administrative Staff'
 	];
 
 	$: positions = Array.from(
@@ -83,7 +91,17 @@
 			{#each peopleByPosition as { position, people }}
 				{#if people.length > 0}
 					<div class="pt-8">
-						<p class="heading-text">{position}s</p>
+						<p class="heading-text">
+							{#if position === 'Professor Emeritus' || position === 'Professor Emerita'}
+								{#if people.length === 1}
+									Professor {position.split(' ')[1]}
+								{:else}
+									Professors Emeriti
+								{/if}
+							{:else}
+								{position}{people.length > 1 ? 's' : ''}
+							{/if}
+						</p>
 						<CardPanel>
 							{#each people as person (person.username)}
 								<a href="/people/{person.category}/{person.username}">
