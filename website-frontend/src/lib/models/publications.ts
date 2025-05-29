@@ -18,9 +18,12 @@ const Author = partial(
 	object({
 		first_name: string(),
 		last_name: string(),
-		link: object({
-			key: string()
-		})
+		link: union([
+			object({
+				key: string()
+			}),
+			string()
+		])
 	})
 );
 

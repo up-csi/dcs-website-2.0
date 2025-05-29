@@ -43,7 +43,7 @@ export async function load({ params, fetch }) {
 		throw error(404, 'Person not found');
 	}
 
-	const person = people[0];
+	const person = parse(Person, people[0]);
 
 	if (person.publications && person.publications.length > 0) {
 		const processedPublications = await Promise.all(
