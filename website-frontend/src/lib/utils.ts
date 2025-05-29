@@ -1,7 +1,7 @@
 export function deslugify(slug: string): string {
 	const specialCases: Record<string, string> = {
 		'part-time-faculty': 'Part-Time Faculty',
-		'full-time-faculty': 'Full-Time Faculty',
+		'full-time-faculty': 'Full-Time Faculty'
 	};
 
 	if (slug in specialCases) {
