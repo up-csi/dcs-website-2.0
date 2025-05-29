@@ -31,8 +31,6 @@ function enhanceWysiwygContent(htmlContent: string): string {
 		});
 	});
 
-	console.log(doc.body.innerHTML);
-
 	return doc.body.innerHTML;
 }
 
