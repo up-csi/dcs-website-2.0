@@ -1,4 +1,13 @@
 export function deslugify(slug: string): string {
+	const specialCases: Record<string, string> = {
+		'part-time-faculty': 'Part-Time Faculty',
+		'full-time-faculty': 'Full-Time Faculty',
+	};
+
+	if (slug in specialCases) {
+		return specialCases[slug];
+	}
+
 	const articles = ['of', 'and', 'the', 'in', 'on', 'at', 'to', 'with', 'by', 'for'];
 	return slug
 		.replace(/_/g, ' ')
