@@ -42,6 +42,7 @@
 							first_name: person.first_name,
 							last_name: person.last_name,
 							username: person.username,
+							level: person.level,
 							category: person.category,
 							profile_image: person.profile_image ?? '',
 							background_image: person.background_image ?? '',

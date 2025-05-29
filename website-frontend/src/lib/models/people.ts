@@ -28,6 +28,7 @@ export const Person = partial(
 		first_name: string(),
 		last_name: string(),
 		position: string(),
+		level: string(),
 		email: nullable(string()),
 		telephone: nullable(string()),
 		website: nullable(string()),

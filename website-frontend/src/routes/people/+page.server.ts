@@ -9,7 +9,8 @@ export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const filters = {
 		positions: url.searchParams.getAll('position'),
-		laboratories: url.searchParams.getAll('laboratory')
+		laboratories: url.searchParams.getAll('laboratory'),
+		levels: url.searchParams.getAll('level')
 	};
 
 	const allPositions = parse(
@@ -38,6 +39,12 @@ export async function load({ fetch, url }) {
 		)
 	);
 
+	const allLevels = await directus.request(
+		readItems('people', {
+			fields: ['level']
+		})
+	);
+
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
 	const laboratory_filters = [
 		...new Set(
@@ -56,6 +63,7 @@ export async function load({ fetch, url }) {
 	]
 		.filter(Boolean)
 		.sort();
+	const level_filters = [...new Set(allLevels.map((p) => p.level))].filter(Boolean);
 
 	const people = parse(
 		People,
@@ -85,7 +93,10 @@ export async function load({ fetch, url }) {
 									}
 								}
 							}
-						}
+						},
+					{
+						level: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+					}
 					]
 				}
 			})
@@ -101,6 +112,7 @@ export async function load({ fetch, url }) {
 		people,
 		people_overview,
 		position_filters,
-		laboratory_filters
+		laboratory_filters,
+		level_filters
 	};
 }

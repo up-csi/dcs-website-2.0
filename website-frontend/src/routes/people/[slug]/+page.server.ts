@@ -11,7 +11,8 @@ export async function load({ params, fetch, url }) {
 	const categorySlug = params.slug;
 	const filters = {
 		positions: url.searchParams.getAll('position'),
-		laboratories: url.searchParams.getAll('laboratory')
+		laboratories: url.searchParams.getAll('laboratory'),
+		levels: url.searchParams.getAll('level')
 	};
 
 	const categories = parse(
@@ -69,6 +70,17 @@ export async function load({ params, fetch, url }) {
 		)
 	);
 
+	const allLevels = await directus.request(
+		readItems('people', {
+			fields: ['level'],
+			filter: {
+				category: {
+					_eq: category.title
+				}
+			}
+		})
+	);
+
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
 	const laboratory_filters = [
 		...new Set(
@@ -87,6 +99,7 @@ export async function load({ params, fetch, url }) {
 	]
 		.filter(Boolean)
 		.sort();
+	const level_filters = [...new Set(allLevels.map((p) => p.level))].filter(Boolean);
 
 	const people = parse(
 		People,
@@ -121,6 +134,9 @@ export async function load({ params, fetch, url }) {
 									}
 								}
 							}
+						},
+						{
+							level: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
 						}
 					]
 				}
@@ -128,5 +144,5 @@ export async function load({ params, fetch, url }) {
 		)
 	);
 
-	return { category, people, position_filters, laboratory_filters };
+	return { category, people, position_filters, laboratory_filters, level_filters };
 }
