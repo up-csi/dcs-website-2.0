@@ -36,4 +36,7 @@ function enhanceWysiwygContent(htmlContent: string): string {
 	return doc.body.innerHTML;
 }
 
-export const cleanHtml = transform((input: string) => enhanceWysiwygContent(sanitize(input)));
+// TODO: Add explicit filtering for allowed HTML tags and attributes
+export const cleanHtml = transform((input: string) =>
+	enhanceWysiwygContent(sanitize(input, { allowedTags: false, allowedAttributes: false }))
+);
