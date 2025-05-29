@@ -2,6 +2,10 @@
 	/** @type {import('./$types').LayoutData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { page } from '$app/stores';
+	import { Moon } from 'svelte-loading-spinners';
+	import { fade } from 'svelte/transition';
+	import { cubicIn, cubicOut } from 'svelte/easing';
+	import { navigating } from '$app/stores';
 
 	export let data;
 
@@ -48,6 +52,22 @@
 	<link rel="icon" href="{PUBLIC_APIURL}/assets/{favicon}" />
 	<meta name="description" content={description} />
 </svelte:head>
+
+{#if $navigating}
+	<div
+		in:fade={{ duration: 300, easing: cubicIn }}
+		out:fade={{ duration: 300, easing: cubicOut }}
+		class="fixed inset-0 z-50 h-screen w-screen bg-gray-500 opacity-50"
+	></div>
+
+	<div
+		in:fade={{ duration: 300, easing: cubicIn }}
+		out:fade={{ duration: 300, easing: cubicOut }}
+		class="fixed inset-0 z-50 flex items-center justify-center"
+	>
+		<Moon size="20" color="hsl(358.9, 75.7%, 27.5%)" unit="vh" />
+	</div>
+{/if}
 
 <div class="flex h-full flex-col justify-between">
 	<header class="w-full overflow-clip">
