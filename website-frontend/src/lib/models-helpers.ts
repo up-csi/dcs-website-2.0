@@ -36,4 +36,4 @@ function enhanceWysiwygContent(htmlContent: string): string {
 	return doc.body.innerHTML;
 }
 
-export const cleanHtml = transform((input: string) => sanitize(enhanceWysiwygContent(input)));
+export const cleanHtml = transform((input: string) => enhanceWysiwygContent(sanitize(input)));
