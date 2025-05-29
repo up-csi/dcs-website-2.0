@@ -26,7 +26,6 @@
 		"@tailwindcss/line-clamp": "^0.4.4",
 		"@tailwindcss/typography": "0.5.15",
 		"@types/eslint": "^9.6.1",
-		"@types/jsdom": "^21.1.7",
 		"@types/node": "22.7.5",
 		"@types/sanitize-html": "^2.13.0",
 		"autoprefixer": "10.4.20",
@@ -62,7 +61,7 @@
 		"embla-carousel-autoplay": "^8.5.2",
 		"embla-carousel-fade": "^8.5.2",
 		"highlight.js": "11.10.0",
-		"jsdom": "^26.1.0",
+		"node-html-parser": "^7.0.1",
 		"sanitize-html": "^2.14.0",
 		"valibot": "^0.42.1"
 	}

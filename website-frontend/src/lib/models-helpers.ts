@@ -1,6 +1,6 @@
+import { parse } from 'node-html-parser';
 import sanitize from 'sanitize-html';
 import { transform } from 'valibot';
-import { JSDOM } from 'jsdom';
 
 const elementClassMap = {
 	strong: 'font-bold',
@@ -18,7 +18,7 @@ const elementClassMap = {
 
 // TODO: Add dark mode implementation
 function enhanceWysiwygContent(htmlContent: string): string {
-	const doc = new JSDOM(htmlContent).window.document;
+	const doc = parse(htmlContent);
 
 	Object.entries(elementClassMap).forEach(([tag, className]) => {
 		const elements = doc.getElementsByTagName(tag);
@@ -31,7 +31,7 @@ function enhanceWysiwygContent(htmlContent: string): string {
 		});
 	});
 
-	return doc.body.innerHTML;
+	return doc.innerHTML;
 }
 
 // TODO: Add explicit filtering for allowed HTML tags and attributes
