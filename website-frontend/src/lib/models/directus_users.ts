@@ -1,10 +1,12 @@
-import { array, object, string, type InferOutput } from 'valibot';
+import { array, object, partial, string, type InferOutput } from 'valibot';
 
-export const DirectusUser = object({
-	id: string(),
-	first_name: string(),
-	last_name: string()
-});
+export const DirectusUser = partial(
+	object({
+		id: string(),
+		first_name: string(),
+		last_name: string()
+	})
+);
 
 export const DirectusUsers = array(DirectusUser);
 

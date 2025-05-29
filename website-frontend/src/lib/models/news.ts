@@ -4,7 +4,9 @@ import {
 	isoTimestamp,
 	lazy,
 	nullable,
+	number,
 	object,
+	partial,
 	pipe,
 	required,
 	string,
@@ -14,19 +16,26 @@ import {
 import { DirectusUser } from './directus_users';
 import { NewsRelated } from './junctions/news_related';
 
-export const NewsItem = object({
-	id: string(),
-	slug: string(),
-	user_created: lazy(() => required(DirectusUser, ['first_name', 'last_name'])),
-	user_updated: lazy(() => required(DirectusUser, ['first_name', 'last_name'])),
-	date_created: pipe(string(), isoTimestamp()),
-	date_updated: pipe(string(), isoTimestamp()),
-	title: string(),
-	summary: string(),
-	flexible_content: pipe(string(), cleanHtml),
-	background_image: string(),
-	news_tags: nullable(union([array(string()), lazy(() => NewsRelated)]))
-});
+export const NewsItem = partial(
+	object({
+		id: string(),
+		slug: string(),
+		user_created: union([
+			string(),
+			lazy(() => required(DirectusUser, ['first_name', 'last_name']))
+		]),
+		user_updated: nullable(
+			union([string(), lazy(() => required(DirectusUser, ['first_name', 'last_name']))])
+		),
+		date_created: pipe(string(), isoTimestamp()),
+		date_updated: nullable(pipe(string(), isoTimestamp())),
+		title: string(),
+		summary: nullable(string()),
+		flexible_content: pipe(string(), cleanHtml),
+		background_image: string(),
+		news_tags: nullable(union([array(number()), lazy(() => NewsRelated)]))
+	})
+);
 
 export const News = array(NewsItem);
 

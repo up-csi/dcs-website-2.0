@@ -1,11 +1,13 @@
 import { cleanHtml } from '$lib/models-helpers';
-import { array, nullable, object, optional, pipe, string, type InferOutput } from 'valibot';
+import { array, nullable, object, partial, pipe, string, type InferOutput } from 'valibot';
 
-export const PeopleCategory = object({
-	title: string(),
-	flexible_content: pipe(string(), cleanHtml),
-	background_image: optional(nullable(string()))
-});
+export const PeopleCategory = partial(
+	object({
+		title: string(),
+		flexible_content: nullable(pipe(string(), cleanHtml)),
+		background_image: nullable(string())
+	})
+);
 
 export const PeopleCategories = array(PeopleCategory);
 

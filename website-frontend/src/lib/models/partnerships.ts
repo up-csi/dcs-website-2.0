@@ -1,12 +1,14 @@
-import { array, nullable, object, optional, string, type InferOutput } from 'valibot';
+import { array, nullable, object, partial, string, type InferOutput } from 'valibot';
 
-export const Partnership = object({
-	name: string(),
-	display_image: optional(nullable(string())),
-	email: nullable(string()),
-	website: nullable(string()),
-	description: nullable(string())
-});
+export const Partnership = partial(
+	object({
+		name: string(),
+		display_image: nullable(string()),
+		email: nullable(string()),
+		website: nullable(string()),
+		description: nullable(string())
+	})
+);
 
 export const Partnerships = array(Partnership);
 

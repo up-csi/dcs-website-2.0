@@ -1,12 +1,14 @@
 import { cleanHtml } from '$lib/models-helpers';
-import { array, nullable, object, pipe, string, type InferOutput } from 'valibot';
+import { array, nullable, object, partial, pipe, string, type InferOutput } from 'valibot';
 
-export const AcademicsCategory = object({
-	name: string(),
-	slug: string(),
-	description: nullable(string()),
-	flexible_content: pipe(string(), cleanHtml)
-});
+export const AcademicsCategory = partial(
+	object({
+		name: string(),
+		slug: string(),
+		description: nullable(string()),
+		flexible_content: pipe(string(), cleanHtml)
+	})
+);
 
 export const AcademicsCategories = array(AcademicsCategory);
 

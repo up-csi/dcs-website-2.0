@@ -8,23 +8,29 @@ import {
 	pipe,
 	isoDate,
 	union,
-	lazy
+	lazy,
+	partial,
+	number
 } from 'valibot';
 import { StudentsOrganizationsDirectusFiles } from './junctions/students_organizations_directus_files';
 
-export const StudentsOrganization = object({
-	name: string(),
-	slug: string(),
-	description: nullable(string()),
-	mission: nullable(string()),
-	email: nullable(string()),
-	founding_date: nullable(pipe(string(), isoDate())),
-	logo: nullable(string()),
-	website: nullable(string()),
-	location: nullable(string()),
-	flexible_content: pipe(string(), cleanHtml),
-	background_images: union([array(string()), lazy(() => StudentsOrganizationsDirectusFiles)])
-});
+export const StudentsOrganization = partial(
+	object({
+		name: string(),
+		slug: string(),
+		description: nullable(string()),
+		mission: nullable(string()),
+		email: nullable(string()),
+		founding_date: nullable(pipe(string(), isoDate())),
+		logo: nullable(string()),
+		website: nullable(string()),
+		location: nullable(string()),
+		flexible_content: pipe(string(), cleanHtml),
+		background_images: nullable(
+			union([array(number()), lazy(() => StudentsOrganizationsDirectusFiles)])
+		)
+	})
+);
 
 export const StudentsOrganizations = array(StudentsOrganization);
 
