@@ -33,7 +33,7 @@
 				hide = !hide;
 			}}
 		>
-			<span>{name}</span>
+			<span>{name.charAt(0).toUpperCase() + name.slice(1)}</span>
 			{#if hide}
 				<ChevronDown class="ml-2 h-4 w-4" />
 			{:else}
