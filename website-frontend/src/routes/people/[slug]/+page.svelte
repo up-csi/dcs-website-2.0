@@ -94,11 +94,17 @@
 					{#if people.length > 0}
 						<div class="pt-8">
 							<p class="heading-text">
-								{#if position === 'Professor Emeritus' || position === 'Professor Emerita'}
+								{#if position === 'Professor Emeritus'}
 									{#if people.length === 1}
-										Professor {position.split(' ')[1]}
+										Professor Emeritus
 									{:else}
 										Professors Emeriti
+									{/if}
+								{:else if position === 'Professor Emerita'}
+									{#if people.length === 1}
+										Professor Emerita
+									{:else}
+										Professors Emeritae
 									{/if}
 								{:else}
 									{position}{people.length > 1 ? 's' : ''}
