@@ -2,36 +2,41 @@
 import { readItems, readItem } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
+import { parse } from 'valibot';
+import { People, Person } from '$lib/models/people';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
 	const username = params.username;
 
-	const people = await directus.request(
-		readItems('people', {
-			filter: {
-				username: { _eq: username }
-			},
-			fields: [
-				'*',
-				{
-					affiliations: [
-						'role',
-						{
-							laboratories_id: ['name']
-						}
-					]
+	const people = parse(
+		People,
+		await directus.request(
+			readItems('people', {
+				filter: {
+					username: { _eq: username }
 				},
-				{
-					publications: [
-						{
-							publications_id: ['*']
-						}
-					]
-				}
-			],
-			limit: 1
-		})
+				fields: [
+					'*',
+					{
+						affiliations: [
+							'role',
+							{
+								laboratories_id: ['name']
+							}
+						]
+					},
+					{
+						publications: [
+							{
+								publications_id: ['*']
+							}
+						]
+					}
+				],
+				limit: 1
+			})
+		)
 	);
 
 	if (!people || people.length === 0) {
@@ -52,7 +57,10 @@ export async function load({ params, fetch }) {
 						publication.authors.map(async (author) => {
 							if (typeof author.link === 'undefined') return author;
 							if (typeof author.link === 'object') {
-								const person = await directus.request(readItem('people', author.link.key));
+								const person = parse(
+									Person,
+									await directus.request(readItem('people', author.link.key))
+								);
 								return {
 									...author,
 									link: `/people/${person.category}/${person.username}`
