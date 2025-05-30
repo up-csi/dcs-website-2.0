@@ -32,17 +32,14 @@
 	<Banner {title} flexible_content={`This is the ${title} page.`} />
 </FullWidthBreakout>
 
-<div class="pb-16 md:pb-24">
-	<div class="pb-5 pt-2 md:py-8">
+<div class="pb-16 text-base md:pb-24">
+	<div class="py-2 md:py-8">
 		<Breadcrumb />
 	</div>
 
-	<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
-		<div class="flex items-center justify-between md:block">
-			<FilterBar {controls} />
-		</div>
-		<div class="mx-auto py-8">
-			<Calendar {events} />
-		</div>
+	<FilterBar {controls} />
+
+	<div class="py-2 md:py-8">
+		<Calendar {events} />
 	</div>
 </div>
