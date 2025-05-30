@@ -36,5 +36,9 @@ function enhanceWysiwygContent(htmlContent: string): string {
 
 // TODO: Add explicit filtering for allowed HTML tags and attributes
 export const cleanHtml = transform((input: string) =>
-	enhanceWysiwygContent(sanitize(input, { allowedTags: false, allowedAttributes: false }))
+	enhanceWysiwygContent(
+		sanitize(input, {
+			allowedTags: sanitize.defaults.allowedTags.concat(['img', 'iframe'])
+		})
+	)
 );
