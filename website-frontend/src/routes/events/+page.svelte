@@ -37,18 +37,6 @@
 		<Breadcrumb />
 	</div>
 
-	<Carousel.Root>
-		<Carousel.Content class="-ml-6">
-			{#each featured as event}
-				<Carousel.Item class="basis-1 pb-16 pl-6 md:basis-1/4">
-					<FeaturedEventCard item={event} />
-				</Carousel.Item>
-			{/each}
-		</Carousel.Content>
-	</Carousel.Root>
-
-	<h1 class="heading-text">Find Events</h1>
-
 	<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 		<div class="flex items-center justify-between md:block">
 			<FilterBar {controls} />
