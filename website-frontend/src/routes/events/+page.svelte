@@ -25,8 +25,6 @@
 		}
 	];
 
-	const timed = true;
-
 	const title = 'Events';
 </script>
 
@@ -53,7 +51,7 @@
 
 	<div class="container mx-auto my-8 h-full flex-col items-center justify-center">
 		<div class="flex items-center justify-between md:block">
-			<FilterBar {controls} {timed} />
+			<FilterBar {controls} />
 		</div>
 		<div class="mx-auto py-8">
 			<Calendar {events} />
