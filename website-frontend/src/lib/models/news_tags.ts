@@ -1,10 +1,22 @@
-import { array, lazy, object, optional, string, union, type InferOutput } from 'valibot';
+import {
+	array,
+	lazy,
+	nullable,
+	number,
+	object,
+	partial,
+	string,
+	union,
+	type InferOutput
+} from 'valibot';
 import { NewsRelated } from './junctions/news_related';
 
-export const NewsTag = object({
-	name: string(),
-	related_news: optional(union([array(string()), lazy(() => NewsRelated)]))
-});
+export const NewsTag = partial(
+	object({
+		name: string(),
+		related_news: nullable(union([array(number()), lazy(() => NewsRelated)]))
+	})
+);
 
 export const NewsTags = array(NewsTag);
 

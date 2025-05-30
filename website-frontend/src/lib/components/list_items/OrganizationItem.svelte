@@ -1,12 +1,19 @@
 <script lang="ts">
 	import { Image } from 'lucide-svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
+	import { reloading } from '$lib/stores';
 
 	export let organization;
 	$: ({ name, logo, description, email, website, slug } = organization);
 </script>
 
-<a href="/students/organizations/{slug}" data-sveltekit-reload>
+<a
+	href="/students/organizations/{slug}"
+	data-sveltekit-reload
+	on:click={() => {
+		$reloading = true;
+	}}
+>
 	<div
 		class="my-4 flex justify-start gap-6 rounded-lg p-10 text-background"
 		style="background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)/0.25)); grid-template-columns: 1fr auto;"

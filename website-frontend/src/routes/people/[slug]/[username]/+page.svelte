@@ -17,7 +17,7 @@
 					if (typeof affiliation.laboratories_id !== 'string') {
 						return {
 							role: affiliation.role,
-							laboratory: affiliation.laboratories_id.name
+							laboratory: affiliation.laboratories_id?.name
 						};
 					}
 					return {};
@@ -26,7 +26,7 @@
 
 	const publications = person.publications
 		? person.publications
-				.filter((publication) => typeof publication !== 'string')
+				.filter((publication) => typeof publication !== 'number')
 				.map((publication) => {
 					const pub = publication.publications_id;
 					return typeof pub !== 'string' ? pub : null;
@@ -88,7 +88,7 @@
 
 					{#if showEducation}
 						<Tabs.Content value="education">
-							<InfoCard educational_attainment={person.educational_attainment ?? undefined} />
+							<InfoCard educational_attainment={person.educational_attainment ?? []} />
 						</Tabs.Content>
 					{/if}
 
@@ -117,9 +117,11 @@
 			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
 				<Carousel.Content>
 					{#each publications as publication}
-						<Carousel.Item class="-mr-10 h-full basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-							<PublicationCard {publication} />
-						</Carousel.Item>
+						{#if publication}
+							<Carousel.Item class="-mr-10 h-full basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
+								<PublicationCard {publication} />
+							</Carousel.Item>
+						{/if}
 					{/each}
 				</Carousel.Content>
 				<Carousel.Next />

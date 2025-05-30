@@ -3,7 +3,9 @@ import {
 	isoDate,
 	lazy,
 	nullable,
+	number,
 	object,
+	partial,
 	pipe,
 	string,
 	union,
@@ -12,33 +14,39 @@ import {
 import { Laboratory } from './laboratories';
 import { PublicationsRelated } from './junctions/publications_related';
 
-const Author = object({
-	first_name: string(),
-	last_name: string(),
-	link: union([
-		object({
-			key: string()
-		}),
-		string()
-	])
-});
+const Author = partial(
+	object({
+		first_name: string(),
+		last_name: string(),
+		link: union([
+			object({
+				key: string()
+			}),
+			string()
+		])
+	})
+);
 
-const AccessLink = object({
-	url: string(),
-	display: string()
-});
+const AccessLink = partial(
+	object({
+		url: string(),
+		display: nullable(string())
+	})
+);
 
-export const Publication = object({
-	id: string(),
-	title: string(),
-	publish_date: nullable(pipe(string(), isoDate())),
-	authors: array(Author),
-	abstract: string(),
-	laboratory: union([string(), lazy(() => Laboratory)]),
-	hero_image: string(),
-	publication_tags: nullable(union([array(string()), lazy(() => PublicationsRelated)])),
-	access_links: nullable(array(AccessLink))
-});
+export const Publication = partial(
+	object({
+		id: string(),
+		title: string(),
+		publish_date: nullable(pipe(string(), isoDate())),
+		authors: array(Author),
+		abstract: string(),
+		laboratory: union([string(), lazy(() => Laboratory)]),
+		hero_image: string(),
+		publication_tags: nullable(union([array(number()), lazy(() => PublicationsRelated)])),
+		access_links: nullable(array(AccessLink))
+	})
+);
 
 export const Publications = array(Publication);
 

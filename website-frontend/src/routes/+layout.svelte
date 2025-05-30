@@ -2,6 +2,11 @@
 	/** @type {import('./$types').LayoutData} */
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { page } from '$app/stores';
+	import { Moon } from 'svelte-loading-spinners';
+	import { fade } from 'svelte/transition';
+	import { cubicIn, cubicOut } from 'svelte/easing';
+	import { navigating } from '$app/stores';
+	import { reloading } from '$lib/stores';
 
 	export let data;
 
@@ -41,21 +46,6 @@
 
 	import Footer from '$lib/components/footer/Footer.svelte';
 	import Header from '$lib/components/nav/Header.svelte';
-
-	// Highlight JS
-	import hljs from 'highlight.js/lib/core';
-	import 'highlight.js/styles/github-dark.css';
-	import { storeHighlightJs } from '@skeletonlabs/skeleton';
-	import xml from 'highlight.js/lib/languages/xml'; // for HTML
-	import css from 'highlight.js/lib/languages/css';
-	import javascript from 'highlight.js/lib/languages/javascript';
-	import typescript from 'highlight.js/lib/languages/typescript';
-
-	hljs.registerLanguage('xml', xml); // for HTML
-	hljs.registerLanguage('css', css);
-	hljs.registerLanguage('javascript', javascript);
-	hljs.registerLanguage('typescript', typescript);
-	storeHighlightJs.set(hljs);
 </script>
 
 <svelte:head>
@@ -63,6 +53,22 @@
 	<link rel="icon" href="{PUBLIC_APIURL}/assets/{favicon}" />
 	<meta name="description" content={description} />
 </svelte:head>
+
+{#if $navigating || $reloading}
+	<div
+		in:fade={{ duration: 300, easing: cubicIn }}
+		out:fade={{ duration: 300, easing: cubicOut }}
+		class="fixed inset-0 z-[100] h-screen w-screen bg-gray-500 opacity-50"
+	></div>
+
+	<div
+		in:fade={{ duration: 300, easing: cubicIn }}
+		out:fade={{ duration: 300, easing: cubicOut }}
+		class="fixed inset-0 z-[100] flex items-center justify-center"
+	>
+		<Moon size="20" color="hsl(358.9, 75.7%, 27.5%)" unit="vh" />
+	</div>
+{/if}
 
 <div class="flex h-full flex-col justify-between">
 	<header class="w-full overflow-clip">

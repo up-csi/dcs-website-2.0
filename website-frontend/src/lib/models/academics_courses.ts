@@ -5,6 +5,7 @@ import {
 	nullable,
 	number,
 	object,
+	partial,
 	pipe,
 	string,
 	union,
@@ -12,14 +13,18 @@ import {
 } from 'valibot';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
 
-export const AcademicsCourse = object({
-	course_code: string(),
-	course_title: string(),
-	course_units: pipe(number(), integer()),
-	course_description: nullable(string()),
-	course_syllabus: nullable(string()),
-	related_academics_programs: union([array(number()), lazy(() => AcademicsProgramsCourses)])
-});
+export const AcademicsCourse = partial(
+	object({
+		course_code: string(),
+		course_title: string(),
+		course_units: pipe(number(), integer()),
+		course_description: nullable(string()),
+		course_syllabus: nullable(string()),
+		related_academics_programs: nullable(
+			union([array(number()), lazy(() => AcademicsProgramsCourses)])
+		)
+	})
+);
 
 export const AcademicsCourses = array(AcademicsCourse);
 

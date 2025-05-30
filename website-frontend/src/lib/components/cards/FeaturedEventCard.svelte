@@ -2,6 +2,7 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Event } from '$lib/models/event';
 	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
+	import { reloading } from '$lib/stores';
 	export let item: Event;
 
 	function formatTimeRange(startTime: string, endTime: string) {
@@ -36,7 +37,13 @@
 	}
 </script>
 
-<a href="/events/{item.slug}" data-sveltekit-reload>
+<a
+	href="/events/{item.slug}"
+	data-sveltekit-reload
+	on:click={() => {
+		$reloading = true;
+	}}
+>
 	<div
 		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>
@@ -66,43 +73,45 @@
 
 			<div class="flex items-center space-x-2 text-[13px] font-medium">
 				<Calendar class="h-4 w-4" />
-				<p>
-					{#if item.end_date}
-						{#if new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
-							<!-- Same day event -->
-							{new Date(item.start_date).toLocaleDateString('en-GB', {
-								day: 'numeric',
-								month: 'long',
-								year: 'numeric'
-							})}
-						{:else if new Date(item.start_date).getMonth() === new Date(item.end_date).getMonth()}
-							<!-- Same month -->
-							{new Date(item.start_date).getDate()}-{new Date(item.end_date).getDate()}
-							{new Date(item.end_date).toLocaleDateString('en-GB', {
-								month: 'long',
-								year: 'numeric'
-							})}
+				{#if item.start_date}
+					<p>
+						{#if item.end_date}
+							{#if new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
+								<!-- Same day event -->
+								{new Date(item.start_date).toLocaleDateString('en-GB', {
+									day: 'numeric',
+									month: 'long',
+									year: 'numeric'
+								})}
+							{:else if new Date(item.start_date).getMonth() === new Date(item.end_date).getMonth()}
+								<!-- Same month -->
+								{new Date(item.start_date).getDate()}-{new Date(item.end_date).getDate()}
+								{new Date(item.end_date).toLocaleDateString('en-GB', {
+									month: 'long',
+									year: 'numeric'
+								})}
+							{:else}
+								<!-- Different months -->
+								{new Date(item.start_date).toLocaleDateString('en-GB', {
+									day: 'numeric',
+									month: 'long'
+								})} -
+								{new Date(item.end_date).toLocaleDateString('en-GB', {
+									day: 'numeric',
+									month: 'long',
+									year: 'numeric'
+								})}
+							{/if}
 						{:else}
-							<!-- Different months -->
+							<!-- Single date -->
 							{new Date(item.start_date).toLocaleDateString('en-GB', {
-								day: 'numeric',
-								month: 'long'
-							})} -
-							{new Date(item.end_date).toLocaleDateString('en-GB', {
 								day: 'numeric',
 								month: 'long',
 								year: 'numeric'
 							})}
 						{/if}
-					{:else}
-						<!-- Single date -->
-						{new Date(item.start_date).toLocaleDateString('en-GB', {
-							day: 'numeric',
-							month: 'long',
-							year: 'numeric'
-						})}
-					{/if}
-				</p>
+					</p>
+				{/if}
 			</div>
 
 			<div>
@@ -113,12 +122,12 @@
 					</div>
 				{/if}
 
-				{#if item.end_date && new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
+				{#if item.start_date && item.end_date && new Date(item.start_date).toDateString() === new Date(item.end_date).toDateString()}
 					<div class="flex items-center space-x-2 text-[13px] opacity-60">
 						<Clock class="mx-[1px] h-[14px] w-[14px]" />
 						<p>{formatTimeRange(item.start_date, item.end_date)}</p>
 					</div>
-				{:else if item.end_date && new Date(item.start_date).toDateString() !== new Date(item.end_date).toDateString()}
+				{:else if item.start_date && item.end_date && new Date(item.start_date).toDateString() !== new Date(item.end_date).toDateString()}
 					<div class="flex items-center space-x-2 text-[13px] opacity-60">
 						<Clock class="mx-[1px] h-[14px] w-[14px]" />
 						<p>Multi-day event</p>

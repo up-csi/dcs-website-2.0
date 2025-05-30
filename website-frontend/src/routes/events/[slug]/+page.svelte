@@ -14,10 +14,10 @@
 	<div class="relative">
 		<FullWidthBreakout>
 			<DetailsBanner
-				title={event.event_headline}
+				title={event.event_headline ?? ''}
 				background_image={event.hero_image ?? ''}
 				display_location={event.display_location ?? ''}
-				start_date={event.start_date}
+				start_date={event.start_date ?? 'datetime'}
 				end_date={event.end_date ?? null}
 			/>
 		</FullWidthBreakout>
@@ -27,7 +27,7 @@
 		<div class="pb-5 pt-2 md:py-8">
 			<Breadcrumb page_name={event.event_headline} />
 		</div>
-		<FlexibleContent content={event.event_content} />
+		<FlexibleContent content={event.event_content ?? 'Event content is empty.'} />
 	</div>
 
 	{#if related_events}
@@ -39,7 +39,7 @@
 			md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
 		>
 			{#each related_events as related_event}
-				{#if typeof related_event !== 'string'}
+				{#if related_event && typeof related_event !== 'string'}
 					<FeaturedEventCard item={related_event} />
 				{/if}
 			{/each}

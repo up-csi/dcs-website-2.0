@@ -3,18 +3,25 @@
 	import { NewsItem } from '$lib/models/news';
 	import { Image } from 'lucide-svelte';
 	import { error } from '@sveltejs/kit';
+	import { reloading } from '$lib/stores';
 
 	export let item: NewsItem;
 	const news_tags =
 		item.news_tags
-			?.filter((item) => typeof item !== 'string')
+			?.filter((item) => typeof item !== 'number')
 			.map(({ news_tags_id }) => {
-				if (typeof news_tags_id !== 'string') return news_tags_id.name;
+				if (typeof news_tags_id !== 'string') return news_tags_id?.name;
 				else return error(500);
 			}) ?? [];
 </script>
 
-<a href="/news/{item.slug}" data-sveltekit-reload>
+<a
+	href="/news/{item.slug}"
+	data-sveltekit-reload
+	on:click={() => {
+		$reloading = true;
+	}}
+>
 	<div
 		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>
@@ -60,7 +67,7 @@
 					{/if}
 				</p>
 				<p class="text-nowrap text-[11px] font-medium opacity-60">
-					{new Date(item.date_created).toLocaleDateString('en-GB', {
+					{new Date(item.date_created ?? 0).toLocaleDateString('en-GB', {
 						month: 'long',
 						day: 'numeric',
 						year: 'numeric'

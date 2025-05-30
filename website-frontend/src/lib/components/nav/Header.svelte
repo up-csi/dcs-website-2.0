@@ -4,6 +4,7 @@
 	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
+	import NavListMobile from '$lib/components/nav/NavListMobile.svelte';
 	import { ScrollArea } from '$lib/@shadcn-svelte/ui/scroll-area/index.js';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import { searchOpen, mobileOpen } from '$lib/stores';
@@ -201,7 +202,7 @@
 		<div class="px-4 pt-0 *:pt-5">
 			<SearchInput />
 			<ScrollArea id="mobile-nav" class="h-[70dvh] w-full *:text-xl *:font-bold">
-				<NavList
+				<NavListMobile
 					{about_pages}
 					{people_categories}
 					{academics_categories}

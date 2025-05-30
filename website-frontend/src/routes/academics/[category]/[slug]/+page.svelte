@@ -11,7 +11,7 @@
 
 {#if academics_page}
 	<FullWidthBreakout>
-		<Banner title={academics_page.title} />
+		<Banner title={academics_page.title ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">

@@ -1,8 +1,10 @@
-import { array, object, string, type InferOutput } from 'valibot';
+import { array, object, partial, string, type InferOutput } from 'valibot';
 
-export const DirectusFile = object({
-	id: string()
-});
+export const DirectusFile = partial(
+	object({
+		id: string()
+	})
+);
 
 export const DirectusFiles = array(DirectusFile);
 

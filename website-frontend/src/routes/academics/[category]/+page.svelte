@@ -13,7 +13,7 @@
 
 {#if academics_category}
 	<FullWidthBreakout>
-		<Banner title={academics_category.name} />
+		<Banner title={academics_category.name ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">
@@ -37,7 +37,7 @@
 				<div class="space-y-3">
 					{#each academics_programs as program}
 						{#if typeof program.category !== 'string'}
-							<a href="{program.category.slug}/programs/{program.slug}" class="block">
+							<a href="{program.category?.slug}/programs/{program.slug}" class="block">
 								<HorizontalCard name={program.title} />
 							</a>
 						{/if}

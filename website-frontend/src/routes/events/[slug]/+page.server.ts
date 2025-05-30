@@ -1,62 +1,66 @@
 /** @type {import('./$types').PageServerLoad} */
-import { Event } from '$lib/models/event';
 import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
+import { parse } from 'valibot';
+import { Event, Events } from '$lib/models/event';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);
 	const eventSlug = params.slug;
 
-	const events = await directus.request(
-		readItems('events', {
-			fields: [
-				'*',
-				{
-					event_area: ['name']
-				},
-				{
-					event_tags: [
-						{
-							events_tags_id: [
-								'name',
-								{
-									related_events: [
-										{
-											events_id: [
-												'*',
-												{
-													event_area: ['name']
-												},
-												{
-													event_tags: [
-														{
-															events_tags_id: ['name']
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+	const events = parse(
+		Events,
+		await directus.request(
+			readItems('events', {
+				fields: [
+					'*',
+					{
+						event_area: ['name']
+					},
+					{
+						event_tags: [
+							{
+								events_tags_id: [
+									'name',
+									{
+										related_events: [
+											{
+												events_id: [
+													'*',
+													{
+														event_area: ['name']
+													},
+													{
+														event_tags: [
+															{
+																events_tags_id: ['name']
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				],
+				filter: {
+					slug: {
+						_eq: eventSlug
+					}
 				}
-			],
-			filter: {
-				slug: {
-					_eq: eventSlug
-				}
-			}
-		})
+			})
+		)
 	);
 
 	if (!events.length) {
 		throw error(404, 'Event not found');
 	}
 
-	const event = events[0] as Event;
+	const event = parse(Event, events[0]);
 	const event_tags = event.event_tags
 		? event.event_tags
 				.map((item) => {
