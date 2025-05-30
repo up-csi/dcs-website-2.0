@@ -9,9 +9,9 @@
 	export let awards: string = '';
 	export let affiliations: { role: string; affiliation: string }[] = [];
 	export let educational_attainment: {
-		status: string;
-		degree: string;
-		institution: string;
+		status?: string;
+		degree?: string;
+		institution?: string;
 		start_date?: string | null;
 		end_date?: string | null;
 	}[] = [];

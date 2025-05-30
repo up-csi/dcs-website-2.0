@@ -7,9 +7,9 @@
 	export let item: NewsItem;
 	const news_tags =
 		item.news_tags
-			?.filter((item) => typeof item !== 'string')
+			?.filter((item) => typeof item !== 'number')
 			.map(({ news_tags_id }) => {
-				if (typeof news_tags_id !== 'string') return news_tags_id.name;
+				if (typeof news_tags_id !== 'string') return news_tags_id?.name;
 				else return error(500);
 			}) ?? [];
 </script>
@@ -60,7 +60,7 @@
 					{/if}
 				</p>
 				<p class="text-nowrap text-[11px] font-medium opacity-60">
-					{new Date(item.date_created).toLocaleDateString('en-GB', {
+					{new Date(item.date_created ?? 0).toLocaleDateString('en-GB', {
 						month: 'long',
 						day: 'numeric',
 						year: 'numeric'

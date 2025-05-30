@@ -22,10 +22,10 @@
 
 	$: background_images = laboratory.background_images
 		? laboratory.background_images
-				.filter((img) => typeof img !== 'string')
+				.filter((img) => typeof img !== 'number')
 				.map((img) => {
 					if (typeof img.directus_files_id !== 'string') {
-						return img.directus_files_id.id;
+						return img.directus_files_id?.id ?? '';
 					}
 					return '';
 				})
@@ -36,7 +36,7 @@
 				.filter((affiliate) => typeof affiliate !== 'string')
 				.map((affiliate) => {
 					const person = affiliate.people_id;
-					if (typeof person !== 'string')
+					if (typeof person === 'object')
 						return {
 							id: person.id,
 							first_name: person.first_name,
@@ -58,7 +58,7 @@
 				.filter((event) => typeof event !== 'string')
 				.map((event) => {
 					const e = event.events_id;
-					if (typeof e !== 'string') {
+					if (typeof e === 'object') {
 						return {
 							id: e.id,
 							slug: e.slug,
@@ -70,7 +70,6 @@
 							end_date: e.end_date as 'datetime',
 							event_area: e.event_area,
 							display_location: e.display_location,
-							tags: e.tags,
 							event_tags: e.event_tags
 						};
 					}
@@ -86,7 +85,7 @@
 	<FullWidthBreakout>
 		<div class="relative z-0">
 			<Hero
-				title={laboratory.name}
+				title={laboratory.name ?? ''}
 				{background_images}
 				logo_image={laboratory.logo ?? ''}
 				link=""
@@ -147,7 +146,7 @@
 				{#each affiliates as affiliate}
 					{#if affiliate}
 						<a href="/people/{affiliate.category}/{affiliate.username}">
-							<PeopleCard person={affiliate} laboratory={laboratory.name} />
+							<PeopleCard person={affiliate} laboratory={laboratory.name ?? 'N/A'} />
 						</a>
 					{/if}
 				{/each}

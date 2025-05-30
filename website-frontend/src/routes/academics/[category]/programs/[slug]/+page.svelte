@@ -12,7 +12,7 @@
 	$: ({ academics_program } = data);
 
 	$: curriculum_last_updated = new Date(
-		academics_program.curriculum_last_updated
+		academics_program.curriculum_last_updated ?? 0
 	).toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'long',
@@ -36,7 +36,7 @@
 		academics_program.curriculum_table
 			?.filter((item) => typeof item !== 'number')
 			.filter((item) => !item.year && !item.semester)
-			.map((item) => item.academics_courses_course_code)
+			.map((item) => item.academics_courses_course_code ?? '')
 			.filter((item) => typeof item !== 'string') ?? [];
 
 	function first_semester_curriculum_table(year: number | null) {
@@ -46,7 +46,7 @@
 				.filter(
 					(item) => item.year && item.semester && item.year === year && item.semester === 'first'
 				)
-				.map((item) => item.academics_courses_course_code)
+				.map((item) => item.academics_courses_course_code ?? '')
 				.filter((item) => typeof item !== 'string') ?? []
 		);
 	}
@@ -58,7 +58,7 @@
 				.filter(
 					(item) => item.year && item.semester && item.year === year && item.semester === 'second'
 				)
-				.map((item) => item.academics_courses_course_code)
+				.map((item) => item.academics_courses_course_code ?? '')
 				.filter((item) => typeof item !== 'string') ?? []
 		);
 	}
@@ -70,7 +70,7 @@
 				.filter(
 					(item) => item.year && item.semester && item.year === year && item.semester === 'midyear'
 				)
-				.map((item) => item.academics_courses_course_code)
+				.map((item) => item.academics_courses_course_code ?? '')
 				.filter((item) => typeof item !== 'string') ?? []
 		);
 	}
@@ -78,7 +78,7 @@
 
 {#if academics_program}
 	<FullWidthBreakout>
-		<Banner title={academics_program.title} />
+		<Banner title={academics_program.title ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">

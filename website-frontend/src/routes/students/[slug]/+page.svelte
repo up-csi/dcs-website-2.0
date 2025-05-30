@@ -11,7 +11,7 @@
 
 {#if page}
 	<FullWidthBreakout>
-		<Banner title={page.title} />
+		<Banner title={page.title ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">

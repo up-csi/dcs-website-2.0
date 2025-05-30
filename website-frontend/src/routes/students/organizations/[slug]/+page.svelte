@@ -24,10 +24,10 @@
 
 	$: background_images = organization.background_images
 		? organization.background_images
-				.filter((img) => typeof img !== 'string')
+				.filter((img) => typeof img !== 'number')
 				.map((img) => {
 					if (typeof img.directus_files_id !== 'string') {
-						return img.directus_files_id.id;
+						return img.directus_files_id?.id ?? '';
 					}
 					return '';
 				})
@@ -38,7 +38,7 @@
 	<FullWidthBreakout>
 		<div class="relative z-0">
 			<Hero
-				title={organization.name}
+				title={organization.name ?? ''}
 				{background_images}
 				logo_image={organization.logo ?? ''}
 				link={organization.website ?? ''}

@@ -21,31 +21,34 @@
 <NavItemMobile href="/" to="Home" />
 <NavItemMobile href="/about" to="About" dropdown={true}>
 	<NavItemMobile href="/about" to="Overview" />
-	{#each about_pages as about_page}
-		<NavItemMobile href="/about/{about_page.slug}" to={about_page.title} />
+	{#each about_pages as about_page, i}
+		<NavItemMobile href="/about/{about_page.slug}" to={about_page.title ?? `About Page ${i}`} />
 	{/each}
 </NavItemMobile>
 <NavItemMobile href="/events" to="Events" />
 <NavItemMobile href="/publications" to="Publications" />
 <NavItemMobile href="/people" to="People" dropdown={true}>
-	{#each people_categories as people_category}
-		<NavItemMobile href="/people/{people_category.title}" to={deslugify(people_category.title)} />
+	{#each people_categories as people_category, i}
+		<NavItemMobile
+			href="/people/{people_category.title}"
+			to={deslugify(people_category.title ?? `people-category-${i}`)}
+		/>
 	{/each}
 </NavItemMobile>
 <NavItemMobile href="/academics" to="Academics" dropdown={true}>
 	<NavItemMobile href="/academics" to="Overview" />
-	{#each academics_categories as academics_category}
+	{#each academics_categories as academics_category, i}
 		<NavItemMobile
 			href="/academics/{academics_category.slug}"
-			to={academics_category.name}
+			to={academics_category.name ?? `Academics Category ${i}`}
 			dropdown={true}
 		>
 			{#each academics_programs.filter(({ category }) => {
-				if (typeof category !== 'string') return category.slug == academics_category.slug;
-			}) as academics_program}
+				if (typeof category !== 'string') return category?.slug == academics_category.slug;
+			}) as academics_program, i}
 				<NavItemMobile
 					href="/academics/{academics_category.slug}/programs/{academics_program.slug}"
-					to={academics_program.title}
+					to={academics_program.title ?? `Academics Program ${i}`}
 				/>
 			{/each}
 			<NavItemMobile
@@ -53,11 +56,11 @@
 				to="{academics_category.name} courses"
 			/>
 			{#each academics_pages.filter(({ category }) => {
-				if (typeof category !== 'string') return category.slug == academics_category.slug;
-			}) as academics_page}
+				if (typeof category !== 'string') return category?.slug == academics_category.slug;
+			}) as academics_page, i}
 				<NavItemMobile
 					href="/academics/{academics_category.slug}/{academics_page.slug}"
-					to={academics_page.title}
+					to={academics_page.title ?? `Academics Page ${i}`}
 				/>
 			{/each}
 		</NavItemMobile>
@@ -66,16 +69,22 @@
 <NavItemMobile href="/research" to="Research" dropdown={true}>
 	<NavItemMobile href="/research" to="Overview" />
 	<NavItemMobile href="/research/labs" to="Laboratories" dropdown={true}>
-		{#each laboratories as laboratory}
-			<NavItemMobile href="/research/labs/{laboratory.slug}" to={laboratory.name} />
+		{#each laboratories as laboratory, i}
+			<NavItemMobile
+				href="/research/labs/{laboratory.slug}"
+				to={laboratory.name ?? `Laboratory ${i}`}
+			/>
 		{/each}
 	</NavItemMobile>
 </NavItemMobile>
 <NavItemMobile href="/students" to="Students" dropdown={true}>
 	<NavItemMobile href="/students" to="Overview" />
 	<NavItemMobile href="/students/organizations" to="Organizations" />
-	{#each students_pages as students_page}
-		<NavItemMobile href="/students/{students_page.slug}" to={students_page.title} />
+	{#each students_pages as students_page, i}
+		<NavItemMobile
+			href="/students/{students_page.slug}"
+			to={students_page.title ?? `Students Page ${i}`}
+		/>
 	{/each}
 </NavItemMobile>
 <NavItemMobile href="/alumni" to="Alumni" />

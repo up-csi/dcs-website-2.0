@@ -56,12 +56,12 @@
 	}
 
 	$: filteredEvents = events.filter((event) => {
-		const eventDate = new Date(event.start_date);
+		const eventDate = new Date(event.start_date ?? 0);
 		return eventDate.getMonth() === currentMonth && eventDate.getFullYear() === currentYear;
 	});
 
 	$: eventsByDate = filteredEvents.reduce<Record<string, typeof events>>((acc, event) => {
-		const dateString = new Date(event.start_date).toDateString();
+		const dateString = new Date(event.start_date ?? 0).toDateString();
 		if (!acc[dateString]) {
 			acc[dateString] = [];
 		}
@@ -69,7 +69,9 @@
 		return acc;
 	}, {});
 
-	$: dates = [...new Set(filteredEvents.map((event) => new Date(event.start_date).toDateString()))]
+	$: dates = [
+		...new Set(filteredEvents.map((event) => new Date(event.start_date ?? 0).toDateString()))
+	]
 		.map((dateStr) => new Date(dateStr))
 		.sort((a, b) => a.getTime() - b.getTime());
 
@@ -153,7 +155,7 @@
 														{#if typeof tag !== 'string' && typeof tag.events_tags_id !== 'string'}
 															<span
 																class="inline-block rounded bg-slate-700 px-3 py-0.5 text-sm text-white"
-																>{tag.events_tags_id.name}</span
+																>{tag.events_tags_id?.name}</span
 															>
 														{/if}
 													{/each}
@@ -186,64 +188,68 @@
 											</div>
 
 											<div class="mt-4 md:hidden">
-												{#if !event.end_date}
-													<div class="text-base font-bold text-slate-700">
-														{formatEventTime(event.start_date)} - TBD
-													</div>
-												{:else if isAllDayEvent(event.start_date, event.end_date)}
-													<div class="text-base font-bold text-slate-700">All-Day</div>
-												{:else}
-													<div class="text-base font-bold text-slate-700">
-														{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
-															{new Date(event.start_date).toLocaleDateString([], {
-																month: 'short',
-																day: 'numeric',
-																year: 'numeric'
-															})}
-														{/if}
-														{formatEventTime(event.start_date)} -
-														{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
-															{new Date(event.end_date).toLocaleDateString([], {
-																month: 'short',
-																day: 'numeric',
-																year: 'numeric'
-															})}
-														{/if}
-														{formatEventTime(event.end_date)}
-													</div>
+												{#if event.start_date}
+													{#if !event.end_date}
+														<div class="text-base font-bold text-slate-700">
+															{formatEventTime(event.start_date)} - TBD
+														</div>
+													{:else if isAllDayEvent(event.start_date, event.end_date)}
+														<div class="text-base font-bold text-slate-700">All-Day</div>
+													{:else}
+														<div class="text-base font-bold text-slate-700">
+															{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
+																{new Date(event.start_date).toLocaleDateString([], {
+																	month: 'short',
+																	day: 'numeric',
+																	year: 'numeric'
+																})}
+															{/if}
+															{formatEventTime(event.start_date)} -
+															{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
+																{new Date(event.end_date).toLocaleDateString([], {
+																	month: 'short',
+																	day: 'numeric',
+																	year: 'numeric'
+																})}
+															{/if}
+															{formatEventTime(event.end_date)}
+														</div>
+													{/if}
 												{/if}
 											</div>
 										</div>
 
 										<div class="hidden max-w-64 whitespace-nowrap p-3 text-right md:block">
-											{#if !event.end_date}
-												<div class="text-lg font-bold text-slate-700">
-													{formatEventTime(event.start_date)} - TBD
-												</div>
-											{:else if isAllDayEvent(event.start_date, event.end_date)}
-												<div class="text-lg font-bold text-slate-700">All-Day</div>
-											{:else}
-												<div class="text-lg font-bold text-slate-700">
-													<div class="flex items-center justify-between gap-4">
-														<span class="flex flex-col items-center justify-start">
-															{formatEventTime(event.start_date)}
-															{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
-																<span class="text-xs text-slate-400">
-																	{formatEventDate(event.start_date)}
-																</span>
-															{/if}
-														</span>
-														<span>-</span>
-														<span class="flex flex-col items-center justify-start">
-															{formatEventTime(event.end_date)}
-															{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
-																<span class="text-xs text-slate-400">
-																	{formatEventDate(event.end_date)}
-																</span>
-															{/if}
-														</span>
+											{#if event.start_date}
+												{#if !event.end_date}
+													<div class="text-lg font-bold text-slate-700">
+														{formatEventTime(event.start_date)} - TBD
 													</div>
-												</div>
+												{:else if isAllDayEvent(event.start_date, event.end_date)}
+													<div class="text-lg font-bold text-slate-700">All-Day</div>
+												{:else}
+													<div class="text-lg font-bold text-slate-700">
+														<div class="flex items-center justify-between gap-4">
+															<span class="flex flex-col items-center justify-start">
+																{formatEventTime(event.start_date)}
+																{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
+																	<span class="text-xs text-slate-400">
+																		{formatEventDate(event.start_date)}
+																	</span>
+																{/if}
+															</span>
+															<span>-</span>
+															<span class="flex flex-col items-center justify-start">
+																{formatEventTime(event.end_date)}
+																{#if new Date(event.start_date).toDateString() !== new Date(event.end_date).toDateString()}
+																	<span class="text-xs text-slate-400">
+																		{formatEventDate(event.end_date)}
+																	</span>
+																{/if}
+															</span>
+														</div>
+													</div>
+												{/if}
 											{/if}
 										</div>
 									</div>
