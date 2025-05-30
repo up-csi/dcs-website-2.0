@@ -58,13 +58,13 @@
 	<div
 		in:fade={{ duration: 300, easing: cubicIn }}
 		out:fade={{ duration: 300, easing: cubicOut }}
-		class="fixed inset-0 z-50 h-screen w-screen bg-gray-500 opacity-50"
+		class="fixed inset-0 z-[100] h-screen w-screen bg-gray-500 opacity-50"
 	></div>
 
 	<div
 		in:fade={{ duration: 300, easing: cubicIn }}
 		out:fade={{ duration: 300, easing: cubicOut }}
-		class="fixed inset-0 z-50 flex items-center justify-center"
+		class="fixed inset-0 z-[100] flex items-center justify-center"
 	>
 		<Moon size="20" color="hsl(358.9, 75.7%, 27.5%)" unit="vh" />
 	</div>
