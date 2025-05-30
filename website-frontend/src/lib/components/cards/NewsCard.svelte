@@ -3,6 +3,7 @@
 	import { NewsItem } from '$lib/models/news';
 	import { Image } from 'lucide-svelte';
 	import { error } from '@sveltejs/kit';
+	import { reloading } from '$lib/stores';
 
 	export let item: NewsItem;
 	const news_tags =
@@ -14,7 +15,13 @@
 			}) ?? [];
 </script>
 
-<a href="/news/{item.slug}" data-sveltekit-reload>
+<a
+	href="/news/{item.slug}"
+	data-sveltekit-reload
+	on:click={() => {
+		$reloading = true;
+	}}
+>
 	<div
 		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>

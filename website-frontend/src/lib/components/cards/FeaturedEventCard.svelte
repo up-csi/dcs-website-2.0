@@ -2,6 +2,7 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Event } from '$lib/models/event';
 	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
+	import { reloading } from '$lib/stores';
 	export let item: Event;
 
 	function formatTimeRange(startTime: string, endTime: string) {
@@ -36,7 +37,13 @@
 	}
 </script>
 
-<a href="/events/{item.slug}" data-sveltekit-reload>
+<a
+	href="/events/{item.slug}"
+	data-sveltekit-reload
+	on:click={() => {
+		$reloading = true;
+	}}
+>
 	<div
 		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>

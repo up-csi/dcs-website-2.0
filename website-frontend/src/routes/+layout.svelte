@@ -6,6 +6,7 @@
 	import { fade } from 'svelte/transition';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 	import { navigating } from '$app/stores';
+	import { reloading } from '$lib/stores';
 
 	export let data;
 
@@ -53,7 +54,7 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-{#if $navigating}
+{#if $navigating || $reloading}
 	<div
 		in:fade={{ duration: 300, easing: cubicIn }}
 		out:fade={{ duration: 300, easing: cubicOut }}
