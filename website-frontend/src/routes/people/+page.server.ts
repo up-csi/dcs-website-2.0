@@ -94,9 +94,9 @@ export async function load({ fetch, url }) {
 								}
 							}
 						},
-					{
-						level: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
-					}
+						{
+							level: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+						}
 					]
 				}
 			})

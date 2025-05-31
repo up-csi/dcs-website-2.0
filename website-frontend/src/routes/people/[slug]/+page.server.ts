@@ -5,6 +5,7 @@ import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
 import { PeopleCategories, PeopleCategory } from '$lib/models/people_categories';
 import { People } from '$lib/models/people';
+import { Levels } from '$lib/models/people_levels';
 
 export async function load({ params, fetch, url }) {
 	const directus = getDirectusInstance(fetch);
@@ -70,17 +71,6 @@ export async function load({ params, fetch, url }) {
 		)
 	);
 
-	const allLevels = await directus.request(
-		readItems('people', {
-			fields: ['level'],
-			filter: {
-				category: {
-					_eq: category.title
-				}
-			}
-		})
-	);
-
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
 	const laboratory_filters = [
 		...new Set(
@@ -99,7 +89,16 @@ export async function load({ params, fetch, url }) {
 	]
 		.filter(Boolean)
 		.sort();
-	const level_filters = [...new Set(allLevels.map((p) => p.level))].filter(Boolean);
+
+	const level_filters = parse(
+		Levels,
+		await directus.request(
+			readItems('people_levels', {
+				fields: ['name'],
+				sort: ['name']
+			})
+		)
+	).map(({ name }) => name);
 
 	const people = parse(
 		People,
@@ -136,7 +135,11 @@ export async function load({ params, fetch, url }) {
 							}
 						},
 						{
-							level: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+							level: {
+								people_levels_id: {
+									name: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+								}
+							}
 						}
 					]
 				}
