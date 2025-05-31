@@ -72,6 +72,7 @@ export async function load({ params, fetch, url }) {
 	);
 
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
+
 	const laboratory_filters = [
 		...new Set(
 			allLaboratories.flatMap((p) => {
