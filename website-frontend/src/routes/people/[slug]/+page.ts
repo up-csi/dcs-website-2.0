@@ -4,6 +4,7 @@ export async function load({ data }) {
 		people: data.people,
 		category: data.category,
 		position_filters: data.position_filters,
-		laboratory_filters: data.laboratory_filters
+		laboratory_filters: data.laboratory_filters,
+		level_filters: data.level_filters
 	};
 }

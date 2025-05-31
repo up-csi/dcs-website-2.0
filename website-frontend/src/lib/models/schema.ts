@@ -27,10 +27,12 @@ import { EventsRelated } from './junctions/events_related';
 import { EventsTags } from './events_tags';
 import { EventsTagsCategories } from './events_tags_categories';
 import { LaboratoriesDirectusFiles } from './junctions/laboratories_directus_files';
+import { Levels } from './people_levels';
 import { PeopleCategories } from './people_categories';
 import { PeopleLaboratories } from './junctions/people_laboratories';
 import { PeoplePublications } from './junctions/people_publications';
 import { PeopleOverview } from './people_overview';
+import { PeopleRelated } from './junctions/people_related';
 import { PublicationsTags } from './publications_tags';
 import { PublicationsRelated } from './junctions/publications_related';
 import { StudentsOrganizations } from './students_organizations';
@@ -78,7 +80,9 @@ export const Schema = object({
 	laboratories_directus_files: LaboratoriesDirectusFiles,
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
+	people_levels: Levels,
 	people_publications: PeoplePublications,
+	people_related: PeopleRelated,
 	people_overview: PeopleOverview,
 	publications_tags: PublicationsTags,
 	publications_related: PublicationsRelated,

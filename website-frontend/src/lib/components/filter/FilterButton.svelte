@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { deslugify } from '$lib/utils';
 	import { ChevronUp, ChevronDown } from 'lucide-svelte';
 	import * as DropdownMenu from '$lib/@shadcn-svelte/ui/dropdown-menu';
 	import { page } from '$app/stores';
@@ -33,7 +34,7 @@
 				hide = !hide;
 			}}
 		>
-			<span>{name}</span>
+			<span>{name.charAt(0).toUpperCase() + name.slice(1)}</span>
 			{#if hide}
 				<ChevronDown class="ml-2 h-4 w-4" />
 			{:else}
@@ -50,7 +51,7 @@
 						onCheckedChange={() => {
 							nav(name, categoryName);
 							hide = !hide;
-						}}>{categoryName}</DropdownMenu.CheckboxItem
+						}}>{deslugify(categoryName)}</DropdownMenu.CheckboxItem
 					>
 				{/each}
 			</DropdownMenu.Group>

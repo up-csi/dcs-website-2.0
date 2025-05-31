@@ -4,7 +4,7 @@
 	import { reloading } from '$lib/stores';
 
 	export let organization;
-	$: ({ name, logo, description, email, website, slug } = organization);
+	$: ({ name, logo, description, website, slug } = organization);
 </script>
 
 <a

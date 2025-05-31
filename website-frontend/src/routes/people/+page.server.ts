@@ -4,12 +4,14 @@ import getDirectusInstance from '$lib/directus';
 import { parse } from 'valibot';
 import { People } from '$lib/models/people';
 import { PeopleOverview } from '$lib/models/people_overview';
+import { Levels } from '$lib/models/people_levels';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const filters = {
 		positions: url.searchParams.getAll('position'),
-		laboratories: url.searchParams.getAll('laboratory')
+		laboratories: url.searchParams.getAll('laboratory'),
+		levels: url.searchParams.getAll('level')
 	};
 
 	const allPositions = parse(
@@ -39,6 +41,7 @@ export async function load({ fetch, url }) {
 	);
 
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
+
 	const laboratory_filters = [
 		...new Set(
 			allLaboratories.flatMap((p) => {
@@ -56,6 +59,16 @@ export async function load({ fetch, url }) {
 	]
 		.filter(Boolean)
 		.sort();
+
+	const level_filters = parse(
+		Levels,
+		await directus.request(
+			readItems('people_levels', {
+				fields: ['name'],
+				sort: ['name']
+			})
+		)
+	).map(({ name }) => name);
 
 	const people = parse(
 		People,
@@ -85,6 +98,13 @@ export async function load({ fetch, url }) {
 									}
 								}
 							}
+						},
+						{
+							level: {
+								people_levels_id: {
+									name: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+								}
+							}
 						}
 					]
 				}
@@ -101,6 +121,7 @@ export async function load({ fetch, url }) {
 		people,
 		people_overview,
 		position_filters,
-		laboratory_filters
+		laboratory_filters,
+		level_filters
 	};
 }
