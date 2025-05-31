@@ -31,9 +31,6 @@
 		<div class="flex flex-col justify-center *:my-2 md:max-w-[50vw]">
 			<p class="text-3xl font-bold">{name}</p>
 			<p class="line-clamp-3">{description}</p>
-			<div class="*:pr-4">
-				<a href="mailto:{contact_email}">Email</a>
-			</div>
 		</div>
 	</div>
 </a>
