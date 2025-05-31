@@ -30,7 +30,7 @@
 			{/if}
 		</a>
 
-		<div class="flex flex-col justify-center *:my-2">
+		<div class="flex flex-col justify-center *:my-2 md:max-w-[50vw]">
 			<p class="text-3xl font-bold">{name}</p>
 			<p class="line-clamp-2 text-sm">{description}</p>
 			<div class="*:pr-4">
