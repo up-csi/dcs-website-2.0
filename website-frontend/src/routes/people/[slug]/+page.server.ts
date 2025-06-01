@@ -5,13 +5,15 @@ import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
 import { PeopleCategories, PeopleCategory } from '$lib/models/people_categories';
 import { People } from '$lib/models/people';
+import { Levels } from '$lib/models/people_levels';
 
 export async function load({ params, fetch, url }) {
 	const directus = getDirectusInstance(fetch);
 	const categorySlug = params.slug;
 	const filters = {
 		positions: url.searchParams.getAll('position'),
-		laboratories: url.searchParams.getAll('laboratory')
+		laboratories: url.searchParams.getAll('laboratory'),
+		levels: url.searchParams.getAll('level')
 	};
 
 	const categories = parse(
@@ -70,6 +72,7 @@ export async function load({ params, fetch, url }) {
 	);
 
 	const position_filters = [...new Set(allPositions.map((p) => p.position))].sort();
+
 	const laboratory_filters = [
 		...new Set(
 			allLaboratories.flatMap((p) => {
@@ -87,6 +90,16 @@ export async function load({ params, fetch, url }) {
 	]
 		.filter(Boolean)
 		.sort();
+
+	const level_filters = parse(
+		Levels,
+		await directus.request(
+			readItems('people_levels', {
+				fields: ['name'],
+				sort: ['name']
+			})
+		)
+	).map(({ name }) => name);
 
 	const people = parse(
 		People,
@@ -121,6 +134,13 @@ export async function load({ params, fetch, url }) {
 									}
 								}
 							}
+						},
+						{
+							level: {
+								people_levels_id: {
+									name: { _in: filters.levels.length !== 0 ? filters.levels : undefined }
+								}
+							}
 						}
 					]
 				}
@@ -128,5 +148,5 @@ export async function load({ params, fetch, url }) {
 		)
 	);
 
-	return { category, people, position_filters, laboratory_filters };
+	return { category, people, position_filters, laboratory_filters, level_filters };
 }

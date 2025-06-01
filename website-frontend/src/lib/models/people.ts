@@ -11,6 +11,7 @@ import {
 } from 'valibot';
 import { PeopleLaboratories } from './junctions/people_laboratories';
 import { PeoplePublications } from './junctions/people_publications';
+import { PeopleRelated } from './junctions/people_related';
 
 export const EducationalAttainment = partial(
 	object({
@@ -33,6 +34,7 @@ export const Person = partial(
 		website: nullable(string()),
 		location: nullable(string()),
 		category: string(),
+		level: nullable(union([array(number()), lazy(() => PeopleRelated)])),
 		profile_image: nullable(string()),
 		background_image: nullable(string()),
 		interests: nullable(string()),

@@ -9,7 +9,7 @@
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
 	export let data;
 
-	$: ({ people, people_overview, position_filters, laboratory_filters } = data);
+	$: ({ people, people_overview, position_filters, laboratory_filters, level_filters } = data);
 
 	const priority = [
 		'Professor Emeritus',
@@ -61,6 +61,10 @@
 		{
 			name: 'laboratory',
 			categories: laboratory_filters
+		},
+		{
+			name: 'level',
+			categories: level_filters
 		}
 	];
 </script>
