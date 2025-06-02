@@ -77,7 +77,6 @@
 				})
 		: [];
 
-	console.log(events);
 	let showFull = false;
 </script>
 
