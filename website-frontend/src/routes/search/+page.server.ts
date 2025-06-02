@@ -64,7 +64,7 @@ export async function load({ fetch, url }) {
 										const person = await directus.request(readItem('people', author.link.key));
 										return {
 											...author,
-											link: `/people/${person.category}/${person.username}`
+											link: `/people/${person.username}`
 										};
 									}
 								})

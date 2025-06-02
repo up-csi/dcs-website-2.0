@@ -30,7 +30,7 @@
 <NavItem href="/people" to="People" dropdown={true}>
 	{#each people_categories as people_category, i}
 		<NavItem
-			href="/people/{people_category.title}"
+			href="/people/category/{people_category.title}"
 			to={deslugify(people_category.title ?? `people-category-${i}`)}
 		/>
 	{/each}

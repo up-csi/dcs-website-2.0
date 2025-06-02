@@ -114,7 +114,7 @@
 						</p>
 						<CardPanel>
 							{#each people as person (person.username)}
-								<a href="/people/{person.category}/{person.username}">
+								<a href="/people/{person.username}">
 									<PeopleCard
 										{person}
 										laboratory={person.affiliations?.[0]?.laboratories_id?.name}

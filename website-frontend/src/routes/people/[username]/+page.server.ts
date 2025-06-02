@@ -63,7 +63,7 @@ export async function load({ params, fetch }) {
 								);
 								return {
 									...author,
-									link: `/people/${person.category}/${person.username}`
+									link: `/people/${person.username}`
 								};
 							}
 							return author;

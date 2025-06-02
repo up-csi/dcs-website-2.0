@@ -77,7 +77,6 @@
 				})
 		: [];
 
-	console.log(events);
 	let showFull = false;
 </script>
 
@@ -145,7 +144,7 @@
 			<CardPanel>
 				{#each affiliates as affiliate}
 					{#if affiliate}
-						<a href="/people/{affiliate.category}/{affiliate.username}">
+						<a href="/people/{affiliate.username}">
 							<PeopleCard person={affiliate} laboratory={laboratory.name ?? 'N/A'} />
 						</a>
 					{/if}
