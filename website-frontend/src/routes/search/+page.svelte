@@ -80,9 +80,9 @@
 								<p class="line-clamp-2">{@html event_content}</p>
 							</SearchResult>
 						{/each}
-						{#each people as { category, username, first_name, last_name, profile_image, position }}
+						{#each people as { username, first_name, last_name, profile_image, position }}
 							<SearchResult
-								href="/people/{category}/{username}"
+								href="/people/{username}"
 								image={profile_image}
 								name="{first_name} {last_name}"
 							>
@@ -127,9 +127,9 @@
 							</SearchResult>
 						{/each}
 					{:else if tab === 'People'}
-						{#each people as { category, username, first_name, last_name, profile_image, position }}
+						{#each people as { username, first_name, last_name, profile_image, position }}
 							<SearchResult
-								href="/people/{category}/{username}"
+								href="/people/{username}"
 								image={profile_image}
 								name="{first_name} {last_name}"
 							>
