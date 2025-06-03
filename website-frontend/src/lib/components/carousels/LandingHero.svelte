@@ -139,19 +139,21 @@
 							<div
 								class="flex gap-x-3 text-sm font-semibold text-secondary-foreground md:ml-[6px] md:mt-4"
 							>
-								{#each [...Array(count).keys()] as i}
-									{#if i + 1 === current}
-										<div class="relative h-2 w-8 overflow-hidden rounded-full bg-white/40">
-											<div
-												class="absolute left-0 top-0 h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
-												style="width: {progress}%;"
-											></div>
-										</div>
-									{:else}
-										<button class="h-2 w-2 rounded-full bg-white/40" on:click={() => goToSlide(i)}
-										></button>
-									{/if}
-								{/each}
+								{#if count !== 1}
+									{#each [...Array(count).keys()] as i}
+										{#if i + 1 === current}
+											<div class="relative h-2 w-8 overflow-hidden rounded-full bg-white/40">
+												<div
+													class="absolute left-0 top-0 h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
+													style="width: {progress}%;"
+												></div>
+											</div>
+										{:else}
+											<button class="h-2 w-2 rounded-full bg-white/40" on:click={() => goToSlide(i)}
+											></button>
+										{/if}
+									{/each}
+								{/if}
 							</div>
 						</div>
 					</div>
