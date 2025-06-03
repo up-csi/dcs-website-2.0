@@ -10,7 +10,7 @@
 		{#if alum.background_image}
 			<img
 				class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-				src="{PUBLIC_APIURL}/assets/{alum.background_image}"
+				src="{PUBLIC_APIURL}/assets/{alum.background_image}?height=360"
 				alt="Background"
 			/>
 		{/if}
@@ -27,7 +27,7 @@
 			{#if alum.profile_image}
 				<img
 					class="h-full w-full rounded-full object-cover"
-					src="{PUBLIC_APIURL}/assets/{alum.profile_image}"
+					src="{PUBLIC_APIURL}/assets/{alum.profile_image}?fit=cover&width=180&height=180"
 					alt="Profile"
 				/>
 			{:else}

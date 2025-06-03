@@ -20,7 +20,7 @@
 	>
 		{#if logo}
 			<div class="flex h-40 w-40 items-center justify-center">
-				<img src="{PUBLIC_APIURL}/assets/{logo}" alt={name} class="max-h-40 max-w-40" />
+				<img src="{PUBLIC_APIURL}/assets/{logo}?height=180" alt={name} class="max-h-40 max-w-40" />
 			</div>
 		{:else}
 			<div class="flex h-40 w-40 items-center justify-center rounded-full bg-secondary">

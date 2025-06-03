@@ -21,7 +21,7 @@
 						{#if display_image}
 							<img
 								class="w-fill h-32 object-contain"
-								src="{PUBLIC_APIURL}/assets/{display_image}"
+								src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 								alt={name}
 							/>
 						{:else}
@@ -45,7 +45,7 @@
 				{#if display_image}
 					<img
 						class="w-fill h-32 object-contain"
-						src="{PUBLIC_APIURL}/assets/{display_image}"
+						src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 						alt={name}
 					/>
 				{:else}

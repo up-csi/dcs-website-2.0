@@ -15,7 +15,7 @@
 	let background =
 		'background-image: linear-gradient(to right, hsl(var(--primary)) -5%, #D1D8DD 70%)';
 	$: if (background_image) {
-		background = `background-image: linear-gradient(to right, hsl(var(--primary)) -5%, transparent 70%), url('${PUBLIC_APIURL}/assets/${background_image}')`;
+		background = `background-image: linear-gradient(to right, hsl(var(--primary)) -5%, transparent 70%), url('${PUBLIC_APIURL}/assets/${background_image}?height=720')`;
 	}
 </script>
 
@@ -31,7 +31,7 @@
 		{#if logo_image}
 			<img
 				class="mr-6 hidden h-28 w-28 rounded-full object-cover md:block"
-				src="{PUBLIC_APIURL}/assets/{logo_image}"
+				src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width=360&height=360"
 				alt="logo"
 			/>
 		{/if}

@@ -50,7 +50,7 @@
 
 <svelte:head>
 	<title>{title}</title>
-	<link rel="icon" href="{PUBLIC_APIURL}/assets/{favicon}" />
+	<link rel="icon" href="{PUBLIC_APIURL}/assets/{favicon}?fit=cover&height=45&width=45" />
 	<meta name="description" content={description} />
 </svelte:head>
 

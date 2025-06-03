@@ -70,7 +70,7 @@
 				<Carousel.Item class="relative flex h-[70vh] flex-col items-center justify-end md:h-[90vh]">
 					{#if news_item.background_image}
 						<img
-							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height=1080"
 							alt="Carousel Item"
 							class="absolute h-full w-screen object-cover"
 						/>

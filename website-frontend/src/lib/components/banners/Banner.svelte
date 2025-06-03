@@ -9,7 +9,7 @@
 	let background =
 		'background-image: linear-gradient(to top, hsl(var(--primary)) -20%, hsl(var(--secondary)) 55%)';
 	$: if (background_image) {
-		background = `background-image: linear-gradient(to top, hsl(var(--primary)) -20%, transparent 55%), url('${PUBLIC_APIURL}/assets/${background_image}')`;
+		background = `background-image: linear-gradient(to top, hsl(var(--primary)) -20%, transparent 55%), url('${PUBLIC_APIURL}/assets/${background_image}?height=720')`;
 	}
 
 	$: deslugify_title = deslugify(title);

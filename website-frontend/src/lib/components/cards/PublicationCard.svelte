@@ -19,7 +19,7 @@
 				>
 					{#if publication.hero_image}
 						<img
-							src="{PUBLIC_APIURL}/assets/{publication.hero_image}"
+							src="{PUBLIC_APIURL}/assets/{publication.hero_image}?height=360"
 							alt={publication.title}
 							class="h-full w-full rounded-lg object-cover"
 						/>

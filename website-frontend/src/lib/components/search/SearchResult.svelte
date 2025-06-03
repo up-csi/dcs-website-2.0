@@ -21,7 +21,7 @@
 			>
 				{#if image}
 					<img
-						src="{PUBLIC_APIURL}/assets/{image}"
+						src="{PUBLIC_APIURL}/assets/{image}?height=360"
 						alt={name}
 						class="max-h-full max-w-full rounded-lg"
 					/>
@@ -45,7 +45,7 @@
 				>
 					{#if image}
 						<img
-							src="{PUBLIC_APIURL}/assets/{image}"
+							src="{PUBLIC_APIURL}/assets/{image}?height=360"
 							alt={name}
 							class="max-h-full max-w-full rounded-lg"
 						/>

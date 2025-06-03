@@ -53,7 +53,7 @@
 <div class="relative z-0">
 	<div
 		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
-		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
 	></div>
 
 	<div

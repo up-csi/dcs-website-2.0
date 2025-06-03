@@ -37,7 +37,7 @@
 				<div class="h-full px-5">
 					<img
 						class="h-[40svh] w-full object-cover md:h-[60svh]"
-						src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+						src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height=720"
 						alt="Background"
 					/>
 				</div>

@@ -17,7 +17,7 @@
 <div class="bg-background-dark">
 	<div
 		class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
-		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
 	></div>
 
 	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
@@ -32,7 +32,7 @@
 				{#if profile_image}
 					<img
 						class="h-full w-full rounded-full object-cover"
-						src="{PUBLIC_APIURL}/assets/{profile_image}"
+						src="{PUBLIC_APIURL}/assets/{profile_image}?fit=cover&width=360&height=360"
 						alt="{first_name} {last_name}'s profile picture"
 					/>
 				{:else}
