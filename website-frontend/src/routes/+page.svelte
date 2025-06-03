@@ -7,6 +7,10 @@
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { ChevronRight } from 'lucide-svelte';
+	import { parse } from 'valibot';
+	import { News } from '$lib/models/news';
+	import { Moon } from 'svelte-loading-spinners';
+	import { Frown } from 'lucide-svelte';
 
 	export let data;
 
@@ -59,11 +63,23 @@
 	<div id="more-news" class="flex justify-center bg-background-dark text-primary-foreground">
 		<div class="max-w-[1330px] px-4 py-16 md:px-8 md:py-24 2xl:max-w-screen-2xl">
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
-			<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
-				{#each news as item}
-					<NewsCard {item} />
-				{/each}
-			</div>
+			{#await news}
+				<div class="flex flex-col items-center justify-center gap-5">
+					<Moon size="90" color="hsl(0, 0%, 100%)" unit="px" duration="1s" />
+					<p>Loading news...</p>
+				</div>
+			{:then news}
+				<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
+					{#each news as item}
+						<NewsCard {item} />
+					{/each}
+				</div>
+			{:catch}
+				<div class="flex flex-col items-center justify-center gap-5">
+					<Frown size="90" />
+					<p>Error loading news. Please try refreshing the page.</p>
+				</div>
+			{/await}
 		</div>
 	</div>
 </FullWidthBreakout>

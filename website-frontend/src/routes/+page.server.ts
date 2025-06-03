@@ -1,15 +1,15 @@
 /** @type {import('./$types').PageServerLoad} */
 import { readItems, readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
-import { parse } from 'valibot';
+import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
 import { News } from '$lib/models/news';
 import { Home } from '$lib/models/home';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
-	const news = parse(
-		News,
-		await directus.request(
+	const news = parseAsync(
+		pipeAsync(promise(), awaitAsync(), News),
+		directus.request(
 			readItems('news', {
 				fields: [
 					'*',
