@@ -8,6 +8,15 @@
 	import { reloading } from '$lib/stores';
 
 	export let item: Publication;
+
+	$: publications_tags = item.publication_tags
+		? item.publication_tags
+				.filter((tag) => typeof tag === 'object')
+				.map(({ publications_tags_id }) => {
+					if (typeof publications_tags_id === 'object') return publications_tags_id.name;
+				})
+				.filter((tag) => typeof tag !== 'undefined')
+		: [];
 </script>
 
 <Dialog.Root>
@@ -49,8 +58,18 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-1">
-			<Dialog.Title>{item.title}</Dialog.Title>
+			<Dialog.Title class="text-start">{item.title}</Dialog.Title>
 			<Dialog.Description class="flex flex-col gap-y-2">
+				{#if publications_tags.length !== 0}
+					<div class="flex h-3 items-center border-l-[4px] border-primary-dark pl-2 text-sm">
+						<small class="capitalize">
+							{#each publications_tags.slice(0, -1) as publications_tag}
+								{publications_tag},
+							{/each}
+							{publications_tags.at(-1)}
+						</small>
+					</div>
+				{/if}
 				<div>
 					{#if item.publish_date}
 						<div class="text-start">
