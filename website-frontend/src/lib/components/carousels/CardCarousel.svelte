@@ -5,7 +5,7 @@
 </script>
 
 <Carousel.Root opts={{ align: 'start', dragFree: true }}>
-	<Carousel.Content class="-ml-[85%] -mr-[81%] md:-ml-[18%] md:-mr-[17%]">
+	<Carousel.Content class="-ml-[85%] -mr-[81%] pb-8 md:-ml-[18%] md:-mr-[17%]">
 		<Carousel.Item class="basis-1/3 md:basis-1/6">
 			<div class="h-full" />
 		</Carousel.Item>
