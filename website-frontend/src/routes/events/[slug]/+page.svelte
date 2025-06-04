@@ -9,6 +9,15 @@
 
 	export let data;
 	$: ({ event, related_events } = data);
+
+	$: tags = event.event_tags
+		? event.event_tags
+				.filter((tag) => typeof tag === 'object')
+				.map(({ events_tags_id }) => {
+					if (typeof events_tags_id === 'object') return events_tags_id.name;
+				})
+				.filter((tag) => typeof tag !== 'undefined')
+		: [];
 </script>
 
 {#if event}
@@ -16,6 +25,7 @@
 		<FullWidthBreakout>
 			<DetailsBanner
 				title={event.event_headline ?? ''}
+				tags={tags ?? []}
 				background_image={event.hero_image ?? ''}
 				display_location={event.display_location ?? ''}
 				start_date={event.start_date ?? 'datetime'}
