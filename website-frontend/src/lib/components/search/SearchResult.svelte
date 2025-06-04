@@ -3,11 +3,23 @@
 	import * as Dialog from '$lib/@shadcn-svelte/ui/dialog';
 	import { SquareArrowOutUpRight } from 'lucide-svelte';
 	import { Publication } from '$lib/models/publications';
+	import { reloading } from '$lib/stores';
 
 	export let publication: Publication | null = null;
 	export let image: string | null | undefined;
 	export let name: string;
 	export let href: string;
+
+	$: publications_tags = publication
+		? publication.publication_tags
+			? publication.publication_tags
+					.filter((tag) => typeof tag === 'object')
+					.map(({ publications_tags_id }) => {
+						if (typeof publications_tags_id === 'object') return publications_tags_id.name;
+					})
+					.filter((tag) => typeof tag !== 'undefined')
+			: []
+		: [];
 </script>
 
 {#if !publication}
@@ -57,13 +69,23 @@
 				</div>
 			</div>
 		</Dialog.Trigger>
-		<Dialog.Content>
+		<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 			<Dialog.Header class="flex flex-col gap-y-1">
-				<Dialog.Title>{publication.title}</Dialog.Title>
+				<Dialog.Title class="text-start">{publication.title}</Dialog.Title>
 				<Dialog.Description class="flex flex-col gap-y-2">
+					{#if publications_tags.length !== 0}
+						<div class="flex h-3 items-center border-l-[4px] border-primary-dark pl-2 text-sm">
+							<small class="capitalize">
+								{#each publications_tags.slice(0, -1) as publications_tag}
+									{publications_tag},
+								{/each}
+								{publications_tags.at(-1)}
+							</small>
+						</div>
+					{/if}
 					<div>
 						{#if publication.publish_date}
-							<div>
+							<div class="text-start">
 								<strong>Date published:</strong>
 								{new Date(publication.publish_date).toLocaleDateString('en-EN', {
 									year: 'numeric',
@@ -81,7 +103,13 @@
 								{/if}
 								{#each publication.authors as author, i}
 									{#if author.link && typeof author.link === 'string'}
-										<a href={author.link} class="text-blue-500"
+										<a
+											href={author.link}
+											class="text-blue-500"
+											data-sveltekit-reload
+											on:click={() => {
+												$reloading = true;
+											}}
 											>{author.last_name}, {author.first_name}
 										</a>
 									{:else}
@@ -95,7 +123,7 @@
 						{/if}
 					</div>
 					{#if publication.abstract}
-						<div>
+						<div class="text-start">
 							<small><strong>Abstract:</strong> {publication.abstract}</small>
 						</div>
 					{/if}
