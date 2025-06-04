@@ -56,15 +56,13 @@
 				class:mt-24={!news_item.background_image}
 			>
 				{#if news_tags.length !== 0}
-					<div class="border-l-[5px] border-primary-dark pl-2 text-sm font-bold">
-						{#each news_tags.slice(0, -1) as news_tag}
-							<span class="capitalize">
-								{news_tag},{' '}
-							</span>
-						{/each}
-						<span class="capitalize">
+					<div class="flex border-l-[5px] border-primary-dark pl-2 font-bold">
+						<small class="capitalize">
+							{#each news_tags.slice(0, -1) as news_tag}
+								{`${news_tag}, `}
+							{/each}
 							{news_tags.at(-1)}
-						</span>
+						</small>
 					</div>
 				{/if}
 				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>

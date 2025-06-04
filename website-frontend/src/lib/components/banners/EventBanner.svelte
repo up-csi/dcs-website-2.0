@@ -83,15 +83,13 @@
 				</div>
 
 				{#if tags.length !== 0}
-					<div class="flex h-3 items-center border-l-[4px] border-primary-dark pl-2">
-						<small class="capitalize">
-							{tags.at(0)}
+					<div class="flex h-5 items-center border-l-[4px] border-primary-dark pl-2">
+						<small class="capitalize italic">
+							{#each tags.slice(0, -1) as tag}
+								{`${tag}, `}
+							{/each}
+							{tags.at(-1)}
 						</small>
-						{#each tags.slice(1) as tag}
-							<small class="capitalize">
-								{`, ${tag}`}
-							</small>
-						{/each}
 					</div>
 				{/if}
 			</div>
