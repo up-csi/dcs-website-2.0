@@ -12,6 +12,15 @@
 
 	$: ({ other_news, news_item } = data);
 
+	$: news_tags = news_item.news_tags
+		? news_item.news_tags
+				.filter((tag) => typeof tag === 'object')
+				.map(({ news_tags_id }) => {
+					if (typeof news_tags_id === 'object') return news_tags_id.name;
+				})
+				.filter((tag) => typeof tag !== 'undefined')
+		: [];
+
 	$: publish_date = new Date(news_item.date_created ?? 0).toLocaleDateString('en-US', {
 		month: 'long',
 		day: 'numeric',
@@ -47,6 +56,18 @@
 				class:mt-8={news_item.background_image}
 				class:mt-24={!news_item.background_image}
 			>
+				{#if news_tags.length !== 0}
+					<div class="border-l-[5px] border-primary-dark pl-2 text-sm font-bold">
+						{#each news_tags.slice(0, -1) as news_tag}
+							<span class="capitalize">
+								{news_tag},{' '}
+							</span>
+						{/each}
+						<span class="capitalize">
+							{news_tags.at(-1)}
+						</span>
+					</div>
+				{/if}
 				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
 				{#if news_item.summary}
 					<p class="md:text-xl">{news_item.summary}</p>
