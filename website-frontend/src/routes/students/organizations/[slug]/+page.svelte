@@ -1,6 +1,5 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import Hero from '$lib/components/carousels/LabHero.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
@@ -13,6 +12,7 @@
 	import type { StudentsOrganization } from '$lib/models/students_organizations';
 	import type { Events } from '$lib/models/event';
 	import type { News } from '$lib/models/news';
+	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 
 	export let data;
 	let organization: StudentsOrganization;
@@ -88,16 +88,9 @@
 					<ArrowRight class="size-4" />
 				</Button>
 			</div>
-			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
-				<Carousel.Content>
-					{#each events as event}
-						<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-							<FeaturedEventCard item={event} />
-						</Carousel.Item>
-					{/each}
-				</Carousel.Content>
-				<Carousel.Next />
-			</Carousel.Root>
+			<FullWidthBreakout>
+				<CardCarousel CardComponent={FeaturedEventCard} items={events} />
+			</FullWidthBreakout>
 		</div>
 
 		<!-- News -->
@@ -109,18 +102,11 @@
 					<ArrowRight class="size-4" />
 				</Button>
 			</div>
-			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
-				<Carousel.Content>
-					{#each news as news_item}
-						<Carousel.Item class="-mr-10 basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-							<NewsCard item={news_item} />
-						</Carousel.Item>
-					{/each}
-				</Carousel.Content>
-				<Carousel.Next />
-			</Carousel.Root>
+			<FullWidthBreakout>
+				<CardCarousel CardComponent={NewsCard} items={news} />
+			</FullWidthBreakout>
 		</div>
 	</div>
 {:else}
-	<p>Research lab not found</p>
+	<p>Student organization not found</p>
 {/if}
