@@ -6,6 +6,7 @@
 	import ReadMore from '$lib/components/buttons/ReadMore.svelte';
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
 	import PeopleCard from '$lib/components/cards/PeopleCard.svelte';
+	import CardPanel from '$lib/components/panel/CardPanel.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { Laboratory } from '$lib/models/laboratories';
 	import { Publications } from '$lib/models/publications';
@@ -138,9 +139,15 @@
 		{#if affiliates.length === 0}
 			<p class="col-span-2 py-8 text-center italic text-gray-500 md:col-span-4">No members found</p>
 		{:else}
-			<FullWidthBreakout>
-				<CardCarousel CardComponent={PeopleCard} items={affiliates} />
-			</FullWidthBreakout>
+			<CardPanel>
+				{#each affiliates as affiliate}
+					{#if affiliate}
+						<a href="/people/{affiliate.username}">
+							<PeopleCard item={affiliate} laboratory={laboratory.name ?? 'N/A'} />
+						</a>
+					{/if}
+				{/each}
+			</CardPanel>
 		{/if}
 	</div>
 
