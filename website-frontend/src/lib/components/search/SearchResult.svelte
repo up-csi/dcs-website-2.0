@@ -77,7 +77,7 @@
 						<div class="flex h-3 items-center border-l-[4px] border-primary-dark pl-2 text-sm">
 							<small class="capitalize">
 								{#each publications_tags.slice(0, -1) as publications_tag}
-									{publications_tag},
+									{publications_tag}{', '}
 								{/each}
 								{publications_tags.at(-1)}
 							</small>
