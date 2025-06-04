@@ -130,7 +130,7 @@
 				</p>
 			{:else}
 				{#each publications as publication}
-					<PublicationCard {publication} />
+					<PublicationCard item={publication} />
 				{/each}
 			{/if}
 		</div>

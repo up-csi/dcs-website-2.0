@@ -1,9 +1,7 @@
 <script lang="ts">
 	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel/index';
-	import { NewsItem } from '$lib/models/news';
-	import { Event } from '$lib/models/event';
 	export let CardComponent;
-	export let items: NewsItem[] | Event[] = [];
+	export let items;
 </script>
 
 <Carousel.Root opts={{ align: 'start', dragFree: true }}>

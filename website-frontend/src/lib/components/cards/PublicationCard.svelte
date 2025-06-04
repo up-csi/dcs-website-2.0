@@ -7,7 +7,7 @@
 	import { SquareArrowOutUpRight } from 'lucide-svelte';
 	import { reloading } from '$lib/stores';
 
-	export let publication: Publication;
+	export let item: Publication;
 </script>
 
 <Dialog.Root>
@@ -17,10 +17,10 @@
 				<div
 					class="-mt-24 w-full max-w-[calc(var(--card-height)*0.5)] flex-grow overflow-hidden rounded-lg bg-gray-100"
 				>
-					{#if publication.hero_image}
+					{#if item.hero_image}
 						<img
-							src="{PUBLIC_APIURL}/assets/{publication.hero_image}?height=360"
-							alt={publication.title}
+							src="{PUBLIC_APIURL}/assets/{item.hero_image}?height=360"
+							alt={item.title}
 							class="h-full w-full rounded-lg object-cover"
 						/>
 					{:else}
@@ -29,14 +29,14 @@
 						</div>
 					{/if}
 				</div>
-				<Card.Title class="w-full py-2 text-center">{publication.title}</Card.Title>
+				<Card.Title class="w-full py-2 text-center">{item.title}</Card.Title>
 				<Card.Description class="flex w-full flex-col justify-between gap-x-4 pb-4 lg:flex-row">
 					<p class="text-center text-sm text-gray-500 lg:text-start">
-						{publication.authors?.map((a) => a.last_name).join(', ')}
+						{item.authors?.map((a) => a.last_name).join(', ')}
 					</p>
 					<p class="text-center text-sm text-gray-500 lg:text-end">
-						{#if publication.publish_date}
-							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+						{#if item.publish_date}
+							{new Date(item.publish_date).toLocaleDateString('en-EN', {
 								year: 'numeric',
 								month: 'long',
 								day: 'numeric'
@@ -49,27 +49,27 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-1">
-			<Dialog.Title>{publication.title}</Dialog.Title>
+			<Dialog.Title>{item.title}</Dialog.Title>
 			<Dialog.Description class="flex flex-col gap-y-2">
 				<div>
-					{#if publication.publish_date}
+					{#if item.publish_date}
 						<div class="text-start">
 							<strong>Date published:</strong>
-							{new Date(publication.publish_date).toLocaleDateString('en-EN', {
+							{new Date(item.publish_date).toLocaleDateString('en-EN', {
 								year: 'numeric',
 								month: 'long',
 								day: 'numeric'
 							})}
 						</div>
 					{/if}
-					{#if publication.authors}
+					{#if item.authors}
 						<div class="flex gap-x-1">
-							{#if publication.authors.length !== 1}
+							{#if item.authors.length !== 1}
 								<strong>Authors:</strong>
 							{:else}
 								<strong>Author:</strong>
 							{/if}
-							{#each publication.authors as author, i}
+							{#each item.authors as author, i}
 								{#if author.link && typeof author.link === 'string'}
 									<a
 										href={author.link}
@@ -83,27 +83,27 @@
 								{:else}
 									<span>{author.last_name}, {author.first_name} </span>
 								{/if}
-								{#if i + 1 !== publication.authors.length}
+								{#if i + 1 !== item.authors.length}
 									<div>&</div>
 								{/if}
 							{/each}
 						</div>
 					{/if}
 				</div>
-				{#if publication.abstract}
+				{#if item.abstract}
 					<div class="text-start">
-						<small><strong>Abstract:</strong> {publication.abstract}</small>
+						<small><strong>Abstract:</strong> {item.abstract}</small>
 					</div>
 				{/if}
-				{#if publication.access_links}
+				{#if item.access_links}
 					<div>
 						<small class="flex gap-x-1">
-							{#if publication.access_links.length !== 1}
+							{#if item.access_links.length !== 1}
 								<strong>Access Links:</strong>
 							{:else}
 								<strong>Access Link:</strong>
 							{/if}
-							{#each publication.access_links as access_link, i}
+							{#each item.access_links as access_link, i}
 								<div class="flex gap-x-1">
 									<a href={access_link.url} target="_blank">
 										<div class="flex gap-x-1">
@@ -117,7 +117,7 @@
 											</div>
 										</div>
 									</a>
-									{#if i + 1 !== publication.access_links.length}
+									{#if i + 1 !== item.access_links.length}
 										<div class="select-none">|</div>
 									{/if}
 								</div>
