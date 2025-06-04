@@ -1,16 +1,15 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
-	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
-	import { Share } from 'lucide-svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
+	import Share from '$lib/components/buttons/Share.svelte';
 	export let data;
 
-	$: ({ other_news, news_item } = data);
+	$: ({ link, other_news, news_item } = data);
 
 	$: news_tags = news_item.news_tags
 		? news_item.news_tags
@@ -82,9 +81,7 @@
 						{/if}
 						<small class="text-gray-500">Published on {publish_date} | {publish_time} </small>
 					</div>
-					<Button variant="outline" class="flex gap-x-2 rounded-full"
-						>Share <Share class="size-4" /></Button
-					>
+					<Share {link} />
 				</div>
 			</div>
 		</div>

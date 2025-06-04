@@ -5,7 +5,7 @@ import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
 import { News, NewsItem } from '$lib/models/news';
 
-export async function load({ params, fetch }) {
+export async function load({ url, params, fetch }) {
 	const directus = getDirectusInstance(fetch);
 	const news = parse(
 		News,
@@ -72,5 +72,7 @@ export async function load({ params, fetch }) {
 		)
 	);
 
-	return { other_news, news_item };
+	const link = new URL(url.toString()).toString();
+
+	return { link, other_news, news_item };
 }
