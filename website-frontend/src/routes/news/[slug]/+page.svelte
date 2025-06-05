@@ -4,7 +4,6 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
-	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import Share from '$lib/components/buttons/Share.svelte';
 	export let data;
@@ -99,10 +98,14 @@
 {/if}
 
 <FullWidthBreakout>
-	<div class="bg-background-dark py-24 text-primary-foreground">
-		<div class="container flex h-full flex-col gap-y-8">
-			<h2 class="heading-text">More News from UPD DCS</h2>
-			<CardCarousel CardComponent={NewsCard} items={other_news} />
+	<div class="flex justify-center bg-background-dark text-primary-foreground">
+		<div class="max-w-[1330px] px-4 py-16 md:px-8 md:py-24 2xl:max-w-screen-2xl">
+			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
+			<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
+				{#each other_news as news_item}
+					<NewsCard item={news_item} />
+				{/each}
+			</div>
 		</div>
 	</div>
 </FullWidthBreakout>
