@@ -7,6 +7,7 @@
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { Person } from '$lib/models/people';
 	import FilterBar from '$lib/components/filter/FilterBar.svelte';
+	import { deslugify } from '$lib/utils.js';
 
 	export let data;
 
@@ -73,7 +74,7 @@
 {#if category}
 	<FullWidthBreakout>
 		<Banner
-			title={category.title}
+			title={deslugify(category.title)}
 			background_image={category.background_image ?? ''}
 			flexible_content={category.flexible_content}
 		/>
