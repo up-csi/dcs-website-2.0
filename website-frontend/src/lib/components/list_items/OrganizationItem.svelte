@@ -15,10 +15,10 @@
 	}}
 >
 	<div
-		class="my-4 flex justify-start gap-6 rounded-lg p-10 text-background"
+		class="my-4 flex flex-col justify-center gap-6 rounded-lg p-10 text-center text-background md:flex-row md:justify-start md:text-start"
 		style="background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)/0.25)); grid-template-columns: 1fr auto;"
 	>
-		<a href={website} target="_blank">
+		<a href={website} class="flex justify-center md:justify-start" target="_blank">
 			{#if logo}
 				<div class="flex h-40 w-40 items-center justify-center">
 					<img
@@ -35,7 +35,7 @@
 		</a>
 
 		<div class="flex flex-col justify-center *:my-2 md:max-w-[50vw]">
-			<p class="text-3xl font-bold">{name}</p>
+			<p class="text-xl font-bold leading-tight sm:text-2xl lg:text-3xl">{name}</p>
 			<p class="line-clamp-2 text-sm">{description}</p>
 		</div>
 	</div>
