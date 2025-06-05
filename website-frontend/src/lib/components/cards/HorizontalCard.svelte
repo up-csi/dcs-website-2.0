@@ -3,7 +3,6 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 
 	export let logo_image: string = '';
-	export let background_image: string = '';
 	export let name: string = '';
 	export let description: string = '';
 
@@ -11,18 +10,11 @@
 	$: if (description) {
 		height = 'h-40';
 	}
-
-	let background =
-		'background-image: linear-gradient(to right, hsl(var(--primary)) -5%, #D1D8DD 70%)';
-	$: if (background_image) {
-		background = `background-image: linear-gradient(to right, hsl(var(--primary)) -5%, transparent 70%), url('${PUBLIC_APIURL}/assets/${background_image}?height=720')`;
-	}
 </script>
 
 <div class="card group relative flex h-auto w-full flex-col overflow-hidden">
 	<div
-		class="{height} bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-105"
-		style={background}
+		class="{height} bg-gradient-to-r from-[hsl(var(--primary))] from-[-5%] to-[#D1D8DD] to-[130%] bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-105 sm:to-[110%] lg:to-[90%] xl:to-[70%]"
 	></div>
 
 	<div
@@ -36,12 +28,12 @@
 			/>
 		{/if}
 
-		<div class="max-w-lg">
-			<p class="text-xl font-bold leading-tight md:text-2xl">{name}</p>
+		<div class="flex max-w-[80vw] flex-col">
+			<p class="text-2xl font-bold leading-tight">{name}</p>
 			{#if description}
-				<p class="mt-3 text-xs font-light">{description}</p>
+				<p class="mt-3 text-sm font-light">{description}</p>
 			{:else}
-				<p class="mt-2 flex items-center gap-1 text-xs font-light">
+				<p class="mt-2 flex items-center gap-1 text-sm font-light">
 					View Curriculum
 					<ChevronRight class="h-3 w-3" />
 				</p>
