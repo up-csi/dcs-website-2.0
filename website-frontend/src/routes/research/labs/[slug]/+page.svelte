@@ -121,19 +121,6 @@
 		</div>
 	</FullWidthBreakout>
 
-	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
-		<h2 class="my-6 text-3xl font-bold">Publications</h2>
-		{#if publications.length === 0}
-			<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
-				No publications found
-			</p>
-		{:else}
-			<FullWidthBreakout>
-				<CardCarousel CardComponent={PublicationCard} items={publications} />
-			</FullWidthBreakout>
-		{/if}
-	</div>
-
 	<div class="mx-auto px-4 pb-8 md:mt-12 md:px-10 md:pb-10">
 		<h2 class="my-6 text-3xl font-bold">Members</h2>
 		{#if affiliates.length === 0}
@@ -151,6 +138,19 @@
 					{/if}
 				{/each}
 			</CardPanel>
+		{/if}
+	</div>
+
+	<div class="mx-auto px-4 pb-4 md:mt-12 md:px-10 md:pb-10">
+		<h2 class="my-6 text-3xl font-bold">Publications</h2>
+		{#if publications.length === 0}
+			<p class="col-span-1 py-8 text-center italic text-gray-500 md:col-span-4">
+				No publications found
+			</p>
+		{:else}
+			<FullWidthBreakout>
+				<CardCarousel CardComponent={PublicationCard} items={publications} />
+			</FullWidthBreakout>
 		{/if}
 	</div>
 
