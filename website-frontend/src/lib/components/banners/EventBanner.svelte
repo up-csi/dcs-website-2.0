@@ -83,7 +83,7 @@
 				</div>
 
 				{#if tags.length !== 0}
-					<div class="flex h-5 items-center border-l-[4px] border-primary-dark pl-2">
+					<div class="flex h-5 items-center md:border-l-[4px] md:border-primary-dark md:pl-2">
 						<small class="capitalize italic">
 							{#each tags.slice(0, -1) as tag}
 								{`${tag}, `}
