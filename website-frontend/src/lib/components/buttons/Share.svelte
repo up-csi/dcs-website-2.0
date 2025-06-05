@@ -16,7 +16,7 @@
 		}, 3000);
 	}}
 	variant="outline"
-	class="hidden gap-x-2 rounded-full md:flex"
+	class="hidden gap-x-2 rounded-full sm:flex"
 	>{text}
 	{#if text === 'Copied'}
 		<ThumbsUp class="size-4" />
@@ -30,5 +30,5 @@
 		alert('Share link copied!');
 	}}
 	variant="outline"
-	class="flex gap-x-2 rounded-full md:hidden"><Share class="size-4" /></Button
+	class="flex gap-x-2 rounded-full sm:hidden"><Share class="size-4" /></Button
 >

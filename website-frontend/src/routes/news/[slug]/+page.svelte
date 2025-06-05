@@ -36,7 +36,7 @@
 {#if news_item}
 	<FullWidthBreakout>
 		<div class="flex flex-col gap-y-5 bg-white">
-			<div class="md:mt-16 md:px-6">
+			<div class="px-6 lg:mt-16">
 				<Breadcrumb page_name={news_item.title} />
 			</div>
 
@@ -50,7 +50,7 @@
 				</div>
 			{/if}
 			<div
-				class="mx-auto flex w-full max-w-[1220px] flex-col gap-y-5 px-4 pb-16 md:px-14 2xl:max-w-screen-2xl"
+				class="mx-auto flex w-full max-w-[1220px] flex-col gap-y-5 px-8 pb-16 md:px-16 2xl:max-w-screen-2xl"
 				class:mt-8={news_item.background_image}
 				class:mt-24={!news_item.background_image}
 			>
@@ -64,7 +64,7 @@
 						</small>
 					</div>
 				{/if}
-				<h1 class="text-3xl font-bold md:text-6xl">{news_item.title}</h1>
+				<h1 class="text-3xl font-bold md:text-4xl lg:text-5xl xl:text-6xl">{news_item.title}</h1>
 				{#if news_item.summary}
 					<p class="md:text-xl">{news_item.summary}</p>
 				{/if}
@@ -99,7 +99,7 @@
 
 <FullWidthBreakout>
 	<div class="flex justify-center bg-background-dark text-primary-foreground">
-		<div class="max-w-[1330px] px-4 py-16 md:px-8 md:py-24 2xl:max-w-screen-2xl">
+		<div class="max-w-[1330px] px-8 py-16 md:px-16 md:py-24 2xl:max-w-screen-2xl">
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
 			<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
 				{#each other_news as news_item}
