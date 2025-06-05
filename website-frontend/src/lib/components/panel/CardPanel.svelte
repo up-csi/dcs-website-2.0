@@ -1,13 +1,7 @@
-<script lang="ts">
-	export let width: number = 279;
-</script>
+<!-- <div class="grid grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+	<slot />
+</div> -->
 
-<div
-	class="mx-auto my-3 grid
-    max-w-[94vw] justify-center gap-2
-    md:my-8
-    md:max-w-[80vw] lg:gap-3"
-	style="grid-template-columns: repeat(auto-fit, {width}px);"
->
+<div class="flex flex-wrap justify-center gap-5">
 	<slot />
 </div>

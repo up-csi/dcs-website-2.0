@@ -117,7 +117,10 @@
 							</p>
 							<CardPanel>
 								{#each people as person (person.username)}
-									<a href="/people/{person.username}">
+									<a
+										href="/people/{person.username}"
+										class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+									>
 										<PeopleCard
 											item={person}
 											laboratory={person.affiliations?.[0]?.laboratories_id?.name}
