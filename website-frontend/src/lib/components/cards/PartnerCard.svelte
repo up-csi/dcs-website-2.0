@@ -13,7 +13,7 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class="h-full w-full pt-20">
+	<Dialog.Trigger class="h-full w-full">
 		<Card.Root class="card h-[286px] w-[376px] border-0">
 			<Card.Content class="card h-full w-full p-4">
 				<div class="flex flex-col gap-y-5">
