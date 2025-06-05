@@ -54,26 +54,26 @@
 				</div>
 
 				<InfoCard
-					location="insert organization.location here"
+					location={organization.location ?? ''}
 					contact_email={organization.email ?? ''}
 					founding_date={organization.founding_date ?? ''}
 				/>
 
-				<FlexibleContent content={organization.flexible_content} />
-
-				<div class="text-lg leading-normal text-primary-foreground">
-					<div class="text-lg leading-normal text-primary-foreground">
-						<p class="duration-400 overflow-hidden transition-all" class:line-clamp-6={!showFull}>
-							{organization.description}
-						</p>
-
-						{#if !showFull}
-							<div class="mt-9">
-								<ReadMore bind:showFull />
-							</div>
-						{/if}
+				{#if !showFull}
+					<div class="mt-9">
+						<ReadMore bind:showFull />
 					</div>
-				</div>
+				{:else}
+					<div class="text-lg leading-normal text-primary-foreground">
+						<div class="text-lg leading-normal text-primary-foreground">
+							<p class="duration-400 overflow-hidden transition-all">
+								{organization.description}
+							</p>
+						</div>
+					</div>
+
+					<FlexibleContent inverted content={organization.flexible_content} />
+				{/if}
 			</div>
 		</div>
 	</FullWidthBreakout>

@@ -1,4 +1,4 @@
-import { cleanHtml } from '$lib/models-helpers';
+import { cleanHtmlDark } from '$lib/models-helpers';
 import {
 	array,
 	object,
@@ -25,7 +25,7 @@ export const StudentsOrganization = partial(
 		logo: nullable(string()),
 		website: nullable(string()),
 		location: nullable(string()),
-		flexible_content: pipe(string(), cleanHtml),
+		flexible_content: pipe(string(), cleanHtmlDark),
 		background_images: nullable(
 			union([array(number()), lazy(() => StudentsOrganizationsDirectusFiles)])
 		)

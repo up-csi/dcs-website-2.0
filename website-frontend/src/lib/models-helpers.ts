@@ -17,7 +17,7 @@ const elementClassMap = {
 };
 
 // TODO: Add dark mode implementation
-function enhanceWysiwygContent(htmlContent: string): string {
+function enhanceWysiwygContent(htmlContent: string, inverted?: boolean): string {
 	const doc = parse(htmlContent);
 
 	Object.entries(elementClassMap).forEach(([tag, className]) => {
@@ -31,6 +31,13 @@ function enhanceWysiwygContent(htmlContent: string): string {
 		});
 	});
 
+	if (inverted) {
+		const elements = doc.querySelectorAll('*');
+		elements
+			.filter((element) => ['img', 'iframe'].includes(element.localName))
+			.forEach((element) => element.classList.add('invert'));
+	}
+
 	return doc.innerHTML;
 }
 
@@ -40,5 +47,14 @@ export const cleanHtml = transform((input: string) =>
 		sanitize(input, {
 			allowedTags: sanitize.defaults.allowedTags.concat(['img', 'iframe'])
 		})
+	)
+);
+
+export const cleanHtmlDark = transform((input: string) =>
+	enhanceWysiwygContent(
+		sanitize(input, {
+			allowedTags: sanitize.defaults.allowedTags.concat(['img', 'iframe'])
+		}),
+		true
 	)
 );
