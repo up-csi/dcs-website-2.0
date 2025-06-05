@@ -101,7 +101,7 @@
 	<div class="flex justify-center bg-background-dark text-primary-foreground">
 		<div class="max-w-[1330px] px-8 py-16 md:px-16 md:py-24 2xl:max-w-screen-2xl">
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
-			<div class="flex flex-col gap-5 md:grid md:grid-cols-4">
+			<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{#each other_news as news_item}
 					<NewsCard item={news_item} />
 				{/each}

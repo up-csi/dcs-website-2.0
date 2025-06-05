@@ -62,7 +62,7 @@
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
 			<Await
 				onDark
-				layout="flex flex-col gap-5 md:grid md:grid-cols-4"
+				layout="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 				data={news}
 				text="news"
 				component={NewsCard}
