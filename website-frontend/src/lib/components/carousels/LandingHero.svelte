@@ -81,7 +81,7 @@
 						<div
 							role="button"
 							tabindex="0"
-							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-12 md:items-start md:pb-14 md:text-left"
+							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground lg:mx-12 lg:items-start lg:pb-14 lg:text-left"
 							on:mouseenter={stopAutoplay}
 							on:mouseleave={resetAutoplay}
 						>
@@ -91,24 +91,28 @@
 									out:fly={{ x: -40, duration: 1000, easing: cubicOut }}
 								>
 									<h1
-										class="text-2xl font-bold leading-tight drop-shadow-lg md:text-4xl md:leading-tight"
+										class="text-2xl font-bold leading-tight drop-shadow-lg md:text-3xl md:leading-tight lg:text-4xl"
 									>
 										{news_item.title}
 									</h1>
 								</div>
 
 								<div
-									class="hidden md:block"
+									class="text-sm md:text-base"
 									in:fly={{ x: 40, duration: 900, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 900 }}
 								>
-									<p class="line-clamp-3 text-xs font-medium drop-shadow-lg md:text-base">
-										{news_item.summary}
-									</p>
+									{#if news_item.summary}
+										<p
+											class="line-clamp-3 text-xs font-medium drop-shadow-lg md:text-sm lg:text-base"
+										>
+											{news_item.summary}
+										</p>
+									{/if}
 								</div>
 
 								<div
-									class="block md:hidden"
+									class="block lg:hidden"
 									in:fly={{ x: 40, duration: 700, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 700 }}
 								>
@@ -127,7 +131,7 @@
 										Read Story
 									</Button>
 									<p
-										class="hidden text-xs font-medium text-white opacity-70 drop-shadow-lg md:block md:text-sm"
+										class="hidden text-xs font-medium text-white opacity-70 drop-shadow-lg lg:block lg:text-sm"
 									>
 										by {news_item.user_created.first_name}
 										{news_item.user_created.last_name}
