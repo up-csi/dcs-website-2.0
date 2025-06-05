@@ -20,7 +20,7 @@
 					<div class="flex">
 						{#if display_image}
 							<img
-								class="w-fill h-32 object-contain"
+								class="h-32 object-contain"
 								src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 								alt={name}
 							/>
@@ -41,10 +41,10 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-2">
-			<div class="flex">
+			<div class="relative flex">
 				{#if display_image}
 					<img
-						class="w-fill h-32 object-contain"
+						class="h-32 object-contain"
 						src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 						alt={name}
 					/>
