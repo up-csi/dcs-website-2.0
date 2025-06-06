@@ -22,18 +22,20 @@
 		<Breadcrumb page_name={title} />
 	</div>
 
-	{#if content.flexible_content}
-		<div class="mb-10 w-full px-40">
-			<FlexibleContent content={content.flexible_content} />
+	<div class="space-y-16">
+		<div class="prose text-base">
+			{#if content.flexible_content}
+				<FlexibleContent content={content.flexible_content} />
+			{/if}
 		</div>
-	{/if}
 
-	<p class="heading-text heading-padding">Our Partners</p>
-	<CardPanel>
-		{#each partnerships as partner}
-			<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3">
-				<PartnerCard {partner} />
-			</div>
-		{/each}
-	</CardPanel>
+		<p class="heading-text heading-padding">Our Partners</p>
+		<CardPanel>
+			{#each partnerships as partner}
+				<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3">
+					<PartnerCard {partner} />
+				</div>
+			{/each}
+		</CardPanel>
+	</div>
 </div>
