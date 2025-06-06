@@ -47,7 +47,7 @@
 					<Carousel.Item class="h-full">
 						<div
 							class="h-[82vh] bg-cover bg-center md:h-[80vh]"
-							style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+							style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
 						></div>
 					</Carousel.Item>
 				{/each}
@@ -67,7 +67,7 @@
 				{#if logo_image}
 					<img
 						class="h-full w-full rounded-full object-cover"
-						src="{PUBLIC_APIURL}/assets/{logo_image}"
+						src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width=180&height=180"
 						alt="Logo"
 					/>
 				{:else}

@@ -47,7 +47,17 @@ export async function load({ fetch, url }) {
 			Publications,
 			await directus.request(
 				readItems('publications', {
-					search: url.searchParams.get('q') ?? undefined
+					search: url.searchParams.get('q') ?? undefined,
+					fields: [
+						'*',
+						{
+							publication_tags: [
+								{
+									publications_tags_id: ['name']
+								}
+							]
+						}
+					]
 				})
 			)
 		);

@@ -84,7 +84,7 @@
 
 	<FilterBar {controls} />
 
-	<div class="space-y-16 md:space-y-24">
+	<div class="mt-5 space-y-16">
 		{#if peopleByPosition.length === 0 || peopleByPosition.every(({ people }) => people.length === 0)}
 			<div class="pt-16 text-center md:pt-24">
 				<p class="text-sm italic text-slate-600 md:text-lg">
@@ -95,7 +95,7 @@
 			{#each peopleByPosition as { position, people }}
 				{#if people.length > 0}
 					<div class="pt-8">
-						<p class="heading-text">
+						<p class="heading-text heading-padding">
 							{#if position === 'Professor Emeritus'}
 								{#if people.length === 1}
 									Professor Emeritus
@@ -114,9 +114,12 @@
 						</p>
 						<CardPanel>
 							{#each people as person (person.username)}
-								<a href="/people/{person.username}">
+								<a
+									href="/people/{person.username}"
+									class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+								>
 									<PeopleCard
-										{person}
+										item={person}
 										laboratory={person.affiliations?.[0]?.laboratories_id?.name}
 									/>
 								</a>

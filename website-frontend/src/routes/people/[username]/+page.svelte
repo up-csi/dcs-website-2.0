@@ -1,16 +1,16 @@
 <script>
 	/** @type {import('./$types').PageData} */
-	import * as Carousel from '$lib/@shadcn-svelte/ui/carousel';
 	import * as Tabs from '$lib/@shadcn-svelte/ui/tabs';
 	import Banner from '$lib/components/banners/PeopleBanner.svelte';
 	import InfoCard from '$lib/components/cards/InfoCard.svelte';
 	import PublicationCard from '$lib/components/cards/PublicationCard.svelte';
+	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 
 	export let data;
-	const { person } = data;
+	$: ({ person } = data);
 
-	const affiliations = person.affiliations
+	$: affiliations = person.affiliations
 		? person.affiliations
 				.filter((affiliation) => typeof affiliation !== 'string')
 				.map((affiliation) => {
@@ -23,8 +23,7 @@
 					return {};
 				})
 		: [];
-
-	const publications = person.publications
+	$: publications = person.publications
 		? person.publications
 				.filter((publication) => typeof publication !== 'number')
 				.map((publication) => {
@@ -34,7 +33,7 @@
 				.filter((item) => item !== null)
 		: [];
 
-	const affiliationList = affiliations.map((a) => ({
+	$: affiliationList = affiliations.map((a) => ({
 		role: a.role ?? '',
 		affiliation: a.laboratory ?? ''
 	}));
@@ -114,18 +113,9 @@
 				Publications by {person.first_name}
 				{person.last_name}
 			</h2>
-			<Carousel.Root opts={{ align: 'start', dragFree: true }}>
-				<Carousel.Content>
-					{#each publications as publication}
-						{#if publication}
-							<Carousel.Item class="-mr-10 h-full basis-full pr-10 md:-mr-5 md:basis-1/4 md:pr-5">
-								<PublicationCard {publication} />
-							</Carousel.Item>
-						{/if}
-					{/each}
-				</Carousel.Content>
-				<Carousel.Next />
-			</Carousel.Root>
+			<FullWidthBreakout>
+				<CardCarousel CardComponent={PublicationCard} items={publications} />
+			</FullWidthBreakout>
 		</div>
 	{/if}
 </div>

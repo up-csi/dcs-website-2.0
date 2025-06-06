@@ -62,9 +62,11 @@
 	<FilterBar {controls} />
 	<Sort {sort_options} />
 
-	<div class="mx-auto mt-5 grid max-w-[80vw] grid-cols-1 gap-4 pb-10 md:grid-cols-3 lg:grid-cols-4">
+	<div
+		class="mx-auto mt-5 grid max-w-[80vw] grid-cols-1 gap-4 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+	>
 		{#each publicationsList as publication}
-			<PublicationCard {publication} />
+			<PublicationCard item={publication} />
 		{/each}
 	</div>
 	{#if shown < publications.length}

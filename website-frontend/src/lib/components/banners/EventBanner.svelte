@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { deslugify } from '$lib/utils';
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Clock, MapPin } from 'lucide-svelte';
 
 	export let title: string;
+	export let tags: string[];
 	export let background_image: string;
 	export let display_location: string;
 	export let start_date: 'datetime';
 	export let end_date: 'datetime' | null;
-
-	$: deslugify_title = deslugify(title);
 
 	// function to extract date
 
@@ -53,19 +51,19 @@
 <div class="relative z-0">
 	<div
 		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
-		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}')"
+		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
 	></div>
 
 	<div
 		class="-mt-[0.4px] w-full bg-[#343541] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"
 	>
 		<div
-			class="-mt-16 flex w-full
-            flex-col items-center px-5 text-center
-            md:flex-row md:justify-between md:px-32 md:text-start"
+			class="-mt-16 flex w-full flex-col
+            items-center gap-y-10 px-5 text-center
+            md:flex-row md:justify-between md:px-10 md:text-start lg:px-32"
 		>
-			<div class="text-primary-foreground md:max-w-[60vw]">
-				<h1 class="text-4xl font-bold md:mb-4 md:text-4xl">{deslugify_title}</h1>
+			<div class="flex flex-col gap-y-1 text-primary-foreground md:max-w-[60vw] md:gap-y-5">
+				<h1 class="text-4xl font-bold md:text-4xl">{title}</h1>
 				<div class="my-6 space-y-1 md:my-0 md:flex">
 					{#if display_location}
 						<div class="flex items-center justify-center space-x-2 md:mr-10 md:justify-start">
@@ -83,6 +81,17 @@
 						{/if}
 					</div>
 				</div>
+
+				{#if tags.length !== 0}
+					<div class="flex h-5 items-center md:border-l-[4px] md:border-primary-dark md:pl-2">
+						<small class="capitalize italic">
+							{#each tags.slice(0, -1) as tag}
+								{`${tag}, `}
+							{/each}
+							{tags.at(-1)}
+						</small>
+					</div>
+				{/if}
 			</div>
 
 			<!-- Date Display -->

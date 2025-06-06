@@ -27,7 +27,7 @@
 		</div>
 	{/if}
 
-	<p class="heading-text">CS Network</p>
+	<p class="heading-text heading-padding">CS Network</p>
 
 	{#each students_organizations as organization}
 		<OrganizationItem {organization} />

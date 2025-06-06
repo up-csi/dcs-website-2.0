@@ -2,16 +2,17 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 
 	import { Person } from '$lib/models/people';
-	export let person: Person;
-	export let laboratory: string;
+
+	export let item: Person;
+	export let laboratory: string = '';
 </script>
 
 <div class="card group relative flex h-full w-full flex-col overflow-hidden">
 	<div class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52">
-		{#if person.background_image}
+		{#if item.background_image}
 			<img
 				class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-				src="{PUBLIC_APIURL}/assets/{person.background_image}"
+				src="{PUBLIC_APIURL}/assets/{item.background_image}?height=360"
 				alt="Background"
 			/>
 		{/if}
@@ -25,10 +26,10 @@
 				class="absolute -inset-[2px] -z-10 rounded-full border-2 border-primary/20 backdrop-blur-lg md:-inset-1 md:border-4"
 			></div>
 
-			{#if person.profile_image}
+			{#if item.profile_image}
 				<img
 					class="h-full w-full rounded-full object-cover"
-					src="{PUBLIC_APIURL}/assets/{person.profile_image}"
+					src="{PUBLIC_APIURL}/assets/{item.profile_image}?fit=cover&width=180&height=180"
 					alt="Profile"
 				/>
 			{:else}
@@ -38,11 +39,11 @@
 
 		<div class="mb-3 mt-2 p-3 text-center">
 			<div class="text-xs font-semibold uppercase leading-none opacity-55 md:leading-tight">
-				<p>{person.position}</p>
+				<p>{item.position}</p>
 			</div>
 			<h3 class="py-2 font-bold leading-none text-gray-900 md:text-xl">
-				{person.first_name}
-				{person.last_name}
+				{item.first_name}
+				{item.last_name}
 			</h3>
 			{#if laboratory}
 				<div class="text-xs font-medium leading-none opacity-55 md:px-6 md:leading-tight">

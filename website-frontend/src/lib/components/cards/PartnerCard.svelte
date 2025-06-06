@@ -13,15 +13,15 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class="h-full w-full pt-20">
-		<Card.Root class="card h-[286px] w-[376px] border-0">
+	<Dialog.Trigger class="h-full w-full">
+		<Card.Root class="card h-full w-full border-0">
 			<Card.Content class="card h-full w-full p-4">
 				<div class="flex flex-col gap-y-5">
 					<div class="flex">
 						{#if display_image}
 							<img
-								class="w-fill h-32 object-contain"
-								src="{PUBLIC_APIURL}/assets/{display_image}"
+								class="h-32 object-contain"
+								src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 								alt={name}
 							/>
 						{:else}
@@ -41,11 +41,11 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-2">
-			<div class="flex">
+			<div class="relative flex">
 				{#if display_image}
 					<img
-						class="w-fill h-32 object-contain"
-						src="{PUBLIC_APIURL}/assets/{display_image}"
+						class="h-32 object-contain"
+						src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
 						alt={name}
 					/>
 				{:else}

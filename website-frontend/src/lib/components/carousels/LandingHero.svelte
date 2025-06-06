@@ -70,7 +70,7 @@
 				<Carousel.Item class="relative flex h-[70vh] flex-col items-center justify-end md:h-[90vh]">
 					{#if news_item.background_image}
 						<img
-							src="{PUBLIC_APIURL}/assets/{news_item.background_image}"
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height=1080"
 							alt="Carousel Item"
 							class="absolute h-full w-screen object-cover"
 						/>
@@ -81,7 +81,7 @@
 						<div
 							role="button"
 							tabindex="0"
-							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground md:mx-12 md:items-start md:pb-14 md:text-left"
+							class="container mx-auto flex max-w-3xl flex-col items-center gap-y-5 pb-9 pt-72 text-center text-secondary-foreground lg:mx-12 lg:items-start lg:pb-14 lg:text-left"
 							on:mouseenter={stopAutoplay}
 							on:mouseleave={resetAutoplay}
 						>
@@ -91,24 +91,28 @@
 									out:fly={{ x: -40, duration: 1000, easing: cubicOut }}
 								>
 									<h1
-										class="text-2xl font-bold leading-tight drop-shadow-lg md:text-4xl md:leading-tight"
+										class="text-2xl font-bold leading-tight drop-shadow-lg md:text-3xl md:leading-tight lg:text-4xl"
 									>
 										{news_item.title}
 									</h1>
 								</div>
 
 								<div
-									class="hidden md:block"
+									class="text-sm md:text-base"
 									in:fly={{ x: 40, duration: 900, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 900 }}
 								>
-									<p class="line-clamp-3 text-xs font-medium drop-shadow-lg md:text-base">
-										{news_item.summary}
-									</p>
+									{#if news_item.summary}
+										<p
+											class="line-clamp-3 text-xs font-medium drop-shadow-lg md:text-sm lg:text-base"
+										>
+											{news_item.summary}
+										</p>
+									{/if}
 								</div>
 
 								<div
-									class="block md:hidden"
+									class="block lg:hidden"
 									in:fly={{ x: 40, duration: 700, easing: cubicOut }}
 									out:fly={{ x: -40, duration: 700 }}
 								>
@@ -127,7 +131,7 @@
 										Read Story
 									</Button>
 									<p
-										class="hidden text-xs font-medium text-white opacity-70 drop-shadow-lg md:block md:text-sm"
+										class="hidden text-xs font-medium text-white opacity-70 drop-shadow-lg lg:block lg:text-sm"
 									>
 										by {news_item.user_created.first_name}
 										{news_item.user_created.last_name}
@@ -139,19 +143,21 @@
 							<div
 								class="flex gap-x-3 text-sm font-semibold text-secondary-foreground md:ml-[6px] md:mt-4"
 							>
-								{#each [...Array(count).keys()] as i}
-									{#if i + 1 === current}
-										<div class="relative h-2 w-8 overflow-hidden rounded-full bg-white/40">
-											<div
-												class="absolute left-0 top-0 h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
-												style="width: {progress}%;"
-											></div>
-										</div>
-									{:else}
-										<button class="h-2 w-2 rounded-full bg-white/40" on:click={() => goToSlide(i)}
-										></button>
-									{/if}
-								{/each}
+								{#if count !== 1}
+									{#each [...Array(count).keys()] as i}
+										{#if i + 1 === current}
+											<div class="relative h-2 w-8 overflow-hidden rounded-full bg-white/40">
+												<div
+													class="absolute left-0 top-0 h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
+													style="width: {progress}%;"
+												></div>
+											</div>
+										{:else}
+											<button class="h-2 w-2 rounded-full bg-white/40" on:click={() => goToSlide(i)}
+											></button>
+										{/if}
+									{/each}
+								{/if}
 							</div>
 						</div>
 					</div>

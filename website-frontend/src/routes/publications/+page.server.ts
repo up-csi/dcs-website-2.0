@@ -62,6 +62,16 @@ export async function load({ fetch, url }) {
 			Publications,
 			await directus.request(
 				readItems('publications', {
+					fields: [
+						'*',
+						{
+							publication_tags: [
+								{
+									publications_tags_id: ['name']
+								}
+							]
+						}
+					],
 					filter: {
 						'year(publish_date)': { _in: filters.years.length !== 0 ? filters.years : undefined },
 						laboratory: {

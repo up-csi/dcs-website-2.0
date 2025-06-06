@@ -57,7 +57,7 @@
 				<div class="h-full w-full">
 					<img
 						class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-						src="{PUBLIC_APIURL}/assets/{item.hero_image}"
+						src="{PUBLIC_APIURL}/assets/{item.hero_image}?height=360"
 						alt="Background"
 					/>
 				</div>

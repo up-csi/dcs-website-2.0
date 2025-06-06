@@ -21,7 +21,7 @@
 			<Breadcrumb />
 		</div>
 
-		<div class="space-y-16 md:space-y-24">
+		<div class="space-y-16">
 			<div class="prose text-base">
 				{#if academics_category.flexible_content}
 					<FlexibleContent content={academics_category.flexible_content} />
@@ -47,7 +47,7 @@
 
 			<div>
 				<h1 class="mb-3 text-2xl font-bold leading-tight md:mb-6 md:text-3xl">Other Things</h1>
-				<div class="flex gap-x-1">
+				<div class="flex flex-wrap gap-1">
 					<LinkButton
 						text="{academics_category.name} Courses"
 						link="{academics_category.slug}/courses"

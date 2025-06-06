@@ -26,7 +26,7 @@
 	>
 		<DropdownMenu.Trigger>
 			<button
-				class="flex items-center px-4 py-1 text-sm md:rounded-3xl md:border-2"
+				class="flex items-center rounded-3xl border-2 px-4 py-1 text-sm"
 				on:click={() => {
 					hide = !hide;
 				}}

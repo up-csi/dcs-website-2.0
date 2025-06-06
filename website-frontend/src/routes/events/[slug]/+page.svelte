@@ -5,9 +5,19 @@
 	import FlexibleContent from '$lib/components/flexible_content/FlexibleContent.svelte';
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
+	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 
 	export let data;
 	$: ({ event, related_events } = data);
+
+	$: tags = event.event_tags
+		? event.event_tags
+				.filter((tag) => typeof tag === 'object')
+				.map(({ events_tags_id }) => {
+					if (typeof events_tags_id === 'object') return events_tags_id.name;
+				})
+				.filter((tag) => typeof tag !== 'undefined')
+		: [];
 </script>
 
 {#if event}
@@ -15,6 +25,7 @@
 		<FullWidthBreakout>
 			<DetailsBanner
 				title={event.event_headline ?? ''}
+				tags={tags ?? []}
 				background_image={event.hero_image ?? ''}
 				display_location={event.display_location ?? ''}
 				start_date={event.start_date ?? 'datetime'}
@@ -31,19 +42,10 @@
 	</div>
 
 	{#if related_events}
-		<h1 class="heading-text">Related Events</h1>
-
-		<div
-			class="mx-auto my-3 grid
-			max-w-[94vw] grid-cols-2 gap-2 pb-20
-			md:my-8 md:max-w-[80vw] md:grid-cols-4 md:gap-4"
-		>
-			{#each related_events as related_event}
-				{#if related_event && typeof related_event !== 'string'}
-					<FeaturedEventCard item={related_event} />
-				{/if}
-			{/each}
-		</div>
+		<h1 class="heading-text heading-padding">Related Events</h1>
+		<FullWidthBreakout>
+			<CardCarousel CardComponent={FeaturedEventCard} items={related_events} />
+		</FullWidthBreakout>
 	{/if}
 {:else}
 	<p>Event not found</p>

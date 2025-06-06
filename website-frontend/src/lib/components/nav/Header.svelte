@@ -61,14 +61,14 @@
 		<div class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}">
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
-					src="{PUBLIC_APIURL}/assets/{secondary_logo}"
+					src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width=90&height=90"
 					alt="UP"
 					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 				/>
 			</a>
 			<a href="/">
 				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width=90&height=90"
 					alt="DCS"
 					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
 				/>
@@ -181,14 +181,14 @@
 		<div class="mt-5 flex items-center justify-center lg:hidden">
 			<a href="/">
 				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width=90&height=90"
 					alt="UP"
 					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
 				/>
 			</a>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
 				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}"
+					src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width=90&height=90"
 					alt="DCS"
 					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
 				/>

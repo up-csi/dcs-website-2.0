@@ -133,7 +133,7 @@
 										{#if event.hero_image}
 											<div class="h-48 w-full overflow-hidden rounded-lg md:h-36 md:w-52">
 												<img
-													src="{PUBLIC_APIURL}/assets/{event.hero_image}"
+													src="{PUBLIC_APIURL}/assets/{event.hero_image}?height=360"
 													alt={event.event_headline}
 													class="h-full w-full object-cover"
 												/>
