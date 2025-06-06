@@ -28,10 +28,12 @@
 		</div>
 	{/if}
 
-	<p class="heading-text">Our Partners</p>
-	<CardPanel width={376}>
+	<p class="heading-text heading-padding">Our Partners</p>
+	<CardPanel>
 		{#each partnerships as partner}
-			<PartnerCard {partner} />
+			<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3">
+				<PartnerCard {partner} />
+			</div>
 		{/each}
 	</CardPanel>
 </div>
