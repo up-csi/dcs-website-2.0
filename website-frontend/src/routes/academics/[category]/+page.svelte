@@ -21,7 +21,7 @@
 			<Breadcrumb />
 		</div>
 
-		<div class="space-y-16 md:space-y-24">
+		<div class="space-y-16">
 			<div class="prose text-base">
 				{#if academics_category.flexible_content}
 					<FlexibleContent content={academics_category.flexible_content} />

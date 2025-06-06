@@ -87,7 +87,7 @@
 
 		<FilterBar {controls} />
 
-		<div class="space-y-16 md:space-y-24">
+		<div class="space-y-16">
 			{#if peopleByPosition.length === 0 || peopleByPosition.every(({ people }) => people.length === 0)}
 				<div class="pt-16 text-center md:pt-24">
 					<p class="text-sm italic text-slate-600 md:text-lg">
