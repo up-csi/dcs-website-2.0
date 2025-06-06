@@ -28,7 +28,7 @@
 	$: publish_time = new Date(news_item.date_created ?? 0).toLocaleTimeString('en-US', {
 		hour: 'numeric',
 		minute: 'numeric',
-		timeZone: 'PST',
+		timeZone: 'Asia/Manila',
 		timeZoneName: 'short'
 	});
 </script>
