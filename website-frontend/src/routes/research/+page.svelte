@@ -20,7 +20,7 @@
 		<Breadcrumb page_name={title} />
 	</div>
 
-	<p class="heading-text">Research Laboratories</p>
+	<p class="heading-text heading-padding">Research Laboratories</p>
 
 	{#each laboratories as laboratory}
 		<LaboratoryItem {laboratory} />
