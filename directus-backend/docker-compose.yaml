@@ -1,8 +1,9 @@
 services:
   directus:
+    restart: unless-stopped
     image: directus/directus:11.1.0
     ports:
-      - 8055:8055
+      - 8060:8055
     volumes:
       - database:/directus/database
       - uploads:/directus/uploads
@@ -12,7 +13,7 @@ services:
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
       WEBSOCKETS_ENABLED: "true"
-      PUBLIC_URL: "http://localhost:8055"
+      PUBLIC_URL: "https://dcs-cms.up-csi.org"
 
       DB_CLIENT: "pg"
       DB_HOST: "aws-0-ap-southeast-1.pooler.supabase.com"
@@ -41,6 +42,11 @@ services:
       - google_client_id
       - google_client_secret
       - google_default_role
+  frontend:
+    restart: unless-stopped
+    image: ghcr.io/up-csi/dcs-website-2.0:main
+    ports:
+      - 1800:3000
 
 secrets:
   db_user:
