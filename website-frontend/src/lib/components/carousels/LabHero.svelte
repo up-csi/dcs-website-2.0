@@ -33,10 +33,14 @@
 	$: if (background_images.length === 0) {
 		background_images = [`default1.jpg`, `default2.jpg`, `default3.jpg`, `default4.jpg`];
 	}
+
+	let carousel_height: number;
+	let logo_height: number;
+	$: logo_width = logo_height;
 </script>
 
 <div>
-	<div class="relative">
+	<div class="relative" bind:clientHeight={carousel_height}>
 		<Carousel.Root
 			bind:api
 			plugins={[autoplayPlugin, fadePlugin]}
@@ -45,10 +49,12 @@
 			<Carousel.Content>
 				{#each background_images as background_image}
 					<Carousel.Item class="h-full">
-						<div
-							class="h-[82vh] bg-cover bg-center md:h-[80vh]"
-							style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
-						></div>
+						{#if carousel_height}
+							<div
+								class="h-[82vh] bg-cover bg-center md:h-[80vh]"
+								style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height={carousel_height}')"
+							></div>
+						{/if}
 					</Carousel.Item>
 				{/each}
 			</Carousel.Content>
@@ -63,11 +69,12 @@
 		<div class="flex flex-col items-center lg:flex-row">
 			<div
 				class="mx-auto flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 border-gray-200 bg-gray-100 md:h-32 md:w-32 lg:mr-20 lg:h-40 lg:w-40"
+				bind:clientHeight={logo_height}
 			>
-				{#if logo_image}
+				{#if logo_image && logo_height}
 					<img
 						class="h-full w-full rounded-full object-cover"
-						src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width=180&height=180"
+						src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width={logo_width}&height={logo_height}"
 						alt="Logo"
 					/>
 				{:else}

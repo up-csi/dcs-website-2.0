@@ -4,6 +4,8 @@
 	import { reloading } from '$lib/stores';
 
 	export let laboratory;
+	let logo_height: number;
+
 	$: ({ name, logo, description, slug } = laboratory);
 </script>
 
@@ -18,11 +20,11 @@
 		class="my-4 flex flex-col justify-center gap-6 rounded-lg p-10 text-center text-background md:flex-row md:justify-start md:text-start"
 		style="background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)/0.25)); grid-template-columns: 1fr auto;"
 	>
-		<div class="flex justify-center md:justify-start">
-			{#if logo}
+		<div class="flex justify-center md:justify-start" bind:clientHeight={logo_height}>
+			{#if logo && logo_height}
 				<div class="flex h-40 w-40 items-center justify-center">
 					<img
-						src="{PUBLIC_APIURL}/assets/{logo}?height=180"
+						src="{PUBLIC_APIURL}/assets/{logo}?height={logo_height}"
 						alt={name}
 						class="max-h-40 max-w-40"
 					/>

@@ -9,6 +9,8 @@
 
 	export let item: Publication;
 
+	let banner_height: number;
+
 	$: publications_tags = item.publication_tags
 		? item.publication_tags
 				.filter((tag) => typeof tag === 'object')
@@ -25,10 +27,11 @@
 			<Card.Header class="relative flex h-80 flex-col items-center">
 				<div
 					class="-mt-24 w-full max-w-[calc(var(--card-height)*0.5)] flex-grow overflow-hidden rounded-lg bg-gray-100"
+					bind:clientHeight={banner_height}
 				>
-					{#if item.hero_image}
+					{#if item.hero_image && banner_height}
 						<img
-							src="{PUBLIC_APIURL}/assets/{item.hero_image}?height=360"
+							src="{PUBLIC_APIURL}/assets/{item.hero_image}?height={banner_height}"
 							alt={item.title}
 							class="h-full w-full rounded-lg object-cover"
 						/>

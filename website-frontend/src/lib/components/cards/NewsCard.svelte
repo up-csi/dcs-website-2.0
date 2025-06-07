@@ -13,6 +13,8 @@
 				if (typeof news_tags_id !== 'string') return news_tags_id?.name;
 				else return error(500);
 			}) ?? [];
+
+	let banner_height: number;
 </script>
 
 <a
@@ -30,12 +32,13 @@
 		{item.background_image
 				? ''
 				: 'flex items-center justify-center bg-gradient-to-b from-[#D1D8DD] to-[#66708076]'}"
+			bind:clientHeight={banner_height}
 		>
-			{#if item.background_image}
+			{#if item.background_image && banner_height}
 				<div class="h-full w-full">
 					<img
 						class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-						src="{PUBLIC_APIURL}/assets/{item.background_image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{item.background_image}?height={banner_height}"
 						alt="Background"
 					/>
 				</div>

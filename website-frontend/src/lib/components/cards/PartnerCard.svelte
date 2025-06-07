@@ -9,6 +9,8 @@
 	import type { Partnership } from '$lib/models/partnerships';
 
 	export let partner: Partnership;
+	let trigger_banner_height: number;
+	let content_banner_height: number;
 	$: ({ display_image, name, description } = partner);
 </script>
 
@@ -17,11 +19,11 @@
 		<Card.Root class="card h-full w-full border-0">
 			<Card.Content class="card h-full w-full p-4">
 				<div class="flex flex-col gap-y-5">
-					<div class="flex">
-						{#if display_image}
+					<div class="flex" bind:clientHeight={trigger_banner_height}>
+						{#if display_image && trigger_banner_height}
 							<img
 								class="h-32 object-contain"
-								src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
+								src="{PUBLIC_APIURL}/assets/{display_image}?height={trigger_banner_height}"
 								alt={name}
 							/>
 						{:else}
@@ -41,11 +43,11 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-2">
-			<div class="relative flex">
-				{#if display_image}
+			<div class="relative flex" bind:clientHeight={content_banner_height}>
+				{#if display_image && content_banner_height}
 					<img
 						class="h-32 object-contain"
-						src="{PUBLIC_APIURL}/assets/{display_image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{display_image}?height={content_banner_height}"
 						alt={name}
 					/>
 				{:else}

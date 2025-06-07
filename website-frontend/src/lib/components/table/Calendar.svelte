@@ -7,6 +7,8 @@
 
 	export let events: Events;
 
+	let hero_image_height: number;
+
 	let currentMonth = new Date().getMonth();
 	let currentYear = new Date().getFullYear();
 
@@ -130,23 +132,25 @@
 							>
 								<Card class="p-3">
 									<div class="flex flex-col gap-3 md:flex-row md:items-center md:gap-5">
-										{#if event.hero_image}
-											<div class="h-48 w-full overflow-hidden rounded-lg md:h-36 md:w-52">
-												<img
-													src="{PUBLIC_APIURL}/assets/{event.hero_image}?height=360"
-													alt={event.event_headline}
-													class="h-full w-full object-cover"
-												/>
-											</div>
-										{:else}
-											<div
-												class="flex h-48 w-full items-center justify-center rounded-lg border border-slate-300 bg-slate-200 md:h-36 md:w-52"
-											>
-												<div class="text-slate-400">
-													<Image class="h-8 w-8" />
+										<div bind:clientHeight={hero_image_height}>
+											{#if event.hero_image && hero_image_height}
+												<div class="h-48 w-full overflow-hidden rounded-lg md:h-36 md:w-52">
+													<img
+														src="{PUBLIC_APIURL}/assets/{event.hero_image}?height={hero_image_height}"
+														alt={event.event_headline}
+														class="h-full w-full object-cover"
+													/>
 												</div>
-											</div>
-										{/if}
+											{:else}
+												<div
+													class="flex h-48 w-full items-center justify-center rounded-lg border border-slate-300 bg-slate-200 md:h-36 md:w-52"
+												>
+													<div class="text-slate-400">
+														<Image class="h-8 w-8" />
+													</div>
+												</div>
+											{/if}
+										</div>
 
 										<div class="flex-1">
 											<div class="mb-1 flex flex-wrap gap-1">
