@@ -5,10 +5,10 @@
 	export let alum: Alum;
 	let trigger_banner_height: number;
 	let content_banner_height: number;
-	let trigger_profile_width: number;
 	let trigger_profile_height: number;
-	let content_profile_width: number;
+	$: trigger_profile_width = trigger_profile_height;
 	let content_profile_height: number;
+	$: content_profile_width = content_profile_height;
 </script>
 
 <Dialog.Root>
@@ -30,7 +30,6 @@
 			<div class="z-10 -mt-16 items-center px-3 md:-mt-20">
 				<div
 					class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full md:h-32 md:w-32"
-					bind:clientWidth={trigger_profile_width}
 					bind:clientHeight={trigger_profile_height}
 				>
 					<div
@@ -95,7 +94,6 @@
 			<div class="z-10 -mt-16 items-center px-3 md:-mt-20">
 				<div
 					class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full md:h-32 md:w-32"
-					bind:clientWidth={content_profile_width}
 					bind:clientHeight={content_profile_height}
 				>
 					<div

@@ -36,6 +36,7 @@
 
 	let carousel_height: number;
 	let logo_height: number;
+	$: logo_width = logo_height;
 </script>
 
 <div>
@@ -73,7 +74,7 @@
 				{#if logo_image && logo_height}
 					<img
 						class="h-full w-full rounded-full object-cover"
-						src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width=180&height={logo_height}"
+						src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width={logo_width}&height={logo_height}"
 						alt="Logo"
 					/>
 				{:else}

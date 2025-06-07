@@ -14,8 +14,8 @@
 	export let website: string = '';
 
 	let banner_height: number;
-	let profile_width: number;
 	let profile_height: number;
+	$: profile_width = profile_height;
 </script>
 
 <div class="bg-background-dark" bind:clientHeight={banner_height}>
@@ -33,7 +33,6 @@
 			class="flex w-full flex-col items-center pt-10 text-secondary-foreground lg:bottom-10 lg:flex-row lg:py-10"
 		>
 			<div
-				bind:clientWidth={profile_width}
 				bind:clientHeight={profile_height}
 				class="mx-auto flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-t from-[#667080] to-[#D1D8DD] md:h-48 md:w-48"
 			>

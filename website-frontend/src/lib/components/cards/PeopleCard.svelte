@@ -7,8 +7,8 @@
 	export let laboratory: string = '';
 
 	let banner_height: number;
-	let profile_width: number;
 	let profile_height: number;
+	$: profile_width = profile_height;
 </script>
 
 <div class="card group relative flex h-full w-full flex-col overflow-hidden">
@@ -28,7 +28,6 @@
 	<div class="z-10 -mt-16 items-center px-3 md:-mt-20">
 		<div
 			class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full md:h-32 md:w-32"
-			bind:clientWidth={profile_width}
 			bind:clientHeight={profile_height}
 		>
 			<div

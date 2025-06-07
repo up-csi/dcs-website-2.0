@@ -11,8 +11,8 @@
 		height = 'h-40';
 	}
 
-	let logo_width: number;
 	let logo_height: number;
+	$: logo_width = logo_height;
 </script>
 
 <div class="card group relative flex h-auto w-full flex-col overflow-hidden">
@@ -22,7 +22,6 @@
 
 	<div
 		class="absolute flex h-full items-center px-5 text-white {logo_image ? 'md:px-6' : 'md:px-11'}"
-		bind:clientWidth={logo_width}
 		bind:clientHeight={logo_height}
 	>
 		{#if logo_image && logo_width && logo_height}
