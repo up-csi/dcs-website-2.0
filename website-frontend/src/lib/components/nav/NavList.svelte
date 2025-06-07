@@ -42,7 +42,7 @@
 			href="/academics/{academics_category.slug}"
 			to={academics_category.name ?? `Academics Category ${i}`}
 			dropdown={true}
-			position="left-36 top-0"
+			position="top-0 left-full"
 		>
 			{#each academics_programs.filter(({ category }) => {
 				if (typeof category !== 'string') return category?.slug == academics_category.slug;
@@ -69,7 +69,7 @@
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
 	<NavItem href="/research" to="Overview" />
-	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="left-32 top-0">
+	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="top-0 left-full">
 		{#each laboratories as laboratory, i}
 			<NavItem href="/research/labs/{laboratory.slug}" to={laboratory.name ?? `Laboratory ${i}`} />
 		{/each}
@@ -86,4 +86,4 @@
 	{/each}
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
-<NavItem href="/partnerships" to="Partnerships" position="md:right-0 lg:left-0" />
+<NavItem href="/partnerships" to="Partnerships" />
