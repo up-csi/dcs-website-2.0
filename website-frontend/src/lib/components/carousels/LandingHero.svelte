@@ -8,6 +8,7 @@
 	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
+	import { Image } from 'lucide-svelte';
 
 	const delay = 6000;
 	const plugin = Autoplay({ delay, stopOnInteraction: true });
@@ -20,6 +21,7 @@
 	let startTime = Date.now();
 	let elapsed = 0;
 	let progress = 0;
+	let carousel_height: number;
 
 	$: if (api) {
 		count = api.scrollSnapList().length;
@@ -63,17 +65,19 @@
 	});
 </script>
 
-<div>
+<div bind:clientHeight={carousel_height}>
 	<Carousel.Root bind:api plugins={[plugin, Fade()]}>
 		<Carousel.Content>
 			{#each news as news_item, index}
 				<Carousel.Item class="relative flex h-[70vh] flex-col items-center justify-end md:h-[90vh]">
-					{#if news_item.background_image}
+					{#if news_item.background_image && carousel_height}
 						<img
-							src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height=1080"
+							src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height={carousel_height}"
 							alt="Carousel Item"
-							class="absolute h-full w-screen object-cover"
+							class="absolute h-full w-full object-cover"
 						/>
+					{:else}
+						<Image class="h-full w-full text-secondary" />
 					{/if}
 					<div
 						class="absolute flex h-full w-screen flex-col justify-end bg-gradient-to-t from-[#0000009e] to-transparent"

@@ -8,6 +8,7 @@
 	export let display_location: string;
 	export let start_date: 'datetime';
 	export let end_date: 'datetime' | null;
+	let banner_height: number;
 
 	// function to extract date
 
@@ -46,13 +47,16 @@
 	if (end_date) {
 		({ hours: endHours, minutes: endMinutes } = getTimeParts(end_date));
 	}
+
+	let background =
+		'background-image: linear-gradient(to top, hsl(var(--primary)) -20%, hsl(var(--secondary)) 55%)';
+	$: if (background_image && banner_height) {
+		background = `background-image: linear-gradient(to top, #343541, transparent), url('${PUBLIC_APIURL}/assets/${background_image}?height=${banner_height}')`;
+	}
 </script>
 
-<div class="relative z-0">
-	<div
-		class="h-[40vh] bg-cover bg-center md:h-[70vh]"
-		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
-	></div>
+<div class="relative z-0" bind:clientHeight={banner_height}>
+	<div class="h-[40vh] bg-cover bg-center md:h-[70vh]" style={background}></div>
 
 	<div
 		class="-mt-[0.4px] w-full bg-[#343541] pb-10 pt-10 md:absolute md:bottom-10 md:bg-transparent md:pb-0"

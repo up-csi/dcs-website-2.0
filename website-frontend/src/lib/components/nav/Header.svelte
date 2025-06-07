@@ -25,6 +25,11 @@
 	export let laboratories;
 	export let students_pages;
 
+	let desktop_logo_height: number;
+	$: desktop_logo_width = desktop_logo_height;
+	let mobile_logo_height: number;
+	$: mobile_logo_width = mobile_logo_height;
+
 	let atTop = writable(true); // Track if at the top
 	let lastScrollY = 0;
 	let isVisible = writable(true); // Track navbar visibility
@@ -58,20 +63,27 @@
 >
 	<div class="flex justify-between px-2 lg:px-9">
 		<!-- Favicons -->
-		<div class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}">
+		<div
+			class="my-auto items-center justify-center {$mobileOpen ? 'hidden' : 'flex'}"
+			bind:clientHeight={desktop_logo_height}
+		>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
-				<img
-					src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width=90&height=90"
-					alt="UP"
-					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
-				/>
+				{#if desktop_logo_width && desktop_logo_height}
+					<img
+						src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width={desktop_logo_width}&height={desktop_logo_height}"
+						alt="UP"
+						class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+					/>
+				{/if}
 			</a>
 			<a href="/">
-				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width=90&height=90"
-					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
-				/>
+				{#if desktop_logo_width && desktop_logo_height}
+					<img
+						src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width={desktop_logo_width}&height={desktop_logo_height}"
+						alt="DCS"
+						class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+					/>
+				{/if}
 			</a>
 			<a href="/" class="font-semibold text-primary">
 				<h1 class="mt-[1px] text-[11px] lg:text-sm">University of the Philippines Diliman</h1>
@@ -178,20 +190,27 @@
 >
 	<nav class="w-full">
 		<!-- Favicons -->
-		<div class="mt-5 flex items-center justify-center lg:hidden">
+		<div
+			class="mt-5 flex items-center justify-center lg:hidden"
+			bind:clientHeight={mobile_logo_height}
+		>
 			<a href="/">
-				<img
-					src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width=90&height=90"
-					alt="UP"
-					class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
-				/>
+				{#if mobile_logo_width && mobile_logo_height}
+					<img
+						src="{PUBLIC_APIURL}/assets/{primary_logo}?fit=cover&width={mobile_logo_width}&height={mobile_logo_height}"
+						alt="UP"
+						class="mr-1 hidden h-12 w-12 max-w-xs rounded-full bg-secondary lg:block"
+					/>
+				{/if}
 			</a>
 			<a href={secondary_logo_link ? secondary_logo_link : undefined} target="_blank">
-				<img
-					src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width=90&height=90"
-					alt="DCS"
-					class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
-				/>
+				{#if mobile_logo_width && mobile_logo_height}
+					<img
+						src="{PUBLIC_APIURL}/assets/{secondary_logo}?fit=cover&width={mobile_logo_width}&height={mobile_logo_height}"
+						alt="DCS"
+						class="mr-2 h-10 w-10 max-w-xs rounded-full bg-secondary lg:mr-3 lg:h-12 lg:w-12"
+					/>
+				{/if}
 			</a>
 			<div class="font-medium">
 				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>

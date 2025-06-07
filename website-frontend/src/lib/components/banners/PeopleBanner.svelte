@@ -12,13 +12,19 @@
 	export let email: string = '';
 	export let laboratory: string = '';
 	export let website: string = '';
+
+	let banner_height: number;
+	let profile_width: number;
+	let profile_height: number;
 </script>
 
-<div class="bg-background-dark">
-	<div
-		class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
-		style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height=720')"
-	></div>
+<div class="bg-background-dark" bind:clientHeight={banner_height}>
+	{#if background_image && banner_height}
+		<div
+			class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
+			style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height={banner_height}')"
+		></div>
+	{/if}
 
 	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
 		<Breadcrumb page_name="{first_name} {last_name}" />
@@ -27,12 +33,14 @@
 			class="flex w-full flex-col items-center pt-10 text-secondary-foreground lg:bottom-10 lg:flex-row lg:py-10"
 		>
 			<div
+				bind:clientWidth={profile_width}
+				bind:clientHeight={profile_height}
 				class="mx-auto flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-t from-[#667080] to-[#D1D8DD] md:h-48 md:w-48"
 			>
-				{#if profile_image}
+				{#if profile_image && profile_width && profile_height}
 					<img
 						class="h-full w-full rounded-full object-cover"
-						src="{PUBLIC_APIURL}/assets/{profile_image}?fit=cover&width=360&height=360"
+						src="{PUBLIC_APIURL}/assets/{profile_image}?fit=cover&width={profile_width}&height={profile_height}"
 						alt="{first_name} {last_name}'s profile picture"
 					/>
 				{:else}

@@ -10,6 +10,9 @@
 	$: if (description) {
 		height = 'h-40';
 	}
+
+	let logo_width: number;
+	let logo_height: number;
 </script>
 
 <div class="card group relative flex h-auto w-full flex-col overflow-hidden">
@@ -19,11 +22,13 @@
 
 	<div
 		class="absolute flex h-full items-center px-5 text-white {logo_image ? 'md:px-6' : 'md:px-11'}"
+		bind:clientWidth={logo_width}
+		bind:clientHeight={logo_height}
 	>
-		{#if logo_image}
+		{#if logo_image && logo_width && logo_height}
 			<img
 				class="mr-6 hidden h-28 w-28 rounded-full object-cover md:block"
-				src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width=360&height=360"
+				src="{PUBLIC_APIURL}/assets/{logo_image}?fit=cover&width={logo_width}&height={logo_height}"
 				alt="logo"
 			/>
 		{/if}

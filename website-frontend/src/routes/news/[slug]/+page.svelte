@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
@@ -7,6 +7,7 @@
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import Share from '$lib/components/buttons/Share.svelte';
 	export let data;
+	let banner_height: number;
 
 	$: ({ link, other_news, news_item } = data);
 
@@ -40,15 +41,15 @@
 				<Breadcrumb page_name={news_item.title} />
 			</div>
 
-			{#if news_item.background_image}
-				<div class="h-full px-5">
+			<div class="h-[40svh] px-5 md:h-[60svh]" bind:clientHeight={banner_height}>
+				{#if news_item.background_image && banner_height}
 					<img
 						class="h-[40svh] w-full object-cover md:h-[60svh]"
-						src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height=720"
+						src="{PUBLIC_APIURL}/assets/{news_item.background_image}?height={banner_height}"
 						alt="Background"
 					/>
-				</div>
-			{/if}
+				{/if}
+			</div>
 			<div
 				class="mx-auto flex w-full max-w-[1220px] flex-col gap-y-5 px-8 pb-16 md:px-16 2xl:max-w-screen-2xl"
 				class:mt-8={news_item.background_image}
