@@ -4,6 +4,7 @@
 	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
 	import { reloading } from '$lib/stores';
 	export let item: Event;
+	let hero_height: number;
 
 	function formatTimeRange(startTime: string, endTime: string) {
 		const start = new Date(startTime);
@@ -52,12 +53,13 @@
 			{item.hero_image
 				? ''
 				: 'flex items-center justify-center bg-gradient-to-b from-[#D1D8DD] to-[#66708076]'}"
+			bind:clientHeight={hero_height}
 		>
-			{#if item.hero_image}
+			{#if item.hero_image && hero_height}
 				<div class="h-full w-full">
 					<img
 						class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-						src="{PUBLIC_APIURL}/assets/{item.hero_image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{item.hero_image}?height={hero_height}"
 						alt="Background"
 					/>
 				</div>

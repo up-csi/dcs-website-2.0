@@ -4,15 +4,16 @@
 	export let title: string;
 	export let background_image: string = '';
 	export let flexible_content: string = '';
+	let banner_height: number;
 
 	let background =
 		'background-image: linear-gradient(to top, hsl(var(--primary)) -20%, hsl(var(--secondary)) 55%)';
-	$: if (background_image) {
-		background = `background-image: linear-gradient(to top, hsl(var(--primary)) -20%, transparent 55%), url('${PUBLIC_APIURL}/assets/${background_image}?height=720')`;
+	$: if (background_image && banner_height) {
+		background = `background-image: linear-gradient(to top, hsl(var(--primary)) -20%, transparent 55%), url('${PUBLIC_APIURL}/assets/${background_image}?height=${banner_height}')`;
 	}
 </script>
 
-<div class="relative z-0">
+<div class="relative z-0" bind:clientHeight={banner_height}>
 	<div class="h-[45vh] bg-cover bg-center md:h-[60vh]" style={background}></div>
 
 	<div

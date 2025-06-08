@@ -20,6 +20,9 @@
 					.filter((tag) => typeof tag !== 'undefined')
 			: []
 		: [];
+
+	let pubs_banner_height: number;
+	let general_banner_height: number;
 </script>
 
 {#if !publication}
@@ -30,10 +33,11 @@
 		>
 			<div
 				class="flex h-36 w-full items-center justify-center overflow-hidden rounded-lg p-2 shadow-none sm:h-60 lg:h-96"
+				bind:clientHeight={general_banner_height}
 			>
-				{#if image}
+				{#if image && general_banner_height}
 					<img
-						src="{PUBLIC_APIURL}/assets/{image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{image}?height={general_banner_height}"
 						alt={name}
 						class="max-h-full max-w-full rounded-lg"
 					/>
@@ -54,10 +58,11 @@
 			>
 				<div
 					class="flex h-36 w-full items-center justify-center overflow-hidden rounded-lg p-2 shadow-none sm:h-60 lg:h-96"
+					bind:clientHeight={pubs_banner_height}
 				>
-					{#if image}
+					{#if image && pubs_banner_height}
 						<img
-							src="{PUBLIC_APIURL}/assets/{image}?height=360"
+							src="{PUBLIC_APIURL}/assets/{image}?height={pubs_banner_height}"
 							alt={name}
 							class="max-h-full max-w-full rounded-lg"
 						/>

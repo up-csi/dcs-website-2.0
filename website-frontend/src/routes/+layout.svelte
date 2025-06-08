@@ -12,6 +12,8 @@
 
 	let marginType = 'default';
 
+	$: $reloading = false;
+
 	$: {
 		if ($page.url.pathname === '/') {
 			marginType = 'wide';

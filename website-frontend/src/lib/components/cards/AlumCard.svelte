@@ -3,16 +3,25 @@
 	import * as Dialog from '$lib/@shadcn-svelte/ui/dialog';
 	import { Alum } from '$lib/models/alumni';
 	export let alum: Alum;
+	let trigger_banner_height: number;
+	let content_banner_height: number;
+	let trigger_profile_height: number;
+	$: trigger_profile_width = trigger_profile_height;
+	let content_profile_height: number;
+	$: content_profile_width = content_profile_height;
 </script>
 
 <Dialog.Root>
 	<Dialog.Trigger class="h-full w-full pt-20">
 		<div class="card group relative flex h-full w-full flex-col overflow-hidden">
-			<div class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52">
-				{#if alum.background_image}
+			<div
+				class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52"
+				bind:clientHeight={trigger_banner_height}
+			>
+				{#if alum.background_image && trigger_banner_height}
 					<img
 						class="h-full w-full rounded-t-lg object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-						src="{PUBLIC_APIURL}/assets/{alum.background_image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{alum.background_image}?height={trigger_banner_height}"
 						alt="Background"
 					/>
 				{/if}
@@ -21,15 +30,16 @@
 			<div class="z-10 -mt-16 items-center px-3 md:-mt-20">
 				<div
 					class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full md:h-32 md:w-32"
+					bind:clientHeight={trigger_profile_height}
 				>
 					<div
 						class="absolute -inset-[2px] -z-10 rounded-full border-2 border-primary/20 backdrop-blur-lg md:-inset-1 md:border-4"
 					></div>
 
-					{#if alum.profile_image}
+					{#if alum.profile_image && trigger_profile_width && trigger_profile_height}
 						<img
 							class="h-full w-full rounded-full object-cover"
-							src="{PUBLIC_APIURL}/assets/{alum.profile_image}?fit=cover&width=180&height=180"
+							src="{PUBLIC_APIURL}/assets/{alum.profile_image}?fit=cover&width={trigger_profile_width}&height={trigger_profile_height}"
 							alt="Profile"
 						/>
 					{:else}
@@ -68,11 +78,14 @@
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full rounded-lg">
 		<div class="group relative flex h-full w-full flex-col overflow-hidden pt-5">
-			<div class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52">
-				{#if alum.background_image}
+			<div
+				class="inset-0 h-36 overflow-hidden rounded-t-lg bg-gray-300 md:h-52"
+				bind:clientHeight={content_banner_height}
+			>
+				{#if alum.background_image && content_banner_height}
 					<img
 						class="h-full w-full rounded-t-lg object-cover"
-						src="{PUBLIC_APIURL}/assets/{alum.background_image}?height=360"
+						src="{PUBLIC_APIURL}/assets/{alum.background_image}?height={content_banner_height}"
 						alt="Background"
 					/>
 				{/if}
@@ -81,15 +94,16 @@
 			<div class="z-10 -mt-16 items-center px-3 md:-mt-20">
 				<div
 					class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full md:h-32 md:w-32"
+					bind:clientHeight={content_profile_height}
 				>
 					<div
 						class="absolute -inset-[2px] -z-10 rounded-full border-2 border-primary/20 backdrop-blur-lg md:-inset-1 md:border-4"
 					></div>
 
-					{#if alum.profile_image}
+					{#if alum.profile_image && content_profile_width && content_profile_height}
 						<img
 							class="h-full w-full rounded-full object-cover"
-							src="{PUBLIC_APIURL}/assets/{alum.profile_image}?fit=cover&width=180&height=180"
+							src="{PUBLIC_APIURL}/assets/{alum.profile_image}?fit=cover&width={content_profile_width}&height={content_profile_height}"
 							alt="Profile"
 						/>
 					{:else}
