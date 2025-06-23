@@ -91,8 +91,18 @@
 </NavItemMobile>
 <NavItemMobile href="/alumni" to="Alumni" />
 <NavItemMobile href="/partnerships" to="Partnerships" />
-{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
-	{#if is_on_nav}
-		<NavItemMobile href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
-	{/if}
-{/each}
+{#if miscellaneous_pages.length > 2}
+	<NavItemMobile href="/" to="Miscellaneous" dropdown={true}>
+		{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+			{#if is_on_nav}
+				<NavItemMobile href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+			{/if}
+		{/each}
+	</NavItemMobile>
+{:else}
+	{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+		{#if is_on_nav}
+			<NavItemMobile href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+		{/if}
+	{/each}
+{/if}

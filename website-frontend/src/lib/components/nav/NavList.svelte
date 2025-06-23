@@ -89,8 +89,18 @@
 </NavItem>
 <NavItem href="/alumni" to="Alumni" />
 <NavItem href="/partnerships" to="Partnerships" />
-{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
-	{#if is_on_nav}
-		<NavItem href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
-	{/if}
-{/each}
+{#if miscellaneous_pages.length > 2}
+	<NavItem href="/" to="Miscellaneous" dropdown={true}>
+		{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+			{#if is_on_nav}
+				<NavItem href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+			{/if}
+		{/each}
+	</NavItem>
+{:else}
+	{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+		{#if is_on_nav}
+			<NavItem href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+		{/if}
+	{/each}
+{/if}
