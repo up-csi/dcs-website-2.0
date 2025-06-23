@@ -12,9 +12,13 @@ RUN npm install
 
 COPY ./website-frontend/ .
 
-RUN --mount=type=secret,id=api_url,env=PUBLIC_APIURL \
-    --mount=type=secret,id=static_token,env=STATIC_ACCESS_TOKEN \
-    npm run build
+ARG PUBLIC_APIURL
+ARG STATIC_ACCESS_TOKEN
+
+ENV PUBLIC_APIURL=${PUBLIC_APIURL}
+ENV STATIC_ACCESS_TOKEN=${STATIC_ACCESS_TOKEN}
+
+RUN npm run build
 RUN npm prune --prod
 
 FROM node:lts AS deployer
