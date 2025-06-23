@@ -6,6 +6,9 @@ services:
       - 1234:5432
     environment:
       POSTGRES_PASSWORD: password
+    volumes:
+      - ./postgis-db:/var/lib/postgresql/data
+
   directus:
     restart: unless-stopped
     image: directus/directus:11.1.0
@@ -75,3 +78,4 @@ volumes:
   database:
   uploads:
   extensions:
+  postgis-db:

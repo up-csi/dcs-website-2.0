@@ -2,3 +2,4 @@ secrets/
 database/**
 extensions/**
 uploads/**
+postgis-db/**
