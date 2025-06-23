@@ -32,7 +32,7 @@ export const NewsItem = partial(
 		title: string(),
 		summary: nullable(string()),
 		flexible_content: pipe(string(), cleanHtml),
-		background_image: string(),
+		background_image: nullable(string()),
 		news_tags: nullable(union([array(number()), lazy(() => NewsRelated)]))
 	})
 );
