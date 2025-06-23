@@ -26,7 +26,7 @@
 		></div>
 	{/if}
 
-	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
+	<div class="-mt-48 w-full px-4 lg:-bottom-16 lg:px-32">
 		<Breadcrumb page_name="{first_name} {last_name}" />
 
 		<div
