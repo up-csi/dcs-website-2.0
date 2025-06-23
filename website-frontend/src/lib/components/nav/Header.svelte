@@ -23,6 +23,7 @@
 	export let academics_programs;
 	export let academics_pages;
 	export let laboratories;
+	export let miscellaneous_pages;
 	export let students_pages;
 
 	let atTop = writable(true); // Track if at the top
@@ -162,6 +163,7 @@
 					{academics_programs}
 					{academics_pages}
 					{laboratories}
+					{miscellaneous_pages}
 					{students_pages}
 				/>
 			</ul>
@@ -209,6 +211,7 @@
 					{academics_programs}
 					{academics_pages}
 					{laboratories}
+					{miscellaneous_pages}
 					{students_pages}
 				/>
 			</ScrollArea>

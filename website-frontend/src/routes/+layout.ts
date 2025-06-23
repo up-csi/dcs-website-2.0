@@ -19,6 +19,7 @@ export async function load({ data }) {
 		academics_programs: data.academics_programs,
 		academics_pages: data.academics_pages,
 		laboratories: data.laboratories,
+		miscellaneous_pages: data.miscellaneous_pages,
 		students_pages: data.students_pages
 	};
 }

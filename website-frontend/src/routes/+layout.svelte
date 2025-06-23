@@ -41,6 +41,7 @@
 		academics_programs,
 		academics_pages,
 		laboratories,
+		miscellaneous_pages,
 		students_pages
 	} = data);
 
@@ -86,6 +87,7 @@
 			{academics_programs}
 			{academics_pages}
 			{laboratories}
+			{miscellaneous_pages}
 			{students_pages}
 		/>
 	</header>
