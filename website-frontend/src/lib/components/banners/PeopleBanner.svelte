@@ -24,6 +24,11 @@
 			class="h-[45vh] bg-cover bg-center lg:h-[83vh]"
 			style="background-image: linear-gradient(to top, #343541, transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height={banner_height}')"
 		></div>
+	{:else}
+		<div
+			class="h-[45vh] bg-cover bg-center md:h-[60vh]"
+			style="background-image: linear-gradient(to top, hsl(var(--primary)) -20%, hsl(var(--secondary)) 55%)"
+		></div>
 	{/if}
 
 	<div class="-mt-14 w-full px-4 lg:absolute lg:-bottom-16 lg:px-32">
