@@ -16,7 +16,7 @@
 	export let academics_programs: Pick<AcademicsProgram, 'title' | 'slug' | 'category'>[];
 	export let academics_pages: Pick<AcademicsPage, 'title' | 'slug' | 'category'>[];
 	export let laboratories: Pick<Laboratory, 'name' | 'slug'>[];
-	export let miscellaneous_pages: Pick<MiscellaneousPage, 'title' | 'slug' | 'is_on_nav'>[]; 
+	export let miscellaneous_pages: Pick<MiscellaneousPage, 'title' | 'slug' | 'is_on_nav'>[];
 	export let students_pages: Pick<StudentsPage, 'title' | 'slug'>[];
 </script>
 
@@ -93,14 +93,14 @@
 	<NavItem href="/" to="Miscellaneous" dropdown={true}>
 		{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
 			{#if is_on_nav}
-				<NavItem href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+				<NavItem href="/{slug}" to={title ?? `Miscellaneous-${idx}`} />
 			{/if}
 		{/each}
 	</NavItem>
 {:else}
 	{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
 		{#if is_on_nav}
-			<NavItem href="/{slug}" to="{title ?? `Miscellaneous-${idx}`}" />
+			<NavItem href="/{slug}" to={title ?? `Miscellaneous-${idx}`} />
 		{/if}
 	{/each}
 {/if}

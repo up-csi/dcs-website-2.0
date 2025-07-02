@@ -92,7 +92,7 @@ export async function load({ fetch }) {
 				fields: ['title', 'slug', 'is_on_nav']
 			})
 		)
-	)
+	);
 
 	return {
 		global,

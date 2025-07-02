@@ -5,7 +5,7 @@ export const MiscellaneousPage = partial(
 	object({
 		title: string(),
 		slug: string(),
-        is_on_nav: boolean(),
+		is_on_nav: boolean(),
 		flexible_content: pipe(string(), cleanHtml)
 	})
 );
