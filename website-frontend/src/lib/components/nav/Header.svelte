@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
-	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import NavListMobile from '$lib/components/nav/NavListMobile.svelte';
@@ -15,7 +14,6 @@
 	export let secondary_logo;
 	export let secondary_logo_link;
 	export let facebook_link;
-	export let x_link;
 
 	export let about_pages;
 	export let people_categories;
@@ -96,16 +94,6 @@
 						: 'hidden'}"
 				>
 					<FacebookIcon />
-				</a>
-				<a
-					href={x_link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="mr-3 h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block {$mobileOpen
-						? 'block'
-						: 'hidden'}"
-				>
-					<XIcon />
 				</a>
 			</div>
 
