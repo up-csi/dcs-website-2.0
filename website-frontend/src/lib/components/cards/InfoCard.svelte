@@ -79,7 +79,7 @@
 			<ul class="list-disc pl-5 text-primary-foreground">
 				{#each educational_attainment as education}
 					<li>
-						{education.degree} from {education.institution}
+						{education.degree}, {education.institution}
 						{education.start_date
 							? ` (${new Date(education.start_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`
 							: ''}
