@@ -28,7 +28,7 @@
 		</div>
 	{/if}
 
-	<p class="heading-text">Notable Alumni</p>
+	<p class="heading-text">Alumni Profile</p>
 	<CardPanel>
 		{#each alumni as alum}
 			<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">

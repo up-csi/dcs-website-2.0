@@ -1,4 +1,14 @@
 services:
+  db:
+    restart: unless-stopped
+    image: postgis/postgis
+    ports:
+      - 1234:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./postgis-db:/var/lib/postgresql/data
+
   directus:
     restart: unless-stopped
     image: directus/directus:11.1.0
@@ -16,8 +26,8 @@ services:
       PUBLIC_URL: "https://dcs-cms.up-csi.org"
 
       DB_CLIENT: "pg"
-      DB_HOST: "aws-0-ap-southeast-1.pooler.supabase.com"
-      DB_PORT: "6543"
+      DB_HOST: "db"
+      DB_PORT: "5432"
       DB_DATABASE: "postgres"
       DB_USER_FILE: /run/secrets/db_user
       DB_PASSWORD_FILE: /run/secrets/db_password
@@ -44,7 +54,11 @@ services:
       - google_default_role
   frontend:
     restart: unless-stopped
-    image: ghcr.io/up-csi/dcs-website-2.0:main
+    build: 
+      context: ..
+      args:
+        - PUBLIC_APIURL=http://directus:8055
+        - STATIC_ACCESS_TOKEN=1B43zfYfF9uv9AZPOiz2eg9tQV9Eq_vR
     ports:
       - 1800:3000
 
@@ -64,3 +78,4 @@ volumes:
   database:
   uploads:
   extensions:
+  postgis-db:

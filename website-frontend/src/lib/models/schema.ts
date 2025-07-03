@@ -45,6 +45,7 @@ import { PartnershipsOverview } from './partnerships_overview';
 import { FeaturedNews } from './junctions/featured_news';
 import { RecentEvents } from './junctions/recent_events';
 import { RecentNews } from './junctions/recent_news';
+import { MiscellaneousPages } from './miscellaneous_pages';
 
 export const Schema = object({
 	global: Global,
@@ -78,6 +79,7 @@ export const Schema = object({
 	events_tags: EventsTags,
 	events_tags_categories: EventsTagsCategories,
 	laboratories_directus_files: LaboratoriesDirectusFiles,
+	miscellaneous_pages: MiscellaneousPages,
 	people_categories: PeopleCategories,
 	people_laboratories: PeopleLaboratories,
 	people_levels: Levels,

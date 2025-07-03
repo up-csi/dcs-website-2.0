@@ -8,6 +8,7 @@
 	import { Laboratory } from '$lib/models/laboratories';
 	import { StudentsPage } from '$lib/models/students_pages';
 	import { deslugify } from '$lib/utils';
+	import type { MiscellaneousPage } from '$lib/models/miscellaneous_pages';
 
 	export let about_pages: Pick<AboutPage, 'title' | 'slug'>[];
 	export let people_categories: Pick<PeopleCategory, 'title'>[];
@@ -15,6 +16,7 @@
 	export let academics_programs: Pick<AcademicsProgram, 'title' | 'slug' | 'category'>[];
 	export let academics_pages: Pick<AcademicsPage, 'title' | 'slug' | 'category'>[];
 	export let laboratories: Pick<Laboratory, 'name' | 'slug'>[];
+	export let miscellaneous_pages: Pick<MiscellaneousPage, 'title' | 'slug' | 'is_on_nav'>[];
 	export let students_pages: Pick<StudentsPage, 'title' | 'slug'>[];
 </script>
 
@@ -89,3 +91,18 @@
 </NavItemMobile>
 <NavItemMobile href="/alumni" to="Alumni" />
 <NavItemMobile href="/partnerships" to="Partnerships" />
+{#if miscellaneous_pages.length > 2}
+	<NavItemMobile href="/" to="Miscellaneous" dropdown={true}>
+		{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+			{#if is_on_nav}
+				<NavItemMobile href="/{slug}" to={title ?? `Miscellaneous-${idx}`} />
+			{/if}
+		{/each}
+	</NavItemMobile>
+{:else}
+	{#each miscellaneous_pages as { title, slug, is_on_nav }, idx}
+		{#if is_on_nav}
+			<NavItemMobile href="/{slug}" to={title ?? `Miscellaneous-${idx}`} />
+		{/if}
+	{/each}
+{/if}

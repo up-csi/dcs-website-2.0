@@ -10,6 +10,7 @@ import { AcademicsPrograms } from '$lib/models/academics_programs';
 import { AcademicsPages } from '$lib/models/academics_pages';
 import { Laboratories } from '$lib/models/laboratories';
 import { StudentsPages } from '$lib/models/students_pages';
+import { MiscellaneousPages } from '$lib/models/miscellaneous_pages.js';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
@@ -84,6 +85,15 @@ export async function load({ fetch }) {
 		)
 	);
 
+	const miscellaneous_pages = parse(
+		MiscellaneousPages,
+		await directus.request(
+			readItems('miscellaneous_pages', {
+				fields: ['title', 'slug', 'is_on_nav']
+			})
+		)
+	);
+
 	return {
 		global,
 		about_pages,
@@ -92,6 +102,7 @@ export async function load({ fetch }) {
 		academics_programs,
 		academics_pages,
 		laboratories,
+		miscellaneous_pages,
 		students_pages
 	};
 }
