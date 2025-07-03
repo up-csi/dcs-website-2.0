@@ -73,8 +73,12 @@
 				/>
 			</a>
 			<a href="/" class="font-semibold text-primary">
-				<h1 class="mt-[1px] text-[11px] lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="-mt-1 text-[14px] lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="mt-[1px] text-[11px] font-[Source_Sans_Pro] lg:text-sm">
+					University of the Philippines Diliman
+				</h1>
+				<h1 class="-mt-1 font-[Palatino] text-[14px] lg:-mt-2 lg:text-lg">
+					Department of Computer Science
+				</h1>
 			</a>
 		</div>
 
@@ -184,8 +188,12 @@
 				/>
 			</a>
 			<div class="font-medium">
-				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="text-xs font-[Source_Sans_Pro] lg:text-sm">
+					University of the Philippines Diliman
+				</h1>
+				<h1 class="text-md -mt-1 font-[Palatino] lg:-mt-2 lg:text-lg">
+					Department of Computer Science
+				</h1>
 			</div>
 		</div>
 
