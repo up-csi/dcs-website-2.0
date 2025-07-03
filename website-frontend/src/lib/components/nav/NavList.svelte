@@ -28,7 +28,6 @@
 	{/each}
 </NavItem>
 <NavItem href="/events" to="Events" />
-<NavItem href="/publications" to="Publications" />
 <NavItem href="/people" to="People" dropdown={true}>
 	{#each people_categories as people_category, i}
 		<NavItem
@@ -71,6 +70,7 @@
 </NavItem>
 <NavItem href="/research" to="Research" dropdown={true}>
 	<NavItem href="/research" to="Overview" />
+	<NavItem href="/research/publications" to="Publications" />
 	<NavItem href="/research/labs" to="Laboratories" dropdown={true} position="top-0 left-full">
 		{#each laboratories as laboratory, i}
 			<NavItem href="/research/labs/{laboratory.slug}" to={laboratory.name ?? `Laboratory ${i}`} />

@@ -34,7 +34,6 @@
 		address,
 		quick_links,
 		facebook_link,
-		x_link,
 		about_pages,
 		people_categories,
 		academics_categories,
@@ -80,7 +79,6 @@
 			{secondary_logo}
 			{secondary_logo_link}
 			{facebook_link}
-			{x_link}
 			{about_pages}
 			{people_categories}
 			{academics_categories}
@@ -104,7 +102,7 @@
 		<div
 			class={`px-4 md:px-8 ${marginType === 'wide' ? 'max-w-[1330px]' : 'max-w-[1220px]'} mx-auto w-full 2xl:max-w-screen-2xl`}
 		>
-			<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} {x_link} />
+			<Footer {contact_number} {contact_email} {address} {quick_links} {facebook_link} />
 		</div>
 	</footer>
 </div>
