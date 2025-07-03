@@ -99,7 +99,7 @@
 						{#each publications as publication}
 							<SearchResult
 								{publication}
-								href="/publications"
+								href="/research/publications"
 								image={publication.hero_image}
 								name={publication.title}
 							>
@@ -148,7 +148,7 @@
 						{#each publications as publication}
 							<SearchResult
 								{publication}
-								href="/publications"
+								href="/research/publications"
 								image={publication.hero_image}
 								name={publication.title}
 							>
