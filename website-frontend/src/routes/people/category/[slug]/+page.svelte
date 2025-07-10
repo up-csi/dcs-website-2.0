@@ -81,13 +81,13 @@
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">
-		<div class="py-2 md:py-8">
+		<div class="py-2 pb-8 md:py-8">
 			<Breadcrumb />
 		</div>
 
 		<FilterBar {controls} />
 
-		<div class="space-y-16">
+		<div class="mt-5 space-y-16">
 			{#if peopleByPosition.length === 0 || peopleByPosition.every(({ people }) => people.length === 0)}
 				<div class="pt-16 text-center md:pt-24">
 					<p class="text-sm italic text-slate-600 md:text-lg">
@@ -98,7 +98,7 @@
 				{#each peopleByPosition as { position, people }}
 					{#if people.length > 0}
 						<div class="pt-8">
-							<p class="heading-text">
+							<p class="heading-text heading-padding">
 								{#if position === 'Professor Emeritus'}
 									{#if people.length === 1}
 										Professor Emeritus
