@@ -108,7 +108,7 @@
 					<h3 class="font-medium text-primary">{startMonth}</h3>
 				</div>
 
-				{#if end_date}
+				{#if end_date && new Date(start_date).getDay() != new Date(end_date).getDay()}
 					<div class="mx-3 h-1 w-3 bg-secondary"></div>
 					<div
 						class="flex h-28 w-28 flex-col items-center justify-center rounded-lg bg-background text-foreground shadow-xl md:h-36 md:w-36"
