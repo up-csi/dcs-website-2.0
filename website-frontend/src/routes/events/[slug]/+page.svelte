@@ -41,7 +41,7 @@
 		<FlexibleContent content={event.event_content ?? 'Event content is empty.'} />
 	</div>
 
-	{#if related_events}
+	{#if related_events.length > 0}
 		<h1 class="heading-text heading-padding">Related Events</h1>
 		<FullWidthBreakout>
 			<CardCarousel CardComponent={FeaturedEventCard} items={related_events} />
