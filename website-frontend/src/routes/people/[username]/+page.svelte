@@ -50,8 +50,6 @@
 		}))
 		.concat(external_affiliations);
 
-	$: showBasicInfo =
-		person.location || person.telephone || person.email || !!person.interests?.length;
 	$: showEducation = !!person.educational_attainment?.length;
 	$: showAffiliations = !!person.affiliations?.length || !!person.external_affiliations?.length;
 	$: showAwards = !!person.awards?.length;
@@ -72,59 +70,57 @@
 			/>
 		</div>
 
-		{#if showBasicInfo || showEducation || showAffiliations || showAwards}
-			<div class="-mt-[1px] bg-background-dark">
-				<div
-					class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
-				>
-					<Tabs.Root value="basic info" class="w-full">
-						<Tabs.List class="flex">
-							{#if showBasicInfo}
-								<Tabs.Trigger value="basic info" class="w-full">Basic Info</Tabs.Trigger>
-							{/if}
-							{#if showEducation}
-								<Tabs.Trigger value="education" class="w-full">Education</Tabs.Trigger>
-							{/if}
-							{#if showAffiliations}
-								<Tabs.Trigger value="affiliations" class="w-full">Affiliations</Tabs.Trigger>
-							{/if}
-							{#if showAwards}
-								<Tabs.Trigger value="awards" class="w-full">Awards</Tabs.Trigger>
-							{/if}
-						</Tabs.List>
-
-						{#if showBasicInfo}
-							<Tabs.Content value="basic info">
-								<InfoCard
-									office={person.location ?? ''}
-									telephone={person.telephone ?? ''}
-									contact_email={person.email ?? ''}
-									interests={person.interests ?? []}
-								/>
-							</Tabs.Content>
-						{/if}
-
+		<div class="-mt-[1px] bg-background-dark">
+			<div
+				class="space-y-9 px-4 pb-16 pt-9 md:max-w-6xl md:space-y-12 md:px-10 md:pb-24 md:pt-12 lg:pl-[369px]"
+			>
+				<Tabs.Root value="basic info" class="w-full">
+					<Tabs.List class="flex">
+						<Tabs.Trigger value="basic info" class="w-full">Basic Info</Tabs.Trigger>
 						{#if showEducation}
-							<Tabs.Content value="education">
-								<InfoCard educational_attainment={person.educational_attainment ?? []} />
-							</Tabs.Content>
+							<Tabs.Trigger value="education" class="w-full">Education</Tabs.Trigger>
 						{/if}
-
 						{#if showAffiliations}
-							<Tabs.Content value="affiliations">
-								<InfoCard affiliations={affiliationList} />
-							</Tabs.Content>
+							<Tabs.Trigger value="affiliations" class="w-full">Affiliations</Tabs.Trigger>
 						{/if}
-
 						{#if showAwards}
-							<Tabs.Content value="awards">
-								<InfoCard awards={person.awards ?? ''} />
-							</Tabs.Content>
+							<Tabs.Trigger value="awards" class="w-full">Awards</Tabs.Trigger>
 						{/if}
-					</Tabs.Root>
-				</div>
+					</Tabs.List>
+
+					<Tabs.Content value="basic info">
+						{#if person.location || person.telephone || person.email || person.interests}
+							<InfoCard
+								office={person.location ?? ''}
+								telephone={person.telephone ?? ''}
+								contact_email={person.email ?? ''}
+								interests={person.interests ?? []}
+							/>
+						{:else}
+							<InfoCard isBlank />
+						{/if}
+					</Tabs.Content>
+
+					{#if showEducation}
+						<Tabs.Content value="education">
+							<InfoCard educational_attainment={person.educational_attainment ?? []} />
+						</Tabs.Content>
+					{/if}
+
+					{#if showAffiliations}
+						<Tabs.Content value="affiliations">
+							<InfoCard affiliations={affiliationList} />
+						</Tabs.Content>
+					{/if}
+
+					{#if showAwards}
+						<Tabs.Content value="awards">
+							<InfoCard awards={person.awards ?? ''} />
+						</Tabs.Content>
+					{/if}
+				</Tabs.Root>
 			</div>
-		{/if}
+		</div>
 	</FullWidthBreakout>
 
 	{#if publications.length !== 0}
