@@ -71,13 +71,17 @@
 						{#each news as { slug, title, summary, background_image }}
 							<SearchResult href="/news/{slug}" image={background_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
-								<p class="line-clamp-2">{@html summary}</p>
+								{#if summary}
+									<p class="line-clamp-2">{@html summary}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 						{#each events as { slug, event_headline, event_content, hero_image }}
 							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
-								<p class="line-clamp-2">{@html event_content}</p>
+								{#if event_content}
+									<p class="line-clamp-2">{@html event_content}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 						{#each people as { username, first_name, last_name, profile_image, position }}
@@ -87,13 +91,17 @@
 								name="{first_name} {last_name}"
 							>
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
-								<p>{position}</p>
+								{#if position}
+									<p>{position}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 						{#each laboratories as { slug, name, description, logo }}
 							<SearchResult href="/labs/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
-								<p class="line-clamp-2">{description}</p>
+								{#if description}
+									<p class="line-clamp-2">{description}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 						{#each publications as publication}
@@ -104,26 +112,34 @@
 								name={publication.title}
 							>
 								<p class="text-xl font-bold">{publication.title}</p>
-								<p>
-									{#each publication.authors as { last_name }, i}
-										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
-									{/each}
-								</p>
-								<p class="line-clamp-2">{publication.abstract}</p>
+								{#if publication.authors.length > 0}
+									<p>
+										{#each publication.authors as { last_name }, i}
+											{last_name}{#if i + 1 !== publication.authors.length}{`, `}{/if}
+										{/each}
+									</p>
+								{/if}
+								{#if publication.abstract}
+									<p class="line-clamp-2">{publication.abstract}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{:else if tab === 'News'}
 						{#each news as { slug, title, summary, background_image }}
 							<SearchResult href="/news/{slug}" image={background_image} name={title}>
 								<p class="text-xl font-bold">{title}</p>
-								<p class="line-clamp-2">{@html summary}</p>
+								{#if summary}
+									<p class="line-clamp-2">{@html summary}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Events'}
 						{#each events as { slug, event_headline, event_content, hero_image }}
 							<SearchResult href="/events/{slug}" image={hero_image} name={event_headline}>
 								<p class="text-xl font-bold">{event_headline}</p>
-								<p class="line-clamp-2">{@html event_content}</p>
+								{#if event_content}
+									<p class="line-clamp-2">{@html event_content}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{:else if tab === 'People'}
@@ -134,14 +150,18 @@
 								name="{first_name} {last_name}"
 							>
 								<p class="text-xl font-bold">{first_name} {last_name}</p>
-								<p>{position}</p>
+								{#if position}
+									<p>{position}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Laboratories'}
 						{#each laboratories as { slug, name, description, logo }}
 							<SearchResult href="/labs/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
-								<p class="line-clamp-2">{description}</p>
+								{#if description}
+									<p class="line-clamp-2">{description}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{:else if tab === 'Publications'}
@@ -153,12 +173,16 @@
 								name={publication.title}
 							>
 								<p class="text-xl font-bold">{publication.title}</p>
-								<p>
-									{#each publication.authors as { last_name }, i}
-										{last_name}{#if i + 1 !== publication.authors.length},&nbsp;{/if}
-									{/each}
-								</p>
-								<p class="line-clamp-2">{publication.abstract}</p>
+								{#if publication.authors.length > 0}
+									<p>
+										{#each publication.authors as { last_name }, i}
+											{last_name}{#if i + 1 !== publication.authors.length}{`, `}{/if}
+										{/each}
+									</p>
+								{/if}
+								{#if publication.abstract}
+									<p class="line-clamp-2">{publication.abstract}</p>
+								{/if}
 							</SearchResult>
 						{/each}
 					{/if}
