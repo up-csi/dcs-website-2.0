@@ -28,12 +28,14 @@
 		</div>
 	{/if}
 
-	<p class="heading-text">Alumni Profile</p>
-	<CardPanel>
-		{#each alumni as alum}
-			<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-				<AlumCard {alum} />
-			</div>
-		{/each}
-	</CardPanel>
+	{#if alumni.length > 0}
+		<p class="heading-text">Alumni Profile</p>
+		<CardPanel>
+			{#each alumni as alum}
+				<div class="-m-5 grow-0 basis-full p-5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+					<AlumCard {alum} />
+				</div>
+			{/each}
+		</CardPanel>
+	{/if}
 </div>
