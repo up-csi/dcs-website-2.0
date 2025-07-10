@@ -97,7 +97,7 @@
 							</SearchResult>
 						{/each}
 						{#each laboratories as { slug, name, description, logo }}
-							<SearchResult href="/labs/{slug}" image={logo} {name}>
+							<SearchResult href="/research/labs/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								{#if description}
 									<p class="line-clamp-2">{description}</p>
@@ -157,7 +157,7 @@
 						{/each}
 					{:else if tab === 'Laboratories'}
 						{#each laboratories as { slug, name, description, logo }}
-							<SearchResult href="/labs/{slug}" image={logo} {name}>
+							<SearchResult href="/research/labs/{slug}" image={logo} {name}>
 								<p class="text-xl font-bold">{name}</p>
 								{#if description}
 									<p class="line-clamp-2">{description}</p>
