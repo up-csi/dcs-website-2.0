@@ -23,6 +23,16 @@
 					return {};
 				})
 		: [];
+
+	$: external_affiliations = person.external_affiliations
+		? person.external_affiliations.map((affiliation) => {
+				return {
+					role: affiliation.role ?? '',
+					affiliation: affiliation.affiliation ?? ''
+				};
+			})
+		: [];
+
 	$: publications = person.publications
 		? person.publications
 				.filter((publication) => typeof publication !== 'number')
@@ -33,13 +43,15 @@
 				.filter((item) => item !== null)
 		: [];
 
-	$: affiliationList = affiliations.map((a) => ({
-		role: a.role ?? '',
-		affiliation: a.laboratory ?? ''
-	}));
+	$: affiliationList = affiliations
+		.map((a) => ({
+			role: a.role ?? '',
+			affiliation: a.laboratory ?? ''
+		}))
+		.concat(external_affiliations);
 
 	$: showEducation = !!person.educational_attainment?.length;
-	$: showAffiliations = !!person.affiliations?.length;
+	$: showAffiliations = !!person.affiliations?.length || !!person.external_affiliations?.length;
 	$: showAwards = !!person.awards?.length;
 </script>
 

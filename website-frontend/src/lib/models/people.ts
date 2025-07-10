@@ -23,6 +23,13 @@ export const EducationalAttainment = partial(
 	})
 );
 
+const ExternalAffiliation = partial(
+	object({
+		role: string(),
+		affiliation: string()
+	})
+);
+
 export const Person = partial(
 	object({
 		id: string(),
@@ -42,6 +49,7 @@ export const Person = partial(
 		educational_attainment: nullable(array(EducationalAttainment)),
 		username: string(),
 		affiliations: nullable(union([array(string()), lazy(() => PeopleLaboratories)])),
+		external_affiliations: nullable(array(ExternalAffiliation)),
 		publications: nullable(union([array(number()), lazy(() => PeoplePublications)]))
 	})
 );
