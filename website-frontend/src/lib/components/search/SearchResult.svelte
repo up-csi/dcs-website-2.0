@@ -100,31 +100,29 @@
 							</div>
 						{/if}
 						{#if publication.authors}
-							<div class="flex gap-x-1">
-								{#if publication.authors.length !== 1}
-									<strong>Authors:</strong>
+							{#if publication.authors.length !== 1}
+								<strong>Authors:</strong>
+							{:else}
+								<strong>Author:</strong>
+							{/if}
+							{#each publication.authors as author, i}
+								{#if author.link && typeof author.link === 'string'}
+									<a
+										href={author.link}
+										class="text-blue-500"
+										data-sveltekit-reload
+										on:click={() => {
+											$reloading = true;
+										}}
+										>{`${author.last_name}, ${author.first_name}`}
+									</a>
 								{:else}
-									<strong>Author:</strong>
+									<span>{`${author.last_name}, ${author.first_name}`}</span>
 								{/if}
-								{#each publication.authors as author, i}
-									{#if author.link && typeof author.link === 'string'}
-										<a
-											href={author.link}
-											class="text-blue-500"
-											data-sveltekit-reload
-											on:click={() => {
-												$reloading = true;
-											}}
-											>{author.last_name}, {author.first_name}
-										</a>
-									{:else}
-										<span>{author.last_name}, {author.first_name} </span>
-									{/if}
-									{#if i + 1 !== publication.authors.length}
-										<div>&</div>
-									{/if}
-								{/each}
-							</div>
+								{#if i + 1 !== publication.authors.length}
+									<span>{` & `}</span>
+								{/if}
+							{/each}
 						{/if}
 					</div>
 					{#if publication.abstract}
