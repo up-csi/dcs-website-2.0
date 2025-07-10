@@ -37,7 +37,7 @@ export const Person = partial(
 		level: nullable(union([array(number()), lazy(() => PeopleRelated)])),
 		profile_image: nullable(string()),
 		background_image: nullable(string()),
-		interests: nullable(string()),
+		interests: nullable(array(string())),
 		awards: nullable(string()),
 		educational_attainment: nullable(array(EducationalAttainment)),
 		username: string(),

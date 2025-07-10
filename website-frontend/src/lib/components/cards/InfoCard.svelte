@@ -5,7 +5,7 @@
 
 	export let office: string = '';
 	export let telephone: string = '';
-	export let interests: string = '';
+	export let interests: Array<string> = [];
 	export let awards: string = '';
 	export let affiliations: { role: string; affiliation: string }[] = [];
 	export let educational_attainment: {
@@ -16,7 +16,6 @@
 		end_date?: string | null;
 	}[] = [];
 
-	let interestList = interests.split(',').map((i) => i.trim());
 	let awardList = awards.split(',').map((j) => j.trim());
 </script>
 
@@ -94,11 +93,11 @@
 		</div>
 	{/if}
 
-	{#if interests}
+	{#if interests.length > 0}
 		<div>
 			<p class="text-primary-foreground/60">Research Interests</p>
 			<ul class="list-disc pl-5 text-primary-foreground">
-				{#each interestList as interest}
+				{#each interests as interest}
 					<li>{interest}</li>
 				{/each}
 			</ul>

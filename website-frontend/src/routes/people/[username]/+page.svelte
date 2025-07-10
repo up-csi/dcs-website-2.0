@@ -81,7 +81,7 @@
 							office={person.location ?? ''}
 							telephone={person.telephone ?? ''}
 							contact_email={person.email ?? ''}
-							interests={person.interests ?? ''}
+							interests={person.interests ?? []}
 						/>
 					</Tabs.Content>
 
