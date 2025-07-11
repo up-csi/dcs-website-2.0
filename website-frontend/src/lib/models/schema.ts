@@ -23,6 +23,7 @@ import { AcademicsProgramsCourses } from './junctions/academics_programs_courses
 import { AlumniOverview } from './alumni_overview';
 import { DirectusFiles } from './directus_files';
 import { DirectusUsers } from './directus_users';
+import { EventsOverview } from './events_overview';
 import { EventsAreas } from './events_areas';
 import { EventsLaboratories } from './junctions/events_laboratories';
 import { EventsRelated } from './junctions/events_related';
@@ -77,6 +78,7 @@ export const Schema = object({
 	alumni_overview: AlumniOverview,
 	directus_files: DirectusFiles,
 	directus_users: DirectusUsers,
+	events_overview: EventsOverview,
 	events_areas: EventsAreas,
 	events_laboratories: EventsLaboratories,
 	events_related: EventsRelated,

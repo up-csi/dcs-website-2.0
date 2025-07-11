@@ -1,7 +1,8 @@
 /** @type {import('./$types').PageServerLoad} */
 import getDirectusInstance from '$lib/directus';
-import { readItems } from '@directus/sdk';
+import { readItems, readSingleton } from '@directus/sdk';
 import { parse } from 'valibot';
+import { EventsOverview } from '$lib/models/events_overview.js';
 import { EventsAreas } from '$lib/models/events_areas';
 import { EventsTags } from '$lib/models/events_tags';
 import { Events } from '$lib/models/event';
@@ -37,6 +38,10 @@ export async function load({ fetch, url }) {
 			})
 		)
 	).map(({ name }) => name);
+	const events_overview = parse(
+		EventsOverview,
+		await directus.request(readSingleton('events_overview'))
+	);
 	const events = parse(
 		Events,
 		await directus.request(
@@ -76,5 +81,5 @@ export async function load({ fetch, url }) {
 		)
 	);
 
-	return { events, location_filters, discipline_filters };
+	return { events_overview, events, location_filters, discipline_filters };
 }
