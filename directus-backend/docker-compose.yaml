@@ -57,8 +57,8 @@ services:
     build: 
       context: ..
       args:
-        - PUBLIC_APIURL=http://directus:8055
-        - STATIC_ACCESS_TOKEN=1B43zfYfF9uv9AZPOiz2eg9tQV9Eq_vR
+        - PUBLIC_APIURL
+        - STATIC_ACCESS_TOKEN
     ports:
       - 1800:3000
 
@@ -73,6 +73,7 @@ secrets:
     file: ./secrets/google_client_sec.txt
   google_default_role:
     file: ./secrets/google_default_role.txt
+  
 
 volumes:
   database:
