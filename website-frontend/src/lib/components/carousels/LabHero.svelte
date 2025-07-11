@@ -30,10 +30,6 @@
 		});
 	}
 
-	$: if (background_images.length === 0) {
-		background_images = [`default1.jpg`, `default2.jpg`, `default3.jpg`, `default4.jpg`];
-	}
-
 	let carousel_height: number;
 	let logo_height: number;
 	$: logo_width = logo_height;
@@ -47,16 +43,25 @@
 			class="h-[82vh] w-full md:h-[80vh]"
 		>
 			<Carousel.Content>
-				{#each background_images as background_image}
+				{#if background_images.length > 0}
+					{#each background_images as background_image}
+						<Carousel.Item class="h-full">
+							{#if carousel_height}
+								<div
+									class="h-[82vh] bg-cover bg-center md:h-[80vh]"
+									style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height={carousel_height}')"
+								></div>
+							{/if}
+						</Carousel.Item>
+					{/each}
+				{:else}
 					<Carousel.Item class="h-full">
-						{#if carousel_height}
-							<div
-								class="h-[82vh] bg-cover bg-center md:h-[80vh]"
-								style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent), url('{PUBLIC_APIURL}/assets/{background_image}?height={carousel_height}')"
-							></div>
-						{/if}
+						<div
+							class="h-[82vh] bg-cover bg-center md:h-[80vh]"
+							style="background-image: linear-gradient(to top, hsl(var(--background-dark)), transparent 150%)"
+						></div>
 					</Carousel.Item>
-				{/each}
+				{/if}
 			</Carousel.Content>
 		</Carousel.Root>
 	</div>
@@ -95,13 +100,15 @@
 					class="flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between"
 				>
 					<div class="my-5 flex gap-2 lg:mb-0 lg:mt-5">
-						{#each Array(count).keys() as index}
-							<button
-								class="duration-400 h-2 w-2 rounded-full transition-all
+						{#if count > 1}
+							{#each Array(count).keys() as index}
+								<button
+									class="duration-400 h-2 w-2 rounded-full transition-all
 								{index === current - 1 ? 'bg-primary-foreground' : 'bg-gray-400'}"
-								on:click={() => api.scrollTo(index)}
-							></button>
-						{/each}
+									on:click={() => api.scrollTo(index)}
+								></button>
+							{/each}
+						{/if}
 					</div>
 
 					{#if link}

@@ -101,21 +101,25 @@
 					</div>
 				{/if}
 
-				<InfoCard
-					location={laboratory.location ?? ''}
-					contact_email={laboratory.contact_email ?? ''}
-				/>
+				{#if laboratory.location || laboratory.contact_email}
+					<InfoCard
+						location={laboratory.location ?? ''}
+						contact_email={laboratory.contact_email ?? ''}
+					/>
+				{/if}
 
-				{#if showFull}
-					<div class="text-lg leading-normal text-primary-foreground">
-						<p class="duration-400 overflow-hidden transition-all">
-							{laboratory.description}
-						</p>
-					</div>
-				{:else}
-					<div class="mt-9">
-						<ReadMore bind:showFull />
-					</div>
+				{#if laboratory.description}
+					{#if showFull}
+						<div class="text-lg leading-normal text-primary-foreground">
+							<p class="duration-400 overflow-hidden transition-all">
+								{laboratory.description}
+							</p>
+						</div>
+					{:else}
+						<div class="mt-9">
+							<ReadMore bind:showFull />
+						</div>
+					{/if}
 				{/if}
 			</div>
 		</div>

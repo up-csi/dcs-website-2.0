@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
-	import XIcon from '$lib/assets/XIcon.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import NavList from '$lib/components/nav/NavList.svelte';
 	import NavListMobile from '$lib/components/nav/NavListMobile.svelte';
@@ -15,7 +14,6 @@
 	export let secondary_logo;
 	export let secondary_logo_link;
 	export let facebook_link;
-	export let x_link;
 
 	export let about_pages;
 	export let people_categories;
@@ -75,8 +73,12 @@
 				/>
 			</a>
 			<a href="/" class="font-semibold text-primary">
-				<h1 class="mt-[1px] text-[11px] lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="-mt-1 text-[14px] lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="mt-[1px] text-[11px] font-[Source_Sans_Pro] lg:text-sm">
+					University of the Philippines Diliman
+				</h1>
+				<h1 class="-mt-1 font-[Palatino] text-[14px] lg:-mt-2 lg:text-lg">
+					Department of Computer Science
+				</h1>
 			</a>
 		</div>
 
@@ -96,16 +98,6 @@
 						: 'hidden'}"
 				>
 					<FacebookIcon />
-				</a>
-				<a
-					href={x_link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="mr-3 h-5 text-secondary transition-colors duration-300 hover:text-primary lg:block {$mobileOpen
-						? 'block'
-						: 'hidden'}"
-				>
-					<XIcon />
 				</a>
 			</div>
 
@@ -196,8 +188,12 @@
 				/>
 			</a>
 			<div class="font-medium">
-				<h1 class="text-xs lg:text-sm">University of the Philippines Diliman</h1>
-				<h1 class="text-md -mt-1 lg:-mt-2 lg:text-lg">Department of Computer Science</h1>
+				<h1 class="text-xs font-[Source_Sans_Pro] lg:text-sm">
+					University of the Philippines Diliman
+				</h1>
+				<h1 class="text-md -mt-1 font-[Palatino] lg:-mt-2 lg:text-lg">
+					Department of Computer Science
+				</h1>
 			</div>
 		</div>
 

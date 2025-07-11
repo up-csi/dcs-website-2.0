@@ -1,13 +1,11 @@
 <script>
 	import FacebookIcon from '$lib/assets/FacebookIcon.svelte';
-	import XIcon from '$lib/assets/XIcon.svelte';
 
 	export let address;
 	export let contact_number;
 	export let contact_email;
 	export let quick_links;
 	export let facebook_link;
-	export let x_link;
 </script>
 
 <div class="flex justify-center text-primary-foreground">
@@ -43,14 +41,6 @@
 					class="mr-3 h-10 pb-[2px] transition-colors duration-300 hover:text-gray-300"
 				>
 					<FacebookIcon />
-				</a>
-				<a
-					href={x_link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="h-8 transition-colors duration-300 hover:text-gray-300"
-				>
-					<XIcon />
 				</a>
 			</div>
 		</div>

@@ -67,7 +67,8 @@ export async function load({ url, params, fetch }) {
 					slug: {
 						_neq: params.slug
 					}
-				}
+				},
+				sort: ['-date_created']
 			})
 		)
 	);

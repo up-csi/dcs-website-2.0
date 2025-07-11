@@ -12,6 +12,8 @@ import {
 	type InferOutput
 } from 'valibot';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
+import { AcademicsCoursesPrerequisites } from './junctions/academics_courses_prerequisites';
+import { AcademicsCoursesCorequisites } from './junctions/academics_courses_corequisites';
 
 export const AcademicsCourse = partial(
 	object({
@@ -20,6 +22,12 @@ export const AcademicsCourse = partial(
 		course_units: pipe(number(), integer()),
 		course_description: nullable(string()),
 		course_syllabus: nullable(string()),
+		course_prerequisites: nullable(
+			union([array(number()), lazy(() => AcademicsCoursesPrerequisites)])
+		),
+		course_corequisites: nullable(
+			union([array(number()), lazy(() => AcademicsCoursesCorequisites)])
+		),
 		related_academics_programs: nullable(
 			union([array(number()), lazy(() => AcademicsProgramsCourses)])
 		)

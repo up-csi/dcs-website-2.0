@@ -23,6 +23,16 @@
 					return {};
 				})
 		: [];
+
+	$: external_affiliations = person.external_affiliations
+		? person.external_affiliations.map((affiliation) => {
+				return {
+					role: affiliation.role ?? '',
+					affiliation: affiliation.affiliation ?? ''
+				};
+			})
+		: [];
+
 	$: publications = person.publications
 		? person.publications
 				.filter((publication) => typeof publication !== 'number')
@@ -33,14 +43,17 @@
 				.filter((item) => item !== null)
 		: [];
 
-	$: affiliationList = affiliations.map((a) => ({
-		role: a.role ?? '',
-		affiliation: a.laboratory ?? ''
-	}));
+	$: affiliationList = affiliations
+		.map((a) => ({
+			role: a.role ?? '',
+			affiliation: a.laboratory ?? ''
+		}))
+		.concat(external_affiliations);
 
-	$: showEducation = !!person.educational_attainment?.length;
-	$: showAffiliations = !!person.affiliations?.length;
-	$: showAwards = !!person.awards?.length;
+	$: showEducation = (person.educational_attainment?.length ?? 0) > 0;
+	$: showAffiliations =
+		(person.affiliations?.length ?? 0) > 0 || (person.external_affiliations?.length ?? 0) > 0;
+	$: showAwards = (person.awards?.length ?? 0) > 0;
 </script>
 
 <div>
@@ -77,12 +90,16 @@
 					</Tabs.List>
 
 					<Tabs.Content value="basic info">
-						<InfoCard
-							office={person.location ?? ''}
-							telephone={person.telephone ?? ''}
-							contact_email={person.email ?? ''}
-							interests={person.interests ?? ''}
-						/>
+						{#if person.location || person.telephone || person.email || person.interests}
+							<InfoCard
+								office={person.location ?? ''}
+								telephone={person.telephone ?? ''}
+								contact_email={person.email ?? ''}
+								interests={person.interests ?? []}
+							/>
+						{:else}
+							<InfoCard isBlank />
+						{/if}
 					</Tabs.Content>
 
 					{#if showEducation}

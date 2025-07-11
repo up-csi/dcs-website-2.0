@@ -28,7 +28,6 @@
 	{/each}
 </NavItemMobile>
 <NavItemMobile href="/events" to="Events" />
-<NavItemMobile href="/publications" to="Publications" />
 <NavItemMobile href="/people" to="People" dropdown={true}>
 	{#each people_categories as people_category, i}
 		<NavItemMobile
@@ -70,6 +69,7 @@
 </NavItemMobile>
 <NavItemMobile href="/research" to="Research" dropdown={true}>
 	<NavItemMobile href="/research" to="Overview" />
+	<NavItemMobile href="/research/publications" to="Publications" />
 	<NavItemMobile href="/research/labs" to="Laboratories" dropdown={true}>
 		{#each laboratories as laboratory, i}
 			<NavItemMobile

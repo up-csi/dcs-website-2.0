@@ -15,6 +15,8 @@ import { Publications } from './publications';
 import { AboutPages } from './about_pages';
 import { AcademicsCategories } from './academics_categories';
 import { AcademicsCourses } from './academics_courses';
+import { AcademicsCoursesPrerequisites } from './junctions/academics_courses_prerequisites';
+import { AcademicsCoursesCorequisites } from './junctions/academics_courses_corequisites';
 import { AcademicsPages } from './academics_pages';
 import { AcademicsPrograms } from './academics_programs';
 import { AcademicsProgramsCourses } from './junctions/academics_programs_courses';
@@ -67,6 +69,8 @@ export const Schema = object({
 	about_pages: AboutPages,
 	academics_categories: AcademicsCategories,
 	academics_courses: AcademicsCourses,
+	academics_courses_prerequisites: AcademicsCoursesPrerequisites,
+	academics_courses_corequisites: AcademicsCoursesCorequisites,
 	academics_pages: AcademicsPages,
 	academics_programs: AcademicsPrograms,
 	academics_programs_courses: AcademicsProgramsCourses,

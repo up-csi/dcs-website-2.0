@@ -43,7 +43,9 @@
 
 		<div class="flex flex-col justify-center *:my-2 md:max-w-[50vw]">
 			<p class="text-xl font-bold leading-tight sm:text-2xl lg:text-3xl">{name}</p>
-			<p class="line-clamp-2 text-sm">{description}</p>
+			{#if description}
+				<p class="line-clamp-2 text-sm">{description}</p>
+			{/if}
 		</div>
 	</div>
 </a>

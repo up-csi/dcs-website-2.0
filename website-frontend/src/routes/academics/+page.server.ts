@@ -36,6 +36,15 @@ export async function load({ fetch, url }) {
 		AcademicsCourses,
 		await directus.request(
 			readItems('academics_courses', {
+				fields: [
+					'*',
+					{
+						course_prerequisites: ['course_prerequisite']
+					},
+					{
+						course_corequisites: ['course_corequisite']
+					}
+				],
 				search: url.searchParams.get('q') ?? '',
 				sort: ['course_code']
 			})
