@@ -25,7 +25,7 @@
 {#if !isDetailsHidden}
 	<small class="mt-2 flex flex-col text-xs">
 		<p>Units: {course_units}</p>
-		{#if !!course_prerequisites.length}
+		{#if course_prerequisites.length > 0}
 			<p>
 				Prerequisites:
 				{#each course_prerequisites.slice(0, -1) as { course_prerequisite }}
@@ -34,7 +34,7 @@
 				{course_prerequisites.at(-1).course_prerequisite}
 			</p>
 		{/if}
-		{#if !!course_corequisites.length}
+		{#if course_corequisites.length > 0}
 			<p>
 				Corequisites:
 				{#each course_corequisites.slice(0, -1) as { course_corequisite }}

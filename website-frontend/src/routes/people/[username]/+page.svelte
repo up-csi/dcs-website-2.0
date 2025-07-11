@@ -50,9 +50,9 @@
 		}))
 		.concat(external_affiliations);
 
-	$: showEducation = !!person.educational_attainment?.length;
-	$: showAffiliations = !!person.affiliations?.length || !!person.external_affiliations?.length;
-	$: showAwards = !!person.awards?.length;
+	$: showEducation = (person.educational_attainment?.length ?? 0) > 0;
+	$: showAffiliations = (person.affiliations?.length ?? 0) > 0 || (person.external_affiliations?.length ?? 0) > 0;
+	$: showAwards = (person.awards?.length ?? 0) > 0;
 </script>
 
 <div>
