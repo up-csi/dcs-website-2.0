@@ -1,13 +1,16 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItem, readItems } from '@directus/sdk';
+import { readItem, readItems, readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { parse } from 'valibot';
 import { Publications } from '$lib/models/publications';
 import { Laboratories } from '$lib/models/laboratories';
 import { PublicationsTags } from '$lib/models/publications_tags.js';
+import { Research } from '$lib/models/research';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
+
+	const research = parse(Research, await directus.request(readSingleton('research')));
 
 	const filters = {
 		years: url.searchParams.getAll('year'),
@@ -111,5 +114,5 @@ export async function load({ fetch, url }) {
 		);
 	})();
 
-	return { publications, years_filters, laboratories_filters, tags_filters };
+	return { research, publications, years_filters, laboratories_filters, tags_filters };
 }

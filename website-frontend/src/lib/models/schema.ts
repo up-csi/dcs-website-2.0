@@ -11,6 +11,7 @@ import { News } from './news';
 import { NewsTags } from './news_tags';
 import { NewsRelated } from './junctions/news_related';
 import { People } from './people';
+import { Research } from './research';
 import { Publications } from './publications';
 import { AboutPages } from './about_pages';
 import { AcademicsCategories } from './academics_categories';
@@ -66,6 +67,7 @@ export const Schema = object({
 	news_related: NewsRelated,
 	news_tags: NewsTags,
 	people: People,
+	research: Research,
 	publications: Publications,
 	about_pages: AboutPages,
 	academics_categories: AcademicsCategories,
