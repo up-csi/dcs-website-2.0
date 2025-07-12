@@ -14,7 +14,7 @@
 </script>
 
 <FullWidthBreakout>
-	<Banner {title} />
+	<Banner {title} background_image={content.background_image ?? ''} />
 </FullWidthBreakout>
 
 <div class="pb-16 text-base md:pb-24">

@@ -11,7 +11,7 @@
 
 	export let data;
 
-	$: ({ publications, years_filters, laboratories_filters, tags_filters } = data);
+	$: ({ research, publications, years_filters, laboratories_filters, tags_filters } = data);
 
 	const inc = 12;
 	let shown = inc;
@@ -51,7 +51,7 @@
 </script>
 
 <FullWidthBreakout>
-	<Banner title="Publications" />
+	<Banner title="Publications" background_image={research.background_image} />
 </FullWidthBreakout>
 
 <div class="pb-16 text-base md:pb-24">

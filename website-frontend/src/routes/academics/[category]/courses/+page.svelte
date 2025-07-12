@@ -12,7 +12,10 @@
 
 {#if academics_category}
 	<FullWidthBreakout>
-		<Banner title="{academics_category.name} Courses" />
+		<Banner
+			title="{academics_category.name} Courses"
+			background_image={academics_category.background_image ?? ''}
+		/>
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">

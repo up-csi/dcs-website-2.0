@@ -8,7 +8,7 @@
 
 	export let data;
 
-	$: ({ events, location_filters, discipline_filters } = data);
+	$: ({ events_overview, events, location_filters, discipline_filters } = data);
 
 	$: controls = [
 		{
@@ -25,7 +25,11 @@
 </script>
 
 <FullWidthBreakout>
-	<Banner {title} flexible_content={`This is the ${title} page.`} />
+	<Banner
+		{title}
+		flexible_content={`This is the ${title} page.`}
+		background_image={events_overview.background_image}
+	/>
 </FullWidthBreakout>
 
 <div class="pb-16 text-base md:pb-24">

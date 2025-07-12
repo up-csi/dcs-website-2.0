@@ -11,6 +11,7 @@ import { News } from './news';
 import { NewsTags } from './news_tags';
 import { NewsRelated } from './junctions/news_related';
 import { People } from './people';
+import { Research } from './research';
 import { Publications } from './publications';
 import { AboutPages } from './about_pages';
 import { AcademicsCategories } from './academics_categories';
@@ -23,6 +24,7 @@ import { AcademicsProgramsCourses } from './junctions/academics_programs_courses
 import { AlumniOverview } from './alumni_overview';
 import { DirectusFiles } from './directus_files';
 import { DirectusUsers } from './directus_users';
+import { EventsOverview } from './events_overview';
 import { EventsAreas } from './events_areas';
 import { EventsLaboratories } from './junctions/events_laboratories';
 import { EventsRelated } from './junctions/events_related';
@@ -65,6 +67,7 @@ export const Schema = object({
 	news_related: NewsRelated,
 	news_tags: NewsTags,
 	people: People,
+	research: Research,
 	publications: Publications,
 	about_pages: AboutPages,
 	academics_categories: AcademicsCategories,
@@ -77,6 +80,7 @@ export const Schema = object({
 	alumni_overview: AlumniOverview,
 	directus_files: DirectusFiles,
 	directus_users: DirectusUsers,
+	events_overview: EventsOverview,
 	events_areas: EventsAreas,
 	events_laboratories: EventsLaboratories,
 	events_related: EventsRelated,

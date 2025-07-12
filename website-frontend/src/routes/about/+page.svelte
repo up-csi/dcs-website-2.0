@@ -11,7 +11,7 @@
 
 {#if about}
 	<FullWidthBreakout>
-		<Banner title="About" />
+		<Banner title="About" background_image={about.background_image ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 text-base md:pb-24">

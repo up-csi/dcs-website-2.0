@@ -1,11 +1,12 @@
 import { cleanHtml } from '$lib/models-helpers';
-import { array, object, partial, pipe, string, type InferOutput } from 'valibot';
+import { array, nullable, object, partial, pipe, string, type InferOutput } from 'valibot';
 
 export const AboutPage = partial(
 	object({
 		title: string(),
 		slug: string(),
-		flexible_content: pipe(string(), cleanHtml)
+		flexible_content: pipe(string(), cleanHtml),
+		background_image: nullable(string())
 	})
 );
 

@@ -6,7 +6,8 @@ export const AcademicsCategory = partial(
 		name: string(),
 		slug: string(),
 		description: nullable(string()),
-		flexible_content: pipe(string(), cleanHtml)
+		flexible_content: pipe(string(), cleanHtml),
+		background_image: nullable(string())
 	})
 );
 

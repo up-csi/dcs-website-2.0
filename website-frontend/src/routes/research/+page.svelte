@@ -6,13 +6,13 @@
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	export let data;
 
-	$: ({ laboratories } = data);
+	$: ({ research, laboratories } = data);
 
 	const title = 'Research';
 </script>
 
 <FullWidthBreakout>
-	<Banner {title} />
+	<Banner {title} background_image={research.background_image ?? ''} />
 </FullWidthBreakout>
 
 <div class="pb-16 md:pb-24">
