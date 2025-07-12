@@ -34,21 +34,35 @@ export async function load({ fetch, url }) {
 	);
 	const academics_courses = parse(
 		AcademicsCourses,
-		await directus.request(
-			readItems('academics_courses', {
-				fields: [
-					'*',
-					{
-						course_prerequisites: ['course_prerequisite']
-					},
-					{
-						course_corequisites: ['course_corequisite']
-					}
-				],
-				search: url.searchParams.get('q') ?? '',
-				sort: ['course_code']
-			})
-		)
+		await directus
+			.request(
+				readItems('academics_courses', {
+					fields: [
+						'*',
+						{
+							course_prerequisites: ['course_prerequisite']
+						},
+						{
+							course_corequisites: ['course_corequisite']
+						}
+					],
+					search: url.searchParams.get('q') ?? '',
+					sort: ['course_code']
+				})
+			)
+			.then((res) =>
+				res.sort((a, b) => {
+					const [a_key, a_num] = a.course_code ? a.course_code.split(' ') : ['', ''];
+					const [b_key, b_num] = b.course_code ? b.course_code.split(' ') : ['', ''];
+
+					// Compare the course primary keys alphabetically
+					if (a_key < b_key) return -1;
+					if (a_key > b_key) return 1;
+
+					// Compare the course numbers numerically if the course primary keys are equal
+					return parseInt(a_num, 10) - parseInt(b_num, 10);
+				})
+			)
 	);
 	const curriculum_last_updated = (() => {
 		const dates = academics_programs.map(
