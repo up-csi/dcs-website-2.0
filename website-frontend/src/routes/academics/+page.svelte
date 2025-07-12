@@ -14,7 +14,7 @@
 
 {#if academics}
 	<FullWidthBreakout>
-		<Banner title="Academics" />
+		<Banner title="Academics" background_image={academics.background_image ?? ''} />
 	</FullWidthBreakout>
 
 	<div class="pb-16 md:pb-24">
