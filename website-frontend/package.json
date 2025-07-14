@@ -29,7 +29,7 @@
 		"@types/node": "22.7.5",
 		"@types/sanitize-html": "^2.16.0",
 		"autoprefixer": "10.4.20",
-		"bits-ui": "^0.22.0",
+		"bits-ui": "0.22.0",
 		"clsx": "^2.1.1",
 		"embla-carousel-svelte": "^8.6.0",
 		"eslint": "^9.30.1",
