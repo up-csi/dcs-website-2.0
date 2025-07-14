@@ -4,17 +4,20 @@ import getDirectusInstance from '$lib/directus';
 import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
 import { News } from '$lib/models/news';
 import { Home } from '$lib/models/home';
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
-	const news_limit = 8;
+	const news_limit = 12;
 	const news_count = await directus
 		.request(
 			aggregate('news', {
 				aggregate: { count: '*' }
 			})
 		)
-		.then((res) => res[0].count);
+		.then((res) => parseInt(res[0].count ?? '0'));
+	if (parseInt(url.searchParams.get('limit') ?? news_limit.toString()) < news_limit)
+		throw redirect(302, url.pathname);
 	const news = parseAsync(
 		pipeAsync(promise(), awaitAsync(), News),
 		directus.request(
@@ -36,8 +39,7 @@ export async function load({ fetch, url }) {
 					}
 				],
 				sort: ['-date_created'],
-				limit: news_limit,
-				page: parseInt(url.searchParams.get('page') ?? '1')
+				limit: Math.max(news_limit, parseInt(url.searchParams.get('limit') ?? '0'))
 			})
 		)
 	);

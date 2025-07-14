@@ -67,7 +67,7 @@
 				text="news"
 				component={NewsCard}
 				count={news_count}
-				display_count={news_limit}
+				limit={news_limit}
 			/>
 		</div>
 	</div>

@@ -1,8 +1,7 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
-	import * as Pagination from '$lib/@shadcn-svelte/ui/pagination/index';
 	import { Moon } from 'svelte-loading-spinners';
-	import { ChevronLeft, ChevronRight, Frown } from 'lucide-svelte';
+	import { ChevronsUp, Frown, Plus } from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
@@ -12,15 +11,15 @@
 	export let text;
 	export let component;
 	export let count;
-	export let display_count: number;
+	export let limit: number;
 
 	$: query = new URLSearchParams($page.url.searchParams.toString());
-	$: currentPage = parseInt(query.get('page') ?? '1');
+	$: currentLimit = parseInt(query.get('limit') ?? limit.toString());
 
-	function nav(page: number): void {
-		query.delete('page');
-		if (page != 1) {
-			query.append('page', page.toString());
+	function nav(newLimit: number): void {
+		query.delete('limit');
+		if (newLimit > limit) {
+			query.append('limit', newLimit.toString());
 		}
 		goto(`?${query.toString()}`, { noScroll: true, keepFocus: true });
 	}
@@ -35,7 +34,9 @@
 				unit="px"
 				duration="1s"
 			/>
-			<p>Loading {text}...</p>
+			<p class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}>
+				Loading {text}...
+			</p>
 		</div>
 	{:then data}
 		<div class={layout}>
@@ -43,40 +44,44 @@
 				<svelte:component this={component} {item} />
 			{/each}
 		</div>
+		<div class="flex flex-col items-center gap-2">
+			<div class="flex items-center justify-center gap-1">
+				{#if data.length < count}
+					<button
+						class="flex items-center rounded-3xl px-6 py-2 shadow-xl"
+						on:click={() => nav(currentLimit + limit)}
+					>
+						<Plus color={onDark ? 'hsl(0, 0%, 100%)' : 'hsl(144, 69%, 24%)'} class="mr-2 h-4 w-4" />
+						<span class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}
+							>Load More</span
+						>
+					</button>
+				{/if}
+				{#if data.length > limit}
+					<button
+						class="flex items-center rounded-3xl px-6 py-2 shadow-xl"
+						on:click={() => nav(limit)}
+					>
+						<ChevronsUp
+							color={onDark ? 'hsl(0, 0%, 100%)' : 'hsl(144, 69%, 24%)'}
+							class="mr-2 h-4 w-4"
+						/>
+						<span class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}
+							>Collapse</span
+						>
+					</button>
+				{/if}
+			</div>
+			<small class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}
+				>Showing {Math.min(currentLimit, count)} items out of {count}</small
+			>
+		</div>
 	{:catch}
 		<div class="flex flex-col items-center justify-center gap-5">
 			<Frown size="90" color={onDark ? 'hsl(0, 0%, 100%)' : 'hsl(144, 69%, 24%)'} />
-			<p>Error loading {text}. Please try refreshing the page.</p>
+			<p class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}>
+				Error loading {text}. Please try refreshing the page.
+			</p>
 		</div>
 	{/await}
-
-	<Pagination.Root {count} perPage={display_count} onPageChange={nav} let:pages>
-		<Pagination.Content>
-			<Pagination.Item>
-				<Pagination.PrevButton>
-					<ChevronLeft class="h-4 w-4" />
-					<span class="hidden sm:block">Previous</span>
-				</Pagination.PrevButton>
-			</Pagination.Item>
-			{#each pages as page (page.key)}
-				{#if page.type === 'ellipsis'}
-					<Pagination.Item>
-						<Pagination.Ellipsis />
-					</Pagination.Item>
-				{:else}
-					<Pagination.Item>
-						<Pagination.Link {page} isActive={currentPage === page.value}>
-							{page.value}
-						</Pagination.Link>
-					</Pagination.Item>
-				{/if}
-			{/each}
-			<Pagination.Item>
-				<Pagination.NextButton>
-					<span class="hidden sm:block">Next</span>
-					<ChevronRight class="h-4 w-4" />
-				</Pagination.NextButton>
-			</Pagination.Item>
-		</Pagination.Content>
-	</Pagination.Root>
 </div>
