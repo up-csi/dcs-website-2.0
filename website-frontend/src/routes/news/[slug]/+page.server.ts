@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems } from '@directus/sdk';
+import { aggregate, readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
@@ -43,6 +43,19 @@ export async function load({ url, params, fetch }) {
 
 	const news_item = parse(NewsItem, news[0]);
 
+	const other_news_limit = 8;
+	const other_news_count = await directus
+		.request(
+			aggregate('news', {
+				filter: {
+					slug: {
+						_neq: params.slug
+					}
+				},
+				aggregate: { count: '*' }
+			})
+		)
+		.then((res) => res[0].count);
 	const other_news = parse(
 		News,
 		await directus.request(
@@ -68,12 +81,14 @@ export async function load({ url, params, fetch }) {
 						_neq: params.slug
 					}
 				},
-				sort: ['-date_created']
+				sort: ['-date_created'],
+				limit: other_news_limit,
+				page: parseInt(url.searchParams.get('page') ?? '1')
 			})
 		)
 	);
 
 	const link = new URL(url.toString()).toString();
 
-	return { link, other_news, news_item };
+	return { link, other_news, other_news_limit, other_news_count, news_item };
 }
