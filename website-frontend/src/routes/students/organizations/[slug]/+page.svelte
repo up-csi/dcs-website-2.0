@@ -103,7 +103,7 @@
 		<div>
 			<div class="heading-padding flex items-center justify-between text-primary-dark">
 				<h2 class="heading-text">News from {organization.name}</h2>
-				<Button href="#more-news" variant="outline" class="flex gap-x-2 rounded-full">
+				<Button href="/news" variant="outline" class="flex gap-x-2 rounded-full">
 					<p>View all</p>
 					<ArrowRight class="size-4" />
 				</Button>

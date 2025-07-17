@@ -27,6 +27,7 @@
 		<NavItem href="/about/{about_page.slug}" to={about_page.title ?? `About Page ${i}`} />
 	{/each}
 </NavItem>
+<NavItem href="/news" to="News" />
 <NavItem href="/events" to="Events" />
 <NavItem href="/people" to="People" dropdown={true}>
 	{#each people_categories as people_category, i}

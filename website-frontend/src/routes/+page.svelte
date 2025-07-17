@@ -7,11 +7,10 @@
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import { ChevronRight } from 'lucide-svelte';
-	import Await from '$lib/components/loading/Await.svelte';
 
 	export let data;
 
-	$: ({ news_limit, news_count, news, featured_news, recent_news, recent_events } = data);
+	$: ({ featured_news, recent_news, recent_events } = data);
 </script>
 
 <FullWidthBreakout>
@@ -24,7 +23,7 @@
 			<div class="heading-padding flex items-center justify-between text-primary-dark">
 				<h2 class="heading-text border-l-[5px] border-secondary-red pl-2">Recent News</h2>
 				<Button
-					href="#more-news"
+					href="/news"
 					variant="outline"
 					class="flex h-auto gap-x-1 rounded-full text-[0.8rem]"
 				>
@@ -55,20 +54,3 @@
 		</div>
 	</div>
 </div>
-
-<FullWidthBreakout>
-	<div id="more-news" class="flex justify-center bg-background-dark text-primary-foreground">
-		<div class="max-w-[1330px] px-4 py-16 md:px-8 md:py-24 2xl:max-w-screen-2xl">
-			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
-			<Await
-				onDark
-				layout="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-				data={news}
-				text="news"
-				component={NewsCard}
-				count={news_count}
-				limit={news_limit}
-			/>
-		</div>
-	</div>
-</FullWidthBreakout>
