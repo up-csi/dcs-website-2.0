@@ -7,7 +7,7 @@
 
 	export let onDark = false;
 	export let layout;
-	export let data: Array<unknown>;
+	export let data: Promise<Array<unknown>>;
 	export let text;
 	export let component;
 	export let count;
@@ -19,7 +19,7 @@
 		formData.set('offset', (offset + limit).toString());
 		return async ({ result }: { result: ActionResult }) => {
 			if (result.type === 'success' && result.data) {
-				data = [...(await data), ...result.data.items];
+				data = Promise.all([...(await data), ...result.data.items]);
 				offset = offset + limit;
 			}
 		};
