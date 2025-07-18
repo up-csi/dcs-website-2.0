@@ -10,7 +10,7 @@
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import type { StudentsOrganization } from '$lib/models/students_organizations';
-	import type { Events } from '$lib/models/event';
+	import type { Events } from '$lib/models/events.js';
 	import type { News } from '$lib/models/news';
 	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 
@@ -103,7 +103,7 @@
 		<div>
 			<div class="heading-padding flex items-center justify-between text-primary-dark">
 				<h2 class="heading-text">News from {organization.name}</h2>
-				<Button href="#more-news" variant="outline" class="flex gap-x-2 rounded-full">
+				<Button href="/news" variant="outline" class="flex gap-x-2 rounded-full">
 					<p>View all</p>
 					<ArrowRight class="size-4" />
 				</Button>

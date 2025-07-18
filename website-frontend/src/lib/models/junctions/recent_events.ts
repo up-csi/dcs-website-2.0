@@ -1,5 +1,5 @@
 import { array, lazy, object, partial, string, union, type GenericSchema } from 'valibot';
-import { Event } from '../event';
+import { Event } from '../events';
 
 export type RecentEvents = {
 	events_id?: string | Event;

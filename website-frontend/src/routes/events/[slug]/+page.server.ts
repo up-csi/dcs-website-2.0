@@ -3,7 +3,7 @@ import { readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
-import { Event, Events } from '$lib/models/event';
+import { Event, Events } from '$lib/models/events';
 
 export async function load({ params, fetch }) {
 	const directus = getDirectusInstance(fetch);

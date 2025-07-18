@@ -6,10 +6,11 @@
 	import Breadcrumb from '$lib/components/breadcrumbs/PageBreadcrumb.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import Share from '$lib/components/buttons/Share.svelte';
+	import Await from '$lib/components/loading/Await.svelte';
 	export let data;
 	let banner_height: number;
 
-	$: ({ link, other_news, news_item } = data);
+	$: ({ link, other_news_limit, other_news_count, other_news, news_item } = data);
 
 	$: news_tags = news_item.news_tags
 		? news_item.news_tags
@@ -102,11 +103,15 @@
 	<div class="flex justify-center bg-background-dark text-primary-foreground">
 		<div class="max-w-[1330px] px-8 py-16 md:px-16 md:py-24 2xl:max-w-screen-2xl">
 			<h2 class="heading-text heading-padding text-center">More News from UPD DCS</h2>
-			<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-				{#each other_news as news_item}
-					<NewsCard item={news_item} />
-				{/each}
-			</div>
+			<Await
+				onDark
+				layout="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+				data={other_news}
+				text="other news"
+				component={NewsCard}
+				count={other_news_count}
+				limit={other_news_limit}
+			/>
 		</div>
 	</div>
 </FullWidthBreakout>

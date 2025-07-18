@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { parse } from 'valibot';
 import { Global } from '$lib/models/global';
-import { Events } from '$lib/models/event';
+import { Events } from '$lib/models/events';
 
 test.describe('Directus Collections', () => {
 	test('Global', async ({ request }) => {

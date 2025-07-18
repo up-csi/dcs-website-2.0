@@ -1,5 +1,5 @@
 import { array, lazy, object, partial, string, union, type GenericSchema } from 'valibot';
-import { Event } from '../event';
+import { Event } from '../events';
 import { EventsTag } from '../events_tags';
 
 export type EventsRelated = {

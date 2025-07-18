@@ -1,36 +1,11 @@
 /** @type {import('./$types').PageServerLoad} */
-import { readItems, readSingleton } from '@directus/sdk';
+import { readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
-import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
-import { News } from '$lib/models/news';
+import { parse } from 'valibot';
 import { Home } from '$lib/models/home';
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
-	const news = parseAsync(
-		pipeAsync(promise(), awaitAsync(), News),
-		directus.request(
-			readItems('news', {
-				fields: [
-					'*',
-					{
-						user_created: ['first_name', 'last_name']
-					},
-					{
-						user_updated: ['first_name', 'last_name']
-					},
-					{
-						news_tags: [
-							{
-								news_tags_id: ['name']
-							}
-						]
-					}
-				],
-				sort: ['-date_created']
-			})
-		)
-	);
 	const [featured_news, recent_news, recent_events] = await (async () => {
 		const home = parse(
 			Home,
@@ -117,5 +92,5 @@ export async function load({ fetch }) {
 		return [featured_news, recent_news, recent_events];
 	})();
 
-	return { news, featured_news, recent_news, recent_events };
+	return { featured_news, recent_news, recent_events };
 }

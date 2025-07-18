@@ -3,7 +3,7 @@ import { readItem, readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { parse } from 'valibot';
 import { News } from '$lib/models/news';
-import { Events } from '$lib/models/event';
+import { Events } from '$lib/models/events';
 import { People } from '$lib/models/people';
 import { Laboratories } from '$lib/models/laboratories';
 import { Publications } from '$lib/models/publications';

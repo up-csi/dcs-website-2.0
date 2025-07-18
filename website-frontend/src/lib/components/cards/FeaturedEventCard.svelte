@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APIURL } from '$env/static/public';
-	import { Event } from '$lib/models/event';
+	import { Event } from '$lib/models/events';
 	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
 	import { reloading } from '$lib/stores';
 	export let item: Event;
