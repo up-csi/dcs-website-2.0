@@ -2,7 +2,7 @@
 import { aggregate, readItems } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
-import { parse } from 'valibot';
+import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
 import { News, NewsItem } from '$lib/models/news';
 import type { Actions } from './$types';
 
@@ -62,9 +62,9 @@ export async function load({ url, params, fetch }) {
 			})
 		)
 		.then((res) => res[0].count);
-	const other_news = parse(
-		News,
-		await directus.request(
+	const other_news = parseAsync(
+		pipeAsync(promise(), awaitAsync(), News),
+		directus.request(
 			readItems('news', {
 				fields: [
 					'*',
