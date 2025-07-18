@@ -48,9 +48,9 @@ export async function load({ fetch }) {
 }
 
 export const actions = {
-	loadMore: async ({ request }) => {
+	loadMore: async ({ request, fetch }) => {
 		const data = await request.formData();
-		const directus = getDirectusInstance(null);
+		const directus = getDirectusInstance(fetch);
 		const news = parse(
 			News,
 			await directus.request(
