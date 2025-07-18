@@ -4,7 +4,7 @@ import getDirectusInstance from '$lib/directus';
 import { error } from '@sveltejs/kit';
 import { parse } from 'valibot';
 import { StudentsOrganizations, StudentsOrganization } from '$lib/models/students_organizations';
-import { Events } from '$lib/models/event';
+import { Events } from '$lib/models/events';
 import { News } from '$lib/models/news';
 
 export async function load({ params, fetch }) {

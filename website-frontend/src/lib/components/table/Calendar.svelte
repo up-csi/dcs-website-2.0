@@ -2,7 +2,7 @@
 	import { Button } from '$lib/@shadcn-svelte/ui/button';
 	import { Card } from '$lib/@shadcn-svelte/ui/card';
 	import { ChevronLeft, ChevronRight, MapPin, Image } from 'lucide-svelte';
-	import type { Events } from '$lib/models/event';
+	import type { Events } from '$lib/models/events';
 	import { PUBLIC_APIURL } from '$env/static/public';
 
 	export let events: Events;

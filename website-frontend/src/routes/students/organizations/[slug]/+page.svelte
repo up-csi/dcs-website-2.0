@@ -10,7 +10,7 @@
 	import FeaturedEventCard from '$lib/components/cards/FeaturedEventCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import type { StudentsOrganization } from '$lib/models/students_organizations';
-	import type { Events } from '$lib/models/event';
+	import type { Events } from '$lib/models/events.js';
 	import type { News } from '$lib/models/news';
 	import CardCarousel from '$lib/components/carousels/CardCarousel.svelte';
 

@@ -5,7 +5,7 @@ import { parse } from 'valibot';
 import { EventsOverview } from '$lib/models/events_overview.js';
 import { EventsAreas } from '$lib/models/events_areas';
 import { EventsTags } from '$lib/models/events_tags';
-import { Events } from '$lib/models/event';
+import { Events } from '$lib/models/events';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);

@@ -4,7 +4,7 @@ import { Home } from './home';
 import { About } from './about';
 import { Academics } from './academics';
 import { Alumni } from './alumni';
-import { Events } from './event';
+import { Events } from './events';
 import { Laboratories } from './laboratories';
 import { Linkages } from './linkages';
 import { News } from './news';
