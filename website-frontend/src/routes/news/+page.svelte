@@ -1,13 +1,18 @@
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import Banner from '$lib/components/banners/Banner.svelte';
 	import NewsCard from '$lib/components/cards/NewsCard.svelte';
 	import FullWidthBreakout from '$lib/components/FullWidthBreakout.svelte';
 	import Await from '$lib/components/loading/Await.svelte';
 
 	export let data;
 
-	$: ({ news_limit, news_count, news } = data);
+	$: ({ news_overview, news_limit, news_count, news } = data);
 </script>
+
+<FullWidthBreakout>
+	<Banner title="News" background_image={news_overview.background_image ?? ''} />
+</FullWidthBreakout>
 
 <FullWidthBreakout>
 	<div class="flex justify-center bg-background-dark text-primary-foreground">

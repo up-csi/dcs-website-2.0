@@ -1,12 +1,14 @@
 /** @type {import('./$types').PageServerLoad} */
-import { aggregate, readItems } from '@directus/sdk';
+import { aggregate, readItems, readSingleton } from '@directus/sdk';
 import getDirectusInstance from '$lib/directus';
-import { awaitAsync, parseAsync, pipeAsync, promise } from 'valibot';
+import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
 import { News } from '$lib/models/news';
 import { redirect } from '@sveltejs/kit';
+import { NewsOverview } from '$lib/models/news_overview.js';
 
 export async function load({ fetch, url }) {
 	const directus = getDirectusInstance(fetch);
+	const news_overview = parse(NewsOverview, await directus.request(readSingleton('news_overview')));
 	const news_limit = 12;
 	const news_count = await directus
 		.request(
@@ -43,5 +45,5 @@ export async function load({ fetch, url }) {
 		)
 	);
 
-	return { news_limit, news_count, news };
+	return { news_overview, news_limit, news_count, news };
 }
