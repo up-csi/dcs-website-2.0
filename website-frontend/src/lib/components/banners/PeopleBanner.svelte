@@ -65,13 +65,13 @@
 				<div
 					class="flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between"
 				>
-					<div class="flex space-x-2 text-[#D9D9D9]">
-						<p>{position}</p>
+					<span class="text-[#D9D9D9]">
+						{position}
 						{#if laboratory}
-							<p>·</p>
-							<p>{laboratory}</p>
+							·
+							{laboratory}
 						{/if}
-					</div>
+					</span>
 
 					<div class="mt-5 flex space-x-1 lg:mt-0">
 						<div class="group relative">
