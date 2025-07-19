@@ -134,9 +134,10 @@ export const actions = {
 			)
 		);
 
+		const items = [...JSON.parse(data.get('data') as string), ...other_news];
 		return {
 			success: true,
-			items: other_news
+			items
 		};
 	}
 } satisfies Actions;

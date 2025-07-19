@@ -78,9 +78,10 @@ export const actions = {
 			)
 		);
 
+		const items = [...JSON.parse(data.get('data') as string), ...news];
 		return {
 			success: true,
-			items: news
+			items
 		};
 	}
 } satisfies Actions;
