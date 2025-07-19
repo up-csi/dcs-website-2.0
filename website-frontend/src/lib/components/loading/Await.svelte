@@ -14,18 +14,14 @@
 	export let count;
 
 	let items: object[] = [];
-	let offset: number = 0;
 	$: query = new URLSearchParams($page.url.searchParams.toString());
-	$: offset = 0;
 	$: data.then((res) => (items = res));
 
 	const handleLoadMore = ({ formData }: { formData: FormData }) => {
 		formData.set('data', JSON.stringify(items));
-		formData.set('offset', offset.toString());
 		return async ({ result }: { result: ActionResult }) => {
 			if (result.type === 'success' && result.data) {
 				items = result.data.items;
-				offset = result.data.offset;
 			}
 		};
 	};
