@@ -50,8 +50,8 @@ export async function load({ fetch }) {
 export const actions = {
 	loadMore: async ({ request, fetch }) => {
 		const data = await request.formData();
+		const current = JSON.parse(data.get('data') as string);
 		const directus = getDirectusInstance(fetch);
-		const offset = parseInt((data.get('offset') ?? '0') as string) + limit;
 		const news = parse(
 			News,
 			await directus.request(
@@ -73,16 +73,15 @@ export const actions = {
 						}
 					],
 					sort: ['-date_created'],
-					offset,
+					offset: current.length,
 					limit
 				})
 			)
 		);
 
-		const items = [...JSON.parse(data.get('data') as string), ...news];
+		const items = [...current, ...news];
 		return {
 			success: true,
-			offset,
 			items
 		};
 	}
