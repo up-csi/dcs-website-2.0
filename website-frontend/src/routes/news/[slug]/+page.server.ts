@@ -6,7 +6,7 @@ import { awaitAsync, parse, parseAsync, pipeAsync, promise } from 'valibot';
 import { News, NewsItem } from '$lib/models/news';
 import type { Actions } from './$types';
 
-const other_news_limit = 12;
+const limit = 12;
 
 export async function load({ url, params, fetch }) {
 	const directus = getDirectusInstance(fetch);
@@ -88,20 +88,21 @@ export async function load({ url, params, fetch }) {
 					}
 				},
 				sort: ['-date_created'],
-				limit: other_news_limit
+				limit
 			})
 		)
 	);
 
 	const link = new URL(url.toString()).toString();
 
-	return { link, other_news_limit, other_news_count, other_news, news_item };
+	return { link, other_news_count, other_news, news_item };
 }
 
 export const actions = {
 	loadMore: async ({ request, params, fetch }) => {
 		const data = await request.formData();
 		const directus = getDirectusInstance(fetch);
+		const offset = parseInt((data.get('offset') ?? '0') as string) + limit;
 		const other_news = parse(
 			News,
 			await directus.request(
@@ -128,8 +129,8 @@ export const actions = {
 						}
 					},
 					sort: ['-date_created'],
-					offset: parseInt((data.get('offset') ?? '0') as string),
-					limit: other_news_limit
+					offset,
+					limit
 				})
 			)
 		);
@@ -137,6 +138,7 @@ export const actions = {
 		const items = [...JSON.parse(data.get('data') as string), ...other_news];
 		return {
 			success: true,
+			offset,
 			items
 		};
 	}

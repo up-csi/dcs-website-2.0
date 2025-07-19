@@ -10,7 +10,7 @@
 	export let data;
 	let banner_height: number;
 
-	$: ({ link, other_news_limit, other_news_count, other_news, news_item } = data);
+	$: ({ link, other_news_count, other_news, news_item } = data);
 
 	$: news_tags = news_item.news_tags
 		? news_item.news_tags
@@ -110,7 +110,6 @@
 				text="other news"
 				component={NewsCard}
 				count={other_news_count}
-				limit={other_news_limit}
 			/>
 		</div>
 	</div>

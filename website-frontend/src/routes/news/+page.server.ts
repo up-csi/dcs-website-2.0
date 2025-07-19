@@ -6,7 +6,7 @@ import { News } from '$lib/models/news';
 import { NewsOverview } from '$lib/models/news_overview.js';
 import type { Actions } from './$types';
 
-const news_limit = 12;
+const limit = 12;
 
 export async function load({ fetch }) {
 	const directus = getDirectusInstance(fetch);
@@ -39,18 +39,19 @@ export async function load({ fetch }) {
 					}
 				],
 				sort: ['-date_created'],
-				limit: news_limit
+				limit
 			})
 		)
 	);
 
-	return { news_overview, news_limit, news_count, news };
+	return { news_overview, news_count, news };
 }
 
 export const actions = {
 	loadMore: async ({ request, fetch }) => {
 		const data = await request.formData();
 		const directus = getDirectusInstance(fetch);
+		const offset = parseInt((data.get('offset') ?? '0') as string) + limit;
 		const news = parse(
 			News,
 			await directus.request(
@@ -72,8 +73,8 @@ export const actions = {
 						}
 					],
 					sort: ['-date_created'],
-					offset: parseInt((data.get('offset') ?? '0') as string),
-					limit: news_limit
+					offset,
+					limit
 				})
 			)
 		);
@@ -81,6 +82,7 @@ export const actions = {
 		const items = [...JSON.parse(data.get('data') as string), ...news];
 		return {
 			success: true,
+			offset,
 			items
 		};
 	}
