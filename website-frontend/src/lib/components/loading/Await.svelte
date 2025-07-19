@@ -3,27 +3,29 @@
 	import { Moon } from 'svelte-loading-spinners';
 	import { Frown, Plus } from 'lucide-svelte';
 	import { enhance } from '$app/forms';
-	import type { ActionResult } from '@sveltejs/kit';
 	import { page } from '$app/stores';
+	import { type ActionResult } from '@sveltejs/kit';
 
 	export let onDark = false;
 	export let layout;
-	export let data: Promise<Array<object>>;
+	export let data: Promise<object[]>;
 	export let text;
 	export let component;
 	export let count;
-	export let limit: number;
 
+	let items: object[] = [];
+	let offset: number = 0;
 	$: query = new URLSearchParams($page.url.searchParams.toString());
 	$: offset = 0;
+	$: data.then((res) => (items = res));
 
-	const handleLoadMore = async ({ formData }: { formData: FormData }) => {
-		formData.set('data', JSON.stringify(await data));
-		formData.set('offset', (offset + limit).toString());
+	const handleLoadMore = ({ formData }: { formData: FormData }) => {
+		formData.set('data', JSON.stringify(items));
+		formData.set('offset', offset.toString());
 		return async ({ result }: { result: ActionResult }) => {
 			if (result.type === 'success' && result.data) {
-				data = result.data.items;
-				offset = offset + limit;
+				items = result.data.items;
+				offset = result.data.offset;
 			}
 		};
 	};
@@ -42,15 +44,15 @@
 				Loading {text}...
 			</p>
 		</div>
-	{:then data}
+	{:then}
 		<div class={layout}>
-			{#each data as item}
+			{#each items as item}
 				<svelte:component this={component} {item} />
 			{/each}
 		</div>
 		<div class="flex flex-col items-center gap-2">
 			<div class="flex items-center justify-center gap-1">
-				{#if data.length < count}
+				{#if items.length < count}
 					<form method="POST" action="?/loadMore&{query.toString()}" use:enhance={handleLoadMore}>
 						<button type="submit" class="flex items-center rounded-3xl px-6 py-2 shadow-xl">
 							<Plus
@@ -65,7 +67,7 @@
 				{/if}
 			</div>
 			<small class={onDark ? 'text-[hsl(0, 0%, 100%)]' : 'text-[hsl(144, 69%, 24%)]'}
-				>Showing {data.length} items out of {count}</small
+				>Showing {items.length} items out of {count}</small
 			>
 		</div>
 	{:catch}
