@@ -58,4 +58,4 @@ export const People = array(Person);
 
 export type EducationalAttainment = InferOutput<typeof EducationalAttainment>;
 export type Person = InferOutput<typeof Person>;
-export type Peoples = InferOutput<typeof People>;
+export type People = InferOutput<typeof People>;
