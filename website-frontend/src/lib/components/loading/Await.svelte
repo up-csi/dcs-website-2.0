@@ -7,7 +7,7 @@
 	import { type ActionResult } from '@sveltejs/kit';
 
 	export let onDark = false;
-	export let layout;
+	export let layout = '';
 	export let data: Promise<object[]>;
 	export let text;
 	export let component;
