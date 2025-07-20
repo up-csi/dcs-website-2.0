@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Image } from 'lucide-svelte';
 	import { PUBLIC_APIURL } from '$env/static/public';
-	import { reloading } from '$lib/stores';
 
 	export let organization;
 	let logo_height: number;
@@ -9,13 +8,7 @@
 	$: ({ name, logo, description, website, slug } = organization);
 </script>
 
-<a
-	href="/students/organizations/{slug}"
-	data-sveltekit-reload
-	on:click={() => {
-		$reloading = true;
-	}}
->
+<a href="/students/organizations/{slug}" data-sveltekit-reload>
 	<div
 		class="my-4 flex flex-col justify-center gap-6 rounded-lg p-10 text-center text-background md:flex-row md:justify-start md:text-start"
 		style="background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)/0.25)); grid-template-columns: 1fr auto;"

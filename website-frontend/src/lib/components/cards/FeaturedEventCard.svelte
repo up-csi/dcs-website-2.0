@@ -2,7 +2,6 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Event } from '$lib/models/events';
 	import { Calendar, MapPin, Clock, Image } from 'lucide-svelte';
-	import { reloading } from '$lib/stores';
 	export let item: Event;
 	let hero_height: number;
 
@@ -38,13 +37,7 @@
 	}
 </script>
 
-<a
-	href="/events/{item.slug}"
-	data-sveltekit-reload
-	on:click={() => {
-		$reloading = true;
-	}}
->
+<a href="/events/{item.slug}" data-sveltekit-reload>
 	<div
 		class="group relative mb-2 flex h-[25rem] flex-col rounded-lg bg-white text-gray-800 shadow-md"
 	>

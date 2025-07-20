@@ -5,7 +5,6 @@
 	import { PUBLIC_APIURL } from '$env/static/public';
 	import { Publication } from '$lib/models/publications';
 	import { SquareArrowOutUpRight } from 'lucide-svelte';
-	import { reloading } from '$lib/stores';
 
 	export let item: Publication;
 
@@ -93,13 +92,7 @@
 							{/if}
 							{#each item.authors as author, i}
 								{#if author.link && typeof author.link === 'string'}
-									<a
-										href={author.link}
-										class="text-blue-500"
-										data-sveltekit-reload
-										on:click={() => {
-											$reloading = true;
-										}}
+									<a href={author.link} class="text-blue-500" data-sveltekit-reload
 										>{`${author.last_name}, ${author.first_name}`}
 									</a>
 								{:else}
