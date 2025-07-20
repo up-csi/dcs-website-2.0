@@ -76,27 +76,29 @@
 						</div>
 					{/if}
 					{#if item.authors}
-						{#if item.authors.length !== 1}
-							<strong>Authors:</strong>
-						{:else}
-							<strong>Author:</strong>
-						{/if}
-						{#each item.authors as author, i}
-							{#if author.link && typeof author.link === 'string'}
-								<a href={author.link} class="text-blue-500" data-sveltekit-reload
-									>{`${author.last_name}, ${author.first_name}`}
-								</a>
+						<div class="text-start">
+							{#if item.authors.length !== 1}
+								<strong>Authors:</strong>
 							{:else}
-								<span>{`${author.last_name}, ${author.first_name}`}</span>
+								<strong>Author:</strong>
 							{/if}
-							{#if i + 1 !== item.authors.length}
-								<span>{` & `}</span>
-							{/if}
-						{/each}
+							{#each item.authors as author, i}
+								{#if author.link && typeof author.link === 'string'}
+									<a href={author.link} class="text-blue-500" data-sveltekit-reload
+										>{`${author.last_name}, ${author.first_name}`}
+									</a>
+								{:else}
+									<span>{`${author.last_name}, ${author.first_name}`}</span>
+								{/if}
+								{#if i + 1 !== item.authors.length}
+									<span>{` & `}</span>
+								{/if}
+							{/each}
+						</div>
 					{/if}
 				</div>
 				{#if item.abstract}
-					<div class="text-start">
+					<div class="line-clamp-[20] text-start">
 						<small><strong>Abstract:</strong> {item.abstract}</small>
 					</div>
 				{/if}
