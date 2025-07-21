@@ -1,62 +1,54 @@
 <script lang="ts">
-	import { ScrollText } from 'lucide-svelte';
-	import * as Card from '$lib/@shadcn-svelte/ui/card';
-	import * as Dialog from '$lib/@shadcn-svelte/ui/dialog';
 	import { PUBLIC_APIURL } from '$env/static/public';
-	import { Publication } from '$lib/models/publications';
+	import * as Dialog from '$lib/@shadcn-svelte/ui/dialog';
 	import { SquareArrowOutUpRight } from 'lucide-svelte';
+	import { Publication } from '$lib/models/publications';
 
 	export let item: Publication;
 
-	let banner_height: number;
-
-	$: publications_tags = item.publication_tags
+	$: publications_tags = item
 		? item.publication_tags
-				.filter((tag) => typeof tag === 'object')
-				.map(({ publications_tags_id }) => {
-					if (typeof publications_tags_id === 'object') return publications_tags_id.name;
-				})
-				.filter((tag) => typeof tag !== 'undefined')
+			? item.publication_tags
+					.filter((tag) => typeof tag === 'object')
+					.map(({ publications_tags_id }) => {
+						if (typeof publications_tags_id === 'object') return publications_tags_id.name;
+					})
+					.filter((tag) => typeof tag !== 'undefined')
+			: []
 		: [];
+
+	let pubs_banner_height: number;
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class="h-full w-full pt-20">
-		<Card.Root class="h-full w-full">
-			<Card.Header class="relative flex h-80 flex-col items-center">
+	<Dialog.Trigger>
+		<div
+			class="flex flex-col items-center justify-start gap-2 border-b py-5 text-center sm:flex-row sm:text-start"
+		>
+			{#if item.hero_image}
 				<div
-					class="-mt-24 w-full max-w-[calc(var(--card-height)*0.5)] flex-grow overflow-hidden rounded-lg bg-gray-100"
-					bind:clientHeight={banner_height}
+					class="flex h-36 w-full flex-col items-center justify-center overflow-hidden rounded-lg p-2 shadow-none md:w-2/5"
+					bind:clientHeight={pubs_banner_height}
 				>
-					{#if item.hero_image && banner_height}
+					{#if pubs_banner_height}
 						<img
-							src="{PUBLIC_APIURL}/assets/{item.hero_image}?height={banner_height}"
+							src="{PUBLIC_APIURL}/assets/{item.hero_image}?height={pubs_banner_height}"
 							alt={item.title}
 							class="h-full w-full rounded-lg object-cover"
 						/>
-					{:else}
-						<div class="flex h-full w-full items-center justify-center rounded-lg bg-muted">
-							<ScrollText class="w-20 bg-muted text-muted-foreground" />
-						</div>
 					{/if}
 				</div>
-				<Card.Title class="w-full py-2 text-center">{item.title}</Card.Title>
-				<Card.Description class="flex w-full flex-col justify-between gap-x-4 pb-4 lg:flex-row">
-					<p class="text-center text-sm text-gray-500 lg:text-start">
-						{item.authors?.map((a) => a.last_name).join(', ')}
+			{/if}
+
+			<div class="w-full">
+				<p class="text-xl font-bold">{item.title}</p>
+				{#if item.abstract}
+					<p class="line-clamp-2">
+						{item.abstract}
 					</p>
-					<p class="text-center text-sm text-gray-500 lg:text-end">
-						{#if item.publish_date}
-							{new Date(item.publish_date).toLocaleDateString('en-EN', {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
-						{/if}
-					</p>
-				</Card.Description>
-			</Card.Header>
-		</Card.Root>
+				{/if}
+			</div>
+		</div>
 	</Dialog.Trigger>
 	<Dialog.Content class="mx-auto w-full max-w-[90vw] rounded-lg md:max-w-lg">
 		<Dialog.Header class="flex flex-col gap-y-1">

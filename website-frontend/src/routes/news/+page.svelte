@@ -7,7 +7,7 @@
 
 	export let data;
 
-	$: ({ news_overview, news_limit, news_count, news } = data);
+	$: ({ news_overview, news_count, news } = data);
 </script>
 
 <FullWidthBreakout>
@@ -25,7 +25,6 @@
 				text="news"
 				component={NewsCard}
 				count={news_count}
-				limit={news_limit}
 			/>
 		</div>
 	</div>
