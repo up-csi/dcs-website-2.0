@@ -61,6 +61,8 @@ services:
         - STATIC_ACCESS_TOKEN=1B43zfYfF9uv9AZPOiz2eg9tQV9Eq_vR
     ports:
       - 1800:3000
+    env_file:
+      - ../website-frontend/.env
 
 secrets:
   db_user:
